@@ -27,6 +27,10 @@ public class StatusBarRaccoon : MonoBehaviour
             }
             else
             {
+                if (newValue < 0)
+                {
+                    newValue = 0;
+                }
                 m_CurValue = newValue;
                 m_CurPercent = (float)newValue / (float)Max;
             }
