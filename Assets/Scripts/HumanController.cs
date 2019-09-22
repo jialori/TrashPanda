@@ -24,12 +24,14 @@ public class HumanController : MonoBehaviour
     void Update() {
 
     	if (isChasing) {
-			direction = (raccoon.transform.position - transform.position).normalized;
-    		rb.velocity = direction * speed * Time.deltaTime;
-    		Debug.Log("is Chasing!");
+			// direction = (raccoon.transform.position - transform.position).normalized;
+    		// rb.velocity = direction * speed * Time.deltaTime;
+    		// Debug.Log("is Chasing!");
+    		transform.position = Vector3.MoveTowards(transform.position, raccoon.transform.position, speed * Time.deltaTime);
     	} else if (!isChasing && originalPosition != transform.position) {
-			direction = (originalPosition - transform.position).normalized;
-    		rb.velocity = direction * speed * Time.deltaTime;
+			// direction = (originalPosition - transform.position).normalized;
+    		// rb.velocity = direction * speed * Time.deltaTime;
+    		transform.position = Vector3.MoveTowards(transform.position, originalPosition, speed * Time.deltaTime);
     	}
 
     }
