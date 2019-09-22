@@ -1437,6 +1437,8 @@ MonoBehaviour:
   BarImg: {fileID: 173727849}
   BarText: {fileID: 2124582258}
   Max: 100
+  autoDecSpeed: 2
+  autoDecTimeGap: 1
 --- !u!1 &1588551490
 GameObject:
   m_ObjectHideFlags: 0
