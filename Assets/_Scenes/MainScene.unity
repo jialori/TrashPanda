@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -637,7 +637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536219371}
   m_LocalRotation: {x: 0.3237271, y: 0, z: 0, w: 0.94615054}
-  m_LocalPosition: {x: -4.049902, y: 6.8503976, z: -7.730015}
+  m_LocalPosition: {x: -4.0536804, y: 6.8503976, z: -7.730015}
   m_LocalScale: {x: 1, y: 0.9999999, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1228,11 +1228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ab3c96bef61084c8bf8e7e2c808246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BarImg: {fileID: 1205365446}
-  BarText: {fileID: 1501887735}
-  Max: 100
-  autoDecSpeed: 2
-  autoDecTimeGap: 1
 --- !u!1 &1501887733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,7 +1444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667602454}
   m_LocalRotation: {x: 0.3237271, y: -0, z: -0, w: 0.94615054}
-  m_LocalPosition: {x: -4.049902, y: 6.8503976, z: -7.730015}
+  m_LocalPosition: {x: -4.0536804, y: 6.8503976, z: -7.730015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1375832984}
@@ -1530,6 +1525,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 951963064}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1988355450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988355452}
+  - component: {fileID: 1988355451}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1988355451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988355450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e157c057fccfe3439b6320f0a00cb6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  failureCondition: 1
+  sceneName: GameOver
+--- !u!4 &1988355452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988355450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.2970228, y: 2.4041216, z: 4.5900755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &465126962600374858
 PrefabInstance:
