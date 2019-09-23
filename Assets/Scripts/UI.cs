@@ -7,14 +7,14 @@ public class UI : MonoBehaviour
 {
     public Text foodDisplay;
 
-    private RaccoonController racoon;
+    private RaccoonController raccoon;
     private int food;
     private int maxFood;
 
     void Start()
     {
-        racoon = FindObjectOfType<RaccoonController>();
-        maxFood = racoon.maxFood;
+        raccoon = FindObjectOfType<RaccoonController>();
+        maxFood = raccoon.GetMaxFood();
         DisplayFoodText();
     }
 
@@ -24,7 +24,7 @@ public class UI : MonoBehaviour
     }
 
     void DisplayFoodText() {
-        food = racoon.food;
+        food = raccoon.GetFood();
         foodDisplay.text = "Food: " + food.ToString() + "\nFood needed: " + maxFood.ToString();
     }
 }
