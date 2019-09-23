@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Shelter : MonoBehaviour
 {
-    private int children = 3;               // Number of racoon children in the shelter
-    private int m_numFood = 0;              // Food currently stored in shelter (maybe children should eat at set intervals?)
     public GameObject player;               // Reference to player object
     public RaccoonController RacScript;     // Reference to racoon controller
-    bool isTouching;                        // Used to determine if the player is close enough to the shelter for interaction
 
-    // Start is called before the first frame update
+    private int children;               // Number of racoon children in the shelter
+    private int m_numFood;              // Food currently stored in shelter (maybe children should eat at set intervals?)
+    private bool isTouching;                        // Used to determine if the player is close enough to the shelter for interaction
+
     void Start()
     {
-        
+        children = 3;
+        m_numFood = 0;
     }
 
     private void OnTriggerEnter(Collider other)
