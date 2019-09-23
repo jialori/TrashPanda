@@ -25,6 +25,6 @@ public class UI : MonoBehaviour
 
     void DisplayFoodText() {
         food = raccoon.GetFood();
-        foodDisplay.text = "Food: " + food.ToString() + "\nFood needed: " + maxFood.ToString();
+        foodDisplay.text = "Food carrying: " + food.ToString() + "/" + maxFood.ToString();
     }
 }

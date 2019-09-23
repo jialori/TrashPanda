@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -563,8 +563,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536219371}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: -4.070306, y: 6.592221, z: -8.02966}
+  m_LocalRotation: {x: 0.3237271, y: 0, z: 0, w: 0.94615054}
+  m_LocalPosition: {x: -4.0454893, y: 6.8503976, z: -7.730015}
   m_LocalScale: {x: 1, y: 0.9999999, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 0}
@@ -990,7 +990,7 @@ MonoBehaviour:
   m_YDamping: 1
   m_ZDamping: 1
   m_ScreenX: 0.496
-  m_ScreenY: 0.63523114
+  m_ScreenY: 0.53045636
   m_CameraDistance: 10
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
@@ -1168,14 +1168,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667602454}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: -4.070306, y: 6.592221, z: -8.02966}
+  m_LocalRotation: {x: 0.3237271, y: -0, z: -0, w: 0.94615054}
+  m_LocalPosition: {x: -4.0454893, y: 6.8503976, z: -7.730015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1375832984}
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 37.777, y: 0, z: 0}
 --- !u!1 &1788608765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1258,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8381213056788003811, guid: ec11f949b9647c54093da74983652192,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 689211067}
+    - target: {fileID: 8381213056788003811, guid: ec11f949b9647c54093da74983652192,
+        type: 3}
+      propertyPath: RacScript
+      value: 
+      objectReference: {fileID: 689211072}
     - target: {fileID: 465126963436460084, guid: ec11f949b9647c54093da74983652192,
         type: 3}
       propertyPath: m_Name
@@ -1317,6 +1327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 465126963436460085, guid: ec11f949b9647c54093da74983652192,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec11f949b9647c54093da74983652192, type: 3}
@@ -1705,7 +1720,7 @@ PrefabInstance:
     - target: {fileID: 8424998524596719526, guid: 8e7371b8b119547448d6df1b23ddc93f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8424998524596719526, guid: 8e7371b8b119547448d6df1b23ddc93f,
         type: 3}
