@@ -15,7 +15,7 @@ public class StatusBarRaccoon : MonoBehaviour
     private float m_CurPercent;
     float timeLeft;
 
-    public void SetValue(int newValue)
+    private void SetValue(int newValue)
     {
         if (m_CurValue != newValue)
         {
@@ -40,17 +40,6 @@ public class StatusBarRaccoon : MonoBehaviour
         }
     }
 
-    // Accessor for current percentage of the status bar
-    public float CurPercent
-    {
-        get { return m_CurPercent; }
-    }
-
-    // Accessor for current value of the status bar
-    public float CurValue
-    {
-        get { return m_CurValue; }
-    }
 
     // Set Status to Max at the beginning of the game
     private void Start()
@@ -72,5 +61,29 @@ public class StatusBarRaccoon : MonoBehaviour
             // TODO GameEnding Scripts
             // Game Over
         }
+    }
+
+
+    //
+    // Below are Functions and Accessors that can be accessed from outside of this script
+    //
+
+    // Accessor for current percentage of the status bar
+    public float CurPercent
+    {
+        get { return m_CurPercent; }
+    }
+
+    // Accessor for current value of the status bar
+    public float CurValue
+    {
+        get { return m_CurValue; }
+    }
+
+    // To increase the value when eating food 
+    // or decrease (by setting addVal to negative) when encounter some dangers
+    public void addValue(int addVal)
+    {
+        SetValue(m_CurValue + addVal);
     }
 }
