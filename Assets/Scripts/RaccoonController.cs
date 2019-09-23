@@ -47,4 +47,17 @@ public class RaccoonController : MonoBehaviour
         food++;
         return true;
     }
+
+    public bool DecreaseFood()
+    {
+        if (food <= 0)
+        {
+            Debug.Log("Have no food");
+            return false;
+        }
+
+        Debug.Log("Gave a food");
+        food--;
+        return true;
+    }
 }
