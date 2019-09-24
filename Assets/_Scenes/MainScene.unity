@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.2063263, g: 0.09792129, b: 0.12711439, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 120813647}
   - component: {fileID: 120813646}
   m_Layer: 0
-  m_Name: AudioController
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,11 +219,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 120813645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66a9a1c6513a79b498ad4bca6e4f62db, type: 3}
+  m_Script: {fileID: 11500000, guid: a6aac7503b036d148a330842fa43fcc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicClip: {fileID: 8300000, guid: 82e75f880e3104a468808520aa1a72f0, type: 3}
-  MusicSource: {fileID: 120813647}
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: 82e75f880e3104a468808520aa1a72f0, type: 3}
+    volume: 1
+    volumeVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: ItemCollect
+    clip: {fileID: 8300000, guid: ba56549ab9d8e8f4e8c81074112cdaed, type: 3}
+    volume: 0.7
+    volumeVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 5c712dd2942200d47ac6aaf4d291288c, type: 3}
+    volume: 1
+    volumeVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!82 &120813647
 AudioSource:
   m_ObjectHideFlags: 0
@@ -237,7 +258,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: -0
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -643,7 +664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536219371}
   m_LocalRotation: {x: 0.3237271, y: 0, z: 0, w: 0.94615054}
-  m_LocalPosition: {x: -4.0536804, y: 6.8503976, z: -7.730015}
+  m_LocalPosition: {x: -4.070306, y: 6.8503976, z: -7.730015}
   m_LocalScale: {x: 1, y: 0.9999999, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 0}
@@ -885,7 +906,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 5.18e-43, y: 2.06e-43, z: 0, w: 209665.25}
+  m_BoundingSphereOverride: {x: 1.8465455e+25, y: 174.43138, z: 2.818102e+20, w: 1.3513151e-14}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 15.5
@@ -1118,7 +1139,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 5.18e-43, y: 5.6045033e-24, z: 5.18e-43, w: 1.23e-43}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1373,7 +1394,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.12, y: 0.00000047683716, z: 1, w: -0.00000011920929}
+  m_BoundingSphereOverride: {x: 5.28e-43, y: -2.8427448e-30, z: 5.28e-43, w: 7.3e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1519,6 +1540,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ab3c96bef61084c8bf8e7e2c808246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BarImg: {fileID: 0}
+  BarText: {fileID: 0}
+  Max: 0
+  autoDecSpeed: 0
+  autoDecTimeGap: 0
 --- !u!1 &1501887733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667602454}
   m_LocalRotation: {x: 0.3237271, y: -0, z: -0, w: 0.94615054}
-  m_LocalPosition: {x: -4.0536804, y: 6.8503976, z: -7.730015}
+  m_LocalPosition: {x: -4.070306, y: 6.8503976, z: -7.730015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1375832984}

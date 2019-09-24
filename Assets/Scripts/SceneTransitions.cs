@@ -20,6 +20,7 @@ public class SceneTransitions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))        // Condition for scene transition here. Right now it triggers on pressing 'P' for testing purposes
         {
             Debug.Log("P down");
+            AudioManager.instance.Play("GameOver");
             SceneManager.LoadScene(sceneName);
         }
     }

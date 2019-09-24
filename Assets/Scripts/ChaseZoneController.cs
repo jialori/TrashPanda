@@ -9,9 +9,7 @@ public class ChaseZoneController : MonoBehaviour
 
 	private Collider cl;
 	private float bound_x1, bound_x2, bound_z1, bound_z2;
-	private float m_x, m_z;
-	// Boolean tags
-	private bool isChasing, seenTarget;
+	private bool isChasing, seenTarget; 	// Boolean tags
 
     // Start is called before the first frame update
     void Start()
@@ -29,15 +27,13 @@ public class ChaseZoneController : MonoBehaviour
         isChasing = false;
         seenTarget = false;
 
-        //Output to the console the size of the Collider volume
-        // Debug.Log("Collider Size : " + m_Size);
     }
 
     // Update is called once per frame
     void Update()
     {
-    	m_x = target.transform.position.x;
-    	m_z = target.transform.position.z;
+    	float m_x = target.transform.position.x;
+    	float m_z = target.transform.position.z;
    		seenTarget = (m_x >= bound_x1 && m_x <= bound_x2 && m_z >= bound_z1 && m_z <= bound_z2) ? true : false;
        	if (seenTarget && !isChasing) {
     		FindObjectOfType<HumanController>().ChaseRaccoon();

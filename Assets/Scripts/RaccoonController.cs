@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RaccoonController : MonoBehaviour
 {
+    public AudioClip itemCollectSound;
     [SerializeField] private float speed = 80;
     [SerializeField] private int food = 0;
     [SerializeField] private int maxFood = 10;
@@ -44,6 +45,7 @@ public class RaccoonController : MonoBehaviour
 
         Debug.Log("Got a food");
         food++;
+        AudioManager.instance.Play("ItemCollect");
         return true;
     }
 
