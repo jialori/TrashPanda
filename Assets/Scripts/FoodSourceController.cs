@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO (do after design decisions, before more technical implementations): 
+//			Refactor script to inherent FoodSourceController so 
+// 			that it notifies "player", but can perform other unique behaviour 
+//			at the same time
 public class FoodSourceController : MonoBehaviour
 {
-    protected int m_NumFood = 5;
+    protected int m_NumFood = 5; //TODO: should this be public
     public GameObject player;
     public RaccoonController RacScript;
     float TimeInterval;
