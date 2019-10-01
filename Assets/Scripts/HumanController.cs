@@ -43,4 +43,8 @@ public class HumanController : MonoBehaviour
     public void StopChaseRaccoon() {
     	isChasing = false;
     }
+
+    public bool IsChasing() {
+        return isChasing;
+    }
 }

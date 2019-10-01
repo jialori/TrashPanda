@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChaseZoneController : MonoBehaviour
 {
 	public GameObject target;
-	public GameObject owner;
+	public GameObject owner; // TODO: not needed, delete?
 
 	private Collider cl;
 	private float bound_x1, bound_x2, bound_z1, bound_z2;
@@ -35,12 +35,13 @@ public class ChaseZoneController : MonoBehaviour
     	float m_x = target.transform.position.x;
     	float m_z = target.transform.position.z;
    		seenTarget = (m_x >= bound_x1 && m_x <= bound_x2 && m_z >= bound_z1 && m_z <= bound_z2) ? true : false;
-       	if (seenTarget && !isChasing) {
-    		FindObjectOfType<HumanController>().ChaseRaccoon();
-	       	isChasing = true;
-	    } else if (!seenTarget && isChasing) {
+     //   	if (seenTarget && !isChasing) {
+    	// 	FindObjectOfType<HumanController>().ChaseRaccoon();
+	    //    	isChasing = true;
+	    // } else 
+        if (!seenTarget && FindObjectOfType<HumanController>().IsChasing()) {
 	       	FindObjectOfType<HumanController>().StopChaseRaccoon();
-	       	isChasing = false;
+	       	// isChasing = false;
        }
 
     }
