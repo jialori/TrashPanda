@@ -14,20 +14,31 @@ public class RaccoonController : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
+    public Transform cam;
+
+    Vector2 input;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Debug.Log(rb);
     }
-
-    
 
     void FixedUpdate()
     {
-        float moveHorizontal = speed * Input.GetAxis("Horizontal");
-        float moveVertical = speed * Input.GetAxis("Vertical");
-        Vector3 movePlayer = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rb.velocity = movePlayer;
+        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        Vector3 camF = cam.forward;
+        Vector3 camR = cam.right;
+
+        camF.y = 0;
+        camR.y = 0;
+        camF = camF.normalized;
+        camR = camR.normalized;
+
+        //float moveHorizontal = speed * Input.GetAxis("Horizontal");
+        //float moveVertical = speed * Input.GetAxis("Vertical");
+        //Vector3 movePlayer = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        rb.position += (camF * input.y + camR * input.x) * Time.deltaTime * speed;
         
         
         // Code from jump script

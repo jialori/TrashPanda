@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CameraRotator : MonoBehaviour
 {
+    // Constants for clamping camera angles and establishing boundaries for rotation
     private const float Y_ANGLE_MIN = 0.0f;
     private const float Y_ANGLE_MAX = 50.0f;
 
+    // Initialization of variables
     public Transform lookAt;
     public Transform camTransform;
 
@@ -26,9 +28,11 @@ public class CameraRotator : MonoBehaviour
 
     private void Update()
     {
+        // Ensure rotation values correspond with movement of mouse (will need to change to fit controller later)
         currentX += Input.GetAxis("Mouse X") * sensitivityX;
         currentY += Input.GetAxis("Mouse Y") * sensitivityY;
 
+        // Clamp camera rotation
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
     }
 
