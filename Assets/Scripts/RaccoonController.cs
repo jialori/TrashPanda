@@ -4,69 +4,109 @@ using UnityEngine;
 
 public class RaccoonController : MonoBehaviour
 {
-    public AudioClip itemCollectSound;
-    [SerializeField] private float speed = 80;
+    [SerializeField] private AudioClip itemCollectSound;
+    [SerializeField] private bool useController = true;
     [SerializeField] private int food = 0;
     [SerializeField] private int maxFood = 10;
 
-    private Rigidbody rb;
-    public float jumpVelocity = 50f;
-    public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
+    [SerializeField] private Transform cam;
 
-    public Transform cam;
+    private Vector3 movementVector;
 
-    Vector2 input;
+    private CharacterController characterController;
+
+    private float movementSpeed = 10;
+    private float jumpPower = 15;
+    private float gravity = 40;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
     }
 
-    void FixedUpdate()
+    void Update()
+    {        
+        // Adjust movement for camera angle
+        var camForward = cam.forward;
+        var camRight = cam.right;
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward = camForward.normalized;
+        camRight = camRight.normalized;
+        var prevY = movementVector.y;
+
+        // movement
+        movementVector = (-camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
+        
+        // Jump
+        if (characterController.isGrounded)
+        {
+            movementVector.y = 0;
+
+            if (Input.GetButtonDown("A"))
+            {
+                movementVector.y = jumpPower;
+            }
+        } else {
+            movementVector.y = prevY;
+        }
+
+        movementVector.y -= gravity * Time.deltaTime;
+        Debug.Log("movementVector = " + movementVector);
+
+        characterController.Move(movementVector * Time.deltaTime);
+    }
+
+    private float GetXAxis() 
     {
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        Vector3 camF = cam.forward;
-        Vector3 camR = cam.right;
-
-        camF.y = 0;
-        camR.y = 0;
-        camF = camF.normalized;
-        camR = camR.normalized;
-
-        //float moveHorizontal = speed * Input.GetAxis("Horizontal");
-        //float moveVertical = speed * Input.GetAxis("Vertical");
-        //Vector3 movePlayer = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rb.position += (camF * input.y + camR * input.x) * Time.deltaTime * speed;
-        
-        
-        // Code from jump script
-        if (Input.GetButtonDown("Jump"))
+        if (useController) 
         {
-            Debug.Log("jump press");
-            rb.velocity = Vector3.up * jumpVelocity;
-        }
-        if (rb.velocity.y < 0)
+            return Input.GetAxis("LeftJoystickX");
+        } 
+        else 
         {
-            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            return Input.GetAxis("Horizontal");
         }
-        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+    }
+
+    private float GetYAxis() 
+    {
+        if (useController) 
         {
-            rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            return Input.GetAxis("LeftJoystickY");
+        } 
+        else 
+        {
+            return Input.GetAxis("Vertial");
         }
-        
-        
+    }
+
+    private Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)
+    {
+        // If this script is on your camera object, you can use this.transform instead.
+
+        // The first part creates a rotation looking into the ground, with
+        // "up" matching the camera's look direction as closely as it can. 
+        // The second part rotates this 90 degrees, so "forward" input matches 
+        // the camera's look direction as closely as it can in the horizontal plane.
+        Quaternion flatten = Quaternion.LookRotation(
+                                            -localUp, 
+                                            this.cam.forward
+                                    )
+                                        * Quaternion.Euler(Vector3.right * -90f);
+
+        // Now we rotate our input vector into this frame of reference
+        return flatten * input;
     }
 
     public int GetFood()
     {
-        return food; 
+        return food;
     }
 
     public int GetMaxFood()
     {
-        return maxFood; 
+        return maxFood;
     }
 
     public bool IncreaseFood()
