@@ -47,13 +47,13 @@ public class RaccoonController : MonoBehaviour
             {
                 movementVector.y = jumpPower;
             }
+
         } else {
             movementVector.y = prevY;
         }
 
         movementVector.y -= gravity * Time.deltaTime;
         Debug.Log("movementVector = " + movementVector);
-
         characterController.Move(movementVector * Time.deltaTime);
     }
 
@@ -77,7 +77,7 @@ public class RaccoonController : MonoBehaviour
         } 
         else 
         {
-            return Input.GetAxis("Vertial");
+            return Input.GetAxis("Vertical");
         }
     }
 
@@ -99,6 +99,41 @@ public class RaccoonController : MonoBehaviour
         return flatten * input;
     }
 
+
+    // Hit an object over
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        // no rigidbody
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
+
+        // Break break-able objects
+        Breakable breakable = hit.gameObject.GetComponent("Breakable") as Breakable;
+        Knockable knockable = hit.gameObject.GetComponent("Knockable") as Knockable;
+
+        if (breakable != null) {
+            if (Input.GetButtonDown("B")) {
+                breakable.trigger();
+            }
+        }
+
+        if (knockable != null) {
+            if (Input.GetButtonDown("B")) {
+                // Calculate push direction from move direction,
+                // we only push objects to the sides never up and down
+                Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+                Vector3 pushForce = pushDir * movementSpeed;
+                knockable.trigger(pushForce);
+            }
+        }
+    }
+
+
+    // TODO: delete following code
     public int GetFood()
     {
         return food;
