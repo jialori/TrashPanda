@@ -36,14 +36,14 @@ public class RaccoonController : MonoBehaviour
         var prevY = movementVector.y;
 
         // movement
-        movementVector = (-camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
+        movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
         
         // Jump
         if (characterController.isGrounded)
         {
             movementVector.y = 0;
 
-            if (Input.GetButtonDown("A"))
+            if (GetJump())
             {
                 movementVector.y = jumpPower;
             }
@@ -73,11 +73,23 @@ public class RaccoonController : MonoBehaviour
     {
         if (useController) 
         {
-            return Input.GetAxis("LeftJoystickY");
+            return -Input.GetAxis("LeftJoystickY");
         } 
         else 
         {
-            return Input.GetAxis("Vertial");
+            return Input.GetAxis("Vertical");
+        }
+    }
+
+    private bool GetJump()
+    {
+        if (useController)
+        {
+            return Input.GetButtonDown("A");
+        } 
+        else 
+        {
+            return Input.GetKeyDown(KeyCode.Space);
         }
     }
 
