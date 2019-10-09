@@ -16,7 +16,7 @@ public class CameraRotator : MonoBehaviour
 
     private Camera cam;
 
-    private float distance = 5.0f;
+    private float distance = 10.0f;
     private float currentX = 0.0f;
     private float currentY = 10f;
     private float sensitivityX = 5.0f;
