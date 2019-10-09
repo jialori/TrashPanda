@@ -8,22 +8,20 @@ public class ToolTextDisplay : MonoBehaviour
     private ToolController tool;
     private string tType;
 
-    void Start()
-    {
-        tool = FindObjectOfType<ToolController>();
-    }
 
     void Update()
     {
-        tType = tool.toolType;
-        if (tool.beingCarried)
+        tool = ToolController.toolInHand;
+        if (tool != null)
         {
+            tType = tool.toolType;
             toolDisplay.text = "Tool: " + tType;
         }
         else
         {
             toolDisplay.text = "Tool: None";
         }
+        
         
     }
 

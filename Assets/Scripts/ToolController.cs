@@ -13,8 +13,10 @@ public class ToolController : MonoBehaviour
     public int dmg;
 
     bool hasPlayer = false;
-    public bool beingCarried = false;
+    bool beingCarried = false;
     private Rigidbody rb;
+    private static bool handFree = true;
+    public static ToolController toolInHand = null;
     //private AudioSource audioSource;
     //private bool touched = false;
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class ToolController : MonoBehaviour
     void Update()
     {
         float dis = Vector3.Distance(gameObject.transform.position, player.transform.position);
-        if (dis <= 5f)
+        if (dis <= 3f)
         {
             hasPlayer = true;
         }
@@ -36,12 +38,14 @@ public class ToolController : MonoBehaviour
         {
             hasPlayer = false;
         }
-        if (hasPlayer && Input.GetKeyDown("i"))
+        if (hasPlayer && handFree && Input.GetKeyDown("i"))
         {
             rb.isKinematic = true;
             transform.parent = player;
             beingCarried = true;
             transform.localPosition = player.forward;
+            handFree = false;
+            toolInHand = this;
         }
         if (beingCarried)
         {
@@ -70,6 +74,8 @@ public class ToolController : MonoBehaviour
                 transform.position = currLoc;
                 //transform.SetParent(null, false);
                 beingCarried = false;
+                handFree = true;
+                toolInHand = null;
             }
         }
     }
