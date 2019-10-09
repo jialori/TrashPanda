@@ -38,7 +38,7 @@ public class ToolController : MonoBehaviour
         {
             hasPlayer = false;
         }
-        if (hasPlayer && handFree && Input.GetKeyDown("i"))
+        if (hasPlayer && handFree && Input.GetButtonDown("X"))//Input.GetKeyDown("i"))
         {
             rb.isKinematic = true;
             transform.parent = player;
@@ -66,7 +66,7 @@ public class ToolController : MonoBehaviour
                 //rb.AddForce(player.forward * throwForce);
                 //PlaySFX();
             //}
-            if (Input.GetKeyDown("u"))
+            if ( Input.GetButtonDown("Y"))//Input.GetKeyDown("u"))
             {
                 rb.isKinematic = false;
                 Vector3 currLoc = transform.position;
