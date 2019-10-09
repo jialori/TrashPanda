@@ -426,12 +426,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 689211067}
+      objectReference: {fileID: 0}
     - target: {fileID: 2856978655832300273, guid: 68b671a13c9534248940a34b8794ed44,
         type: 3}
       propertyPath: RacScript
       value: 
-      objectReference: {fileID: 689211072}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68b671a13c9534248940a34b8794ed44, type: 3}
 --- !u!1 &433591190
@@ -578,12 +578,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 689211067}
+      objectReference: {fileID: 0}
     - target: {fileID: 2856978655832300273, guid: 68b671a13c9534248940a34b8794ed44,
         type: 3}
       propertyPath: RacScript
       value: 
-      objectReference: {fileID: 689211072}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68b671a13c9534248940a34b8794ed44, type: 3}
 --- !u!1 &536219371
@@ -668,7 +668,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.9999999, z: 0.9999999}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 33.555, y: -318.389, z: 0.23}
 --- !u!114 &536219376
 MonoBehaviour:
@@ -682,8 +682,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf3f66c2c807aa45afd46d8559b438e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAt: {fileID: 689211068}
-  camTransform: {fileID: 0}
+  useController: 0
+  lookAt: {fileID: 2089466802}
+  camTransform: {fileID: 536219374}
 --- !u!1 &547389978
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,30 +785,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &689211067 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1017216223234981756, guid: a3d1e7eae245a7b40b41802bbec029dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1017216222547933639}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &689211068 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1017216223234981755, guid: a3d1e7eae245a7b40b41802bbec029dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1017216222547933639}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &689211072 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1017216223234981639, guid: a3d1e7eae245a7b40b41802bbec029dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1017216222547933639}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689211067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4edf4386a6f8541bed1a7edd358fe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,12 +1645,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 689211067}
+      objectReference: {fileID: 0}
     - target: {fileID: 2856978655832300273, guid: 68b671a13c9534248940a34b8794ed44,
         type: 3}
       propertyPath: RacScript
       value: 
-      objectReference: {fileID: 689211072}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68b671a13c9534248940a34b8794ed44, type: 3}
 --- !u!1 &1667602454
@@ -1712,7 +1689,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 689211068}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 50
     OrthographicSize: 10
@@ -1863,6 +1840,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2089466802 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1017216222547933639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &465126962600374858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1879,12 +1862,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 689211067}
+      objectReference: {fileID: 0}
     - target: {fileID: 8381213056788003811, guid: ec11f949b9647c54093da74983652192,
         type: 3}
       propertyPath: RacScript
       value: 
-      objectReference: {fileID: 689211072}
+      objectReference: {fileID: 0}
     - target: {fileID: 465126963436460232, guid: ec11f949b9647c54093da74983652192,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2025,6 +2008,21 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 536219374}
+    - target: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 113956176984252531, guid: a3d1e7eae245a7b40b41802bbec029dd,
+        type: 3}
+      propertyPath: useController
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 113956176984252531, guid: a3d1e7eae245a7b40b41802bbec029dd,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 536219374}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3d1e7eae245a7b40b41802bbec029dd, type: 3}
 --- !u!1001 &2856978656383523310
@@ -2098,12 +2096,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 689211067}
+      objectReference: {fileID: 0}
     - target: {fileID: 2856978655832300273, guid: 68b671a13c9534248940a34b8794ed44,
         type: 3}
       propertyPath: RacScript
       value: 
-      objectReference: {fileID: 689211072}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68b671a13c9534248940a34b8794ed44, type: 3}
 --- !u!1001 &5960563772203821785
@@ -2177,12 +2175,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 689211067}
+      objectReference: {fileID: 0}
     - target: {fileID: 5960563773419399880, guid: 18d641cc2a2f1fa46912093881534de1,
         type: 3}
       propertyPath: RacScript
       value: 
-      objectReference: {fileID: 689211072}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18d641cc2a2f1fa46912093881534de1, type: 3}
 --- !u!1001 &6734575455932068371
@@ -2394,7 +2392,7 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 689211067}
+      objectReference: {fileID: 0}
     - target: {fileID: 8424998524596719525, guid: 8e7371b8b119547448d6df1b23ddc93f,
         type: 3}
       propertyPath: owner
