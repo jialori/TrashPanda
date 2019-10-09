@@ -31,6 +31,7 @@ public class RaccoonController : MonoBehaviour
 
   void Start()
   {
+    AudioManager.instance.Play("ThemeSong");
     characterController = GetComponent<CharacterController>();
 
     // Raycasy for breakable and knockable objects
