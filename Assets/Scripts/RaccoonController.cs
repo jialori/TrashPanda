@@ -19,9 +19,24 @@ public class RaccoonController : MonoBehaviour
     private float jumpPower = 15;
     private float gravity = 40;
 
+    // First add a Layer "Breakable"/"Knockable" to all breakable and knockable objects in Unity Engine 
+    private float raycastPaddedDist;
+    private float raycastPadding = 0.2f;
+    private int radiusStep = 36; // how many degree does each raycast check skips, dcrease if want more accuracy
+    private string breakableMaskName = "Breakable";
+    private string knockableMaskName = "Knockable";
+    private int breakableMask;
+    private int knockableMask;
+    private float pushPower = 12;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+
+        // Raycasy for breakable and knockable objects
+        raycastPaddedDist = characterController.radius + raycastPadding; 
+        breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
+        knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
     }
 
     void Update()
@@ -55,6 +70,31 @@ public class RaccoonController : MonoBehaviour
         movementVector.y -= gravity * Time.deltaTime;
         Debug.Log("movementVector = " + movementVector);
         characterController.Move(movementVector * Time.deltaTime);
+
+        // Breakable objects
+        RaycastHit hit;
+        if (Input.GetButtonDown("B")) {
+            // Bottom of controller. Slightly above ground so it doesn't bump into slanted platforms.
+            Vector3 p1 = transform.position + Vector3.up * 0.01f;
+            Vector3 p2 = p1 + Vector3.up * characterController.height;
+            // Check around the character in 360 degree
+             for(int i=0; i<360; i+= radiusStep){
+                // Check if anything with the platform layer touches this object
+                if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask)){
+                    Breakable breakable = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
+                    if (breakable != null) {
+                        breakable.trigger();
+                    }
+                }
+            }
+        }
+
+        //[Optional] Check the players feet and push them up if something clips through their feet.
+        //(Useful for vertical moving platforms)
+        // if (Physics.Raycast(transform.position+Vector3.up, -Vector3.up, out hit, 1, knockableMask)){
+        //     characterController.Move(Vector3.up * (1-hit.distance));
+        // }
+
     }
 
     private float GetXAxis() 
@@ -112,23 +152,11 @@ public class RaccoonController : MonoBehaviour
         }
 
         // Break break-able objects
-        Breakable breakable = hit.gameObject.GetComponent("Breakable") as Breakable;
         Knockable knockable = hit.gameObject.GetComponent("Knockable") as Knockable;
-
-        if (breakable != null) {
-            if (Input.GetButtonDown("B")) {
-                breakable.trigger();
-            }
-        }
-
         if (knockable != null) {
-            if (Input.GetButtonDown("B")) {
-                // Calculate push direction from move direction,
-                // we only push objects to the sides never up and down
-                Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
-                Vector3 pushForce = pushDir * movementSpeed;
-                knockable.trigger(pushForce);
-            }
+            Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+            Vector3 pushForce = pushDir * pushPower;
+            knockable.trigger(pushForce);
         }
     }
 

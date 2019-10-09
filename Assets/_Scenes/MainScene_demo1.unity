@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 223367516}
   - component: {fileID: 223367515}
   - component: {fileID: 223367520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Knockable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f7b3644d7058b4e814783cc1fec183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torquePower: 200
 --- !u!65 &223367516
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -525,7 +524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223367514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 3.49}
+  m_LocalPosition: {x: 0, y: 0.5, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -539,10 +538,10 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223367514}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2626,7 +2625,7 @@ GameObject:
   - component: {fileID: 1759784798}
   - component: {fileID: 1759784797}
   - component: {fileID: 1759784802}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Breakable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
