@@ -2,29 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI: MonoBehaviour
 {
-    public Text foodDisplay;
+    [SerializeField] private float timeLeft;
+    [SerializeField] private Text timerText;
+    public string sceneName;
 
     private RaccoonController raccoon;
-    private int food;
-    private int maxFood;
+    private float timer;
 
     void Start()
     {
         raccoon = FindObjectOfType<RaccoonController>();
-        maxFood = raccoon.GetMaxFood();
-        DisplayFoodText();
+        timer = timeLeft;
     }
 
     void Update()
     {
-        DisplayFoodText();
-    }
-
-    void DisplayFoodText() {
-        food = raccoon.GetFood();
-        foodDisplay.text = "Food carrying: " + food.ToString() + "/" + maxFood.ToString();
+        if (timeLeft > 0.0f)
+        {
+            timeLeft -= Time.deltaTime;
+            timerText.text = "Time left: " + timeLeft.ToString("F");
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
