@@ -6,9 +6,6 @@ public class RaccoonController : MonoBehaviour
 {
   [SerializeField] private AudioClip itemCollectSound;
   [SerializeField] private bool useController = true;
-  [SerializeField] private int food = 0;
-  [SerializeField] private int maxFood = 10;
-
   [SerializeField] private Transform cam;
 
   private Vector3 movementVector;
@@ -176,43 +173,5 @@ public class RaccoonController : MonoBehaviour
       Vector3 pushForce = pushDir * pushPower;
       knockable.trigger(pushForce);
     }
-  }
-
-  // TODO: delete following code
-  public int GetFood()
-  {
-    return food;
-  }
-
-  public int GetMaxFood()
-  {
-    return maxFood;
-  }
-
-  public bool IncreaseFood()
-  {
-    if (food >= maxFood)
-    {
-      Debug.Log("At max food");
-      return false;
-    }
-
-    Debug.Log("Got a food");
-    food++;
-    AudioManager.instance.Play("ItemCollect");
-    return true;
-  }
-
-  public bool DecreaseFood()
-  {
-    if (food <= 0)
-    {
-      Debug.Log("Have no food");
-      return false;
-    }
-
-    Debug.Log("Gave a food");
-    food--;
-    return true;
   }
 }
