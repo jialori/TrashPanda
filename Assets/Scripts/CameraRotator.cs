@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraRotator : MonoBehaviour
 {
@@ -38,25 +36,25 @@ public class CameraRotator : MonoBehaviour
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
     }
 
-    private float GetXAxis() 
+    private float GetXAxis()
     {
-        if (useController) 
+        if (useController)
         {
             return Input.GetAxis("RightJoystickX");
-        } 
-        else 
+        }
+        else
         {
             return Input.GetAxis("Mouse X");
         }
     }
 
-    private float GetYAxis() 
+    private float GetYAxis()
     {
-        if (useController) 
+        if (useController)
         {
             return Input.GetAxis("RightJoystickY");
-        } 
-        else 
+        }
+        else
         {
             return Input.GetAxis("Mouse Y");
         }

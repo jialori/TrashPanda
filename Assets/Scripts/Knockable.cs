@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
 	Note: 
@@ -25,19 +23,19 @@ public class Knockable : MonoBehaviour
     }
 
 
-	public void trigger(Vector3 pushForce) 
-	{
-		// Debug.Log("collide at" + collidePoint);
-		pushForce.y = - Mathf.Abs(pushForce.x);
-		rb.AddForceAtPosition(pushForce, collidePoint);
-	}
+    public void trigger(Vector3 pushForce)
+    {
+        // Debug.Log("collide at" + collidePoint);
+        pushForce.y = -Mathf.Abs(pushForce.x);
+        rb.AddForceAtPosition(pushForce, collidePoint);
+    }
 
 
-  //   void Update() {
-  //       rotateTarget = transform.forward;
-  //   	Vector3 dir = Vector3.RotateTowards(transform.forward, rotateTarget, rotateSpeed * Time.deltaTime, 0.0f);
-		// transform.rotation = Quaternion.LookRotation(dir);
-  //       transform.RotateAround(Vector3.zero, Vector3.up, 20 * Time.deltaTime);
-  //   }
+    //   void Update() {
+    //       rotateTarget = transform.forward;
+    //   	Vector3 dir = Vector3.RotateTowards(transform.forward, rotateTarget, rotateSpeed * Time.deltaTime, 0.0f);
+    // transform.rotation = Quaternion.LookRotation(dir);
+    //       transform.RotateAround(Vector3.zero, Vector3.up, 20 * Time.deltaTime);
+    //   }
 
 }

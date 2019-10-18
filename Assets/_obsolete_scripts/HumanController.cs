@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HumanController : MonoBehaviour
 {
-	public float speed;
+    public float speed;
 
-	private bool isChasing;
+    private bool isChasing;
     private Rigidbody rb;
-	private GameObject raccoon;
+    private GameObject raccoon;
     private Vector3 originalPosition;
     private Vector3 direction;
 
@@ -21,30 +19,37 @@ public class HumanController : MonoBehaviour
         isChasing = false;
     }
 
-    void Update() {
+    void Update()
+    {
 
-    	if (isChasing) {
-			// direction = (raccoon.transform.position - transform.position).normalized;
-    		// rb.velocity = direction * speed * Time.deltaTime;
-    		// Debug.Log("is Chasing!");
-    		transform.position = Vector3.MoveTowards(transform.position, raccoon.transform.position, speed * Time.deltaTime);
-    	} else if (!isChasing && originalPosition != transform.position) {
-			// direction = (originalPosition - transform.position).normalized;
-    		// rb.velocity = direction * speed * Time.deltaTime;
-    		transform.position = Vector3.MoveTowards(transform.position, originalPosition, speed * Time.deltaTime);
-    	}
+        if (isChasing)
+        {
+            // direction = (raccoon.transform.position - transform.position).normalized;
+            // rb.velocity = direction * speed * Time.deltaTime;
+            // Debug.Log("is Chasing!");
+            transform.position = Vector3.MoveTowards(transform.position, raccoon.transform.position, speed * Time.deltaTime);
+        }
+        else if (!isChasing && originalPosition != transform.position)
+        {
+            // direction = (originalPosition - transform.position).normalized;
+            // rb.velocity = direction * speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, originalPosition, speed * Time.deltaTime);
+        }
 
     }
 
-    public void ChaseRaccoon() {
-    	isChasing = true;
+    public void ChaseRaccoon()
+    {
+        isChasing = true;
     }
 
-    public void StopChaseRaccoon() {
-    	isChasing = false;
+    public void StopChaseRaccoon()
+    {
+        isChasing = false;
     }
 
-    public bool IsChasing() {
+    public bool IsChasing()
+    {
         return isChasing;
     }
 }

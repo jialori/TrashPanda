@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ToolController : MonoBehaviour
 {
@@ -8,8 +6,8 @@ public class ToolController : MonoBehaviour
     public float throwForce;
     public AudioClip sfx;
     public string toolType;
-    
-    
+
+
     public int dmg;
 
     bool hasPlayer = false;
@@ -51,22 +49,22 @@ public class ToolController : MonoBehaviour
         {
             //else if (touched)
             //{
-                //rb.isKinematic = false;
-                //transform.parent = null;
-                //beingCarried = false;
-                //touched = false;
+            //rb.isKinematic = false;
+            //transform.parent = null;
+            //beingCarried = false;
+            //touched = false;
             //}
             //if (Input.GetKeyDown("o"))
             //{
-                //rb.isKinematic = false;
-                //Vector3 currLoc = transform.position;
-                //transform.parent = null;
-                //transform.position = currLoc;
-                //beingCarried = false;
-                //rb.AddForce(player.forward * throwForce);
-                //PlaySFX();
+            //rb.isKinematic = false;
+            //Vector3 currLoc = transform.position;
+            //transform.parent = null;
+            //transform.position = currLoc;
+            //beingCarried = false;
+            //rb.AddForce(player.forward * throwForce);
+            //PlaySFX();
             //}
-            if ( Input.GetButtonDown("Y"))//Input.GetKeyDown("u"))
+            if (Input.GetButtonDown("Y"))//Input.GetKeyDown("u"))
             {
                 rb.isKinematic = false;
                 Vector3 currLoc = transform.position;
@@ -90,12 +88,12 @@ public class ToolController : MonoBehaviour
 
     //void PlaySFX()
     //{
-        //if (audioSource.isPlaying)
-        //{
-            //return;
-        //}
-        //audioSource.clip = sfx;
-        //audioSource.Play();
+    //if (audioSource.isPlaying)
+    //{
+    //return;
+    //}
+    //audioSource.clip = sfx;
+    //audioSource.Play();
     //}
 
 }

@@ -4,13 +4,16 @@ using UnityEngine.UI;
 public class ToolTextDisplay : MonoBehaviour
 {
     public Text toolDisplay;
+    public Text scoreDisplay;
 
     private ToolController tool;
     private string tType;
 
 
+
     void Update()
     {
+        // Display Tool Text
         tool = ToolController.toolInHand;
         if (tool != null)
         {
@@ -21,8 +24,9 @@ public class ToolTextDisplay : MonoBehaviour
         {
             toolDisplay.text = "Tool: None";
         }
-        
-        
+        // Display Score Text
+        scoreDisplay.text = "Score: " + RaccoonController.score;
+
     }
 
 }

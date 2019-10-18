@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BinController : MonoBehaviour
 {
-	public GameObject player;
+    public GameObject player;
     bool isTouching;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -22,8 +20,8 @@ public class BinController : MonoBehaviour
             Debug.Log("E down");
             //Debug.Log(isTouching);
             if (isTouching)
-	    		FindObjectOfType<HumanController>().ChaseRaccoon();        
-	    }        
+                FindObjectOfType<HumanController>().ChaseRaccoon();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

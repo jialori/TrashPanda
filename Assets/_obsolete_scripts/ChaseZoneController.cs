@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ChaseZoneController : MonoBehaviour
 {
-	public GameObject target;
-	public GameObject owner; // TODO: not needed, delete?
+    public GameObject target;
+    public GameObject owner; // TODO: not needed, delete?
 
-	private Collider cl;
-	private float bound_x1, bound_x2, bound_z1, bound_z2;
-	private bool isChasing, seenTarget; 	// Boolean tags
+    private Collider cl;
+    private float bound_x1, bound_x2, bound_z1, bound_z2;
+    private bool isChasing, seenTarget; 	// Boolean tags
 
     // Start is called before the first frame update
     void Start()
@@ -32,17 +30,18 @@ public class ChaseZoneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    	float m_x = target.transform.position.x;
-    	float m_z = target.transform.position.z;
-   		seenTarget = (m_x >= bound_x1 && m_x <= bound_x2 && m_z >= bound_z1 && m_z <= bound_z2) ? true : false;
-     //   	if (seenTarget && !isChasing) {
-    	// 	FindObjectOfType<HumanController>().ChaseRaccoon();
-	    //    	isChasing = true;
-	    // } else 
-        if (!seenTarget && FindObjectOfType<HumanController>().IsChasing()) {
-	       	FindObjectOfType<HumanController>().StopChaseRaccoon();
-	       	// isChasing = false;
-       }
+        float m_x = target.transform.position.x;
+        float m_z = target.transform.position.z;
+        seenTarget = (m_x >= bound_x1 && m_x <= bound_x2 && m_z >= bound_z1 && m_z <= bound_z2) ? true : false;
+        //   	if (seenTarget && !isChasing) {
+        // 	FindObjectOfType<HumanController>().ChaseRaccoon();
+        //    	isChasing = true;
+        // } else 
+        if (!seenTarget && FindObjectOfType<HumanController>().IsChasing())
+        {
+            FindObjectOfType<HumanController>().StopChaseRaccoon();
+            // isChasing = false;
+        }
 
     }
 }
