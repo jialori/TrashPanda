@@ -437,6 +437,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11652446}
   m_Mesh: {fileID: 1216518104}
+--- !u!1001 &20771064
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &20771065 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 20771064}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &21431306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -521,6 +596,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: ee4c69fb10f54634490874c3e778706e,
     type: 3}
   m_PrefabInstance: {fileID: 21431306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &47258034
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &47258035 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 47258034}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &89154994
 GameObject:
@@ -1238,13 +1388,88 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &227430028
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &227430029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 227430028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &230124703
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15150
+  m_Name: pb_Mesh16868
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1908,6 +2133,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd,
     type: 3}
   m_PrefabInstance: {fileID: 268866532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &345924234
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &345924235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 345924234}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &370762211
 GameObject:
@@ -3540,7 +3840,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15224
+  m_Name: pb_Mesh16914
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3703,7 +4003,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15052
+  m_Name: pb_Mesh16822
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4482,7 +4782,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15006
+  m_Name: pb_Mesh16804
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4639,6 +4939,81 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &872065425
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &872065426 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 872065425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1118615104
 GameObject:
   m_ObjectHideFlags: 0
@@ -4679,7 +5054,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15344
+  m_Name: pb_Mesh16996
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5516,13 +5891,59 @@ Transform:
   m_Father: {fileID: 1118615105}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1151136461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151136462}
+  m_Layer: 0
+  m_Name: Level 1 Supports
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151136462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151136461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1318809801}
+  - {fileID: 6647165006184198763}
+  - {fileID: 1746520131}
+  - {fileID: 1355886322}
+  - {fileID: 20771065}
+  - {fileID: 1664290430}
+  - {fileID: 1725210882}
+  - {fileID: 227430029}
+  - {fileID: 872065426}
+  - {fileID: 2139000982}
+  - {fileID: 1975058893}
+  - {fileID: 47258035}
+  - {fileID: 1623700767}
+  - {fileID: 345924235}
+  - {fileID: 1807301181}
+  - {fileID: 2028329135}
+  m_Father: {fileID: 1470347359}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1181542380
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15314
+  m_Name: pb_Mesh16970
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5685,7 +6106,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14976
+  m_Name: pb_Mesh16788
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5939,7 +6360,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15298
+  m_Name: pb_Mesh16954
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6096,6 +6517,81 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1318809800
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.000025
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -28.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &1318809801 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1318809800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1352847419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6180,6 +6676,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1409158005078057311, guid: 3878971aad6712747866bb78a1559d25,
     type: 3}
   m_PrefabInstance: {fileID: 1352847419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1355886321
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -25.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &1355886322 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1355886321}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1387567054
 GameObject:
@@ -7087,6 +7658,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 571967486}
+  - {fileID: 1151136462}
   - {fileID: 1831810361}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -7852,7 +8424,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15372
+  m_Name: pb_Mesh17008
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8009,6 +8581,81 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1623700766
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &1623700767 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1623700766}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1652899031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8178,6 +8825,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1409158005078057311, guid: 3878971aad6712747866bb78a1559d25,
     type: 3}
   m_PrefabInstance: {fileID: 1662753431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1664290429
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &1664290430 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1664290429}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1687679997
 GameObject:
@@ -8488,6 +9210,156 @@ Transform:
   m_Father: {fileID: 1387567055}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1725210881
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &1725210882 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1725210881}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1746520130
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.000025
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -28.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &1746520131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1746520130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1760550210
 GameObject:
   m_ObjectHideFlags: 0
@@ -9609,6 +10481,81 @@ Transform:
   m_Father: {fileID: 149168923}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1807301180
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -25.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &1807301181 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1807301180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1831810360
 GameObject:
   m_ObjectHideFlags: 0
@@ -9638,7 +10585,7 @@ Transform:
   m_Children:
   - {fileID: 21431307}
   m_Father: {fileID: 1470347359}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1843684915
 Mesh:
@@ -9646,7 +10593,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15176
+  m_Name: pb_Mesh16894
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10138,13 +11085,163 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1974649831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1975058892
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &1975058893 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1975058892}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2028329134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -28.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &2028329135 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2028329134}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2031899783
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15096
+  m_Name: pb_Mesh16844
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10380,4 +11477,154 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1409158005078057311, guid: 3878971aad6712747866bb78a1559d25,
     type: 3}
   m_PrefabInstance: {fileID: 2095920034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2139000981
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &2139000982 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2139000981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6647165006184198762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1151136462}
+    m_Modifications:
+    - target: {fileID: 4360444490886477328, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_Name
+      value: CementWallDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.000025
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -28.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77951f195510ee545bc41c5943fc7ad2, type: 3}
+--- !u!4 &6647165006184198763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 781428349167600643, guid: 77951f195510ee545bc41c5943fc7ad2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6647165006184198762}
   m_PrefabAsset: {fileID: 0}
