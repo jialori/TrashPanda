@@ -2,24 +2,29 @@
 
 public class RaccoonController : MonoBehaviour
 {
-    [SerializeField] private AudioClip itemCollectSound;
+    // [SerializeField] private AudioClip itemCollectSound;
     [SerializeField] private bool useController = true;
     [SerializeField] private Transform cam;
     
 
-    public static int score;
+    public static float score = 0;
 
     private Vector3 movementVector;
 
     private CharacterController characterController;
+    
     private WaitForSeconds hitDuration = new WaitForSeconds(.08f);
     private float nextHit;
     private float hitRate = 0.5f;
-    private int dmg;
+    // private bool equipmentChange = false;
 
+    [Header("Character Stats")]
+    [SerializeField] private float attackPower = 1;
     [SerializeField] private float movementSpeed = 10;
-    private float jumpPower = 15;
-    private float gravity = 40;
+    [SerializeField] private float jumpPower = 15;
+    [SerializeField] private float gravity = 40;
+    [SerializeField] private float pushPower = 12;
+
 
     // First add a Layer "Breakable"/"Knockable" to all breakable and knockable objects in Unity Engine 
     private float raycastPaddedDist;
@@ -29,19 +34,18 @@ public class RaccoonController : MonoBehaviour
     private string knockableMaskName = "Knockable";
     private int breakableMask;
     private int knockableMask;
-    private float pushPower = 12;
 
     void Start()
     {
         AudioManager.instance.Play("ThemeSong");
         characterController = GetComponent<CharacterController>();
 
-        // Raycasy for breakable and knockable objects
+        // Set masks used in raycast, for breakable and knockable objects
         raycastPaddedDist = characterController.radius + raycastPadding;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
         knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
         // Set Raccoon's attack power
-        dmg = 1;
+        attackPower = 1;
         score = 0;
     }
 
@@ -56,19 +60,17 @@ public class RaccoonController : MonoBehaviour
         camRight = camRight.normalized;
         var prevY = movementVector.y;
 
-        // movement
+        // Movement
         movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
 
         // Jump
         if (characterController.isGrounded)
         {
             movementVector.y = 0;
-
             if (GetJump())
             {
                 movementVector.y = jumpPower;
             }
-
         }
         else
         {
@@ -96,7 +98,7 @@ public class RaccoonController : MonoBehaviour
                     if ((breakable != null) && (Time.time > nextHit))
                     {
                         nextHit = Time.time + hitRate;
-                        breakable.trigger(dmg);
+                        breakable.trigger(attackPower);
                     }
                 }
             }
@@ -162,7 +164,25 @@ public class RaccoonController : MonoBehaviour
         return flatten * input;
     }
 
-    // Hit an object over
+    public void AddStrengthModifier(float effectOnAttack, float effectOnSpeed)
+    {
+        // equipmentChange = true;
+        attackPower += effectOnAttack;
+        movementSpeed += effectOnSpeed;
+        Debug.Log("Attack has changed:" + attackPower);
+        Debug.Log("Speed has changed:" + movementSpeed);
+    }
+
+    public void RemoveStrengthModifier(float effectOnAttack, float effectOnSpeed)
+    {
+        // equipmentChange = true;
+        attackPower -= effectOnAttack;
+        movementSpeed -= effectOnSpeed;
+        Debug.Log("Attack has changed:" + attackPower);
+        Debug.Log("Speed has changed:" + movementSpeed);
+    }
+
+    // Knock an object over
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;

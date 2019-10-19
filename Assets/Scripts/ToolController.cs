@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ToolController : MonoBehaviour
 {
-    public Transform player;
+    public GameObject player;
+    public RaccoonController playerScript;
     public float throwForce;
     public AudioClip sfx;
     public string toolType;
-
-
-    public int dmg;
 
     bool hasPlayer = false;
     bool beingCarried = false;
@@ -20,10 +18,16 @@ public class ToolController : MonoBehaviour
     //private AudioSource audioSource;
     //private bool touched = false;
     // Start is called before the first frame update
+
+    [Header("Tool Attributes")]
+    public float effectOnAttack = 10;
+    public float effectOnSpeed = 10;
+
     void Start()
     {
         //audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
+        playerScript = player.GetComponent<RaccoonController>();
     }
 
     // Update is called once per frame
@@ -41,11 +45,13 @@ public class ToolController : MonoBehaviour
         if (hasPlayer && handFree && Input.GetButtonDown("X"))//Input.GetKeyDown("i"))
         {
             rb.isKinematic = true;
-            transform.parent = player;
+            transform.parent = player.transform;
             beingCarried = true;
-            transform.localPosition = player.forward;
+            transform.localPosition = player.transform.forward;
             handFree = false;
             toolInHand = this;
+            Equip();
+
         }
         if (beingCarried)
         {
@@ -76,6 +82,7 @@ public class ToolController : MonoBehaviour
                 beingCarried = false;
                 handFree = true;
                 toolInHand = null;
+                UnEquip();
             }
         }
     }
@@ -97,5 +104,15 @@ public class ToolController : MonoBehaviour
     //audioSource.clip = sfx;
     //audioSource.Play();
     //}
+
+    public void Equip() 
+    {
+    	playerScript.AddStrengthModifier(effectOnAttack, effectOnSpeed);
+    }
+
+    public void UnEquip()
+    {
+	    playerScript.RemoveStrengthModifier(effectOnAttack, effectOnSpeed);	
+    }
 
 }

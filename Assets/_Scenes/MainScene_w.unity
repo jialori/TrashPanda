@@ -514,11 +514,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: ScrewDriver
-  dmg: 20
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &28400113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -584,7 +586,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54332
+  m_Name: pb_Mesh18272
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2189,11 +2191,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: Hammer
-  dmg: 10
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &127534430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2381,6 +2385,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 969488316}
+  - {fileID: 1286485644}
+  - {fileID: 937003727}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3088,7 +3094,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54198
+  m_Name: pb_Mesh18042
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4167,7 +4173,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54380
+  m_Name: pb_Mesh18352
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4414,6 +4420,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 268866532}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &268866534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 113956176984252531, guid: a3d1e7eae245a7b40b41802bbec029dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 268866532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705727815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4edf4386a6f8541bed1a7edd358fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &274424393
 GameObject:
   m_ObjectHideFlags: 0
@@ -4525,11 +4543,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: Hammer
-  dmg: 10
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &326259879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4595,7 +4615,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54406
+  m_Name: pb_Mesh18386
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6478,7 +6498,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54514
+  m_Name: pb_Mesh18514
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6732,7 +6752,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54500
+  m_Name: pb_Mesh18500
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7536,7 +7556,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54288
+  m_Name: pb_Mesh18178
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8071,11 +8091,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: ScrewDriver
-  dmg: 20
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &623843245
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8155,7 +8177,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54040
+  m_Name: pb_Mesh17834
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8318,7 +8340,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54250
+  m_Name: pb_Mesh18140
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8572,7 +8594,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54448
+  m_Name: pb_Mesh18430
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8735,7 +8757,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54320
+  m_Name: pb_Mesh18244
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8987,7 +9009,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54276
+  m_Name: pb_Mesh18166
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9150,7 +9172,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54100
+  m_Name: pb_Mesh17924
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9929,7 +9951,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54056
+  m_Name: pb_Mesh17850
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10169,11 +10191,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: Hammer
-  dmg: 10
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &920211480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10233,13 +10257,65 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920211475}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &937003726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 937003727}
+  - component: {fileID: 937003728}
+  m_Layer: 5
+  m_Name: _TextManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &937003727
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937003726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 153160936}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &937003728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937003726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f132eb306846c544ea60b0e6689d46f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolDisplay: {fileID: 969488318}
+  scoreDisplay: {fileID: 1286485646}
+  raccoonController: {fileID: 268866534}
+  tool: {fileID: 0}
 --- !u!43 &942925607
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54482
+  m_Name: pb_Mesh18466
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10440,7 +10516,6 @@ GameObject:
   - component: {fileID: 969488316}
   - component: {fileID: 969488319}
   - component: {fileID: 969488318}
-  - component: {fileID: 969488317}
   m_Layer: 5
   m_Name: ToolText
   m_TagString: Untagged
@@ -10467,19 +10542,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10, y: -10}
   m_SizeDelta: {x: 625.80005, y: 202.2}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &969488317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969488315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f132eb306846c544ea60b0e6689d46f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toolDisplay: {fileID: 969488318}
 --- !u!114 &969488318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10526,7 +10588,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54182
+  m_Name: pb_Mesh18024
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10998,7 +11060,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54464
+  m_Name: pb_Mesh18448
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11286,7 +11348,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54392
+  m_Name: pb_Mesh18370
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12683,11 +12745,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: Saw
-  dmg: 30
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &1153134795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12842,7 +12906,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54084
+  m_Name: pb_Mesh17908
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13043,7 +13107,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54362
+  m_Name: pb_Mesh18326
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13245,7 +13309,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54026
+  m_Name: pb_Mesh17804
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13621,7 +13685,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54350
+  m_Name: pb_Mesh18314
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13811,6 +13875,83 @@ Transform:
   m_Father: {fileID: 2058977838}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &1286485643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286485644}
+  - component: {fileID: 1286485647}
+  - component: {fileID: 1286485646}
+  m_Layer: 5
+  m_Name: ScoreText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1286485644
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286485643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 153160936}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -30, y: -10}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 1}
+--- !u!114 &1286485646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286485643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.041627884, g: 0, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 50
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: _score_
+--- !u!222 &1286485647
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286485643}
+  m_CullTransparentMesh: 0
 --- !u!1 &1289248518
 GameObject:
   m_ObjectHideFlags: 0
@@ -14197,11 +14338,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: PowerDrill
-  dmg: 40
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &1318465169
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14746,11 +14889,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: Hammer
-  dmg: 10
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &1433233856
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14816,7 +14961,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54114
+  m_Name: pb_Mesh17938
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16339,7 +16484,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54432
+  m_Name: pb_Mesh18412
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16502,7 +16647,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54068
+  m_Name: pb_Mesh17866
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16665,7 +16810,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54418
+  m_Name: pb_Mesh18398
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17539,13 +17684,19 @@ Transform:
   m_Father: {fileID: 1387567055}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1705727815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 113956176984252424, guid: a3d1e7eae245a7b40b41802bbec029dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 268866532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1737754819
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54158
+  m_Name: pb_Mesh18000
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20683,7 +20834,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54228
+  m_Name: pb_Mesh18090
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21520,7 +21671,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh54144
+  m_Name: pb_Mesh17986
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22196,11 +22347,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 268866533}
+  player: {fileID: 1705727815}
+  playerScript: {fileID: 0}
   throwForce: 1
   sfx: {fileID: 0}
   toolType: PowerDrill
-  dmg: 40
+  effectOnAttack: 10
+  effectOnSpeed: 10
 --- !u!65 &2122587369
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23502,6 +23655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634103890722792660, guid: 21515c3ce643b7c4d93f634e78fcfbc4,
+        type: 3}
+      propertyPath: totalHealth
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21515c3ce643b7c4d93f634e78fcfbc4, type: 3}
