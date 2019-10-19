@@ -95,16 +95,6 @@ public class ToolController : MonoBehaviour
         }
     }
 
-    //void PlaySFX()
-    //{
-    //if (audioSource.isPlaying)
-    //{
-    //return;
-    //}
-    //audioSource.clip = sfx;
-    //audioSource.Play();
-    //}
-
     public void Equip() 
     {
     	playerScript.AddStrengthModifier(effectOnAttack, effectOnSpeed);

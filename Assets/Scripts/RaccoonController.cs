@@ -2,7 +2,6 @@
 
 public class RaccoonController : MonoBehaviour
 {
-    // [SerializeField] private AudioClip itemCollectSound;
     [SerializeField] private bool useController = true;
     [SerializeField] private Transform cam;
     
