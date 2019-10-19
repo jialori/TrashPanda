@@ -2,8 +2,8 @@
 
 /*
 	Note: 
-	Any GameObject using the Breakable component should also be assigned a Layer "Breakable".
-	It is NOT using RigidBody for collision detection. 
+	>> Any GameObject attaching the Breakable component should also be assigned a Layer "Breakable".
+	>> It is NOT using RigidBody for collision detection. 
 */
 public class Breakable : MonoBehaviour
 {

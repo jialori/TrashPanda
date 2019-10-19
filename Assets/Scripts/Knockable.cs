@@ -4,8 +4,9 @@ using UnityEngine;
 
 /*
 	Note: 
-	Any GameObject using the Knockable component should also have a RigidBody component.
-	AND the RigidBody component must have useGravity checked.
+  >> Any GameObject attaching the Breakable component should also be assigned a Layer "Knockable".
+	>> Any GameObject using the Knockable component should also have a RigidBody component.
+	>> The RigidBody component must have useGravity checked.
 */
 public class Knockable : MonoBehaviour
 {
