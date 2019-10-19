@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class HumanController : MonoBehaviour
+public class HumanControllerOB : MonoBehaviour
 {
     public float speed;
 

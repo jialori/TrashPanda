@@ -22,9 +22,7 @@ public class Breakable : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            Debug.Log(RaccoonController.score);
             RaccoonController.score += total_health;
-            Debug.Log("Score: " + RaccoonController.score);
             Destroy(this.gameObject);
         }
 
