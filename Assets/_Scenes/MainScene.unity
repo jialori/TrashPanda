@@ -1288,10 +1288,13 @@ Transform:
   - {fileID: 1839728597}
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &89154994
 =======
+=======
+>>>>>>> origin/master
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 33.555, y: -318.389, z: 0.23}
 --- !u!114 &536219376
@@ -1306,7 +1309,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf3f66c2c807aa45afd46d8559b438e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   useController: 0
+=======
+  useController: 1
+>>>>>>> origin/master
   lookAt: {fileID: 90447216}
   camTransform: {fileID: 536219374}
 --- !u!1 &547389978
@@ -2009,6 +2016,7 @@ MeshFilter:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &705507993
+<<<<<<< HEAD
 >>>>>>> origin/AI
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,6 +2054,8 @@ Transform:
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &741715631
+=======
+>>>>>>> origin/master
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24359,6 +24369,7 @@ Transform:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
     - target: {fileID: 113956176984252424, guid: a3d1e7eae245a7b40b41802bbec029dd,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -24379,6 +24390,8 @@ Transform:
       propertyPath: m_LocalPosition.x
       value: -2.11
       objectReference: {fileID: 0}
+=======
+>>>>>>> origin/master
     - target: {fileID: 1017216223234981755, guid: a3d1e7eae245a7b40b41802bbec029dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24444,6 +24457,19 @@ Transform:
       propertyPath: cam
       value: 
       objectReference: {fileID: 536219374}
+<<<<<<< HEAD
+=======
+    - target: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.11
+      objectReference: {fileID: 0}
+>>>>>>> origin/master
     - target: {fileID: 113956176984252531, guid: a3d1e7eae245a7b40b41802bbec029dd,
         type: 3}
       propertyPath: m_Enabled
@@ -24644,7 +24670,10 @@ PrefabInstance:
       propertyPath: RacScript
       value: 
       objectReference: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> origin/AI
+=======
+>>>>>>> origin/master
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21515c3ce643b7c4d93f634e78fcfbc4, type: 3}
 --- !u!1001 &5606457745555562314
