@@ -26,9 +26,12 @@ public class RaccoonController : MonoBehaviour
   private int knockableMask;
   private float pushPower = 12;
 
+  private bool isOnUpStair = false;
+  private bool isOnDownStair = false;
+
   void Start()
   {
-    AudioManager.instance.Play("ThemeSong");
+    // AudioManager.instance.Play("ThemeSong");
     characterController = GetComponent<CharacterController>();
 
     // Raycasy for breakable and knockable objects
@@ -39,6 +42,16 @@ public class RaccoonController : MonoBehaviour
 
   void Update()
   {
+    // Move up or down stairs
+    if ((isOnUpStair || isOnDownStair) && Input.GetButtonDown("B")) 
+    {
+      characterController.enabled = false;
+      if (isOnUpStair) characterController.transform.position += new Vector3(0, 8.5f, 0);
+      if (isOnDownStair) characterController.transform.position -= new Vector3(0, 8, 0);
+      characterController.enabled = true;
+      return;
+    }
+
     // Adjust movement for camera angle
     var camForward = cam.forward;
     var camRight = cam.right;
@@ -68,7 +81,7 @@ public class RaccoonController : MonoBehaviour
     }
 
     movementVector.y -= gravity * Time.deltaTime;
-    Debug.Log("movementVector = " + movementVector);
+    // Debug.Log("movementVector = " + movementVector);
     characterController.Move(movementVector * Time.deltaTime);
 
     // Breakable objects
@@ -137,26 +150,19 @@ public class RaccoonController : MonoBehaviour
     }
   }
 
-  private Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)
-  {
-    // If this script is on your camera object, you can use this.transform instead.
-
-    // The first part creates a rotation looking into the ground, with
-    // "up" matching the camera's look direction as closely as it can. 
-    // The second part rotates this 90 degrees, so "forward" input matches 
-    // the camera's look direction as closely as it can in the horizontal plane.
-    Quaternion flatten = Quaternion.LookRotation(-localUp,
-        this.cam.forward
-      ) *
-      Quaternion.Euler(Vector3.right * -90f);
-
-    // Now we rotate our input vector into this frame of reference
-    return flatten * input;
-  }
-
   // Hit an object over
   void OnControllerColliderHit(ControllerColliderHit hit)
   {
+    this.isOnUpStair = false;
+    this.isOnDownStair = false;
+    Stair stair = hit.gameObject.GetComponent("Stair") as Stair;
+    if (stair != null)
+    {
+      // Debug.Log("stair hit");
+      if (hit.gameObject.tag == "UpStair") this.isOnUpStair = true;
+      if (hit.gameObject.tag == "DownStair") this.isOnDownStair = true;
+    }
+
     Rigidbody body = hit.collider.attachedRigidbody;
 
     // no rigidbody
@@ -165,13 +171,14 @@ public class RaccoonController : MonoBehaviour
       return;
     }
 
-    // Break break-able objects
+    // Knock over a knock-over-able objects
     Knockable knockable = hit.gameObject.GetComponent("Knockable") as Knockable;
     if (knockable != null)
     {
       Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
       Vector3 pushForce = pushDir * pushPower;
       knockable.trigger(pushForce);
-    }
+    }    
   }
+
 }

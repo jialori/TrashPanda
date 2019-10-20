@@ -6,6 +6,8 @@ TagManager:
   tags:
   - FoodSource
   - Raccoon
+  - UpStair
+  - DownStair
   layers:
   - Default
   - TransparentFX
