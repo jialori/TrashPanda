@@ -13,6 +13,8 @@ public class RaccoonController : MonoBehaviour
     [SerializeField] private float gravity = 40;
     [SerializeField] private float pushPower = 12;
 
+    [SerializeField] private float rotateSpeed = 5;
+
     public static float score = 0;
     private Vector3 movementVector;
 
@@ -69,6 +71,9 @@ public class RaccoonController : MonoBehaviour
 
         // Movement
         movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
+
+        // Rotation
+        transform.Rotate(new Vector3(0, GetCamXAxis() * rotateSpeed, 0));
 
         // Jump
         if (characterController.isGrounded)
@@ -148,6 +153,18 @@ public class RaccoonController : MonoBehaviour
         }
     }
 
+    private float GetCamXAxis()
+    {
+        if (useController)
+        {
+            return Input.GetAxis("RightJoystickX");
+        }
+        else
+        {
+            return Input.GetAxis("Mouse X");
+        }
+    }
+    
     private bool GetJump()
     {
         if (useController)
