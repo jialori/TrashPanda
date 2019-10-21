@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChaseZoneController : MonoBehaviour
 {
+    /*
 	public GameObject target;
 	public GameObject owner; // TODO: not needed, delete?
 
@@ -45,4 +46,5 @@ public class ChaseZoneController : MonoBehaviour
        }
 
     }
+    */
 }

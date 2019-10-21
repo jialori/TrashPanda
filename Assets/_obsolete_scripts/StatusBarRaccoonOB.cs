@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class StatusBarRaccoon : MonoBehaviour
+public class StatusBarRaccoonOB : MonoBehaviour
 {
     public Image BarImg; // The Status bar image
     public Text BarText; // Percentage Text on the Status Bar

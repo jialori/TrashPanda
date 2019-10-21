@@ -8,6 +8,7 @@ TagManager:
   - Raccoon
   - UpStair
   - DownStair
+  - Human
   layers:
   - Default
   - TransparentFX

@@ -14,7 +14,7 @@ public class UI: MonoBehaviour
     void Start()
     {
         raccoon = FindObjectOfType<RaccoonController>();
-        maxFood = raccoon.GetMaxFood();
+        //maxFood = raccoon.GetMaxFood();
         DisplayFoodText();
     }
 
@@ -24,7 +24,7 @@ public class UI: MonoBehaviour
     }
 
     void DisplayFoodText() {
-        food = raccoon.GetFood();
-        foodDisplay.text = "Food carrying: " + food.ToString() + "/" + maxFood.ToString();
+        //food = raccoon.GetFood();
+        //foodDisplay.text = "Food carrying: " + food.ToString() + "/" + maxFood.ToString();
     }
 }
