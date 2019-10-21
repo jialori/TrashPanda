@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113956176984252424}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,10 +92,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4edf4386a6f8541bed1a7edd358fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCollectSound: {fileID: 0}
-  useController: 1
   cam: {fileID: 26218638340153672, guid: 670360c703b4edb4ab3f84df70f1fa50, type: 3}
-  movementSpeed: 10
+  useController: 1
+  attackPower: 1
+  movementSpeed: 8
+  jumpPower: 15
+  gravity: 40
+  pushPower: 12
+  hitRate: 0.5
 --- !u!143 &113956176984252430
 CharacterController:
   m_ObjectHideFlags: 0
