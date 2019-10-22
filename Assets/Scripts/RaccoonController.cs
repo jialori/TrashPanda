@@ -13,6 +13,8 @@ public class RaccoonController : MonoBehaviour
     [SerializeField] private float gravity = 40;
     [SerializeField] private float pushPower = 12;
 
+    [SerializeField] private float rotateSpeed = 5;
+
     public static float score = 0;
     private Vector3 movementVector;
 
@@ -28,6 +30,9 @@ public class RaccoonController : MonoBehaviour
     private float nextHit;
     public float hitRate = 0.5f;
 
+    private bool isOnUpStair = false;
+    private bool isOnDownStair = false;
+
     void Start()
     {
         AudioManager.instance.Play("ThemeSong");
@@ -37,7 +42,7 @@ public class RaccoonController : MonoBehaviour
         raycastPaddedDist = characterController.radius + raycastPadding;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
         knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
-        
+
         // Set Raccoon's attack power
         // attackPower = 1;
         // score = 0;
@@ -45,6 +50,16 @@ public class RaccoonController : MonoBehaviour
 
     void Update()
     {
+        // Move up or down stairs
+        if ((isOnUpStair || isOnDownStair) && Input.GetButtonDown("B"))
+        {
+            characterController.enabled = false;
+            if (isOnUpStair) characterController.transform.position += new Vector3(0, 8.5f, 0);
+            if (isOnDownStair) characterController.transform.position -= new Vector3(0, 8, 0);
+            characterController.enabled = true;
+            return;
+        }
+
         // Adjust movement for camera angle
         var camForward = cam.forward;
         var camRight = cam.right;
@@ -56,6 +71,9 @@ public class RaccoonController : MonoBehaviour
 
         // Movement
         movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
+
+        // Rotation
+        transform.Rotate(new Vector3(0, GetCamXAxis() * rotateSpeed, 0));
 
         // Jump
         if (characterController.isGrounded)
@@ -72,7 +90,7 @@ public class RaccoonController : MonoBehaviour
         }
 
         movementVector.y -= gravity * Time.deltaTime;
-        //Debug.Log("movementVector = " + movementVector);
+        // Debug.Log("movementVector = " + movementVector);
         characterController.Move(movementVector * Time.deltaTime);
 
         // Break Breakable objects
@@ -82,16 +100,26 @@ public class RaccoonController : MonoBehaviour
         }
     }
 
-    // On collision, knock Knockable objects over
+    // On collision, knock Knockable objects over and mark stair usage
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        this.isOnUpStair = false;
+        this.isOnDownStair = false;
+        Stair stair = hit.gameObject.GetComponent("Stair") as Stair;
+        if (stair != null)
+        {
+            // Debug.Log("stair hit");
+            if (hit.gameObject.tag == "UpStair") this.isOnUpStair = true;
+            if (hit.gameObject.tag == "DownStair") this.isOnDownStair = true;
+        }
+
         Rigidbody body = hit.collider.attachedRigidbody;
         if (body == null || body.isKinematic)
         {
             return;
         }
 
-        // Knock knockable objects
+        // Knock over a knock-over-able objects
         Knockable knockable = hit.gameObject.GetComponent("Knockable") as Knockable;
         if (knockable != null)
         {
@@ -100,7 +128,6 @@ public class RaccoonController : MonoBehaviour
             knockable.trigger(pushForce);
         }
     }
-
 
     private float GetXAxis()
     {
@@ -126,6 +153,18 @@ public class RaccoonController : MonoBehaviour
         }
     }
 
+    private float GetCamXAxis()
+    {
+        if (useController)
+        {
+            return Input.GetAxis("RightJoystickX");
+        }
+        else
+        {
+            return Input.GetAxis("Mouse X");
+        }
+    }
+    
     private bool GetJump()
     {
         if (useController)
@@ -137,24 +176,6 @@ public class RaccoonController : MonoBehaviour
             return Input.GetKeyDown(KeyCode.Space);
         }
     }
-
-    private Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)
-    {
-        // If this script is on your camera object, you can use this.transform instead.
-
-        // The first part creates a rotation looking into the ground, with
-        // "up" matching the camera's look direction as closely as it can. 
-        // The second part rotates this 90 degrees, so "forward" input matches 
-        // the camera's look direction as closely as it can in the horizontal plane.
-        Quaternion flatten = Quaternion.LookRotation(-localUp,
-            this.cam.forward
-          ) *
-          Quaternion.Euler(Vector3.right * -90f);
-
-        // Now we rotate our input vector into this frame of reference
-        return flatten * input;
-    }
-
     public void AddStrengthModifier(float effectOnAttack, float effectOnSpeed)
     {
         attackPower += effectOnAttack;
@@ -192,6 +213,5 @@ public class RaccoonController : MonoBehaviour
             }
         }
     }
-
-
 }
+
