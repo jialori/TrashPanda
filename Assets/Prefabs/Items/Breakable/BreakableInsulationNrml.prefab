@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6518982010035526487}
   - component: {fileID: 4733808376025836021}
   - component: {fileID: 7037016234518683187}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BreakableInsulationNrml
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1225ab613ed234db546c783279e674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 0
+  totalHealth: 10
   health: 0
 --- !u!65 &7037016234518683187
 BoxCollider:

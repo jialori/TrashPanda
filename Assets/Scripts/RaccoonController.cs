@@ -15,7 +15,16 @@ public class RaccoonController : MonoBehaviour
 
     [SerializeField] private float rotateSpeed = 5;
 
-    public static float score = 0;
+    // For interaction with Breakable
+    [Header("Raytracing (Breakable)")]
+    [SerializeField] private float raycastPaddedDist;
+    [SerializeField] private float raycastPadding = 21.2f;
+    [SerializeField] private int radiusStep = 36; // how many degree does each raycast check skips, dcrease if want more accuracy
+
+    [Header("Hit Frequency (Breakable)")]
+    [SerializeField] private float nextHit;
+    [SerializeField] public float hitRate = 0.5f;
+
     private Vector3 movementVector;
 
     // For interaction with Breakable and Knockable
@@ -23,12 +32,6 @@ public class RaccoonController : MonoBehaviour
     private string knockableMaskName = "Knockable";
     private int breakableMask;
     private int knockableMask;
-    // For interaction with Breakable
-    private float raycastPaddedDist;
-    private float raycastPadding = 0.2f;
-    private int radiusStep = 36; // how many degree does each raycast check skips, dcrease if want more accuracy
-    private float nextHit;
-    public float hitRate = 0.5f;
 
     private bool isOnUpStair = false;
     private bool isOnDownStair = false;
@@ -45,7 +48,6 @@ public class RaccoonController : MonoBehaviour
 
         // Set Raccoon's attack power
         // attackPower = 1;
-        // score = 0;
     }
 
     void Update()

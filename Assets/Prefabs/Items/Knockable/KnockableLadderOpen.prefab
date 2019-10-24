@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2912000661915228751}
   - component: {fileID: 4026447599281359798}
   - component: {fileID: 356207946491630842}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KnockableLadderOpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}

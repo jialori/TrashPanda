@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6670173818239158707}
   - component: {fileID: -2160739980057471355}
   - component: {fileID: 2256885827114995029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BreakableScaffoldingFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
