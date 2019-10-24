@@ -4,15 +4,23 @@ using UnityEngine;
 
 /*
 	Note: 
-  >> Any GameObject attaching the Breakable component should also be assigned a Layer "Knockable".
-	>> Any GameObject using the Knockable component should also have a RigidBody component.
-	>> The RigidBody component must have useGravity checked.
+  >> Any GameObject attaching the Breakable component should also be assigned a ** Layer "Knockable" **.
+	>> Any GameObject using the Knockable component should also have a ** RigidBody ** component.
+	>>   The RigidBody component must have useGravity checked.
 */
 public class Knockable : MonoBehaviour
 {
-    // [SerializeField] private float torquePower = 20;
+    [Header("Object Attributes")]
+    // public float firstTimeScorePoint;
+    // public float regularScorePoint;
+    public float scorePoint;
+
+    private bool pointCollected;
+
+
     private Rigidbody rb;
     private Collider cl;
+    // The point at which force is applid
     private Vector3 collidePoint;
 
 
@@ -22,16 +30,21 @@ public class Knockable : MonoBehaviour
         cl = GetComponent<Collider>();
         // rb.centerOfMass = 0;
         collidePoint = transform.position;// + (rb.centerOfMass + Vector3.up * cl.bounds.size.y * 0.8f);
-
+        pointCollected = false;
     }
 
 
-	public void trigger(Vector3 pushForce) 
-	{
-		// Debug.Log("collide at" + collidePoint);
-		pushForce.y = - Mathf.Abs(pushForce.x);
-		rb.AddForceAtPosition(pushForce, collidePoint);
-	}
+  	public void trigger(Vector3 pushForce) 
+  	{
+  		pushForce.y = - Mathf.Abs(pushForce.x);
+  		rb.AddForceAtPosition(pushForce, collidePoint);
+
+      Debug.Log("collide at" + collidePoint);
+      if (!pointCollected) {
+        ScoreManager.instance.AddScore(scorePoint);
+        pointCollected = true;
+      }
+  	}
 
 
   //   void Update() {

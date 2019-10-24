@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 10
   health: 0
+  scorePoint: 20
 --- !u!64 &-6723483562340407823
 MeshCollider:
   m_ObjectHideFlags: 0
