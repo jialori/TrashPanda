@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8284011335239683964}
   - component: {fileID: 1129768900063032650}
   - component: {fileID: 6670173818239158707}
-  - component: {fileID: -2160739980057471355}
   - component: {fileID: 2256885827114995029}
+  - component: {fileID: -6723483562340407823}
   m_Layer: 8
   m_Name: BreakableScaffoldingFrame
   m_TagString: Untagged
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 906a6999c39453e4c91bfa829b07586a, type: 3}
+  - {fileID: 2100000, guid: 99c7a84ab1dbb0a469ba060ae2dbb0b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &-2160739980057471355
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4948859728086416751}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.6767235, y: 2.916106, z: 2.5400012}
-  m_Center: {x: 1.3267019, y: 0.7587347, z: 1.2700006}
 --- !u!114 &2256885827114995029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,4 +93,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 10
+  health: 0
   scorePoint: 20
+--- !u!64 &-6723483562340407823
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948859728086416751}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -1780324035782819024, guid: 906a6999c39453e4c91bfa829b07586a, type: 3}
