@@ -17,7 +17,7 @@ public class ScoreManager : MonoBehaviour
         else
         {
             instance = this;
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -33,5 +33,11 @@ public class ScoreManager : MonoBehaviour
 	public void SubtractScore(float n) {
 		instance.score -= n;
 	}
+
+
+    public void Reset() 
+    {
+        instance.score = 0.0f;
+    }
 
 }

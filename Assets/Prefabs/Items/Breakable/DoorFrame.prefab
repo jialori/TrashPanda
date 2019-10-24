@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4903656157333692545}
   - component: {fileID: -9128439680061035043}
   - component: {fileID: 5983350697387012549}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 0
-  health: 0
+  scorePoint: 0
 --- !u!64 &5983350697387012549
 MeshCollider:
   m_ObjectHideFlags: 0

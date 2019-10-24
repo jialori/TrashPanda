@@ -21,7 +21,7 @@ public class TimerManager : MonoBehaviour
         else
         {
             instance = this;
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -47,6 +47,11 @@ public class TimerManager : MonoBehaviour
     public float GetCurrentTime() 
     {
     	return timer;
+    }
+
+    public void Reset() 
+    {
+        instance.timer = 0.0f;
     }
 
 }
