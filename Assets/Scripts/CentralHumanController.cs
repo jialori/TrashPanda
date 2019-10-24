@@ -4,36 +4,51 @@ using UnityEngine;
 
 public class CentralHumanController : MonoBehaviour
 {
-    public Transform target;                // Human target to be chased (will always be the raccoon)
-    List<HumanController> chasingHumans;    // Humans that are chasing the raccoon (and have not been assigned a direction)
+    public Transform target;                    // Human target to be chased (will always be the raccoon)
+    List<HumanController> humans;               // List of humans currently in the game
+    bool spotted = false;                       // Flag determining if the raccoon has been spotted
+
+    // Intermediate variables
     GameObject[] H;
     HumanController h;
-    //List<HumanController> directions;                   // Outlines which directions the humans are trying to trap the raccoon from (will only be at most four elements long)
+    List<int> t;
+    int j;
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize variables
-        chasingHumans = new List<HumanController>();
+        humans = new List<HumanController>();
+
         H = GameObject.FindGameObjectsWithTag("Human");
-        //directions = new List<HumanController>();
         // Retrieve all enemies
         for (int i = 0; i < H.Length; i++)
         {
             h = H[i].GetComponent<HumanController>();
-            chasingHumans.Add(h);
+            humans.Add(h);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (chasingHumans.Count >= 4)
+        // Check if any of the humans have spotted the raccoon
+        spotted = false;
+        for (int i = 0; i < humans.Count; i++)
         {
-            chasingHumans[0].destination = target.position + Vector3.forward;
-            chasingHumans[1].destination = target.position + Vector3.left;
-            chasingHumans[2].destination = target.position + Vector3.right;
-            chasingHumans[3].destination = target.position + Vector3.back;
+            if (humans[i].isInFOV)
+            {
+                spotted = true;
+            }
+        }
+
+        // If the raccoon has been spotted
+        if (spotted)
+        {
+            for (int i = 0; i < humans.Count; i++)
+            {
+                humans[i].lastKnownLocation = target.position;
+            }
         }
     }
 }
