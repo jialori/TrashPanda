@@ -4,98 +4,63 @@ using UnityEngine;
 
 public class ToolController : MonoBehaviour
 {
-    public Transform player;
-    public float throwForce;
-    public AudioClip sfx;
+    public GameObject player;
+    public RaccoonController playerScript;
+    private Rigidbody rb;
     public string toolType;
 
-
-    public int dmg;
-
-    bool hasPlayer = false;
-    bool beingCarried = false;
-    private Rigidbody rb;
+    private bool hasPlayer = false;
+    private bool beingCarried = false;
     private static bool handFree = true;
     public static ToolController toolInHand = null;
-    //private AudioSource audioSource;
-    //private bool touched = false;
-    // Start is called before the first frame update
+
+    [Header("Tool Attributes")]
+    public float effectOnAttack = 10;
+    public float effectOnSpeed = -5;
+
     void Start()
     {
-        //audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
+        playerScript = player.GetComponent<RaccoonController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float dis = Vector3.Distance(gameObject.transform.position, player.transform.position);
-        if (dis <= 3f)
+        float dis = Vector3.Distance(this.transform.position, player.transform.position);
+        hasPlayer = (dis <= 3f) ? true : false;
+        if (Input.GetButtonDown("X") && hasPlayer && handFree)
         {
-            hasPlayer = true;
+            Equip();
         }
-        else
-        {
-            hasPlayer = false;
-        }
-        if (hasPlayer && handFree && Input.GetButtonDown("X"))//Input.GetKeyDown("i"))
-        {
-            rb.isKinematic = true;
-            transform.parent = player;
-            beingCarried = true;
-            transform.localPosition = player.forward;
-            handFree = false;
-            toolInHand = this;
-        }
-        if (beingCarried)
-        {
-            //else if (touched)
-            //{
-            //rb.isKinematic = false;
-            //transform.parent = null;
-            //beingCarried = false;
-            //touched = false;
-            //}
-            //if (Input.GetKeyDown("o"))
-            //{
-            //rb.isKinematic = false;
-            //Vector3 currLoc = transform.position;
-            //transform.parent = null;
-            //transform.position = currLoc;
-            //beingCarried = false;
-            //rb.AddForce(player.forward * throwForce);
-            //PlaySFX();
-            //}
-            if (Input.GetButtonDown("Y"))//Input.GetKeyDown("u"))
-            {
-                rb.isKinematic = false;
-                Vector3 currLoc = transform.position;
-                transform.parent = null;
-                transform.position = currLoc;
-                //transform.SetParent(null, false);
-                beingCarried = false;
-                handFree = true;
-                toolInHand = null;
-            }
+
+	    if (beingCarried && Input.GetButtonDown("Y"))
+	    {
+	        UnEquip();
         }
     }
 
-    private void OnTriggerEnter()
+
+    public void Equip() 
     {
-        if (beingCarried)
-        {
-            //touched = true;
-        }
+        rb.isKinematic = true;
+        beingCarried = true;
+        handFree = false;
+        toolInHand = this;
+        transform.parent = player.transform;
+        transform.localPosition = player.transform.forward;
+    	playerScript.AddStrengthModifier(effectOnAttack, effectOnSpeed);
     }
 
-    //void PlaySFX()
-    //{
-    //if (audioSource.isPlaying)
-    //{
-    //return;
-    //}
-    //audioSource.clip = sfx;
-    //audioSource.Play();
-    //}
+    public void UnEquip()
+    {
+	    rb.isKinematic = false;
+	    beingCarried = false;
+	    handFree = true;
+	    toolInHand = null;
+	    Vector3 currLoc = transform.position;
+	    transform.parent = null;
+	    transform.position = currLoc;
+	    playerScript.RemoveStrengthModifier(effectOnAttack, effectOnSpeed);	
+    }
 
 }
