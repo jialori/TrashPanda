@@ -24,11 +24,15 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void StartGame()
     {
+        ScoreManager.instance.Reset();
+        TimerManager.instance.Reset();
         SceneManager.LoadScene(SCENE_NAME_GAME);
     }
 
     public void ReStartGame()
     {
+        ScoreManager.instance.Reset();
+        TimerManager.instance.Reset();
         SceneManager.LoadScene(SCENE_NAME_GAME);
     }
 
