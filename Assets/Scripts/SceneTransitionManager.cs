@@ -34,7 +34,6 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("EndGame called!");
         SceneManager.LoadScene(SCENE_NAME_GAME_OVER);
     }
 

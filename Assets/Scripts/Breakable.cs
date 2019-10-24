@@ -9,6 +9,7 @@ public class Breakable : MonoBehaviour
 {
     [Header("Object Attributes")]
     public float totalHealth;
+    public float scorePoint;
     
     private float health;
 
@@ -25,8 +26,8 @@ public class Breakable : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            // RaccoonController.score += calcScore();
-            ScoreManager.instance.AddScore(calcScore());
+            Debug.Log("broke some object");
+            ScoreManager.instance.AddScore(scorePoint);
             Destroy(this.gameObject);
         }
 
@@ -35,11 +36,6 @@ public class Breakable : MonoBehaviour
     public float calcDamage(float atk)
     {
         return atk;
-    }
-
-    public float calcScore()
-    {
-        return totalHealth;
     }
 
 }
