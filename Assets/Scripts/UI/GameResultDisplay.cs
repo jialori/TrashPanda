@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System;
 
-public class GameResult : MonoBehaviour
+public class GameResultDisplay : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
     [SerializeField] private Text trashBinScoreText;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour
+public class ScoreDisplay : MonoBehaviour
 {
 
     [SerializeField] private Text scoreText;

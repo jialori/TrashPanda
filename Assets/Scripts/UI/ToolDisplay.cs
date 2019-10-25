@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Tool : MonoBehaviour
+public class ToolDisplay : MonoBehaviour
 {
     public Text toolDisplay;
 

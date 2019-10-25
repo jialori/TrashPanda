@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Timer: MonoBehaviour
+public class TimerDisplay: MonoBehaviour
 {
 
 	[SerializeField] private Text timerText;
