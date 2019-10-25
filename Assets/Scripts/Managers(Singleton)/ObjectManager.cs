@@ -40,6 +40,7 @@ public class ObjectManager : MonoBehaviour
     void Start()
     {
         raccoon = GameManager.instance.Raccoon;
+        if (!raccoon || !raccoon.Controller) return;
         raycastPaddedDist = raccoon.Controller.radius + raycastPadding;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
         knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
@@ -48,19 +49,30 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    void Update()
+    void LateUpdate()
     {
         inRangeKnockables.Clear();
         // Update target & in range, in range at every frame using raycast
         RaycastHit hit;
 
         // Bottom of controller. Slightly above ground so it doesn't bump into slanted platforms.
-        Vector3 p1 = transform.position + Vector3.up * 0.01f;
+        var raccoon = GameManager.instance.Raccoon; 
+        if (!raccoon) {
+            Debug.Log("no raccoon");
+            return;
+            
+            }
+        // Debug.Log("[ObjectManager] raccoon position: " + raccoon.transform.position);
+        Vector3 p1 = raccoon.transform.position + Vector3.up * 0.01f;
         Vector3 p2 = p1 + Vector3.up * raccoon.Controller.height;
+        // Debug.Log("[ObjectManager] p2: " + p2);
         
         // Check around the character in 360 degree
-        for (int i = 0; i < 360; i ++)
+        for (int i = 0; i < 360; i += 36)
         {
+            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist)) {   
+                Debug.Log("hit");
+            }
             // knockable layer
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, knockableMask))
             {
@@ -74,12 +86,14 @@ public class ObjectManager : MonoBehaviour
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask))
             {
                 target = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
+                Debug.Log("[ObjectManager] target is Breakable");
             }
 
             // tools layer
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, toolsMask))
             {
                 target = hit.collider.gameObject.GetComponent<ToolController>() as ToolController;
+                Debug.Log("[ObjectManager] target is Tool");
             }
 
             // interactable layer
@@ -87,6 +101,7 @@ public class ObjectManager : MonoBehaviour
             {
                 // currently the only other interactable object is Stair
                 target = hit.collider.gameObject.GetComponent<Stair>();
+                Debug.Log("[ObjectManager] target is Stair");
             }
         }
     }

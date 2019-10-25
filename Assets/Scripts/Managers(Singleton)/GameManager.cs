@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public bool m_useController;
     public bool UseController { get => m_useController; }
-    [SerializeField] private RaccoonController m_raccoon { get; }
+    [SerializeField] private RaccoonController m_raccoon;
     public RaccoonController Raccoon { get => m_raccoon; }
 	
     public static GameManager instance;

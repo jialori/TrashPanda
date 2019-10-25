@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2691777337268824261}
   - component: {fileID: 1685382964719071922}
   - component: {fileID: 3786067362810861667}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BreakableGlass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,4 +106,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 3
-  health: 0
+  scorePoint: 0
