@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5887ef4f7bb19654bbad5876c916c9aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SCENE_NAME_GAME: Level1_UI_Lori
-  SCENE_NAME_GAME_OVER: GameOver
+  MENU: MainMenu
+  GAME: MainScene
+  GAME_OVER: GameOver

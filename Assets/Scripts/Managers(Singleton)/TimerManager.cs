@@ -21,7 +21,6 @@ public class TimerManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -52,6 +51,7 @@ public class TimerManager : MonoBehaviour
     public void Reset() 
     {
         instance.timer = 0.0f;
+        calledGameOver = false;
     }
 
 }

@@ -3,8 +3,8 @@
 public class RaccoonController : MonoBehaviour
 {
     private CharacterController characterController;
+    public CharacterController Controller { get => characterController; }
     [SerializeField] private Transform cam;
-    [SerializeField] private bool useController = true;
 
     [Header("Character Stats")]
     [SerializeField] private float attackPower = 1;
@@ -53,7 +53,7 @@ public class RaccoonController : MonoBehaviour
     void Update()
     {
         // Move up or down stairs
-        if ((isOnUpStair || isOnDownStair) && Input.GetButtonDown("B"))
+        if ((isOnUpStair || isOnDownStair) && GetInteract())
         {
             characterController.enabled = false;
             if (isOnUpStair) characterController.transform.position += new Vector3(0, 8.5f, 0);
@@ -96,7 +96,7 @@ public class RaccoonController : MonoBehaviour
         characterController.Move(movementVector * Time.deltaTime);
 
         // Break Breakable objects
-        if (Input.GetButtonDown("B"))
+        if (GetInteract())
         {
             BreakObjectsNearby();
         }
@@ -133,7 +133,7 @@ public class RaccoonController : MonoBehaviour
 
     private float GetXAxis()
     {
-        if (useController)
+        if (GameManager.instance.UseController)
         {
             return Input.GetAxis("LeftJoystickX");
         }
@@ -145,7 +145,7 @@ public class RaccoonController : MonoBehaviour
 
     private float GetYAxis()
     {
-        if (useController)
+        if (GameManager.instance.UseController)
         {
             return -Input.GetAxis("LeftJoystickY");
         }
@@ -157,7 +157,7 @@ public class RaccoonController : MonoBehaviour
 
     private float GetCamXAxis()
     {
-        if (useController)
+        if (GameManager.instance.UseController)
         {
             return Input.GetAxis("RightJoystickX");
         }
@@ -169,7 +169,7 @@ public class RaccoonController : MonoBehaviour
     
     private bool GetJump()
     {
-        if (useController)
+        if (GameManager.instance.UseController)
         {
             return Input.GetButtonDown("A");
         }
@@ -178,6 +178,17 @@ public class RaccoonController : MonoBehaviour
             return Input.GetKeyDown(KeyCode.Space);
         }
     }
+
+    private bool GetInteract()
+    {
+        if (GameManager.instance.UseController) 
+        {
+            return Input.GetButtonDown("B");
+        } else {
+            return Input.GetKeyDown("e");
+        }
+    }
+
     public void AddStrengthModifier(float effectOnAttack, float effectOnSpeed)
     {
         attackPower += effectOnAttack;

@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0c36eb0a9847747a1b86337ffb9476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 13
+  totalTime: 1
   sceneName: GameOver

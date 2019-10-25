@@ -2,7 +2,6 @@
 
 public class CameraRotator : MonoBehaviour
 {
-    [SerializeField] private bool useController = false;
 
     // Constants for clamping camera angles and establishing boundaries for rotation
     private const float Y_ANGLE_MIN = 0.0f;
@@ -49,7 +48,7 @@ public class CameraRotator : MonoBehaviour
 
     private float GetXAxis()
     {
-        if (useController)
+        if (GameManager.instance.UseController)
         {
             return Input.GetAxis("RightJoystickX");
         }
@@ -61,7 +60,7 @@ public class CameraRotator : MonoBehaviour
 
     private float GetYAxis()
     {
-        if (useController)
+        if (GameManager.instance.UseController)
         {
             return Input.GetAxis("RightJoystickY");
         }
