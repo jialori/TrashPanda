@@ -52,6 +52,7 @@ public class TimerManager : MonoBehaviour
     public void Reset() 
     {
         instance.timer = 0.0f;
+        calledGameOver = false;
     }
 
 }
