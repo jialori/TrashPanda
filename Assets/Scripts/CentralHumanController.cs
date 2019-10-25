@@ -45,8 +45,10 @@ public class CentralHumanController : MonoBehaviour
         // If the raccoon has been spotted
         if (spotted)
         {
+            //Debug.Log(1);
             for (int i = 0; i < humans.Count; i++)
             {
+                //Debug.Log("2: " + i);
                 humans[i].lastKnownLocation = target.position;
             }
         }
