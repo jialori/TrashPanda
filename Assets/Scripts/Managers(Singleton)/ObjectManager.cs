@@ -20,7 +20,6 @@ public class ObjectManager : MonoBehaviour
     private int interactableMask;
 
     [Header("Raytracing (Breakable)")]
-    [SerializeField] private float raycastPaddedDist;
     [SerializeField] private float raycastPadding = 21.2f;
 
     private RaccoonController raccoon;
@@ -41,7 +40,6 @@ public class ObjectManager : MonoBehaviour
     {
         raccoon = GameManager.instance.Raccoon;
         if (!raccoon || !raccoon.Controller) return;
-        raycastPaddedDist = raccoon.Controller.radius + raycastPadding;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
         knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
         toolsMask = 1 << LayerMask.NameToLayer(toolsMaskName);
@@ -56,23 +54,14 @@ public class ObjectManager : MonoBehaviour
         RaycastHit hit;
 
         // Bottom of controller. Slightly above ground so it doesn't bump into slanted platforms.
-        var raccoon = GameManager.instance.Raccoon; 
-        if (!raccoon) {
-            Debug.Log("no raccoon");
-            return;
-            
-            }
-        // Debug.Log("[ObjectManager] raccoon position: " + raccoon.transform.position);
         Vector3 p1 = raccoon.transform.position + Vector3.up * 0.01f;
         Vector3 p2 = p1 + Vector3.up * raccoon.Controller.height;
-        // Debug.Log("[ObjectManager] p2: " + p2);
+        var raycastPaddedDist = raccoon.Controller.radius + raycastPadding;
+        Debug.Log(raycastPaddedDist);
         
         // Check around the character in 360 degree
         for (int i = 0; i < 360; i += 36)
         {
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist)) {   
-                Debug.Log("hit");
-            }
             // knockable layer
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, knockableMask))
             {
