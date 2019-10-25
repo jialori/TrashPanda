@@ -49,6 +49,7 @@ public class ObjectManager : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!raccoon) return;
         inRangeKnockables.Clear();
         // Update target & in range, in range at every frame using raycast
         RaycastHit hit;
