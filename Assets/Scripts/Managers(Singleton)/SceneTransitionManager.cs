@@ -20,7 +20,6 @@ public class SceneTransitionManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 

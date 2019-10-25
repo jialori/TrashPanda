@@ -17,7 +17,6 @@ public class ScoreManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
