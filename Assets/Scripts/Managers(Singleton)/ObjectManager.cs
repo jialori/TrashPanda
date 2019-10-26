@@ -47,7 +47,7 @@ public class ObjectManager : MonoBehaviour
 
     }
 
-    void LateUpdate()
+    void Update()
     {
         if (!raccoon) return;
         inRangeKnockables.Clear();
@@ -63,6 +63,10 @@ public class ObjectManager : MonoBehaviour
         // Check around the character in 360 degree
         for (int i = 0; i < 360; i += 36)
         {
+            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist))
+            {
+                Debug.Log("[ObjectManager] Hit");
+            }
             // knockable layer
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, knockableMask))
             {

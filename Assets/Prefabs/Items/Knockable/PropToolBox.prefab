@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5958248831759633012}
   - component: {fileID: 7533810888555228117}
   - component: {fileID: 8381991936323226965}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PropToolBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
