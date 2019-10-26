@@ -39,12 +39,10 @@ public class ObjectManager : MonoBehaviour
     void Start()
     {
         raccoon = GameManager.instance.Raccoon;
-        if (!raccoon || !raccoon.Controller) return;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
         knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
         toolsMask = 1 << LayerMask.NameToLayer(toolsMaskName);
         interactableMask = 1 << LayerMask.NameToLayer(interactableMaskName);
-
     }
 
     void Update()
@@ -63,10 +61,6 @@ public class ObjectManager : MonoBehaviour
         // Check around the character in 360 degree
         for (int i = 0; i < 360; i += 36)
         {
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist))
-            {
-                Debug.Log("[ObjectManager] Hit");
-            }
             // knockable layer
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, knockableMask))
             {
@@ -75,19 +69,18 @@ public class ObjectManager : MonoBehaviour
             }
 
             // current target selected according to precedence: interactable > tools > breakable
+            target = null;
 
             // breakable layer
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask))
             {
                 target = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
-                Debug.Log("[ObjectManager] target is Breakable");
             }
 
             // tools layer
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, toolsMask))
             {
                 target = hit.collider.gameObject.GetComponent<ToolController>() as ToolController;
-                Debug.Log("[ObjectManager] target is Tool");
             }
 
             // interactable layer
@@ -95,7 +88,6 @@ public class ObjectManager : MonoBehaviour
             {
                 // currently the only other interactable object is Stair
                 target = hit.collider.gameObject.GetComponent<Stair>();
-                Debug.Log("[ObjectManager] target is Stair");
             }
         }
     }

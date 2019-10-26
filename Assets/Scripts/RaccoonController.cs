@@ -214,11 +214,6 @@ public class RaccoonController : MonoBehaviour
         // Check around the character in 360 degree
         for (int i = 0; i < 360; i += radiusStep)
         {
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist))
-            {
-                Debug.Log("[RaccoonController] Hit");
-                Debug.Log("p1: {p1} p2: {p2} i: {i}");
-            }
             // Check if anything with the breakable layer touches this object
             if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask))
             {
