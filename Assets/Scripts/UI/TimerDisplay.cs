@@ -11,7 +11,7 @@ public class TimerDisplay: MonoBehaviour
 
     void Update()
     {
-        timerText.text = "Time: " + TimerManager.instance.GetCurrentTime().ToString("F");
+        timerText.text = "Time Left: " + TimerManager.instance.GetCurrentTime().ToString("F");
     }
 
 }

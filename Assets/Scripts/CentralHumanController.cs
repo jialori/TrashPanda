@@ -49,7 +49,10 @@ public class CentralHumanController : MonoBehaviour
             for (int i = 0; i < humans.Count; i++)
             {
                 //Debug.Log("2: " + i);
-                humans[i].lastKnownLocation = target.position;
+                if (HumanController.onSameFloor(humans[i].transform, target))
+                {
+                    humans[i].lastKnownLocation = target.position;
+                }
             }
         }
     }

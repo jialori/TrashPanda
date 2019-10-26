@@ -6,7 +6,7 @@ public class TimerManager : MonoBehaviour
 	
     public static TimerManager instance;
 
-    public float totalTime;
+    public float timeLeft;
     private float timer;    
     private bool calledGameOver;
 
@@ -26,15 +26,15 @@ public class TimerManager : MonoBehaviour
 
     void Start()
     {
-        timer = 0.0f;
+        timer = timeLeft;
         calledGameOver = false;
     }
 
     void Update()
     {
-        if (timer < totalTime)
+        if (timer > 0)
         {
-            timer += Time.deltaTime / 2.0f;
+            timer -= Time.deltaTime;
         }
         else if (!calledGameOver)
         {
