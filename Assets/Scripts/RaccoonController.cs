@@ -8,11 +8,11 @@ public class RaccoonController : MonoBehaviour
 
     [Header("Character Stats")]
     [SerializeField] private float attackPower = 1;
+    public float AttackPower { get => attackPower; }
     [SerializeField] private float movementSpeed = 10;
     [SerializeField] private float jumpPower = 15;
     [SerializeField] private float gravity = 40;
     [SerializeField] private float pushPower = 12;
-
     [SerializeField] private float rotateSpeed = 5;
 
     // For interaction with Breakable
@@ -22,8 +22,9 @@ public class RaccoonController : MonoBehaviour
     [SerializeField] private int radiusStep = 36; // how many degree does each raycast check skips, dcrease if want more accuracy
 
     [Header("Hit Frequency (Breakable)")]
-    [SerializeField] private float nextHit;
+    [SerializeField] public float nextHit;
     [SerializeField] public float hitRate = 0.5f;
+    public float HitRate { get => hitRate; }
 
     private Vector3 movementVector;
 
@@ -73,9 +74,11 @@ public class RaccoonController : MonoBehaviour
 
         // Movement
         movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
-
+        //Quaternion tarRotation = Quaternion.FromToRotation(transform.forward, camForward);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, tarRotation, rotateSpeed * Time.deltaTime);
+   
         // Rotation
-        transform.Rotate(new Vector3(0, GetCamXAxis() * rotateSpeed, 0));
+        //transform.Rotate(new Vector3(0, GetCamXAxis() * rotateSpeed, 0));
 
         // Jump
         if (characterController.isGrounded)
@@ -98,7 +101,7 @@ public class RaccoonController : MonoBehaviour
         // Break Breakable objects
         if (GetInteract())
         {
-            BreakObjectsNearby();
+            // BreakObjectsNearby();
         }
     }
 
@@ -166,7 +169,7 @@ public class RaccoonController : MonoBehaviour
             return Input.GetAxis("Mouse X");
         }
     }
-    
+
     private bool GetJump()
     {
         if (GameManager.instance.UseController)
@@ -181,10 +184,12 @@ public class RaccoonController : MonoBehaviour
 
     private bool GetInteract()
     {
-        if (GameManager.instance.UseController) 
+        if (GameManager.instance.UseController)
         {
             return Input.GetButtonDown("B");
-        } else {
+        }
+        else
+        {
             return Input.GetKeyDown("e");
         }
     }
@@ -227,4 +232,3 @@ public class RaccoonController : MonoBehaviour
         }
     }
 }
-

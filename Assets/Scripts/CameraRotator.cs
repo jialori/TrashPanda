@@ -10,7 +10,7 @@ public class CameraRotator : MonoBehaviour
     // Initialization of variables
     public Transform camTransform;
 
-    private Camera cam;
+    
 
     [SerializeField] private float distance = 8.0f;
     private float currentX = 0.0f;
@@ -19,90 +19,273 @@ public class CameraRotator : MonoBehaviour
     private float sensitivityY = 3.0f;
 
     [SerializeField] private Transform target = null;
-    [SerializeField] private float damping = 2.0f;
-    [SerializeField] private bool smoothRotation = true;
-    [SerializeField] private float rotationDamping = 2.0f;
 
-    [SerializeField] private Vector3 targetLookAtOffset; // allows offsetting of camera lookAt, very useful for low bumper heights
-
-    [SerializeField] private float bumperDistanceCheck = 2.0f; // length of bumper ray
-    [SerializeField] private float bumperCameraHeight = 0.5f; // adjust camera height while bumping
-    [SerializeField] private Vector3 bumperRayOffset; // allows offset of the bumper ray from target origin
-
-    private void Awake()
+    public class PosSettings
     {
-        camTransform = transform;
-        cam = Camera.main;
-        GetComponent<Camera>().transform.parent = target;
+        public Vector3 targetLookAtOffset = new Vector3(0, 2f, 0);
+        public float lookSmooth = 100f;
+        public float disFromTar = -8;
+        public float smooth = 0.05f;
+        [HideInInspector]
+        public float adjustDis = -8;
     }
+
+    public class OrbitSettings
+    {
+        public float xRotation = -20;
+        public float yRotation = -180;
+        public float maxXRotation = 30;
+        public float minXRotation = -55;
+        // How fast the rotation can take place
+        public float vOrbitSmooth = 150;
+        public float hOrbitSmooth = 150;
+    }
+
+    public class InputSettings
+    {
+        public string ORBIT_HORIZONTAL_SNAP = "Cancel";
+        public string ORBIT_HORIZONTAL = "Mouse X";
+        public string ORBIT_VERTICAL = "Mouse Y";
+        public string ZOOM = "Mouse ScrollWheel";
+
+    }
+
+    public class DebugSettings
+    {
+        public bool drawDesiredCollisionLines = true;
+        public bool drawAdjustedCollisionLines = true;
+    }
+
+    public PosSettings position = new PosSettings();
+    public OrbitSettings orbit = new OrbitSettings();
+    public InputSettings input = new InputSettings();
+    public DebugSettings debug = new DebugSettings();
+    public CollisionHandler coll = new CollisionHandler();
+
+    // target.position + targetLookAtOffset
+    Vector3 lookAtPtPos = Vector3.zero;
+    Vector3 des = Vector3.zero;
+    Vector3 adjustedDes = Vector3.zero;
+    Vector3 camVel = Vector3.zero;
+    RaccoonController player;
+    float vOrbitInp, hOrbitInp, hOrbitSnapInp;
+
+    
+
+    void GetInput()
+    {
+        vOrbitInp = Input.GetAxis(input.ORBIT_VERTICAL);
+        hOrbitInp = Input.GetAxis(input.ORBIT_HORIZONTAL);
+        hOrbitSnapInp = Input.GetAxis(input.ORBIT_HORIZONTAL_SNAP);
+    }
+
 
     private void Update()
     {
-        // Ensure rotation values correspond with movement of mouse (will need to change to fit controller later)
-        currentX += GetXAxis() * sensitivityX;
-        currentY += GetYAxis() * sensitivityY;
-
+        GetInput();
         // Clamp camera rotation
-        currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
+        //currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
     }
-
-    private float GetXAxis()
+    void FixedUpdate()
     {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetAxis("RightJoystickX");
-        }
-        else
-        {
-            return Input.GetAxis("Mouse X");
-        }
-    }
+        MoveToTar();
+        LookAtTar();
+        OrbitTar();
 
-    private float GetYAxis()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetAxis("RightJoystickY");
-        }
-        else
-        {
-            return Input.GetAxis("Mouse Y");
-        }
-    }
+        coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
+        coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
 
-    private void LateUpdate()
-    {
+        // draw debug lines
+        for (int i = 0; i < 5; i++)
+        {
+            if (debug.drawDesiredCollisionLines)
+            {
+                Debug.DrawLine(lookAtPtPos, coll.desiredCamClipPts[i], Color.white);
+            }
+            if (debug.drawAdjustedCollisionLines)
+            {
+                Debug.DrawLine(lookAtPtPos, coll.adjustedCamClipPts[i], Color.green);
+            }
+
+
+        }
+        coll.CheckColliding(lookAtPtPos); // using raycasts
+
+        position.adjustDis = coll.AdjustedDisWithRaycast(lookAtPtPos);
         Vector3 dir = new Vector3(0, 0, -distance);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-        // TODO why the raccoon cannot walk straight line in small room
+    }
 
-        Vector3 wantedPosition = target.TransformPoint(rotation * dir);
-        
-        // check to see if there is anything behind the target
-        RaycastHit hit;
-        // TODO target.forward or Vector3.forward
-        Vector3 back = target.transform.TransformDirection(-1 * target.forward);
+    void MoveToTar()
+    {
+        lookAtPtPos = target.position + position.targetLookAtOffset;
+        des = Quaternion.Euler(orbit.xRotation, orbit.yRotation + target.eulerAngles.y, 0) * -Vector3.forward * position.disFromTar;
+        des += lookAtPtPos;
 
-        // cast the bumper ray out from rear and check to see if there is anything behind
-        if (Physics.Raycast(target.TransformPoint(bumperRayOffset), back, out hit, bumperDistanceCheck)
-            && hit.transform != target) // ignore ray-casts that hit the user. DR
+        if (coll.isColliding)
         {
-            // clamp wanted position to hit position
-            wantedPosition.x = hit.point.x;
-            wantedPosition.z = hit.point.z;
-            wantedPosition.y = Mathf.Lerp(hit.point.y + bumperCameraHeight, wantedPosition.y, Time.deltaTime * damping);
-        }
+            adjustedDes = Quaternion.Euler(orbit.xRotation, orbit.yRotation + target.eulerAngles.y, 0) * Vector3.forward * position.adjustDis;
+            adjustedDes += lookAtPtPos;
 
-        transform.position = Vector3.Lerp(transform.position, wantedPosition, Time.deltaTime * damping);
-
-        Vector3 lookPosition = target.TransformPoint(targetLookAtOffset);
-
-        if (smoothRotation)
-        {
-            Quaternion wantedRotation = Quaternion.LookRotation(lookPosition - transform.position, target.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
+            // Smooth camera movement
+            transform.position = Vector3.SmoothDamp(transform.position, adjustedDes, ref camVel, position.smooth);
+            
         }
         else
-            transform.rotation = Quaternion.LookRotation(lookPosition - transform.position, target.up);
+            transform.position = Vector3.SmoothDamp(transform.position, des, ref camVel, position.smooth);
     }
+
+    void LookAtTar()
+    {
+        Quaternion tarRotation = Quaternion.LookRotation(lookAtPtPos - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, tarRotation, position.lookSmooth * Time.deltaTime);
+    }
+
+    void OrbitTar()
+    {
+        if (hOrbitSnapInp > 0)
+        {
+            orbit.yRotation = -180;
+        }
+        //?
+        orbit.xRotation += -vOrbitInp * orbit.vOrbitSmooth * Time.deltaTime;
+        orbit.yRotation += -hOrbitInp * orbit.hOrbitSmooth * Time.deltaTime;
+
+        if (orbit.xRotation > orbit.maxXRotation)
+        {
+            orbit.xRotation = orbit.maxXRotation;
+        }
+        if (orbit.xRotation < orbit.minXRotation)
+        {
+            orbit.xRotation = orbit.minXRotation;
+        }
+    }
+
+    private void Start()
+    {
+        MoveToTar();
+        coll.Initialize(Camera.main);
+        coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
+        coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
+    }
+
+    [System.Serializable]
+    public class CollisionHandler
+    {
+        public LayerMask collisionLayer;
+
+        [HideInInspector]
+        public bool isColliding = false;
+        [HideInInspector]
+        public Vector3[] adjustedCamClipPts;
+        [HideInInspector]
+        public Vector3[] desiredCamClipPts;
+        private Camera cam;
+        public void Initialize(Camera camera)
+        {
+            cam = camera;
+            adjustedCamClipPts = new Vector3[5];
+            desiredCamClipPts = new Vector3[5];
+        }
+
+        public void UpdateCamClipPts(Vector3 camPos, Quaternion atRotation, ref Vector3[] intoArray)
+        {
+            if (!cam)
+                return;
+
+            // clear the contents of intoArray
+            intoArray = new Vector3[5];
+            float z = cam.nearClipPlane;
+            float x = Mathf.Tan(cam.fieldOfView / 3.41f) * z;
+            float y = x / cam.aspect;
+
+            // top left
+            // added and rotated the point relative to the cam position
+            intoArray[0] = (atRotation * new Vector3(-x, y, z)) + camPos;
+            // top right
+            intoArray[1] = (atRotation * new Vector3(x, y, z)) + camPos;
+            // bottom left
+            intoArray[2] = (atRotation * new Vector3(-x, -y, z)) + camPos;
+            // bottom right
+            intoArray[3] = (atRotation * new Vector3(x, -y, z)) + camPos;
+            // cam pos
+            intoArray[4] = camPos - cam.transform.forward;
+        }
+
+
+
+        private float GetXAxis()
+        {
+            if (GameManager.instance.UseController)
+            {
+                return Input.GetAxis("RightJoystickX");
+            }
+            else
+            {
+                return Input.GetAxis("Mouse X");
+            }
+        }
+
+        private float GetYAxis()
+        {
+            if (GameManager.instance.UseController)
+            {
+                return Input.GetAxis("RightJoystickY");
+            }
+            else
+            {
+                return Input.GetAxis("Mouse Y");
+            }
+        }
+
+
+        bool CollisionDectectedAtClipPts(Vector3[] clipPts, Vector3 tarPos)
+        {
+            for (int i = 0; i < clipPts.Length; i++)
+            {
+                Ray ray = new Ray(tarPos, clipPts[i] - tarPos);
+                float distance = Vector3.Distance(clipPts[i], tarPos);
+                if (Physics.Raycast(ray, distance, collisionLayer))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public float AdjustedDisWithRaycast(Vector3 tarPos)
+        {
+            float dis = -1;
+
+            for (int i = 0; i < desiredCamClipPts.Length; i++)
+            {
+                Ray ray = new Ray(tarPos, desiredCamClipPts[i] - tarPos);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (dis == -1)
+                        dis = hit.distance;
+                    else
+                    {
+                        if (hit.distance < dis)
+                            dis = hit.distance;
+                    }
+                }
+            }
+
+            if (dis == -1)
+                return 0;
+            else
+                return dis;
+        }
+
+        public void CheckColliding(Vector3 tarPos)
+        {
+            if (CollisionDectectedAtClipPts(desiredCamClipPts, tarPos))
+                isColliding = true;
+            else
+                isColliding = false;
+        }
+    }
+    
 }
