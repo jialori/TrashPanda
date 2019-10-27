@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5760336544889157656}
   - component: {fileID: 420270385177549150}
   - component: {fileID: -4785073429609680745}
+  - component: {fileID: -1325903741936959803}
   m_Layer: 9
   m_Name: KnockableBucket
   m_TagString: Untagged
@@ -124,3 +125,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -3577918097290507638, guid: de2dfa182cc795b4a985aef73d22afb8, type: 3}
+--- !u!114 &-1325903741936959803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7998367819914754091}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  knockable_outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  breakable_outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  interactable_outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6670173818239158707}
   - component: {fileID: 2256885827114995029}
   - component: {fileID: -6723483562340407823}
+  - component: {fileID: -7981682895937448404}
   m_Layer: 8
   m_Name: BreakableScaffoldingFrame
   m_TagString: Untagged
@@ -93,7 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 10
-  health: 0
   scorePoint: 20
 --- !u!64 &-6723483562340407823
 MeshCollider:
@@ -109,3 +109,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -1780324035782819024, guid: 906a6999c39453e4c91bfa829b07586a, type: 3}
+--- !u!114 &-7981682895937448404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948859728086416751}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  knockable_outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  breakable_outlineColor: {r: 1, g: 0.08018869, b: 0.08018869, a: 1}
+  interactable_outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

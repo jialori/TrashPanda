@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2634103890722792650}
   - component: {fileID: 2634103890722792651}
   - component: {fileID: 2634103890722792660}
+  - component: {fileID: -3067752394234960245}
   m_Layer: 8
   m_Name: Breakable
   m_TagString: Untagged
@@ -105,3 +106,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1225ab613ed234db546c783279e674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalHealth: 0
+  scorePoint: 0
+--- !u!114 &-3067752394234960245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634103890722792662}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.3386822, b: 0.24056602, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

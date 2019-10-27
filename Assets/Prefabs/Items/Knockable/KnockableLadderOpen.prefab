@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4026447599281359798}
   - component: {fileID: 356207946491630842}
   - component: {fileID: 1913202962451212569}
+  - component: {fileID: 1786963065037419816}
   m_Layer: 9
   m_Name: KnockableLadderOpen
   m_TagString: Untagged
@@ -124,3 +125,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 7485205316709286908, guid: 1d716e7f7730a904ba8884bd08587b13, type: 3}
+--- !u!114 &1786963065037419816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943987482653242202}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.20392156, g: 1, b: 0.45000926, a: 0.95686275}
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

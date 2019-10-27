@@ -38566,6 +38566,11 @@ PrefabInstance:
       propertyPath: raycastPadding
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1270603500913772167, guid: 18f4801ebe5149e46a988eb0c470fedc,
+        type: 3}
+      propertyPath: detectDist
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f4801ebe5149e46a988eb0c470fedc, type: 3}
 --- !u!1001 &2046061654

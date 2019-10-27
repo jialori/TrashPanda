@@ -8,7 +8,8 @@ public class ObjectManager : MonoBehaviour
 	
     public static ObjectManager instance;
     private static object target;
-    private static List<Knockable> inRangeKnockables = new List<Knockable>();
+    // private static List<Knockable> inRangeKnockables = new List<Knockable>();
+    private static Collider[] _inRangeItems = null;
 
     // Masks
     private string breakableMaskName = "Breakable";
@@ -19,6 +20,9 @@ public class ObjectManager : MonoBehaviour
     private int knockableMask;
     private int toolsMask;
     private int interactableMask;
+
+    [Header("Detection (Outline, for all items)")]
+    [SerializeField] private float detectDist;
 
     [Header("Raytracing (Breakable)")]
     [SerializeField] private float raycastPadding = 21.2f;
@@ -53,8 +57,15 @@ public class ObjectManager : MonoBehaviour
     void Update()
     {
         if (!raccoon) return;
-        inRangeKnockables.Clear();
+        // inRangeKnockables.Clear();
         target = null;
+        if (_inRangeItems != null)
+        {
+            foreach (Collider c in _inRangeItems) 
+            {
+                DisableOutline(c);
+            }
+        }
 
         // Update target & in range, in range at every frame using raycast
         RaycastHit hit;
@@ -67,15 +78,22 @@ public class ObjectManager : MonoBehaviour
         // Update targets
         for (float i = -3.14f; i < 3.14; i += 0.02f)
         {
+
+            _inRangeItems = Physics.OverlapSphere(p1, detectDist, knockableMask | breakableMask | interactableMask);
+            foreach (Collider c in _inRangeItems) 
+            {
+                EnableOutline(c);
+            }
+
             var dir = raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i));
                 // Debug.DrawRay(p1, raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), Color.yellow);
 
             // knockable layer
-            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, knockableMask))
-            {
-                Knockable knockable = hit.collider.gameObject.GetComponent<Knockable>() as Knockable;
-                inRangeKnockables.Add(knockable);
-            }
+            // if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, knockableMask))
+            // {
+            //     Knockable knockable = hit.collider.gameObject.GetComponent<Knockable>() as Knockable;
+            //     inRangeKnockables.Add(knockable);
+            // }
 
             // current target selected according to precedence: interactable > tools > breakable
 
@@ -137,4 +155,19 @@ public class ObjectManager : MonoBehaviour
             return Input.GetKeyDown("e");
         }
     }
+
+    void EnableOutline(Collider c)
+    {
+        if (c == null) return; 
+        Outline ol = c.gameObject.GetComponent<Outline>() as Outline;
+        if (ol) {ol.enabled = true;}
+    }
+
+    void DisableOutline(Collider c)
+    {
+        if (c == null) return; 
+        Outline ol = c.gameObject.GetComponent<Outline>() as Outline;
+        if (ol) {ol.enabled = false;}
+    }
+
 }
