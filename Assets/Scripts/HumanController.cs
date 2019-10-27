@@ -38,6 +38,12 @@ public class HumanController : MonoBehaviour
         Gizmos.DrawRay(transform.position, transform.forward * maxRadius);
     }
 
+    // Determine if the human and the player are on the same floor
+    public static bool onSameFloor(Transform checkingObject, Transform target)
+    {
+        return target.position.y - 2 <= checkingObject.position.y && checkingObject.position.y <= target.position.y + 2;
+    }
+
     // Determine if the player has been seen by this human
     public static bool inFOV(NavMeshAgent nav, Transform checkingObject, Transform target, float maxAngle, float maxRadius)
     {
@@ -77,18 +83,24 @@ public class HumanController : MonoBehaviour
             {
                 //Debug.Log(2);
                 NavMeshHit hit;
-                // If the human can directly see the player (i.e. line of sight is not blocked by wall or bush)
-                if (!nav.Raycast(target.position, out hit))
-                {
 
-                    return true;
+                // If the player and human are on the same floor
+                if (onSameFloor(checkingObject, target))
+                {
+                    //Debug.Log(3);
+                    // If the human can directly see the player (i.e. line of sight is not blocked by wall or bush)
+                    if (!nav.Raycast(target.position, out hit))
+                    {
+
+                        return true;
+                    }
                 }
+                
             }
         }
 
         return false;
     }
-    
 
     void Start()
     {
@@ -108,8 +120,8 @@ public class HumanController : MonoBehaviour
             lastKnownLocation = target.position;
         }
         */
-        
-        if (agent.CalculatePath(lastKnownLocation, p))
+
+        if (agent.CalculatePath(lastKnownLocation, p) && onSameFloor(transform, target))
         {
             //Debug.Log("hasPath");
             agent.SetDestination(lastKnownLocation);

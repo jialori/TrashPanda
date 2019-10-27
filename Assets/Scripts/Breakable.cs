@@ -11,7 +11,9 @@ public class Breakable : MonoBehaviour
     public float totalHealth;
     public float scorePoint;
     
-    private float health;
+    private float health; 
+
+    public float Health { get => health;}
 
 
     private void Start()
@@ -37,5 +39,4 @@ public class Breakable : MonoBehaviour
     {
         return atk;
     }
-
 }

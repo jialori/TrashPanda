@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class ObjectManager : MonoBehaviour
     [Header("Raytracing (Breakable)")]
     [SerializeField] private float raycastPadding = 21.2f;
 
+    [Header("Unity")]
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private Image healthBarFill;
+
     private RaccoonController raccoon;
 
     void Awake()
@@ -39,18 +44,18 @@ public class ObjectManager : MonoBehaviour
     void Start()
     {
         raccoon = GameManager.instance.Raccoon;
-        if (!raccoon || !raccoon.Controller) return;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
         knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
         toolsMask = 1 << LayerMask.NameToLayer(toolsMaskName);
         interactableMask = 1 << LayerMask.NameToLayer(interactableMaskName);
-
     }
 
-    void LateUpdate()
+    void Update()
     {
         if (!raccoon) return;
         inRangeKnockables.Clear();
+        target = null;
+
         // Update target & in range, in range at every frame using raycast
         RaycastHit hit;
 
@@ -58,13 +63,15 @@ public class ObjectManager : MonoBehaviour
         Vector3 p1 = raccoon.transform.position + Vector3.up * 0.01f;
         Vector3 p2 = p1 + Vector3.up * raccoon.Controller.height;
         var raycastPaddedDist = raccoon.Controller.radius + raycastPadding;
-        Debug.Log(raycastPaddedDist);
         
-        // Check around the character in 360 degree
-        for (int i = 0; i < 360; i += 36)
+        // Update targets
+        for (float i = -3.14f; i < 3.14; i += 0.02f)
         {
+            var dir = raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i));
+                // Debug.DrawRay(p1, raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), Color.yellow);
+
             // knockable layer
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, knockableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, knockableMask))
             {
                 Knockable knockable = hit.collider.gameObject.GetComponent<Knockable>() as Knockable;
                 inRangeKnockables.Add(knockable);
@@ -73,26 +80,61 @@ public class ObjectManager : MonoBehaviour
             // current target selected according to precedence: interactable > tools > breakable
 
             // breakable layer
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, breakableMask))
             {
+
                 target = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
-                Debug.Log("[ObjectManager] target is Breakable");
             }
 
             // tools layer
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, toolsMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, toolsMask))
             {
                 target = hit.collider.gameObject.GetComponent<ToolController>() as ToolController;
-                Debug.Log("[ObjectManager] target is Tool");
             }
 
             // interactable layer
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, interactableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, interactableMask))
             {
                 // currently the only other interactable object is Stair
                 target = hit.collider.gameObject.GetComponent<Stair>();
-                Debug.Log("[ObjectManager] target is Stair");
             }
+
+            // display target health
+            Breakable breakableTarget = target as Breakable;
+            if (breakableTarget != null) {
+                Debug.Log("[ObjectManager] target is breakable");
+                healthBar.SetActive(true);
+                healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
+            } else {
+                healthBar.SetActive(false);
+            }
+        }
+
+        // interact if interact button is pressed
+        if (GetInteract()) Interact();
+    }
+
+    void Interact() 
+    {
+        // triggered when interaction button is pressed
+        if (target == null) return;
+        
+        // attack target if target breakable
+        var breakableTarget = target as Breakable;
+        if ((breakableTarget != null) && (Time.time > raccoon.nextHit))
+        {
+            raccoon.nextHit = Time.time + raccoon.HitRate;
+            breakableTarget.trigger(raccoon.AttackPower);
+        }
+    }
+
+    private bool GetInteract()
+    {
+        if (GameManager.instance.UseController) 
+        {
+            return Input.GetButtonDown("B");
+        } else {
+            return Input.GetKeyDown("e");
         }
     }
 }
