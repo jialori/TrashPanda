@@ -6,7 +6,7 @@ public class CentralHumanController : MonoBehaviour
 {
     public Transform target;                    // Human target to be chased (will always be the raccoon)
     List<HumanController> humans;               // List of humans currently in the game
-    bool spotted = false;                       // Flag determining if the raccoon has been spotted
+    public bool spotted = false;                // Flag determining if the raccoon has been spotted
 
     // Intermediate variables
     GameObject[] H;
@@ -36,7 +36,7 @@ public class CentralHumanController : MonoBehaviour
         spotted = false;
         for (int i = 0; i < humans.Count; i++)
         {
-            if (humans[i].isInFOV)
+            if (humans[i].seesRaccoon)
             {
                 spotted = true;
             }

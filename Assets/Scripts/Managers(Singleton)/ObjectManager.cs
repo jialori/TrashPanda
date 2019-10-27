@@ -74,6 +74,7 @@ public class ObjectManager : MonoBehaviour
         Vector3 p1 = raccoon.transform.position + Vector3.up * 0.01f;
         Vector3 p2 = p1 + Vector3.up * raccoon.Controller.height;
         var raycastPaddedDist = raccoon.Controller.radius + raycastPadding;
+        //Debug.Log(raycastPaddedDist);
         
         // Update targets
         for (float i = -3.14f; i < 3.14; i += 0.02f)
@@ -102,12 +103,14 @@ public class ObjectManager : MonoBehaviour
             {
 
                 target = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
+                //Debug.Log("[ObjectManager] target is Breakable");
             }
 
             // tools layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, toolsMask))
             {
                 target = hit.collider.gameObject.GetComponent<ToolController>() as ToolController;
+                //Debug.Log("[ObjectManager] target is Tool");
             }
 
             // interactable layer
@@ -115,16 +118,7 @@ public class ObjectManager : MonoBehaviour
             {
                 // currently the only other interactable object is Stair
                 target = hit.collider.gameObject.GetComponent<Stair>();
-            }
-
-            // display target health
-            Breakable breakableTarget = target as Breakable;
-            if (breakableTarget != null) {
-                Debug.Log("[ObjectManager] target is breakable");
-                healthBar.SetActive(true);
-                healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
-            } else {
-                healthBar.SetActive(false);
+                //Debug.Log("[ObjectManager] target is Stair");
             }
         }
 

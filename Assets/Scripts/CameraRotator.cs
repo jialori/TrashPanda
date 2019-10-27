@@ -89,6 +89,7 @@ public class CameraRotator : MonoBehaviour
         coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
         coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
 
+        
         // draw debug lines
         for (int i = 0; i < 5; i++)
         {

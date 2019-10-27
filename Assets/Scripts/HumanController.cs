@@ -5,12 +5,21 @@ using UnityEngine.AI;
 
 public class HumanController : MonoBehaviour
 {
-    public Transform target;                // Human target to be chased (will always be the raccoon)
-    public Vector3 lastKnownLocation;       // Location where this human last saw the raccoon (set to the human's original location by default)
+    
     public float maxAngle = 30.0f;          // Field of view of this human
     public float maxRadius = 15.0f;         // The farthest distance that this human can see
-    public bool isInFOV = false;            // Flag to determine whether this human can see the raccoon or not
+    //public float rotationSpeed = 5.0f;      // How fast this human rotates
+
+    Vector3 initialPosition;                // Starting position of this human. Will return here after losing sight of raccoon
+    public Transform target;                // Human target to be chased (will always be the raccoon)
+    public Vector3 lastKnownLocation;       // Location where this human last saw the raccoon
     NavMeshAgent agent;                     // Pathfinding AI
+    CentralHumanController CHC;             // Reference to the Central Human Controller
+
+    public bool seesRaccoon = false;        // Flag determining whether this human can see the raccoon or not
+    private bool chasing = false;           // Human status: The human knows where the raccoon is and is currently chasing her
+    private bool searching = false;         // Human status: The raccoon has escaped the human's sight and the human is looking for her
+    private bool idle = true;               // Human status: The human does not know where the raccoon is and is not looking for her
 
     // Intermediate variables
     NavMeshPath p;
@@ -28,7 +37,7 @@ public class HumanController : MonoBehaviour
         Gizmos.DrawRay(transform.position, fovLine1);
         Gizmos.DrawRay(transform.position, fovLine2);
 
-        if (isInFOV)
+        if (seesRaccoon)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawRay(transform.position, (target.position - transform.position).normalized * maxRadius);
@@ -105,27 +114,57 @@ public class HumanController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.stoppingDistance = 1;
+        CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
+        //Debug.Log(CHC);
         p = new NavMeshPath();
-        //lastKnownLocation = transform.position;
+        initialPosition = transform.position;
+        
     }
 
     void Update() 
     {
-        isInFOV = inFOV(agent, transform, target, maxAngle, maxRadius);
+        seesRaccoon = inFOV(agent, transform, target, maxAngle, maxRadius);
 
-        // The human will chase the raccoon while he can see her and can reach her. If the raccoon leaves the human's sight, the human will head to the last place where the human saw her
-        /*
-        if (isInFOV)
+        // 'lastKnownLocation' is assigned by the Central Human Controller. If a new 'lastKnownLocation' is assigned, then the raccoon has been spotted
+        // somewhere and the human will head to that location if he can reach it
+        if (CHC.spotted && agent.CalculatePath(lastKnownLocation, p) && onSameFloor(transform, target))
         {
-            lastKnownLocation = target.position;
-        }
-        */
-
-        if (agent.CalculatePath(lastKnownLocation, p) && onSameFloor(transform, target))
-        {
-            //Debug.Log("hasPath");
+            //Debug.Log("Now chasing Raccoon");
+            chasing = true;
+            searching = false;
+            idle = false;
             agent.SetDestination(lastKnownLocation);
         }
+        //Debug.Log("seesRaccoon: " + seesRaccoon);
+        //Debug.Log("Distance: " + Vector3.Distance(transform.position, lastKnownLocation));
+
+        // The human will stop if he is at 'lastKnownLocation' and can't see the raccoon
+        if (!seesRaccoon && Vector3.Distance(transform.position, lastKnownLocation) <= 2.5)
+        {
+            //Debug.Log("Lost Raccoon");
+            chasing = false;
+            searching = true;
+            idle = false;
+            agent.ResetPath();
+        }
         
+        // The human will turn to his left and right in case the raccoon is beside him
+        if (searching && !chasing && !idle)
+        {
+            //Debug.Log("Searching for Raccoon");
+            //transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f) * Time.deltaTime * rotationSpeed);
+            //transform.Rotate(new Vector3(0.0f, 0.0f, 0.0f) * Time.deltaTime * rotationSpeed);
+            //transform.Rotate(new Vector3(0.0f, -90.0f, 0.0f) * Time.deltaTime * rotationSpeed);
+            searching = false;
+            idle = true;
+        }
+
+        // The human will return to his original position if he can't find the raccoon
+        if (idle)
+        {
+            //Debug.Log("Can't find Raccoon. Returning to initial position");
+            agent.SetDestination(initialPosition);
+        }
     }
 }
