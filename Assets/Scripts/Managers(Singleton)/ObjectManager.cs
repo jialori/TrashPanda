@@ -65,10 +65,13 @@ public class ObjectManager : MonoBehaviour
         var raycastPaddedDist = raccoon.Controller.radius + raycastPadding;
         
         // Update targets
-        for (int i = 180; i < 360; i += 1)
+        for (float i = -3.14f; i < 3.14; i += 0.02f)
         {
+            var dir = raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i));
+                // Debug.DrawRay(p1, raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), Color.yellow);
+
             // knockable layer
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, knockableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, knockableMask))
             {
                 Knockable knockable = hit.collider.gameObject.GetComponent<Knockable>() as Knockable;
                 inRangeKnockables.Add(knockable);
@@ -77,19 +80,20 @@ public class ObjectManager : MonoBehaviour
             // current target selected according to precedence: interactable > tools > breakable
 
             // breakable layer
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, breakableMask))
             {
+
                 target = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
             }
 
             // tools layer
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, toolsMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, toolsMask))
             {
                 target = hit.collider.gameObject.GetComponent<ToolController>() as ToolController;
             }
 
             // interactable layer
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, interactableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, interactableMask))
             {
                 // currently the only other interactable object is Stair
                 target = hit.collider.gameObject.GetComponent<Stair>();
