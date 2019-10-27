@@ -92,16 +92,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4edf4386a6f8541bed1a7edd358fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputDelay: 0.1
-  forwardVel: 12
-  rotateVel: 100
   cam: {fileID: 26218638340153672, guid: 670360c703b4edb4ab3f84df70f1fa50, type: 3}
+  camController: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+    type: 3}
   attackPower: 10
   movementSpeed: 8
   jumpPower: 15
   gravity: 40
   pushPower: 12
-  rotateSpeed: 5
   raycastPaddedDist: 0
   raycastPadding: 21.2
   radiusStep: 36

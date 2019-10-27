@@ -39,7 +39,7 @@ public class Knockable : MonoBehaviour
   		pushForce.y = - Mathf.Abs(pushForce.x);
   		rb.AddForceAtPosition(pushForce, collidePoint);
 
-      Debug.Log("collide at" + collidePoint);
+      //Debug.Log("collide at" + collidePoint);
       if (!pointCollected) {
         ScoreManager.instance.AddScore(scorePoint);
         pointCollected = true;

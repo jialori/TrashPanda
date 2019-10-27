@@ -96,6 +96,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf3f66c2c807aa45afd46d8559b438e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useController: 1
-  lookAt: {fileID: 1017216223234981755, guid: a3d1e7eae245a7b40b41802bbec029dd, type: 3}
-  camTransform: {fileID: 0}
+  camTransform: {fileID: 26218638340153672}
+  distance: 8
+  target: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd, type: 3}
+  position:
+    targetLookAtOffset: {x: 0, y: 2, z: 0}
+    lookSmooth: 100
+    disFromTar: -8
+    smooth: 0.05
+    adjustDis: -8
+  debug:
+    drawDesiredCollisionLines: 1
+    drawAdjustedCollisionLines: 1
+  coll:
+    collisionLayer:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    isColliding: 0
+    adjustedCamClipPts: []
+    desiredCamClipPts: []

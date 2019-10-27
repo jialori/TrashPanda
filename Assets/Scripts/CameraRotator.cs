@@ -10,20 +10,18 @@ public class CameraRotator : MonoBehaviour
     // Initialization of variables
     public Transform camTransform;
 
-    
 
     [SerializeField] private float distance = 8.0f;
     private float currentX = 0.0f;
     private float currentY = 10f;
-    private float sensitivityX = 3.0f;
-    private float sensitivityY = 3.0f;
 
     [SerializeField] private Transform target = null;
 
+    [System.Serializable]
     public class PosSettings
     {
         public Vector3 targetLookAtOffset = new Vector3(0, 2f, 0);
-        public float lookSmooth = 100f;
+        public float lookSmooth = 50f;
         public float disFromTar = -8;
         public float smooth = 0.05f;
         [HideInInspector]
@@ -36,9 +34,11 @@ public class CameraRotator : MonoBehaviour
         public float yRotation = -180;
         public float maxXRotation = 30;
         public float minXRotation = -55;
+        public float maxYRotation = -90;
+        public float minYRotation = -270;
         // How fast the rotation can take place
-        public float vOrbitSmooth = 150;
-        public float hOrbitSmooth = 150;
+        public float vOrbitSmooth = 50;
+        public float hOrbitSmooth = 50;
     }
 
     public class InputSettings
@@ -50,6 +50,7 @@ public class CameraRotator : MonoBehaviour
 
     }
 
+    [System.Serializable]
     public class DebugSettings
     {
         public bool drawDesiredCollisionLines = true;
@@ -70,24 +71,17 @@ public class CameraRotator : MonoBehaviour
     RaccoonController player;
     float vOrbitInp, hOrbitInp, hOrbitSnapInp;
 
-    
-
-    void GetInput()
+    private void Start()
     {
-        vOrbitInp = Input.GetAxis(input.ORBIT_VERTICAL);
-        hOrbitInp = Input.GetAxis(input.ORBIT_HORIZONTAL);
-        hOrbitSnapInp = Input.GetAxis(input.ORBIT_HORIZONTAL_SNAP);
+        MoveToTar();
+        coll.Initialize(Camera.main);
+        coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
+        coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
     }
-
 
     private void Update()
     {
         GetInput();
-        // Clamp camera rotation
-        //currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
-    }
-    void FixedUpdate()
-    {
         MoveToTar();
         LookAtTar();
         OrbitTar();
@@ -99,32 +93,53 @@ public class CameraRotator : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             if (debug.drawDesiredCollisionLines)
-            {
                 Debug.DrawLine(lookAtPtPos, coll.desiredCamClipPts[i], Color.white);
-            }
             if (debug.drawAdjustedCollisionLines)
-            {
                 Debug.DrawLine(lookAtPtPos, coll.adjustedCamClipPts[i], Color.green);
-            }
-
-
         }
-        coll.CheckColliding(lookAtPtPos); // using raycasts
 
+        coll.CheckColliding(lookAtPtPos); // using raycasts
         position.adjustDis = coll.AdjustedDisWithRaycast(lookAtPtPos);
-        Vector3 dir = new Vector3(0, 0, -distance);
-        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
     }
+    
+
+    void GetInput()
+    {
+        //vOrbitInp = Input.GetAxis(input.ORBIT_VERTICAL);
+        vOrbitInp = GetYAxis();
+        //hOrbitInp = Input.GetAxis(input.ORBIT_HORIZONTAL);
+        hOrbitInp = GetXAxis();
+        hOrbitSnapInp = Input.GetAxis(input.ORBIT_HORIZONTAL_SNAP);
+    }
+
+    private float GetXAxis()
+    {
+        if (GameManager.instance.UseController)
+            return Input.GetAxis("RightJoystickX");
+        else
+            return Input.GetAxis("Mouse X");
+    }
+
+    private float GetYAxis()
+    {
+        if (GameManager.instance.UseController)
+            return Input.GetAxis("RightJoystickY");
+        else
+            return Input.GetAxis("Mouse Y");
+    }
+
 
     void MoveToTar()
     {
         lookAtPtPos = target.position + position.targetLookAtOffset;
-        des = Quaternion.Euler(orbit.xRotation, orbit.yRotation + target.eulerAngles.y, 0) * -Vector3.forward * position.disFromTar;
+        // des = Quaternion.Euler(orbit.xRotation, orbit.yRotation + target.eulerAngles.y, 0) * -Vector3.forward * position.disFromTar;
+        des = Quaternion.Euler(orbit.xRotation, orbit.yRotation, 0) * -Vector3.forward * position.disFromTar;
         des += lookAtPtPos;
 
         if (coll.isColliding)
         {
-            adjustedDes = Quaternion.Euler(orbit.xRotation, orbit.yRotation + target.eulerAngles.y, 0) * Vector3.forward * position.adjustDis;
+            // adjustedDes = Quaternion.Euler(orbit.xRotation, orbit.yRotation + target.eulerAngles.y, 0) * Vector3.forward * position.adjustDis;
+            adjustedDes = Quaternion.Euler(orbit.xRotation, orbit.yRotation, 0) * Vector3.forward * position.adjustDis;
             adjustedDes += lookAtPtPos;
 
             // Smooth camera movement
@@ -151,23 +166,11 @@ public class CameraRotator : MonoBehaviour
         orbit.xRotation += -vOrbitInp * orbit.vOrbitSmooth * Time.deltaTime;
         orbit.yRotation += -hOrbitInp * orbit.hOrbitSmooth * Time.deltaTime;
 
-        if (orbit.xRotation > orbit.maxXRotation)
-        {
-            orbit.xRotation = orbit.maxXRotation;
-        }
-        if (orbit.xRotation < orbit.minXRotation)
-        {
-            orbit.xRotation = orbit.minXRotation;
-        }
+        orbit.xRotation = Mathf.Clamp(orbit.xRotation, orbit.minXRotation, orbit.maxXRotation);
+        orbit.yRotation = Mathf.Clamp(orbit.yRotation, orbit.minYRotation, orbit.maxYRotation);
+
     }
 
-    private void Start()
-    {
-        MoveToTar();
-        coll.Initialize(Camera.main);
-        coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
-        coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
-    }
 
     [System.Serializable]
     public class CollisionHandler
@@ -180,6 +183,7 @@ public class CameraRotator : MonoBehaviour
         public Vector3[] adjustedCamClipPts;
         [HideInInspector]
         public Vector3[] desiredCamClipPts;
+
         private Camera cam;
         public void Initialize(Camera camera)
         {
@@ -210,32 +214,6 @@ public class CameraRotator : MonoBehaviour
             intoArray[3] = (atRotation * new Vector3(x, -y, z)) + camPos;
             // cam pos
             intoArray[4] = camPos - cam.transform.forward;
-        }
-
-
-
-        private float GetXAxis()
-        {
-            if (GameManager.instance.UseController)
-            {
-                return Input.GetAxis("RightJoystickX");
-            }
-            else
-            {
-                return Input.GetAxis("Mouse X");
-            }
-        }
-
-        private float GetYAxis()
-        {
-            if (GameManager.instance.UseController)
-            {
-                return Input.GetAxis("RightJoystickY");
-            }
-            else
-            {
-                return Input.GetAxis("Mouse Y");
-            }
         }
 
 
@@ -281,10 +259,7 @@ public class CameraRotator : MonoBehaviour
 
         public void CheckColliding(Vector3 tarPos)
         {
-            if (CollisionDectectedAtClipPts(desiredCamClipPts, tarPos))
-                isColliding = true;
-            else
-                isColliding = false;
+            isColliding = CollisionDectectedAtClipPts(desiredCamClipPts, tarPos);
         }
     }
     

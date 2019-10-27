@@ -5,6 +5,7 @@ public class RaccoonController : MonoBehaviour
     private CharacterController characterController;
     public CharacterController Controller { get => characterController; }
     [SerializeField] private Transform cam;
+    [SerializeField] private CameraRotator camController;
 
     [Header("Character Stats")]
     [SerializeField] private float attackPower = 1;
@@ -13,7 +14,6 @@ public class RaccoonController : MonoBehaviour
     [SerializeField] private float jumpPower = 15;
     [SerializeField] private float gravity = 40;
     [SerializeField] private float pushPower = 12;
-    [SerializeField] private float rotateSpeed = 5;
 
     // For interaction with Breakable
     [Header("Raytracing (Breakable)")]
@@ -74,12 +74,7 @@ public class RaccoonController : MonoBehaviour
 
         // Movement
         movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
-        //Quaternion tarRotation = Quaternion.FromToRotation(transform.forward, camForward);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, tarRotation, rotateSpeed * Time.deltaTime);
-   
-        // Rotation
-        //transform.Rotate(new Vector3(0, GetCamXAxis() * rotateSpeed, 0));
-
+       
         // Jump
         if (characterController.isGrounded)
         {
@@ -102,6 +97,20 @@ public class RaccoonController : MonoBehaviour
         if (GetInteract())
         {
             // BreakObjectsNearby();
+        }
+
+        // Rotation
+        if (camController != null)
+        {
+            float lookS = camController.position.lookSmooth;
+            Vector3 lookDir = transform.position - cam.position;
+            lookDir.y = 0;
+            Quaternion tarRotation = Quaternion.LookRotation(lookDir);
+            transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, lookS * Time.deltaTime);
+        }
+        else
+        {
+            Debug.Log("InspectorWarning: camController in Raccoon is Not correct. Please assign Camera to it.");
         }
     }
 
