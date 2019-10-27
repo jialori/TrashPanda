@@ -8,11 +8,11 @@ public class RaccoonController : MonoBehaviour
 
     [Header("Character Stats")]
     [SerializeField] private float attackPower = 1;
+    public float AttackPower {get => attackPower;}
     [SerializeField] private float movementSpeed = 10;
     [SerializeField] private float jumpPower = 15;
     [SerializeField] private float gravity = 40;
     [SerializeField] private float pushPower = 12;
-
     [SerializeField] private float rotateSpeed = 5;
 
     // For interaction with Breakable
@@ -22,8 +22,9 @@ public class RaccoonController : MonoBehaviour
     [SerializeField] private int radiusStep = 36; // how many degree does each raycast check skips, dcrease if want more accuracy
 
     [Header("Hit Frequency (Breakable)")]
-    [SerializeField] private float nextHit;
+    [SerializeField] public float nextHit;
     [SerializeField] public float hitRate = 0.5f;
+    public float HitRate { get => hitRate; }
 
     private Vector3 movementVector;
 
@@ -98,7 +99,7 @@ public class RaccoonController : MonoBehaviour
         // Break Breakable objects
         if (GetInteract())
         {
-            BreakObjectsNearby();
+            // BreakObjectsNearby();
         }
     }
 
