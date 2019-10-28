@@ -6,9 +6,10 @@ using UnityEngine.AI;
 public class HumanController : MonoBehaviour
 {
     
-    public float maxAngle = 30.0f;          // Field of view of this human
-    public float maxRadius = 15.0f;         // The farthest distance that this human can see
-    //public float rotationSpeed = 5.0f;      // How fast this human rotates
+    public float maxAngle = 30.0f;              // Field of view of this human
+    public float maxRadius = 15.0f;             // The farthest distance that this human can see
+    //private float rotationSpeed = 5.0f;       // How fast this human rotates
+    private float attackCooldown = 10.0f;       // The cooldown timer for the worker's stun attack
 
     Vector3 initialPosition;                // Starting position of this human. Will return here after losing sight of raccoon
     public Transform target;                // Human target to be chased (will always be the raccoon)
@@ -17,6 +18,7 @@ public class HumanController : MonoBehaviour
     CentralHumanController CHC;             // Reference to the Central Human Controller
 
     public bool seesRaccoon = false;        // Flag determining whether this human can see the raccoon or not
+    private bool canAttack = true;          // Flag determining whether this human can attack
     private bool chasing = false;           // Human status: The human knows where the raccoon is and is currently chasing her
     private bool searching = false;         // Human status: The raccoon has escaped the human's sight and the human is looking for her
     private bool idle = true;               // Human status: The human does not know where the raccoon is and is not looking for her
@@ -128,7 +130,7 @@ public class HumanController : MonoBehaviour
 
         // 'lastKnownLocation' is assigned by the Central Human Controller. If a new 'lastKnownLocation' is assigned, then the raccoon has been spotted
         // somewhere and the human will head to that location if he can reach it
-        if (CHC.spotted && agent.CalculatePath(lastKnownLocation, p) && onSameFloor(transform, target))
+        if (agent.CalculatePath(lastKnownLocation, p) && onSameFloor(transform, target))
         {
             //Debug.Log("Now chasing Raccoon");
             chasing = true;
@@ -139,14 +141,48 @@ public class HumanController : MonoBehaviour
         //Debug.Log("seesRaccoon: " + seesRaccoon);
         //Debug.Log("Distance: " + Vector3.Distance(transform.position, lastKnownLocation));
 
+        /*
+        // If the raccoon leaves the nav mesh, the worker will return to the 'idle' state
+        if (!agent.pathPending)
+        {
+            Debug.Log("Raccoon not in nav mesh");
+            chasing = false;
+            searching = false;
+            idle = true;
+        }
+        */
+
         // The human will stop if he is at 'lastKnownLocation' and can't see the raccoon
-        if (!seesRaccoon && Vector3.Distance(transform.position, lastKnownLocation) <= 2.5)
+        if (!seesRaccoon && Vector3.Distance(transform.position, target.position) <= 2.5)
         {
             //Debug.Log("Lost Raccoon");
             chasing = false;
             searching = true;
             idle = false;
             agent.ResetPath();
+        }
+
+        if (seesRaccoon && Vector3.Distance(transform.position, target.position) <= 2.0 && canAttack)
+        {
+            // Stun attack here
+            Debug.Log("stun attack used");
+            target.GetComponent<RaccoonController>().isStunned = true;
+
+            // Start cooldown after attack
+            canAttack = false;
+            attackCooldown = 10.0f;
+        }
+        else if (!canAttack)
+        {
+            if (attackCooldown > 0)
+            {
+                attackCooldown -= Time.deltaTime;
+            }
+            else
+            {
+                canAttack = true;
+                Debug.Log("stun attack ready");
+            }
         }
         
         // The human will turn to his left and right in case the raccoon is beside him

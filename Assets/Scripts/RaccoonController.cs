@@ -38,6 +38,8 @@ public class RaccoonController : MonoBehaviour
 
     private bool isOnUpStair = false;
     private bool isOnDownStair = false;
+    public bool isStunned = false;
+    public float stunTimer = 3.0f;
 
     void Start()
     {
@@ -74,31 +76,47 @@ public class RaccoonController : MonoBehaviour
         camRight = camRight.normalized;
         var prevY = movementVector.y;
 
-        // Movement
-        movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
-
-        // Jump
-        if (characterController.isGrounded)
+        // If the raccoon is stunned, she cannot move, jump or break objects
+        if (!isStunned)
         {
-            movementVector.y = 0;
-            if (GetJump())
+            // Movement
+            movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
+
+            // Jump
+            if (characterController.isGrounded)
             {
-                movementVector.y = jumpPower;
+                movementVector.y = 0;
+                if (GetJump())
+                {
+                    movementVector.y = jumpPower;
+                }
+            }
+            else
+            {
+                movementVector.y = prevY;
+            }
+
+            movementVector.y -= gravity * Time.deltaTime;
+            // Debug.Log("movementVector = " + movementVector);
+            characterController.Move(movementVector * Time.deltaTime);
+
+            // Break Breakable objects
+            if (GetInteract())
+            {
+                // BreakObjectsNearby();
             }
         }
-        else
+        else if (isStunned)
         {
-            movementVector.y = prevY;
-        }
-
-        movementVector.y -= gravity * Time.deltaTime;
-        // Debug.Log("movementVector = " + movementVector);
-        characterController.Move(movementVector * Time.deltaTime);
-
-        // Break Breakable objects
-        if (GetInteract())
-        {
-            // BreakObjectsNearby();
+            if (stunTimer > 0)
+            {
+                stunTimer -= Time.deltaTime;
+            }
+            else
+            {
+                isStunned = false;
+                stunTimer = 3.0f;
+            }
         }
 
         // Rotation
