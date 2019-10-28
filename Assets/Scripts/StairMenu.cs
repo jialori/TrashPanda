@@ -23,6 +23,7 @@ public class StairMenu : MonoBehaviour
 
     public void Show(int floorNum)
     {
+        Debug.Log("[StairMenu] Show");
         this.upText.enabled = true;
         this.downText.enabled = true;
         this.gameObject.SetActive(true);

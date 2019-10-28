@@ -6,8 +6,6 @@ TagManager:
   tags:
   - FoodSource
   - Raccoon
-  - UpStair
-  - DownStair
   - Human
   layers:
   - Default
