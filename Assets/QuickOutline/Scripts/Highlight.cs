@@ -11,9 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[DisallowMultipleComponent]
-
-public class Outline : MonoBehaviour
+public class Highlight : MonoBehaviour
 {
     private static HashSet<Mesh> registeredMeshes = new HashSet<Mesh>();
 
@@ -72,8 +70,6 @@ public class Outline : MonoBehaviour
 
     private Color outlineColor;
 
-    private Color highlightOutlineColor;
-
     [SerializeField, Range(0f, 10f)]
     private float outlineWidth = 2f;
 
@@ -101,10 +97,9 @@ public class Outline : MonoBehaviour
     {
         // Note: hard code might be better
         // Otherwise need to tune each different prefab to which this script is attached to
-        var offset = new Color(0.5f, 0.5f, 0.5f, 0);
-        knockable_outlineColor = Color.red - offset;
-        breakable_outlineColor = Color.green - offset;
-        interactable_outlineColor = Color.blue - offset;
+        knockable_outlineColor = Color.red;
+        breakable_outlineColor = Color.green;
+        interactable_outlineColor = Color.blue;
         _DetermineColor();
         outlineMode = Mode.OutlineVisible;
 
@@ -290,7 +285,7 @@ public class Outline : MonoBehaviour
     void UpdateMaterialProperties()
     {
         // Apply properties according to mode
-        outlineFillMaterial.SetColor("_OutlineColor", highlightOn ? Color.magenta : outlineColor);
+        outlineFillMaterial.SetColor("_OutlineColor", outlineColor);
 
         switch (outlineMode)
         {

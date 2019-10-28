@@ -7,9 +7,8 @@ public class ObjectManager : MonoBehaviour
 {
 
     public static ObjectManager instance;
-    private static object target;
-    // private static List<Knockable> inRangeKnockables = new List<Knockable>();
-    private static Collider[] _inRangeItems = null;
+    private static GameObject target;
+    private static List<GameObject> inRangeKnockables = new List<GameObject>();
 
     // Masks
     private string breakableMaskName = "Breakable";
@@ -59,75 +58,78 @@ public class ObjectManager : MonoBehaviour
     void Update()
     {
         if (!raccoon) return;
-        // inRangeKnockables.Clear();
+
+        // reset target and in range
+        DisableOutline(target);
         target = null;
-        if (_inRangeItems != null)
+        foreach (var k in inRangeKnockables)
         {
-            foreach (Collider c in _inRangeItems)
-            {
-                DisableOutline(c);
-            }
+            DisableOutline(k);
         }
 
         // Update target & in range, in range at every frame using raycast
         RaycastHit hit;
 
         // Bottom of controller. Slightly above ground so it doesn't bump into slanted platforms.
-        Vector3 p1 = raccoon.transform.position + Vector3.up * 0.01f;
+        Vector3 p1 = raccoon.transform.position - Vector3.up * 0.20f;
         Vector3 p2 = p1 + Vector3.up * raccoon.Controller.height;
         var raycastPaddedDist = raccoon.Controller.radius + raycastPadding;
-        //Debug.Log(raycastPaddedDist);
 
-        // Update targets
+        // Update target
+        // try to find the closest target
+        var targetDist = raycastPaddedDist + 1;
         for (float i = -3.14f; i < 3.14; i += 0.02f)
         {
-
-            _inRangeItems = Physics.OverlapSphere(p1, detectDist, knockableMask | breakableMask | interactableMask);
-            foreach (Collider c in _inRangeItems)
-            {
-                EnableOutline(c);
-            }
-
             var dir = raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i));
-            // Debug.DrawRay(p1, raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), Color.yellow);
 
             // knockable layer
-            // if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, knockableMask))
-            // {
-            //     Knockable knockable = hit.collider.gameObject.GetComponent<Knockable>() as Knockable;
-            //     inRangeKnockables.Add(knockable);
-            // }
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist * 3, knockableMask))
+            {
+                inRangeKnockables.Add(hit.collider.gameObject);
+            }
 
             // current target selected according to precedence: interactable > tools > breakable
 
             // breakable layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, breakableMask))
             {
-
-                target = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
-                //Debug.Log("[ObjectManager] target is Breakable");
+                if (hit.distance < targetDist && (target == null || target.GetComponent<Breakable>() != null))
+                {
+                    target = hit.collider.gameObject;
+                    //Debug.Log("[ObjectManager] target is Breakable");
+                    targetDist = hit.distance;
+                }
             }
 
             // tools layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, toolsMask))
             {
-                target = hit.collider.gameObject.GetComponent<ToolController>() as ToolController;
-                //Debug.Log("[ObjectManager] target is Tool");
+                if (hit.distance < targetDist && (target == null || target.GetComponent<ToolController>() == null))
+                {
+                    target = hit.collider.gameObject;
+                    //Debug.Log("[ObjectManager] target is Tool");
+                    targetDist = hit.distance;
+                }
             }
 
             // interactable layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, interactableMask))
             {
                 // currently the only other interactable object is Stair
-                target = hit.collider.gameObject.GetComponent<Stair>();
-                //Debug.Log("[ObjectManager] target is Stair");
+                if (hit.distance < targetDist)
+                {
+                    target = hit.collider.gameObject;
+                    // Debug.Log("[ObjectManager] target is Stair");
+                    targetDist = hit.distance;
+                }
+
             }
         }
 
         // interact if interact button is pressed
         if (GetInteract()) Interact();
 
-        if (target as Stair == null && stairMenuOpen)
+        if (target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
         {
             stairMenuOpen = false;
             stairMenu.Hide();
@@ -137,7 +139,7 @@ public class ObjectManager : MonoBehaviour
         if (stairMenuOpen)
         {
             var raccoon = GameManager.instance.Raccoon;
-            var stair = target as Stair;
+            var stair = target.GetComponent<Stair>();
             if (stair == null) return;
             if (GetStairUp() && stair.GetFloor() != 5)
             {
@@ -152,24 +154,62 @@ public class ObjectManager : MonoBehaviour
                 stairMenu.Hide();
             }
         }
+
+        // display target health
+        if (target != null)
+        {
+            Breakable breakableTarget = target.GetComponent<Breakable>();
+            if (breakableTarget != null)
+            {
+                Debug.Log("[ObjectManager] target is breakable");
+                healthBar.SetActive(true);
+                healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
+            }
+            else
+            {
+                healthBar.SetActive(false);
+            }
+
+            // Outline target
+            EnableOutline(target);
+        }
+        else
+        {
+            healthBar.SetActive(false);
+        }
+
+        // Outline in range knockables
+        foreach (var k in inRangeKnockables)
+        {
+            EnableOutline(k.gameObject);
+        }
     }
 
     void Interact()
     {
+        Debug.Log("[ObjectManager] Interact");
         // triggered when interaction button is pressed
-        if (target == null) return;
+        if (target == null)
+        {
+            Debug.Log("No target");
+            return;
+        }
+
+        Debug.Log("Has target");
 
         // attack target if target breakable
-        var breakableTarget = target as Breakable;
+        var breakableTarget = target.GetComponent<Breakable>();
         if ((breakableTarget != null) && (Time.time > raccoon.nextHit))
         {
+            Debug.Log("Breakable target");
             raccoon.nextHit = Time.time + raccoon.HitRate;
             breakableTarget.trigger(raccoon.AttackPower);
         }
 
-        var stairTarget = target as Stair;
+        var stairTarget = target.GetComponent<Stair>();
         if ((stairTarget != null))
         {
+            Debug.Log("Stair target");
             if (!stairMenuOpen)
             {
                 stairMenuOpen = true;
@@ -219,18 +259,37 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    void EnableOutline(Collider c)
+    void EnableOutline(GameObject c)
     {
         if (c == null) return;
-        Outline ol = c.gameObject.GetComponent<Outline>() as Outline;
-        if (ol) { ol.enabled = true; }
+        Outline ol = c.GetComponent<Outline>() as Outline;
+        Highlight hl = c.GetComponent<Highlight>() as Highlight;
+        if (ol && hl)
+        {
+            hl.enabled = true;
+            ol.enabled = false;
+        }
+        else if (ol)
+        {
+            ol.enabled = true;
+        }
     }
 
-    void DisableOutline(Collider c)
+    void DisableOutline(GameObject c)
     {
         if (c == null) return;
-        Outline ol = c.gameObject.GetComponent<Outline>() as Outline;
-        if (ol) { ol.enabled = false; }
+        Outline ol = c.GetComponent<Outline>() as Outline;
+        // if (ol) { ol.enabled = false; }
+        Highlight hl = c.GetComponent<Highlight>() as Highlight;
+        if (ol && hl)
+        {
+            hl.enabled = false;
+            ol.enabled = true;
+        }
+        else if (ol)
+        {
+            ol.enabled = false;
+        }
     }
 
 }

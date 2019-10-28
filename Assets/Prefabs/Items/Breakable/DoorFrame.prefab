@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -9128439680061035043}
   - component: {fileID: 5983350697387012549}
   - component: {fileID: 2155738039660851188}
+  - component: {fileID: 4063043387454090998}
   m_Layer: 8
   m_Name: DoorFrame
   m_TagString: Untagged
@@ -116,14 +117,32 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6643266056584041565}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 1, g: 0.3386822, b: 0.24056602, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  highlightOn: 0
+--- !u!114 &4063043387454090998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6643266056584041565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43593c156b33acc4e8b406e5d8b10d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineWidth: 3
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  highlightOn: 0

@@ -36,9 +36,6 @@ public class RaccoonController : MonoBehaviour
     private int breakableMask;
     private int knockableMask;
 
-    private bool isOnUpStair = false;
-    private bool isOnDownStair = false;
-
     void Start()
     {
         AudioManager.instance.Play("ThemeSong");
@@ -55,16 +52,6 @@ public class RaccoonController : MonoBehaviour
 
     void Update()
     {
-        // Move up or down stairs
-        // if ((isOnUpStair || isOnDownStair) && GetInteract())
-        // {
-        //     characterController.enabled = false;
-        //     if (isOnUpStair) characterController.transform.position += new Vector3(0, 8.5f, 0);
-        //     if (isOnDownStair) characterController.transform.position -= new Vector3(0, 8, 0);
-        //     characterController.enabled = true;
-        //     return;
-        // }
-
         // Adjust movement for camera angle
         var camForward = cam.forward;
         var camRight = cam.right;
@@ -95,12 +82,6 @@ public class RaccoonController : MonoBehaviour
         // Debug.Log("movementVector = " + movementVector);
         characterController.Move(movementVector * Time.deltaTime);
 
-        // Break Breakable objects
-        if (GetInteract())
-        {
-            // BreakObjectsNearby();
-        }
-
         // Rotation
         if (camController != null)
         {
@@ -119,16 +100,6 @@ public class RaccoonController : MonoBehaviour
     // On collision, knock Knockable objects over and mark stair usage
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        this.isOnUpStair = false;
-        this.isOnDownStair = false;
-        Stair stair = hit.gameObject.GetComponent("Stair") as Stair;
-        if (stair != null)
-        {
-            // Debug.Log("stair hit");
-            if (hit.gameObject.tag == "UpStair") this.isOnUpStair = true;
-            if (hit.gameObject.tag == "DownStair") this.isOnDownStair = true;
-        }
-
         Rigidbody body = hit.collider.attachedRigidbody;
         if (body == null || body.isKinematic)
         {
@@ -190,18 +161,6 @@ public class RaccoonController : MonoBehaviour
         else
         {
             return Input.GetKeyDown(KeyCode.Space);
-        }
-    }
-
-    private bool GetInteract()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("B");
-        }
-        else
-        {
-            return Input.GetKeyDown("e");
         }
     }
 
