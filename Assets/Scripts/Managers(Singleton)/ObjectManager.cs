@@ -66,6 +66,7 @@ public class ObjectManager : MonoBehaviour
         {
             DisableOutline(k);
         }
+        inRangeKnockables.Clear();
 
         // Update target & in range, in range at every frame using raycast
         RaycastHit hit;
@@ -266,8 +267,8 @@ public class ObjectManager : MonoBehaviour
         Highlight hl = c.GetComponent<Highlight>() as Highlight;
         if (ol && hl)
         {
-            hl.enabled = true;
             ol.enabled = false;
+            hl.enabled = true;
         }
         else if (ol)
         {
@@ -292,4 +293,9 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        target = null;
+        inRangeKnockables.Clear();
+    }
 }

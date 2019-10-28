@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class TimerManager : MonoBehaviour
 {
-	
+
     public static TimerManager instance;
 
-    public float timeLeft;
-    private float timer;    
-    private bool calledGameOver;
+    [SerializeField] private float totalTime;
+    private float timer;
+    private bool timerOn;
 
     public string sceneName;
 
@@ -26,32 +26,37 @@ public class TimerManager : MonoBehaviour
 
     void Start()
     {
-        timer = timeLeft;
-        calledGameOver = false;
+        timer = totalTime;
+        timerOn = false;
     }
 
     void Update()
     {
-        if (timer > 0)
+        if (timerOn)
         {
-            timer -= Time.deltaTime;
-        }
-        else if (!calledGameOver)
-        {
-            SceneTransitionManager.instance.EndGame();
-            calledGameOver = true;
+            if (timer > 0) timer -= Time.deltaTime;
+            else
+            {
+                SceneTransitionManager.instance.EndGame();
+                timerOn = false;
+            }
         }
     }
 
-    public float GetCurrentTime() 
+    public void StartTimer()
     {
-    	return timer;
+        timerOn = true;
     }
 
-    public void Reset() 
+    public float GetCurrentTime()
+    {
+        return timer;
+    }
+
+    public void Reset()
     {
         instance.timer = 0.0f;
-        calledGameOver = false;
+        timerOn = false;
     }
 
 }
