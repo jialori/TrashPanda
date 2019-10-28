@@ -4,12 +4,14 @@ public class RaccoonController : MonoBehaviour
 {
     private CharacterController characterController;
     public CharacterController Controller { get => characterController; }
+
     [SerializeField] private Transform cam;
     [SerializeField] private CameraRotator camController;
 
     [Header("Character Stats")]
     [SerializeField] private float attackPower = 1;
     public float AttackPower { get => attackPower; }
+
     [SerializeField] private float movementSpeed = 10;
     [SerializeField] private float jumpPower = 15;
     [SerializeField] private float gravity = 40;
@@ -54,14 +56,14 @@ public class RaccoonController : MonoBehaviour
     void Update()
     {
         // Move up or down stairs
-        if ((isOnUpStair || isOnDownStair) && GetInteract())
-        {
-            characterController.enabled = false;
-            if (isOnUpStair) characterController.transform.position += new Vector3(0, 8.5f, 0);
-            if (isOnDownStair) characterController.transform.position -= new Vector3(0, 8, 0);
-            characterController.enabled = true;
-            return;
-        }
+        // if ((isOnUpStair || isOnDownStair) && GetInteract())
+        // {
+        //     characterController.enabled = false;
+        //     if (isOnUpStair) characterController.transform.position += new Vector3(0, 8.5f, 0);
+        //     if (isOnDownStair) characterController.transform.position -= new Vector3(0, 8, 0);
+        //     characterController.enabled = true;
+        //     return;
+        // }
 
         // Adjust movement for camera angle
         var camForward = cam.forward;
@@ -74,7 +76,7 @@ public class RaccoonController : MonoBehaviour
 
         // Movement
         movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
-       
+
         // Jump
         if (characterController.isGrounded)
         {
@@ -239,5 +241,13 @@ public class RaccoonController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void UseStairs(bool up)
+    {
+        characterController.enabled = false;
+        if (up) characterController.transform.position += new Vector3(0, 8.5f, 0);
+        else characterController.transform.position -= new Vector3(0, 8, 0);
+        characterController.enabled = true;
     }
 }
