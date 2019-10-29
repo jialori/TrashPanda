@@ -5446,6 +5446,36 @@ PrefabInstance:
       propertyPath: m_TagString
       value: MainCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: lookAt
+      value: 
+      objectReference: {fileID: 268866533}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: camTransform
+      value: 
+      objectReference: {fileID: 248203657}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: useController
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 268866533}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: collisionLayer.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: coll.collisionLayer.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 26218638340153672, guid: 670360c703b4edb4ab3f84df70f1fa50,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5500,36 +5530,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: lookAt
-      value: 
-      objectReference: {fileID: 268866533}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: camTransform
-      value: 
-      objectReference: {fileID: 248203657}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: useController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 268866533}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: collisionLayer.m_Bits
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: coll.collisionLayer.m_Bits
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 670360c703b4edb4ab3f84df70f1fa50, type: 3}

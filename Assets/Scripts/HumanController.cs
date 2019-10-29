@@ -24,6 +24,9 @@ public class HumanController : MonoBehaviour
     // Intermediate variables
     NavMeshPath p;
 
+    // For Animations
+    public Animator anim;
+
     // Outline detection cones in the editor
     private void OnDrawGizmos()
     {
@@ -119,7 +122,9 @@ public class HumanController : MonoBehaviour
         //Debug.Log(CHC);
         p = new NavMeshPath();
         initialPosition = transform.position;
-        
+
+        // For Animations
+        anim = GetComponent<Animator>();
     }
 
     void Update() 
@@ -135,6 +140,9 @@ public class HumanController : MonoBehaviour
             searching = false;
             idle = false;
             agent.SetDestination(lastKnownLocation);
+
+            // For animations
+            anim.Play("scared");
         }
         //Debug.Log("seesRaccoon: " + seesRaccoon);
         //Debug.Log("Distance: " + Vector3.Distance(transform.position, lastKnownLocation));

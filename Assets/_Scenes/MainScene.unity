@@ -5508,6 +5508,36 @@ PrefabInstance:
       propertyPath: m_TagString
       value: MainCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: lookAt
+      value: 
+      objectReference: {fileID: 268866533}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: camTransform
+      value: 
+      objectReference: {fileID: 248203657}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: useController
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 268866533}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: debug.drawDesiredCollisionLines
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: debug.drawAdjustedCollisionLines
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 26218638340153672, guid: 670360c703b4edb4ab3f84df70f1fa50,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5562,36 +5592,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: lookAt
-      value: 
-      objectReference: {fileID: 268866533}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: camTransform
-      value: 
-      objectReference: {fileID: 248203657}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: useController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 268866533}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: debug.drawDesiredCollisionLines
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: debug.drawAdjustedCollisionLines
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 670360c703b4edb4ab3f84df70f1fa50, type: 3}
@@ -38884,12 +38884,7 @@ PrefabInstance:
     - target: {fileID: 7778095881021192144, guid: 18f4801ebe5149e46a988eb0c470fedc,
         type: 3}
       propertyPath: m_useController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2465355700618254446, guid: 18f4801ebe5149e46a988eb0c470fedc,
-        type: 3}
-      propertyPath: timeLeft
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1270603500913772167, guid: 18f4801ebe5149e46a988eb0c470fedc,
         type: 3}
@@ -38915,6 +38910,11 @@ PrefabInstance:
         type: 3}
       propertyPath: detectDist
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465355700618254446, guid: 18f4801ebe5149e46a988eb0c470fedc,
+        type: 3}
+      propertyPath: timeLeft
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f4801ebe5149e46a988eb0c470fedc, type: 3}
@@ -41429,6 +41429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxAngle
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8993923602782898384, guid: 077f52a6340f4b940865332754d4af3c,
+        type: 3}
+      propertyPath: seesRaccoon
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077f52a6340f4b940865332754d4af3c, type: 3}
