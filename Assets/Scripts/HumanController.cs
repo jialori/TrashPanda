@@ -23,6 +23,10 @@ public class HumanController : MonoBehaviour
     private bool searching = false;         // Human status: The raccoon has escaped the human's sight and the human is looking for her
     private bool idle = true;               // Human status: The human does not know where the raccoon is and is not looking for her
 
+    AudioSource WorkerChase;                // Audiosource files and script
+    public AudioClip workerchase1;
+    public bool alreadyPlayed = false;      // Helps with OneShot trigger to only have one instance of sound
+
     // Intermediate variables
     NavMeshPath p;
 
@@ -126,6 +130,9 @@ public class HumanController : MonoBehaviour
         initialPosition = transform.position;
 
         anim = gameObject.GetComponent<Animator>();
+
+        //Audio Component
+        WorkerChase = GetComponent<AudioSource>();
     }
 
     void Update() 
@@ -157,6 +164,14 @@ public class HumanController : MonoBehaviour
             searching = false;
             idle = false;
             agent.SetDestination(lastKnownLocation);
+
+            //Audio trigger for sighting Raccoon
+            if (!seesRaccoon && !alreadyPlayed)
+            {
+                WorkerChase.PlayOneShot(workerchase1, 0.8F);
+                // Ensures a true OneShot and no repeated sound
+                alreadyPlayed = true;
+            }
 
             // Animation
             anim.SetBool("chasing", true);
