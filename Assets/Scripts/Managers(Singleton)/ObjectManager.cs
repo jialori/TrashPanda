@@ -137,7 +137,7 @@ public class ObjectManager : MonoBehaviour
         }
 
         // Go up or down stairs
-        if (stairMenuOpen)
+        if (target != null && stairMenuOpen)
         {
             var raccoon = GameManager.instance.Raccoon;
             var stair = target.GetComponent<Stair>();
