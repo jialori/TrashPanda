@@ -10,7 +10,6 @@ public class CameraRotator : MonoBehaviour
     // Initialization of variables
     public Transform camTransform;
 
-
     [SerializeField] private float distance = 8.0f;
     private float currentX = 0.0f;
     private float currentY = 10f;
@@ -34,8 +33,8 @@ public class CameraRotator : MonoBehaviour
         public float yRotation = -180;
         public float maxXRotation = 30;
         public float minXRotation = -55;
-        public float maxYRotation = -90;
-        public float minYRotation = -270;
+        //public float maxYRotation = -90;
+        //public float minYRotation = -270;
         // How fast the rotation can take place
         public float vOrbitSmooth = 50;
         public float hOrbitSmooth = 50;
@@ -89,7 +88,6 @@ public class CameraRotator : MonoBehaviour
         coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
         coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
 
-        
         // draw debug lines
         for (int i = 0; i < 5; i++)
         {
@@ -102,14 +100,13 @@ public class CameraRotator : MonoBehaviour
         coll.CheckColliding(lookAtPtPos); // using raycasts
         position.adjustDis = coll.AdjustedDisWithRaycast(lookAtPtPos);
     }
-    
 
     void GetInput()
     {
         //vOrbitInp = Input.GetAxis(input.ORBIT_VERTICAL);
-        vOrbitInp = GetYAxis();
+        vOrbitInp = -GetYAxis();
         //hOrbitInp = Input.GetAxis(input.ORBIT_HORIZONTAL);
-        hOrbitInp = GetXAxis();
+        hOrbitInp = -GetXAxis();
         hOrbitSnapInp = Input.GetAxis(input.ORBIT_HORIZONTAL_SNAP);
     }
 
@@ -129,7 +126,6 @@ public class CameraRotator : MonoBehaviour
             return Input.GetAxis("Mouse Y");
     }
 
-
     void MoveToTar()
     {
         lookAtPtPos = target.position + position.targetLookAtOffset;
@@ -145,7 +141,7 @@ public class CameraRotator : MonoBehaviour
 
             // Smooth camera movement
             transform.position = Vector3.SmoothDamp(transform.position, adjustedDes, ref camVel, position.smooth);
-            
+
         }
         else
             transform.position = Vector3.SmoothDamp(transform.position, des, ref camVel, position.smooth);
@@ -168,10 +164,9 @@ public class CameraRotator : MonoBehaviour
         orbit.yRotation += -hOrbitInp * orbit.hOrbitSmooth * Time.deltaTime;
 
         orbit.xRotation = Mathf.Clamp(orbit.xRotation, orbit.minXRotation, orbit.maxXRotation);
-        orbit.yRotation = Mathf.Clamp(orbit.yRotation, orbit.minYRotation, orbit.maxYRotation);
+        //orbit.yRotation = Mathf.Clamp(orbit.yRotation, orbit.minYRotation, orbit.maxYRotation);
 
     }
-
 
     [System.Serializable]
     public class CollisionHandler
@@ -216,7 +211,6 @@ public class CameraRotator : MonoBehaviour
             // cam pos
             intoArray[4] = camPos - cam.transform.forward;
         }
-
 
         bool CollisionDectectedAtClipPts(Vector3[] clipPts, Vector3 tarPos)
         {
@@ -263,5 +257,5 @@ public class CameraRotator : MonoBehaviour
             isColliding = CollisionDectectedAtClipPts(desiredCamClipPts, tarPos);
         }
     }
-    
+
 }

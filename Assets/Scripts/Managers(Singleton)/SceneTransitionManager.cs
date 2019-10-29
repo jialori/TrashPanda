@@ -25,20 +25,19 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void Menu()
     {
-        ScoreManager.instance.Reset();
-        TimerManager.instance.Reset();
         SceneManager.LoadScene(MENU);
     }
 
     public void StartGame()
     {
-        ScoreManager.instance.Reset();
-        TimerManager.instance.Reset();
+        GameManager.instance.Reset();
         SceneManager.LoadScene(GAME);
+        GameManager.instance.StartGame();
     }
 
     public void EndGame()
     {
+        Debug.Log("[SceneManager] EndGame");
         SceneManager.LoadScene(GAME_OVER);
     }
 

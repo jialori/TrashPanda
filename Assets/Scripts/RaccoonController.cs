@@ -4,12 +4,14 @@ public class RaccoonController : MonoBehaviour
 {
     private CharacterController characterController;
     public CharacterController Controller { get => characterController; }
+
     [SerializeField] private Transform cam;
     [SerializeField] private CameraRotator camController;
 
     [Header("Character Stats")]
     [SerializeField] private float attackPower = 1;
     public float AttackPower { get => attackPower; }
+
     [SerializeField] private float movementSpeed = 10;
     [SerializeField] private float jumpPower = 15;
     [SerializeField] private float gravity = 40;
@@ -36,6 +38,8 @@ public class RaccoonController : MonoBehaviour
 
     private bool isOnUpStair = false;
     private bool isOnDownStair = false;
+    public bool isStunned = false;
+    public float stunTimer = 3.0f;
 
     void Start()
     {
@@ -53,16 +57,6 @@ public class RaccoonController : MonoBehaviour
 
     void Update()
     {
-        // Move up or down stairs
-        if ((isOnUpStair || isOnDownStair) && GetInteract())
-        {
-            characterController.enabled = false;
-            if (isOnUpStair) characterController.transform.position += new Vector3(0, 8.5f, 0);
-            if (isOnDownStair) characterController.transform.position -= new Vector3(0, 8, 0);
-            characterController.enabled = true;
-            return;
-        }
-
         // Adjust movement for camera angle
         var camForward = cam.forward;
         var camRight = cam.right;
@@ -72,31 +66,47 @@ public class RaccoonController : MonoBehaviour
         camRight = camRight.normalized;
         var prevY = movementVector.y;
 
-        // Movement
-        movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
-       
-        // Jump
-        if (characterController.isGrounded)
+        // If the raccoon is stunned, she cannot move, jump or break objects
+        if (!isStunned)
         {
-            movementVector.y = 0;
-            if (GetJump())
+            // Movement
+            movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
+
+            // Jump
+            if (characterController.isGrounded)
             {
-                movementVector.y = jumpPower;
+                movementVector.y = 0;
+                if (GetJump())
+                {
+                    movementVector.y = jumpPower;
+                }
             }
-        }
-        else
-        {
-            movementVector.y = prevY;
-        }
+            else
+            {
+                movementVector.y = prevY;
+            }
 
-        movementVector.y -= gravity * Time.deltaTime;
-        // Debug.Log("movementVector = " + movementVector);
-        characterController.Move(movementVector * Time.deltaTime);
+            movementVector.y -= gravity * Time.deltaTime;
+            // Debug.Log("movementVector = " + movementVector);
+            characterController.Move(movementVector * Time.deltaTime);
 
-        // Break Breakable objects
-        if (GetInteract())
+            // Break Breakable objects
+            //if (GetInteract())
+            //{
+                // BreakObjectsNearby();
+            //}
+        }
+        else if (isStunned)
         {
-            // BreakObjectsNearby();
+            if (stunTimer > 0)
+            {
+                stunTimer -= Time.deltaTime;
+            }
+            else
+            {
+                isStunned = false;
+                stunTimer = 3.0f;
+            }
         }
 
         // Rotation
@@ -117,16 +127,6 @@ public class RaccoonController : MonoBehaviour
     // On collision, knock Knockable objects over and mark stair usage
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        this.isOnUpStair = false;
-        this.isOnDownStair = false;
-        Stair stair = hit.gameObject.GetComponent("Stair") as Stair;
-        if (stair != null)
-        {
-            // Debug.Log("stair hit");
-            if (hit.gameObject.tag == "UpStair") this.isOnUpStair = true;
-            if (hit.gameObject.tag == "DownStair") this.isOnDownStair = true;
-        }
-
         Rigidbody body = hit.collider.attachedRigidbody;
         if (body == null || body.isKinematic)
         {
@@ -191,18 +191,6 @@ public class RaccoonController : MonoBehaviour
         }
     }
 
-    private bool GetInteract()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("B");
-        }
-        else
-        {
-            return Input.GetKeyDown("e");
-        }
-    }
-
     public void AddStrengthModifier(float effectOnAttack, float effectOnSpeed)
     {
         attackPower += effectOnAttack;
@@ -239,5 +227,13 @@ public class RaccoonController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void UseStairs(bool up)
+    {
+        characterController.enabled = false;
+        if (up) characterController.transform.position += new Vector3(0, 8.5f, 0);
+        else characterController.transform.position -= new Vector3(0, 8, 0);
+        characterController.enabled = true;
     }
 }
