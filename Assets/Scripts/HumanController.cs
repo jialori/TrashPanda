@@ -23,11 +23,12 @@ public class HumanController : MonoBehaviour
     private bool searching = false;         // Human status: The raccoon has escaped the human's sight and the human is looking for her
     private bool idle = true;               // Human status: The human does not know where the raccoon is and is not looking for her
 
-    AudioSource WorkerChase;                // Audiosource files and script
-    public AudioClip[] workerChaseSFX;
+    AudioSource WorkerAudio;                // Audiosource files and script
+    public AudioClip[] workerChaseVO;       // Chasing VO
+    public AudioClip[] workerStunVO;        // Chasing VO
     public float replayInterval;            // Time till replay is ready
     private float _timer = 0;
-    private bool alreadyPlayed = false;      // Helps with OneShot trigger to only have one instance of sound    
+    private bool alreadyPlayed = false;     // Helps with OneShot trigger to only have one instance of sound    
 
     // Intermediate variables
     NavMeshPath p;
@@ -119,7 +120,7 @@ public class HumanController : MonoBehaviour
 
         anim = gameObject.GetComponent<Animator>();
         //Audio Component
-        WorkerChase = GetComponent<AudioSource>();
+        WorkerAudio = GetComponent<AudioSource>();
     }
 
     void Update() 
@@ -164,7 +165,7 @@ public class HumanController : MonoBehaviour
             //Audio trigger for sighting Raccoon
             if (!seesRaccoon && !alreadyPlayed)
             {
-                PlaySFX();
+                chaseVO();
             }
 
             // Animation
@@ -210,9 +211,9 @@ public class HumanController : MonoBehaviour
             attackCooldown = 10.0f;
 
             //Audio
-            if (canAttack)
+            if (!canAttack)
             {
-                PlaySFX();
+                stunVO();
                 //alreadyPlayed = true;
             }
 
@@ -273,11 +274,22 @@ public class HumanController : MonoBehaviour
             agent.isStopped = false;
     }
 
-    public void PlaySFX()
+    public void chaseVO()
     {
         // randomize        
-        int randIdx = Random.Range(0, workerChaseSFX.Length);
-        WorkerChase.PlayOneShot(workerChaseSFX[randIdx], 0.8F);
+        int randIdx = Random.Range(0, workerChaseVO.Length);
+        WorkerAudio.PlayOneShot(workerChaseVO[randIdx], 0.8F);
+        // Ensures a true OneShot and no repeated sound
+        alreadyPlayed = true;
+        _timer = 0;
+
+    }
+
+    public void stunVO()
+    {
+        // randomize        
+        int randIdx = Random.Range(0, workerStunVO.Length);
+        WorkerAudio.PlayOneShot(workerStunVO[randIdx], 0.5F);
         // Ensures a true OneShot and no repeated sound
         alreadyPlayed = true;
         _timer = 0;
