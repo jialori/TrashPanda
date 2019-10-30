@@ -55,7 +55,7 @@ public class TimerManager : MonoBehaviour
 
     public void Reset()
     {
-        instance.timer = 0.0f;
+        instance.timer = totalTime;
         timerOn = false;
     }
 

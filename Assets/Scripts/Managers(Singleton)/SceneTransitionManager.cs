@@ -30,6 +30,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("[SceneManager] StartGame");
         GameManager.instance.Reset();
         SceneManager.LoadScene(GAME);
         GameManager.instance.StartGame();

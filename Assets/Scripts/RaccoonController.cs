@@ -81,6 +81,7 @@ public class RaccoonController : MonoBehaviour
                 if (GetJump())
                 {
                     movementVector.y = jumpPower;
+                    animator.SetTrigger("jumped");
                 }
             }
             else
