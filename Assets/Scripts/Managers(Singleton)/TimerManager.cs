@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TimerManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class TimerManager : MonoBehaviour
 
     [SerializeField] private float totalTime;
     private float timer;
-    private bool timerOn;
+    public bool timerOn;
 
     public string sceneName;
 
@@ -34,7 +35,7 @@ public class TimerManager : MonoBehaviour
     {
         if (timerOn)
         {
-            if (timer > 0) timer -= Time.deltaTime;
+            if (timer > 0) timer = Mathf.Max(timer - Time.deltaTime, 0);
             else
             {
                 SceneTransitionManager.instance.EndGame();
@@ -57,6 +58,11 @@ public class TimerManager : MonoBehaviour
     {
         instance.timer = totalTime;
         timerOn = false;
+    }
+
+    public void TogglePlay()
+    {
+        timerOn = !timerOn;
     }
 
 }

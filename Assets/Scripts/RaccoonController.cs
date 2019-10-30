@@ -42,6 +42,8 @@ public class RaccoonController : MonoBehaviour
     public bool isStunned = false;
     public float stunTimer = 3.0f;
 
+    private bool pause = false;
+
     void Start()
     {
         AudioManager.instance.Play("ThemeSong");
@@ -59,6 +61,8 @@ public class RaccoonController : MonoBehaviour
 
     void Update()
     {
+    	if (pause) return;
+
         // Adjust movement for camera angle
         var camForward = cam.forward;
         var camRight = cam.right;
@@ -244,4 +248,11 @@ public class RaccoonController : MonoBehaviour
         else characterController.transform.position -= new Vector3(0, 8, 0);
         characterController.enabled = true;
     }
+
+    public void TogglePlay()
+    {
+        pause = !pause;
+        animator.enabled = !animator.enabled;
+    }
+
 }

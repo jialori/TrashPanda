@@ -24,14 +24,19 @@ public class HumanController : MonoBehaviour
     private bool idle = true;               // Human status: The human does not know where the raccoon is and is not looking for her
 
     AudioSource WorkerChase;                // Audiosource files and script
-    public AudioClip workerchase1;
-    public bool alreadyPlayed = false;      // Helps with OneShot trigger to only have one instance of sound    
+    public AudioClip[] workerChaseSFX;
+    public float replayInterval;            // Time till replay is ready
+    private float _timer = 0;
+    private bool alreadyPlayed = false;      // Helps with OneShot trigger to only have one instance of sound    
 
     // Intermediate variables
     NavMeshPath p;
 
     // Animation
     private Animator anim;
+
+    // For Play/Pause toggle 
+    private bool pause = false;
 
     // Outline detection cones in the editor
     private void OnDrawGizmos()
@@ -102,6 +107,9 @@ public class HumanController : MonoBehaviour
 
     void Start()
     {
+        // Register itself at GameManager
+        GameManager.instance.Workers.Add(this);
+
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 2f;
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
@@ -116,8 +124,17 @@ public class HumanController : MonoBehaviour
 
     void Update() 
     {
+        if (pause) return;
+
         if (!onSameFloor(transform, target))
             return;
+
+        _timer += Time.deltaTime;
+        if (alreadyPlayed && _timer > replayInterval)
+        {
+            alreadyPlayed = false;
+            // _timer = 0;
+        }
 
         seesRaccoon = inFOV(agent, transform, target, maxAngle, maxRadius);
         // Animation
@@ -147,9 +164,7 @@ public class HumanController : MonoBehaviour
             //Audio trigger for sighting Raccoon
             if (!seesRaccoon && !alreadyPlayed)
             {
-                WorkerChase.PlayOneShot(workerchase1, 0.8F);
-                // Ensures a true OneShot and no repeated sound
-                alreadyPlayed = true;
+                PlaySFX();
             }
 
             // Animation
@@ -193,6 +208,13 @@ public class HumanController : MonoBehaviour
             // Start cooldown after attack
             canAttack = false;
             attackCooldown = 10.0f;
+
+            //Audio
+            if (canAttack)
+            {
+                PlaySFX();
+                //alreadyPlayed = true;
+            }
 
             // Animation
             //anim.Play("kicking");
@@ -249,5 +271,29 @@ public class HumanController : MonoBehaviour
             agent.isStopped = true;
         else
             agent.isStopped = false;
+    }
+
+    public void PlaySFX()
+    {
+        // randomize        
+        int randIdx = Random.Range(0, workerChaseSFX.Length);
+        WorkerChase.PlayOneShot(workerChaseSFX[randIdx], 0.8F);
+        // Ensures a true OneShot and no repeated sound
+        alreadyPlayed = true;
+        _timer = 0;
+
+    }
+
+    public void TogglePlay()
+    {
+        if (pause)
+        {
+            agent.Resume();
+        } else 
+        {
+            agent.Stop();
+        }
+        pause = !pause;
+        anim.enabled = !anim.enabled;
     }
 }
