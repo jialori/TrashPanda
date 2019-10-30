@@ -105,13 +105,11 @@ public class HumanController : MonoBehaviour
         return false;
     }
 
-    void Awake()
-    {
-        GameManager.instance.Workers.Add(this);
-    }
-
     void Start()
     {
+        // Register itself at GameManager
+        GameManager.instance.Workers.Add(this);
+
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 2f;
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();

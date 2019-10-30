@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 1131003286805422162, guid: c072ee6bb94776947b30e402ef7c30c5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -22.6
       objectReference: {fileID: 0}
     - target: {fileID: 1131003286805422162, guid: c072ee6bb94776947b30e402ef7c30c5,
         type: 3}
@@ -265,12 +265,12 @@ PrefabInstance:
     - target: {fileID: 1131003286805422162, guid: c072ee6bb94776947b30e402ef7c30c5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 49.9
+      value: 84.899994
       objectReference: {fileID: 0}
     - target: {fileID: 1131003286805422162, guid: c072ee6bb94776947b30e402ef7c30c5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -64.1
+      value: -75.2
       objectReference: {fileID: 0}
     - target: {fileID: 1131003286805422162, guid: c072ee6bb94776947b30e402ef7c30c5,
         type: 3}
@@ -311,6 +311,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131003286805422162, guid: c072ee6bb94776947b30e402ef7c30c5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8189289
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131003286805422162, guid: c072ee6bb94776947b30e402ef7c30c5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.68905437
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131003286805422162, guid: c072ee6bb94776947b30e402ef7c30c5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5679
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c072ee6bb94776947b30e402ef7c30c5, type: 3}
@@ -35223,6 +35238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: timeLeft
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2465355700618254446, guid: 18f4801ebe5149e46a988eb0c470fedc,
+        type: 3}
+      propertyPath: totalTime
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1270603500913772167, guid: 18f4801ebe5149e46a988eb0c470fedc,
         type: 3}
