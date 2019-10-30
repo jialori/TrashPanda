@@ -4123,6 +4123,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
+      propertyPath: workerStunVO.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: workerChaseVO.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
@@ -4141,6 +4151,26 @@ PrefabInstance:
       propertyPath: workerStun
       value: 
       objectReference: {fileID: 8300000, guid: 87afb9e6105a46344983c24c6760dfa8, type: 3}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: workerStunVO.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: a46360111e10e7747a17b9c49ee4aa38, type: 3}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: workerChaseVO.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: a7fdbb8279be7fc478e98065a9a3c7f2, type: 3}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: workerChaseVO.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ac65fef4ab4e7145950b3fe6851c850, type: 3}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: replayInterval
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 804164721918991238, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
       propertyPath: m_audioClip
@@ -5225,6 +5255,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 113956176984252424, guid: a3d1e7eae245a7b40b41802bbec029dd,
+        type: 3}
+      propertyPath: m_Name
+      value: Raccoon
+      objectReference: {fileID: 0}
     - target: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5279,11 +5314,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 113956176984252424, guid: a3d1e7eae245a7b40b41802bbec029dd,
-        type: 3}
-      propertyPath: m_Name
-      value: Raccoon
       objectReference: {fileID: 0}
     - target: {fileID: 113956176984252531, guid: a3d1e7eae245a7b40b41802bbec029dd,
         type: 3}
