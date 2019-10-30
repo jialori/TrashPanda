@@ -4011,7 +4011,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1558088354}
+      - m_Target: {fileID: 8799564522189665618, guid: 89634abb0387bcc40b13ae93f3142589,
+          type: 3}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -5066,11 +5067,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7778095879517490357}
     m_Modifications:
-    - target: {fileID: 1580800343275420967, guid: 412dfe4967a0de94e8627325f3832600,
-        type: 3}
-      propertyPath: m_Name
-      value: TimerManager
-      objectReference: {fileID: 0}
     - target: {fileID: 1580800343275420985, guid: 412dfe4967a0de94e8627325f3832600,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5126,10 +5122,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1580800343275420967, guid: 412dfe4967a0de94e8627325f3832600,
+        type: 3}
+      propertyPath: m_Name
+      value: TimerManager
+      objectReference: {fileID: 0}
     - target: {fileID: 1580800343275420984, guid: 412dfe4967a0de94e8627325f3832600,
         type: 3}
       propertyPath: totalTime
-      value: 200
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 412dfe4967a0de94e8627325f3832600, type: 3}
@@ -5191,11 +5192,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7778095879517490357}
     m_Modifications:
-    - target: {fileID: 8799564522189665617, guid: 89634abb0387bcc40b13ae93f3142589,
-        type: 3}
-      propertyPath: m_Name
-      value: SceneTransitionManager
-      objectReference: {fileID: 0}
     - target: {fileID: 8799564522189665619, guid: 89634abb0387bcc40b13ae93f3142589,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5250,6 +5246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799564522189665617, guid: 89634abb0387bcc40b13ae93f3142589,
+        type: 3}
+      propertyPath: m_Name
+      value: SceneTransitionManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89634abb0387bcc40b13ae93f3142589, type: 3}
