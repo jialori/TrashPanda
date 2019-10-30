@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public bool m_useController;
     public bool UseController { get => m_useController; }
-    [SerializeField] public bool m_disableTimer;
+    // true if wee start at MainScene or its copy directly (not transitioned from other scenes)
+    // [SerializeField] public bool m_devMode = false;
+    [SerializeField] public bool m_disableTimer = false;
 
     [SerializeField] private RaccoonController m_raccoon;
     public RaccoonController Raccoon { get => m_raccoon; }
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start() { Debug.Log(m_disableTimer);}
+    void Start() {}
 
     public void StartGame()
     {

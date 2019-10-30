@@ -28,7 +28,7 @@ public class TimerManager : MonoBehaviour
     void Start()
     {
         timer = totalTime;
-        timerOn = true;
+        timerOn = false;
     }
 
     void Update()
