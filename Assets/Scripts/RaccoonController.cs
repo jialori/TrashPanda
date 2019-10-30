@@ -92,12 +92,6 @@ public class RaccoonController : MonoBehaviour
             movementVector.y -= gravity * Time.deltaTime;
             // Debug.Log("movementVector = " + movementVector);
             characterController.Move(movementVector * Time.deltaTime);
-
-            // Break Breakable objects
-            //if (GetInteract())
-            //{
-                // BreakObjectsNearby();
-            //}
         }
         else if (isStunned)
         {

@@ -128,7 +128,7 @@ public class ObjectManager : MonoBehaviour
         }
 
         // interact if interact button is pressed
-        if (GetInteract()) Interact();
+        if (!raccoon.isStunned && GetInteract()) Interact();
 
         if (target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
         {

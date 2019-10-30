@@ -3812,7 +3812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9dfa1ca08e70d49bf1a1e71ddbfc87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: MainScene
+  sceneName: MainScene - AI
 --- !u!1 &1735311294
 GameObject:
   m_ObjectHideFlags: 0
