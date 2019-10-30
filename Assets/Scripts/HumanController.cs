@@ -24,8 +24,10 @@ public class HumanController : MonoBehaviour
     private bool idle = true;               // Human status: The human does not know where the raccoon is and is not looking for her
 
     AudioSource WorkerChase;                // Audiosource files and script
-    public AudioClip workerchase1;
-    public bool alreadyPlayed = false;      // Helps with OneShot trigger to only have one instance of sound    
+    public AudioClip[] workerChaseSFX;
+    public float replayInterval;            // Time till replay is ready
+    private float _timer = 0;
+    private bool alreadyPlayed = false;      // Helps with OneShot trigger to only have one instance of sound    
 
     // Intermediate variables
     NavMeshPath p;
@@ -119,6 +121,13 @@ public class HumanController : MonoBehaviour
         if (!onSameFloor(transform, target))
             return;
 
+        _timer += Time.deltaTime;
+        if (alreadyPlayed && _timer > replayInterval)
+        {
+            alreadyPlayed = false;
+            // _timer = 0;
+        }
+
         seesRaccoon = inFOV(agent, transform, target, maxAngle, maxRadius);
         // Animation
         anim.SetBool("scared", seesRaccoon);
@@ -147,9 +156,12 @@ public class HumanController : MonoBehaviour
             //Audio trigger for sighting Raccoon
             if (!seesRaccoon && !alreadyPlayed)
             {
-                WorkerChase.PlayOneShot(workerchase1, 0.8F);
+                // randomize
+                int randIdx = Random.Range(0, workerChaseSFX.Length);
+                WorkerChase.PlayOneShot(workerChaseSFX[randIdx], 0.8F);
                 // Ensures a true OneShot and no repeated sound
                 alreadyPlayed = true;
+                _timer = 0;
             }
 
             // Animation

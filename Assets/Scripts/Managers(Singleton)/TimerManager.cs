@@ -34,7 +34,7 @@ public class TimerManager : MonoBehaviour
     {
         if (timerOn)
         {
-            if (timer > 0) timer -= Time.deltaTime;
+            if (timer > 0) timer = Mathf.Max(timer - Time.deltaTime, 0);
             else
             {
                 SceneTransitionManager.instance.EndGame();
