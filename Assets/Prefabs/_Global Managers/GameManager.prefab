@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8577849089699060554}
-  - {fileID: 942788139472022153}
+  - {fileID: 8577986881043619780}
   - {fileID: 1848938170668358636}
   - {fileID: 2465355700618254447}
   - {fileID: 6434882476785717159}
@@ -49,7 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_useController: 0
+  m_disableTimer: 0
   m_raccoon: {fileID: 0}
+  Workers: []
 --- !u!1001 &219485467784484098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,6 +118,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359068563638324809, guid: 1add5d6223643eb4db5afc7f5b06ef9d,
+        type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359068563638324809, guid: 1add5d6223643eb4db5afc7f5b06ef9d,
+        type: 3}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30fc16ecb92d1844c955f5a889951a41, type: 3}
+    - target: {fileID: 8359068563638324809, guid: 1add5d6223643eb4db5afc7f5b06ef9d,
+        type: 3}
+      propertyPath: sounds.Array.data[1].name
+      value: MainMenuBGM
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359068563638324809, guid: 1add5d6223643eb4db5afc7f5b06ef9d,
+        type: 3}
+      propertyPath: sounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f40dfafd0ac9a14fa92a4ad5ac4dafb, type: 3}
+    - target: {fileID: 8359068563638324809, guid: 1add5d6223643eb4db5afc7f5b06ef9d,
+        type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359068563638324809, guid: 1add5d6223643eb4db5afc7f5b06ef9d,
+        type: 3}
+      propertyPath: sounds.Array.data[1].loop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1add5d6223643eb4db5afc7f5b06ef9d, type: 3}
@@ -424,7 +456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89634abb0387bcc40b13ae93f3142589, type: 3}
---- !u!4 &942788139472022153 stripped
+--- !u!4 &8577986881043619780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8799564522189665619, guid: 89634abb0387bcc40b13ae93f3142589,
     type: 3}

@@ -9,7 +9,7 @@ public class TimerManager : MonoBehaviour
 
     [SerializeField] private float totalTime;
     private float timer;
-    public bool timerOn;
+    [System.NonSerialized] public bool timerOn;
 
     public string sceneName;
 

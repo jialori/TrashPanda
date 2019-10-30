@@ -23,14 +23,26 @@ public class SceneTransitionManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == MENU)
+        {
+        // play BGM when start at Menu
+        AudioManager.instance.Play("MainMenuBGM");
+        }
+    }
+
     public void Menu()
     {
+        AudioManager.instance.StopCurrent();
         SceneManager.LoadScene(MENU);
+        AudioManager.instance.Play("MainMenuBGM");
     }
 
     public void StartGame()
     {
         Debug.Log("[SceneManager] StartGame");
+        AudioManager.instance.StopCurrent();
         GameManager.instance.Reset();
         SceneManager.LoadScene(GAME);
         GameManager.instance.StartGame();
@@ -38,6 +50,8 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void EndGame()
     {
+        AudioManager.instance.StopCurrent();
+        AudioManager.instance.Play("MainMenuBGM");
         Debug.Log("[SceneManager] EndGame");
         SceneManager.LoadScene(GAME_OVER);
     }

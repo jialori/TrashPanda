@@ -27,6 +27,7 @@ public class Knockable : MonoBehaviour
     AudioSource KnockedSound;
     public AudioClip objectKnock;
     //private bool alreadyplayed = false;
+    private bool _hasAudio;
 
 
     void Start()
@@ -37,9 +38,14 @@ public class Knockable : MonoBehaviour
         collidePoint = transform.position;// + (rb.centerOfMass + Vector3.up * cl.bounds.size.y * 0.8f);
         pointCollected = false;
 
-        //Audio Engine
         KnockedSound = GetComponent<AudioSource>();
-        KnockedSound.clip = objectKnock;
+        _hasAudio = (KnockedSound && objectKnock) ? true : false;
+
+        //Audio Engine
+        if (_hasAudio)
+        {
+            KnockedSound.clip = objectKnock;
+        }
     }
 
 
@@ -57,16 +63,12 @@ public class Knockable : MonoBehaviour
 
     public void OnCollisionEnter (Collision col)
     {
-        Debug.Log("hit");
-        KnockedSound.PlayOneShot(objectKnock); 
-        KnockedSound.volume = col.relativeVelocity.magnitude / 45;        
+        // Debug.Log("hit");
+        if (_hasAudio)
+        {
+            float volume = Mathf.Clamp(col.relativeVelocity.magnitude / 45.0f, 0.0f, 1.0f);        
+            KnockedSound.PlayOneShot(objectKnock, volume); 
+        }
     }
-
-    //   void Update() {
-    //       rotateTarget = transform.forward;
-    //   	Vector3 dir = Vector3.RotateTowards(transform.forward, rotateTarget, rotateSpeed * Time.deltaTime, 0.0f);
-    // transform.rotation = Quaternion.LookRotation(dir);
-    //       transform.RotateAround(Vector3.zero, Vector3.up, 20 * Time.deltaTime);
-    //   }
 
 }
