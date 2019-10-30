@@ -33,9 +33,11 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private StairMenu stairMenu;
 
     private RaccoonController raccoon;
+    private bool startUp = false;
 
     void Awake()
     {
+        Debug.Log("[ObjectManager] Awake");
         if (instance != null)
         {
             Destroy(gameObject);
@@ -43,21 +45,38 @@ public class ObjectManager : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
     void Start()
     {
+        Debug.Log("[ObjectManager] Start");
+
         raccoon = GameManager.instance.Raccoon;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
         knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
         toolsMask = 1 << LayerMask.NameToLayer(toolsMaskName);
         interactableMask = 1 << LayerMask.NameToLayer(interactableMaskName);
+
+        startUp = true;
     }
 
     void Update()
     {
-        if (!raccoon) return;
+        Debug.Log("[ObjectManager] Update");
+
+        if (!raccoon)
+        {
+            if (!GameManager.instance.Raccoon)
+            {
+                Debug.Log("[ObjectManager] No Raccon");
+                return;
+
+            }
+            else
+                raccoon = GameManager.instance.Raccoon;
+        }
 
         // reset target and in range
         DisableOutline(target);

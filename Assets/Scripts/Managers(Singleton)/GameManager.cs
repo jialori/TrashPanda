@@ -45,6 +45,14 @@ public class GameManager : MonoBehaviour
         TimerManager.instance?.Reset();
     }
 
+    void Update()
+    {
+        if (!m_raccoon)
+        {
+            m_raccoon = GameObject.FindGameObjectWithTag("Raccoon")?.GetComponent<RaccoonController>();
+        }
+    }
+
     public void TogglePlay()
     {
         if (!m_disableTimer)
