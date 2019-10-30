@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToolController : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
     private RaccoonController playerScript;
     private Rigidbody rb;
     public string toolType;
@@ -21,8 +21,8 @@ public class ToolController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player = GameManager.instance.Raccoon.gameObject;
-        playerScript = GameManager.instance.Raccoon;
+        // player = GameManager.instance.Raccoon.gameObject;
+        playerScript = player.GetComponent<RaccoonController>();
     }
 
     void Update()

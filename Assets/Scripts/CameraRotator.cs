@@ -72,7 +72,7 @@ public class CameraRotator : MonoBehaviour
 
     private void Start()
     {
-        target = GameManager.instance.Raccoon.gameObject.transform;
+        // target = GameManager.instance.Raccoon.gameObject.transform;
         MoveToTar();
         coll.Initialize(Camera.main);
         coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
