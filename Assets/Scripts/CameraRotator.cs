@@ -8,7 +8,7 @@ public class CameraRotator : MonoBehaviour
     private const float Y_ANGLE_MAX = 50.0f;
 
     // Initialization of variables
-    public Transform camTransform;
+    // public Transform camTransform;
 
     [SerializeField] private float distance = 8.0f;
     private float currentX = 0.0f;
@@ -72,6 +72,7 @@ public class CameraRotator : MonoBehaviour
 
     private void Start()
     {
+        target = GameManager.instance.Raccoon.gameObject.transform;
         MoveToTar();
         coll.Initialize(Camera.main);
         coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);

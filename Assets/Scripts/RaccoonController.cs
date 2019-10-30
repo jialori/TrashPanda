@@ -4,6 +4,7 @@ public class RaccoonController : MonoBehaviour
 {
     private CharacterController characterController;
     public CharacterController Controller { get => characterController; }
+    private Animator animator;
 
     [SerializeField] private Transform cam;
     [SerializeField] private CameraRotator camController;
@@ -45,6 +46,7 @@ public class RaccoonController : MonoBehaviour
     {
         AudioManager.instance.Play("ThemeSong");
         characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
 
         // For interaction with breakable and knockable
         raycastPaddedDist = characterController.radius + raycastPadding;
@@ -122,6 +124,17 @@ public class RaccoonController : MonoBehaviour
         {
             Debug.Log("InspectorWarning: camController in Raccoon is Not correct. Please assign Camera to it.");
         }
+
+        // Animation
+    	// animator.SetBool("isMoving", true);
+        if (!isStunned && !GetJump() && (GetXAxis() != 0.0f || GetYAxis() != 0.0f))
+        {
+        	animator.SetBool("isMoving", true);
+        } else
+        {
+        	animator.SetBool("isMoving", false);	
+        }
+
     }
 
     // On collision, knock Knockable objects over and mark stair usage
