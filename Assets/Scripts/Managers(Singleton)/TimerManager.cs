@@ -8,7 +8,7 @@ public class TimerManager : MonoBehaviour
 
     [SerializeField] private float totalTime;
     private float timer;
-    private bool timerOn;
+    public bool timerOn;
 
     public string sceneName;
 
@@ -27,7 +27,7 @@ public class TimerManager : MonoBehaviour
     void Start()
     {
         timer = totalTime;
-        timerOn = false;
+        timerOn = true;
     }
 
     void Update()
@@ -57,6 +57,11 @@ public class TimerManager : MonoBehaviour
     {
         instance.timer = totalTime;
         timerOn = false;
+    }
+
+    public void TogglePlay()
+    {
+        timerOn = !timerOn;
     }
 
 }

@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public bool m_useController;
     public bool UseController { get => m_useController; }
+    [SerializeField] public bool m_disableTimer;
 
     [SerializeField] private RaccoonController m_raccoon;
     public RaccoonController Raccoon { get => m_raccoon; }
@@ -23,11 +24,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start() { }
+    void Start() { Debug.Log(m_disableTimer);}
 
     public void StartGame()
     {
-        TimerManager.instance.StartTimer();
+        if (!m_disableTimer)
+        {
+            TimerManager.instance.StartTimer();
+        }
     }
 
     public void Reset()
@@ -35,5 +39,14 @@ public class GameManager : MonoBehaviour
         ScoreManager.instance?.Reset();
         ObjectManager.instance?.Reset();
         TimerManager.instance?.Reset();
+    }
+
+    public void TogglePlay()
+    {
+        if (!m_disableTimer)
+        {
+            TimerManager.instance?.TogglePlay();
+        }
+        Raccoon?.TogglePlay();
     }
 }
