@@ -164,12 +164,7 @@ public class HumanController : MonoBehaviour
             //Audio trigger for sighting Raccoon
             if (!seesRaccoon && !alreadyPlayed)
             {
-                // randomize
-                int randIdx = Random.Range(0, workerChaseSFX.Length);
-                WorkerChase.PlayOneShot(workerChaseSFX[randIdx], 0.8F);
-                // Ensures a true OneShot and no repeated sound
-                alreadyPlayed = true;
-                _timer = 0;
+                PlaySFX();
             }
 
             // Animation
@@ -217,7 +212,7 @@ public class HumanController : MonoBehaviour
             //Audio
             if (canAttack)
             {
-                WorkerAudio.PlayOneShot(workerStun, 0.8F);
+                PlaySFX();
                 //alreadyPlayed = true;
             }
 
@@ -276,6 +271,17 @@ public class HumanController : MonoBehaviour
             agent.isStopped = true;
         else
             agent.isStopped = false;
+    }
+
+    public void PlaySFX()
+    {
+        // randomize        
+        int randIdx = Random.Range(0, workerChaseSFX.Length);
+        WorkerChase.PlayOneShot(workerChaseSFX[randIdx], 0.8F);
+        // Ensures a true OneShot and no repeated sound
+        alreadyPlayed = true;
+        _timer = 0;
+
     }
 
     public void TogglePlay()
