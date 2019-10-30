@@ -59,32 +59,12 @@ public class HumanController : MonoBehaviour
     // Determine if the human and the player are on the same floor
     public static bool onSameFloor(Transform checkingObject, Transform target)
     {
-        return target.position.y - 2 <= checkingObject.position.y && checkingObject.position.y <= target.position.y + 2;
+        return target.position.y - 1 <= checkingObject.position.y && checkingObject.position.y <= target.position.y + 1;
     }
 
     // Determine if the player has been seen by this human
     public static bool inFOV(NavMeshAgent nav, Transform checkingObject, Transform target, float maxAngle, float maxRadius)
     {
-        /*
-        // Retrieve all objects within this human's field of view
-        Collider[] overlaps = new Collider[30];
-        int count = Physics.OverlapSphereNonAlloc(checkingObject.position, maxRadius, overlaps);
-
-        
-        // For each object retrieved
-        for (int i = 0; i < count; i++)
-        {
-            if (overlaps[i] != null)
-            {
-                
-                // If the object being examined is the player
-                if (overlaps[i].transform == target)
-                {
-                    
-                }
-            }
-        }
-        */
         Vector3 directionBetween = (target.position - checkingObject.position).normalized;
         directionBetween.y *= 0;
 
@@ -123,7 +103,7 @@ public class HumanController : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = 1;
+        agent.stoppingDistance = 2f;
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
         //Debug.Log(CHC);
         p = new NavMeshPath();
