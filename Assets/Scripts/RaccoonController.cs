@@ -42,7 +42,7 @@ public class RaccoonController : MonoBehaviour
     public bool isStunned = false;
     public float stunTimer = 3.0f;
 
-    public bool pause = false;
+    private bool pause = false;
 
     void Start()
     {

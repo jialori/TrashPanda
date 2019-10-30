@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private RaccoonController m_raccoon;
     public RaccoonController Raccoon { get => m_raccoon; }
+    public List<HumanController> Workers = new List<HumanController>();
     public static GameManager instance;
 
     void Awake()
@@ -48,5 +50,12 @@ public class GameManager : MonoBehaviour
             TimerManager.instance?.TogglePlay();
         }
         Raccoon?.TogglePlay();
+        foreach(HumanController worker in Workers) {
+            if (worker)
+            {
+              worker.TogglePlay();
+            }
+        }
+        // TODO: Need to Toggle all the objects as well (potentially being knocked over)
     }
 }

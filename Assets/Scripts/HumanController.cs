@@ -35,6 +35,9 @@ public class HumanController : MonoBehaviour
     // Animation
     private Animator anim;
 
+    // For Play/Pause toggle 
+    private bool pause = false;
+
     // Outline detection cones in the editor
     private void OnDrawGizmos()
     {
@@ -102,6 +105,11 @@ public class HumanController : MonoBehaviour
         return false;
     }
 
+    void Awake()
+    {
+        GameManager.instance.Workers.Add(this);
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -118,6 +126,8 @@ public class HumanController : MonoBehaviour
 
     void Update() 
     {
+        if (pause) return;
+
         if (!onSameFloor(transform, target))
             return;
 
@@ -261,5 +271,18 @@ public class HumanController : MonoBehaviour
             agent.isStopped = true;
         else
             agent.isStopped = false;
+    }
+
+    public void TogglePlay()
+    {
+        if (pause)
+        {
+            agent.Resume();
+        } else 
+        {
+            agent.Stop();
+        }
+        pause = !pause;
+        anim.enabled = !anim.enabled;
     }
 }
