@@ -5,26 +5,26 @@ using UnityEngine;
 public class TogglePlay : MonoBehaviour
 {
 
-	public GameObject pauseMenu;
+    public GameObject pauseMenu;
 
     void Update()
     {
-		if (GetTogglePlay())
-    	{
-    		GameManager.instance.TogglePlay();
-    		pauseMenu.SetActive(!pauseMenu.activeSelf);
-    	}
+        if (GetTogglePlay())
+        {
+            GameManager.instance.TogglePlay();
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+        }
     }
 
     private bool GetTogglePlay()
     {
         if (GameManager.instance.UseController)
         {
-            return Input.GetButtonDown("Submit");
+            return Input.GetButtonDown("Pause");
         }
         else
         {
-            return Input.GetKeyDown(KeyCode.P);
+            return Input.GetKeyDown(KeyCode.Escape);
         }
     }
 }

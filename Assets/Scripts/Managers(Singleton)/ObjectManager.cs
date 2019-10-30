@@ -105,10 +105,10 @@ public class ObjectManager : MonoBehaviour
             // tools layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, toolsMask))
             {
-                if (hit.distance < targetDist && (target == null || target.GetComponent<ToolController>() == null))
+                if (hit.distance < targetDist && target?.GetComponent<ToolController>() == null)
                 {
                     target = hit.collider.gameObject;
-                    //Debug.Log("[ObjectManager] target is Tool");
+                    Debug.Log("[ObjectManager] target is Tool");
                     targetDist = hit.distance;
                 }
             }
