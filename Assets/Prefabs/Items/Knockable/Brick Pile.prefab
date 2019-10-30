@@ -51,13 +51,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  knockable_outlineColor: {r: 1, g: 0.25, b: 0.25, a: 1}
-  breakable_outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  interactable_outlineColor: {r: 1, g: 1, b: 1, a: 1}
   outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  highlightOn: 0
 --- !u!1001 &1786609979359529595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,6 +422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.0100000035
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974290362474123628, guid: d7ce0562bb5e49b47ac9959b02637d45,
+        type: 3}
+      propertyPath: objectKnock
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1962937893626254403, guid: d7ce0562bb5e49b47ac9959b02637d45,
         type: 3}

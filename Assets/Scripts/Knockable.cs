@@ -23,6 +23,11 @@ public class Knockable : MonoBehaviour
     // The point at which force is applid
     private Vector3 collidePoint;
 
+    //Audio Engine
+    AudioSource KnockedSound;
+    public AudioClip objectKnock;
+    //private bool alreadyplayed = false;
+
 
     void Start()
     {
@@ -31,6 +36,10 @@ public class Knockable : MonoBehaviour
         // rb.centerOfMass = 0;
         collidePoint = transform.position;// + (rb.centerOfMass + Vector3.up * cl.bounds.size.y * 0.8f);
         pointCollected = false;
+
+        //Audio Engine
+        KnockedSound = GetComponent<AudioSource>();
+        KnockedSound.clip = objectKnock;
     }
 
 
@@ -46,12 +55,18 @@ public class Knockable : MonoBehaviour
       }
   	}
 
+    public void OnCollisionEnter (Collision col)
+    {
+        Debug.Log("hit");
+        KnockedSound.PlayOneShot(objectKnock); 
+        KnockedSound.volume = col.relativeVelocity.magnitude / 45;        
+    }
 
-  //   void Update() {
-  //       rotateTarget = transform.forward;
-  //   	Vector3 dir = Vector3.RotateTowards(transform.forward, rotateTarget, rotateSpeed * Time.deltaTime, 0.0f);
-		// transform.rotation = Quaternion.LookRotation(dir);
-  //       transform.RotateAround(Vector3.zero, Vector3.up, 20 * Time.deltaTime);
-  //   }
+    //   void Update() {
+    //       rotateTarget = transform.forward;
+    //   	Vector3 dir = Vector3.RotateTowards(transform.forward, rotateTarget, rotateSpeed * Time.deltaTime, 0.0f);
+    // transform.rotation = Quaternion.LookRotation(dir);
+    //       transform.RotateAround(Vector3.zero, Vector3.up, 20 * Time.deltaTime);
+    //   }
 
 }
