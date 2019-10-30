@@ -214,6 +214,13 @@ public class HumanController : MonoBehaviour
             canAttack = false;
             attackCooldown = 10.0f;
 
+            //Audio
+            if (canAttack)
+            {
+                WorkerAudio.PlayOneShot(workerStun, 0.8F);
+                //alreadyPlayed = true;
+            }
+
             // Animation
             //anim.Play("kicking");
         }
