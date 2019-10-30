@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start() {}
+    void Start() { }
 
     public void StartGame()
     {
@@ -45,6 +45,14 @@ public class GameManager : MonoBehaviour
         TimerManager.instance?.Reset();
     }
 
+    void Update()
+    {
+        if (!m_raccoon)
+        {
+            m_raccoon = GameObject.FindGameObjectWithTag("Raccoon")?.GetComponent<RaccoonController>();
+        }
+    }
+
     public void TogglePlay()
     {
         if (!m_disableTimer)
@@ -52,10 +60,11 @@ public class GameManager : MonoBehaviour
             TimerManager.instance?.TogglePlay();
         }
         Raccoon?.TogglePlay();
-        foreach(HumanController worker in Workers) {
+        foreach (HumanController worker in Workers)
+        {
             if (worker)
             {
-              worker.TogglePlay();
+                worker.TogglePlay();
             }
         }
         // TODO: Need to Toggle all the objects as well (potentially being knocked over)
