@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Util;
 
 public class RaccoonController : MonoBehaviour
 {
     private CharacterController characterController;
-    public CharacterController Controller { get => characterController; }
+    public CharacterController charController { get => characterController; }
     private Animator animator;
 
     [SerializeField] private Transform cam;
@@ -76,13 +77,13 @@ public class RaccoonController : MonoBehaviour
         if (!isStunned)
         {
             // Movement
-            movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
+            movementVector = (camForward * Controller.GetYAxis() + camRight * Controller.GetXAxis()) * movementSpeed;
 
             // Jump
             if (characterController.isGrounded)
             {
                 movementVector.y = 0;
-                if (GetJump())
+                if (Controller.GetA())
                 {
                     movementVector.y = jumpPower;
                     animator.SetTrigger("jumped");
@@ -126,7 +127,7 @@ public class RaccoonController : MonoBehaviour
 
         // Animation
     	// animator.SetBool("isMoving", true);
-        if (!isStunned && !GetJump() && (GetXAxis() != 0.0f || GetYAxis() != 0.0f))
+        if (!isStunned && !Controller.GetA() && (Controller.GetXAxis() != 0.0f || Controller.GetYAxis() != 0.0f))
         {
         	animator.SetBool("isMoving", true);
         } else
@@ -155,53 +156,6 @@ public class RaccoonController : MonoBehaviour
         }
     }
 
-    private float GetXAxis()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetAxis("LeftJoystickX");
-        }
-        else
-        {
-            return Input.GetAxis("Horizontal");
-        }
-    }
-
-    private float GetYAxis()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return -Input.GetAxis("LeftJoystickY");
-        }
-        else
-        {
-            return Input.GetAxis("Vertical");
-        }
-    }
-
-    private float GetCamXAxis()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetAxis("RightJoystickX");
-        }
-        else
-        {
-            return Input.GetAxis("Mouse X");
-        }
-    }
-
-    private bool GetJump()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("A");
-        }
-        else
-        {
-            return Input.GetKeyDown(KeyCode.Space);
-        }
-    }
 
     public void AddStrengthModifier(float effectOnAttack, float effectOnSpeed)
     {

@@ -92,8 +92,8 @@ public class ObjectManager : MonoBehaviour
 
         // Bottom of controller. Slightly above ground so it doesn't bump into slanted platforms.
         Vector3 p1 = raccoon.transform.position - Vector3.up * 0.20f;
-        Vector3 p2 = p1 + Vector3.up * raccoon.Controller.height;
-        var raycastPaddedDist = raccoon.Controller.radius + raycastPadding;
+        Vector3 p2 = p1 + Vector3.up * raccoon.charController.height;
+        var raycastPaddedDist = raccoon.charController.radius + raycastPadding;
 
         // Update target
         // try to find the closest target
