@@ -134,7 +134,6 @@ public class HumanController : MonoBehaviour
         if (alreadyPlayed && _timer > replayInterval)
         {
             alreadyPlayed = false;
-            // _timer = 0;
         }
 
         seesRaccoon = inFOV(agent, transform, target, maxAngle, maxRadius);
@@ -214,7 +213,6 @@ public class HumanController : MonoBehaviour
             if (!canAttack)
             {
                 stunVO();
-                //alreadyPlayed = true;
             }
 
             // Animation
