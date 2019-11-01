@@ -50,10 +50,16 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void EndGame()
     {
+        Debug.Log("[SceneManager] EndGame");
         AudioManager.instance.StopCurrent();
         AudioManager.instance.Play("MainMenuBGM");
-        Debug.Log("[SceneManager] EndGame");
         SceneManager.LoadScene(GAME_OVER);
+    }
+
+    public void QuitGame()
+    {
+        // Debug.Log("Quit");
+        Application.Quit();
     }
 
 }
