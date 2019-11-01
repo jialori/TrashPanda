@@ -10,6 +10,7 @@ public class HumanController : MonoBehaviour
     public float maxRadius = 15.0f;             // The farthest distance that this human can see
     private float rotationSpeed = 5.0f;         // How fast this human rotates
     private float attackCooldown = 10.0f;       // The cooldown timer for the worker's stun attack
+    public int level;
 
     Vector3 initialPosition;                // Starting position of this human. Will return here after losing sight of raccoon
     public Transform target;                // Human target to be chased (will always be the raccoon)
@@ -62,13 +63,13 @@ public class HumanController : MonoBehaviour
     }
 
     // Determine if the human and the player are on the same floor
-    public static bool onSameFloor(Transform checkingObject, Transform target)
+    public bool onSameFloor(Transform target)
     {
-        return target.position.y - 1 <= checkingObject.position.y && checkingObject.position.y <= target.position.y + 1;
+        return level == target.GetComponent<RaccoonController>().level;
     }
 
     // Determine if the player has been seen by this human
-    public static bool inFOV(NavMeshAgent nav, Transform checkingObject, Transform target, float maxAngle, float maxRadius)
+    public bool inFOV(NavMeshAgent nav, Transform checkingObject, Transform target, float maxAngle, float maxRadius)
     {
         Vector3 directionBetween = (target.position - checkingObject.position).normalized;
         directionBetween.y *= 0;
@@ -88,13 +89,14 @@ public class HumanController : MonoBehaviour
                 NavMeshHit hit;
 
                 // If the player and human are on the same floor
-                if (onSameFloor(checkingObject, target))
+                if (onSameFloor(target))
                 {
                     //Debug.Log(3);
                     // If the human can directly see the player (i.e. line of sight is not blocked by wall or bush)
                     if (!nav.Raycast(target.position, out hit))
                     {
-
+                        Debug.Log("HumanController: Worker level = " + level.ToString() + "Raccoon level = " 
+                            + target.GetComponent<RaccoonController>().level.ToString());
                         return true;
                     }
                 }
@@ -126,7 +128,7 @@ public class HumanController : MonoBehaviour
     {
         if (pause) return;
 
-        if (!onSameFloor(transform, target))
+        if (!onSameFloor(target))
             return;
 
         _timer += Time.deltaTime;
@@ -188,7 +190,7 @@ public class HumanController : MonoBehaviour
         // The human will stop if he is at 'lastKnownLocation' and can't see the raccoon
         if (!seesRaccoon && Vector3.Distance(transform.position, lastKnownLocation) <= 2.5)
         {
-            Debug.Log("Lost Raccoon");
+            //Debug.Log("Lost Raccoon");
             chasing = false;
             searching = true;
             idle = false;

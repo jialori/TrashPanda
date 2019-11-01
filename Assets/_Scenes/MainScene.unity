@@ -2807,7 +2807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &132795338
 Transform:
   m_ObjectHideFlags: 0
@@ -4146,6 +4146,11 @@ PrefabInstance:
       propertyPath: workerchase1
       value: 
       objectReference: {fileID: 8300000, guid: fdac9c53c878f8e43b643f20da79929a, type: 3}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 804164721918991238, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
       propertyPath: m_audioClip
@@ -4799,36 +4804,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: MainCamera
       objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: lookAt
-      value: 
-      objectReference: {fileID: 268866533}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: camTransform
-      value: 
-      objectReference: {fileID: 248203657}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: useController
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 268866533}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: debug.drawDesiredCollisionLines
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
-        type: 3}
-      propertyPath: debug.drawAdjustedCollisionLines
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 26218638340153672, guid: 670360c703b4edb4ab3f84df70f1fa50,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4883,6 +4858,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: lookAt
+      value: 
+      objectReference: {fileID: 268866533}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: camTransform
+      value: 
+      objectReference: {fileID: 248203657}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: useController
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 268866533}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: debug.drawDesiredCollisionLines
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 26218638340153686, guid: 670360c703b4edb4ab3f84df70f1fa50,
+        type: 3}
+      propertyPath: debug.drawAdjustedCollisionLines
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 670360c703b4edb4ab3f84df70f1fa50, type: 3}
@@ -4951,7 +4956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &251470024
 Transform:
   m_ObjectHideFlags: 0
@@ -5960,6 +5965,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor2-Worker
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: 5e024c15eae747241bad358ec4f0220a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: 5e024c15eae747241bad358ec4f0220a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6020,6 +6030,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 5e024c15eae747241bad358ec4f0220a,
+        type: 3}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e024c15eae747241bad358ec4f0220a, type: 3}
 --- !u!4 &310956533 stripped
@@ -7885,7 +7900,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1069488
+  m_Name: pb_Mesh16370
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8120,6 +8135,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 7ebc85674353b3b48a2c83c5fcd76024,
+        type: 3}
+      propertyPath: level
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ebc85674353b3b48a2c83c5fcd76024, type: 3}
 --- !u!4 &425275607 stripped
@@ -8213,7 +8233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &442188868
 Transform:
   m_ObjectHideFlags: 0
@@ -8501,7 +8521,7 @@ PrefabInstance:
     - target: {fileID: 4431350304345199992, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
@@ -8568,6 +8588,11 @@ PrefabInstance:
       propertyPath: workerchase1
       value: 
       objectReference: {fileID: 8300000, guid: 5d1c01ba9bec787469be66bef8cbd5b4, type: 3}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 804164721918991238, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
       propertyPath: m_audioClip
@@ -9386,7 +9411,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1068348
+  m_Name: pb_Mesh15228
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10686,6 +10711,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor4-Worker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: 7ebc85674353b3b48a2c83c5fcd76024,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: 7ebc85674353b3b48a2c83c5fcd76024,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10746,6 +10776,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 7ebc85674353b3b48a2c83c5fcd76024,
+        type: 3}
+      propertyPath: level
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ebc85674353b3b48a2c83c5fcd76024, type: 3}
 --- !u!4 &634697344 stripped
@@ -10776,7 +10811,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1068888
+  m_Name: pb_Mesh15770
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15119,7 +15154,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1068516
+  m_Name: pb_Mesh15396
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18374,6 +18409,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor2-Worker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: 5e024c15eae747241bad358ec4f0220a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: 5e024c15eae747241bad358ec4f0220a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18434,6 +18474,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 5e024c15eae747241bad358ec4f0220a,
+        type: 3}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e024c15eae747241bad358ec4f0220a, type: 3}
 --- !u!4 &1126322834 stripped
@@ -18608,6 +18653,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: c5a900f7c275e74438cba8ab07f28495,
+        type: 3}
+      propertyPath: level
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5a900f7c275e74438cba8ab07f28495, type: 3}
 --- !u!4 &1140079736 stripped
@@ -19359,6 +19409,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor3-Worker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: 5f728faf8f51936488450397b95db7aa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: 5f728faf8f51936488450397b95db7aa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19429,6 +19484,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 5f728faf8f51936488450397b95db7aa,
+        type: 3}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f728faf8f51936488450397b95db7aa, type: 3}
 --- !u!4 &1205407051 stripped
@@ -20224,6 +20284,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 5f728faf8f51936488450397b95db7aa,
+        type: 3}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f728faf8f51936488450397b95db7aa, type: 3}
 --- !u!4 &1287670316 stripped
@@ -20329,7 +20394,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1069442
+  m_Name: pb_Mesh16324
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20694,7 +20759,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1068960
+  m_Name: pb_Mesh15842
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21017,7 +21082,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1069466
+  m_Name: pb_Mesh16348
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26149,26 +26214,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 958635279}
     m_Modifications:
-    - target: {fileID: 9092096543251294381, guid: 6becc9922cb77294da1c2e1b1e271599,
-        type: 3}
-      propertyPath: m_Name
-      value: Level 5 Stair Slab Down
-      objectReference: {fileID: 0}
-    - target: {fileID: 9092096543251294381, guid: 6becc9922cb77294da1c2e1b1e271599,
-        type: 3}
-      propertyPath: m_TagString
-      value: DownStair
-      objectReference: {fileID: 0}
-    - target: {fileID: 9092096543251294381, guid: 6becc9922cb77294da1c2e1b1e271599,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014195263808155191, guid: 6becc9922cb77294da1c2e1b1e271599,
-        type: 3}
-      propertyPath: floor
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 9092096543251294418, guid: 6becc9922cb77294da1c2e1b1e271599,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26223,6 +26268,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092096543251294381, guid: 6becc9922cb77294da1c2e1b1e271599,
+        type: 3}
+      propertyPath: m_Name
+      value: Level 5 Stair Slab Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092096543251294381, guid: 6becc9922cb77294da1c2e1b1e271599,
+        type: 3}
+      propertyPath: m_TagString
+      value: DownStair
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092096543251294381, guid: 6becc9922cb77294da1c2e1b1e271599,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014195263808155191, guid: 6becc9922cb77294da1c2e1b1e271599,
+        type: 3}
+      propertyPath: floor
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9092096543251294422, guid: 6becc9922cb77294da1c2e1b1e271599,
         type: 3}
@@ -30750,7 +30815,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1069794
+  m_Name: pb_Mesh16686
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -31462,7 +31527,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1068942
+  m_Name: pb_Mesh15824
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -32256,7 +32321,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1068384
+  m_Name: pb_Mesh15264
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33072,6 +33137,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor5-Worker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: c5a900f7c275e74438cba8ab07f28495,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: c5a900f7c275e74438cba8ab07f28495,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33132,6 +33202,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: c5a900f7c275e74438cba8ab07f28495,
+        type: 3}
+      propertyPath: level
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5a900f7c275e74438cba8ab07f28495, type: 3}
 --- !u!4 &1901584555 stripped
@@ -33487,7 +33562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1931250073
 Transform:
   m_ObjectHideFlags: 0
@@ -34311,7 +34386,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh1068486
+  m_Name: pb_Mesh15366
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
