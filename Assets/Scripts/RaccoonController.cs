@@ -126,7 +126,6 @@ public class RaccoonController : MonoBehaviour
         }
 
         // Animation
-    	// animator.SetBool("isMoving", true);
         if (!isStunned && !Controller.GetA() && (Controller.GetXAxis() != 0.0f || Controller.GetYAxis() != 0.0f))
         {
         	animator.SetBool("isMoving", true);

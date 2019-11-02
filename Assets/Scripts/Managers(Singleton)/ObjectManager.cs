@@ -147,7 +147,7 @@ public class ObjectManager : MonoBehaviour
         }
 
         // interact if interact button is pressed
-        if (!raccoon.isStunned && GetInteract()) Interact();
+        if (!raccoon.isStunned && Controller.GetB()) Interact();
 
         if (target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
         {
@@ -161,13 +161,13 @@ public class ObjectManager : MonoBehaviour
             var raccoon = GameManager.instance.Raccoon;
             var stair = target.GetComponent<Stair>();
             if (stair == null) return;
-            if (GetStairUp() && stair.GetFloor() != 5)
+            if (Controller.GetX() && stair.GetFloor() != 5)
             {
                 raccoon.UseStairs(true);
                 stairMenuOpen = false;
                 stairMenu.Hide();
             }
-            else if (GetStairDown() && stair.GetFloor() != 1)
+            else if (Controller.GetY() && stair.GetFloor() != 1)
             {
                 raccoon.UseStairs(false);
                 stairMenuOpen = false;
@@ -243,41 +243,6 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    private bool GetInteract()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("B");
-        }
-        else
-        {
-            return Input.GetKeyDown("e");
-        }
-    }
-
-    private bool GetStairUp()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("X");
-        }
-        else
-        {
-            return Input.GetKeyDown("x");
-        }
-    }
-
-    private bool GetStairDown()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("Y");
-        }
-        else
-        {
-            return Input.GetKeyDown("y");
-        }
-    }
 
     void EnableOutline(GameObject c)
     {
