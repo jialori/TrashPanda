@@ -102,10 +102,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4748074072125256428}
-  - component: {fileID: 6484862228796301745}
   - component: {fileID: 1463998524357111067}
   - component: {fileID: 995464215}
   - component: {fileID: 995464216}
+  - component: {fileID: 743062463}
+  - component: {fileID: 5255098257410295114}
   m_Layer: 11
   m_Name: hammer
   m_TagString: Untagged
@@ -128,22 +129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6484862228796301745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8628850632395211007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af5d975435636c54080e73a2d167a9cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  toolType: hammer
-  effectOnAttack: 10
-  effectOnSpeed: -3
 --- !u!54 &1463998524357111067
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -196,3 +181,32 @@ MonoBehaviour:
   bakeKeys: []
   bakeValues: []
   highlightOn: 0
+--- !u!114 &743062463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628850632395211007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bff89796b2646d419eeb9ee2311ce75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolType: Hammer
+  effectOnAttack: 10
+  effectOnSpeed: -5
+--- !u!64 &5255098257410295114
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628850632395211007}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 0}

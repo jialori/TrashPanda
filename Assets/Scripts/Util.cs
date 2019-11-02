@@ -16,6 +16,41 @@ namespace Util
 		    }
 		}
 
+	    public static bool GetB()
+	    {
+	        if (GameManager.instance.UseController)
+	        {
+	            return Input.GetButtonDown("B");
+	        }
+	        else
+	        {
+	            return Input.GetKeyDown("e");
+	        }
+	    }
+
+        public static bool GetX()
+	    {
+	        if (GameManager.instance.UseController)
+	        {
+	            return Input.GetButtonDown("X");
+	        }
+	        else
+	        {
+	            return Input.GetKeyDown("x");
+	        }
+	    }
+
+	    public static bool GetY()
+	    {
+	        if (GameManager.instance.UseController)
+	        {
+	            return Input.GetButtonDown("Y");
+	        }
+	        else
+	        {
+	            return Input.GetKeyDown("y");
+	        }
+	    }
 
 		public static bool GetPause()
 		{

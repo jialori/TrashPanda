@@ -23,7 +23,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 3760d6510efd41f4f93823ea0f91abce,
         type: 3}
       propertyPath: m_Name
-      value: CementWallDoor Variant
+      value: CementWallPillar
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3760d6510efd41f4f93823ea0f91abce,
         type: 3}
@@ -95,6 +95,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 3760d6510efd41f4f93823ea0f91abce,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0025a3765a715d478454d4944c3a95d, type: 2}
     - target: {fileID: -5178661895559278292, guid: 3760d6510efd41f4f93823ea0f91abce,
         type: 3}
       propertyPath: m_Mesh

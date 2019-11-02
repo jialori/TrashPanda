@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Util;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -19,7 +20,9 @@ public class ObjectManager : MonoBehaviour
     private int knockableMask;
     private int toolsMask;
     private int interactableMask;
+
     private bool stairMenuOpen;
+    public static Tool curTool;
 
     [Header("Detection (Outline, for all items)")]
     [SerializeField] private float detectDist;
@@ -35,9 +38,11 @@ public class ObjectManager : MonoBehaviour
     private RaccoonController raccoon;
     private bool startUp = false;
 
+    public bool verboseMode = true;
+
     void Awake()
     {
-        Debug.Log("[ObjectManager] Awake");
+        if (verboseMode) if (verboseMode) Debug.Log("[ObjectManager] Awake");
         if (instance != null)
         {
             Destroy(gameObject);
@@ -51,7 +56,7 @@ public class ObjectManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("[ObjectManager] Start");
+        if (verboseMode) Debug.Log("[ObjectManager] Start");
 
         raccoon = GameManager.instance.Raccoon;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
@@ -64,13 +69,13 @@ public class ObjectManager : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("[ObjectManager] Update");
+        if (verboseMode) Debug.Log("[ObjectManager] Update");
 
         if (!raccoon)
         {
             if (!GameManager.instance.Raccoon)
             {
-                Debug.Log("[ObjectManager] No Raccon");
+                if (verboseMode) Debug.Log("[ObjectManager] No Raccon");
                 return;
 
             }
@@ -105,10 +110,12 @@ public class ObjectManager : MonoBehaviour
             // knockable layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist * 3, knockableMask))
             {
+                if (verboseMode) Debug.Log("[ObjectManager] target is Knockable");
                 inRangeKnockables.Add(hit.collider.gameObject);
             }
 
             // current target selected according to precedence: interactable > tools > breakable
+            // ^ not really, the statement is true for each iteration, but not so overall  
 
             // breakable layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, breakableMask))
@@ -116,7 +123,7 @@ public class ObjectManager : MonoBehaviour
                 if (hit.distance < targetDist && (target == null || target.GetComponent<Breakable>() != null))
                 {
                     target = hit.collider.gameObject;
-                    //Debug.Log("[ObjectManager] target is Breakable");
+                    //if (verboseMode) Debug.Log("[ObjectManager] target is Breakable");
                     targetDist = hit.distance;
                 }
             }
@@ -124,10 +131,12 @@ public class ObjectManager : MonoBehaviour
             // tools layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, toolsMask))
             {
-                if (hit.distance < targetDist && target?.GetComponent<ToolController>() == null)
+                if (verboseMode) Debug.Log("[ObjectManager] hit something");
+                // if (verboseMode) Debug.Log(hit.collider.gameObject.name);
+                if (hit.distance < targetDist && hit.collider.gameObject.GetComponent<Tool>() != null)
                 {
+                    if (verboseMode) Debug.Log("[ObjectManager] target is Tool");
                     target = hit.collider.gameObject;
-                    //Debug.Log("[ObjectManager] target is Tool");
                     targetDist = hit.distance;
                 }
             }
@@ -139,7 +148,7 @@ public class ObjectManager : MonoBehaviour
                 if (hit.distance < targetDist)
                 {
                     target = hit.collider.gameObject;
-                    // Debug.Log("[ObjectManager] target is Stair");
+                    // if (verboseMode) Debug.Log("[ObjectManager] target is Stair");
                     targetDist = hit.distance;
                 }
 
@@ -147,7 +156,7 @@ public class ObjectManager : MonoBehaviour
         }
 
         // interact if interact button is pressed
-        if (!raccoon.isStunned && GetInteract()) Interact();
+        if (!raccoon.isStunned && Controller.GetB()) Interact();
 
         if (target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
         {
@@ -161,13 +170,13 @@ public class ObjectManager : MonoBehaviour
             var raccoon = GameManager.instance.Raccoon;
             var stair = target.GetComponent<Stair>();
             if (stair == null) return;
-            if (GetStairUp() && stair.GetFloor() != 5)
+            if (Controller.GetX() && stair.GetFloor() != 5)
             {
                 raccoon.UseStairs(true);
                 stairMenuOpen = false;
                 stairMenu.Hide();
             }
-            else if (GetStairDown() && stair.GetFloor() != 1)
+            else if (Controller.GetY() && stair.GetFloor() != 1)
             {
                 raccoon.UseStairs(false);
                 stairMenuOpen = false;
@@ -181,7 +190,7 @@ public class ObjectManager : MonoBehaviour
             Breakable breakableTarget = target.GetComponent<Breakable>();
             if (breakableTarget != null)
             {
-                //Debug.Log("[ObjectManager] target is breakable");
+                if (verboseMode) Debug.Log("[ObjectManager] target is breakable");
                 healthBar.SetActive(true);
                 healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
             }
@@ -207,21 +216,21 @@ public class ObjectManager : MonoBehaviour
 
     void Interact()
     {
-        //Debug.Log("[ObjectManager] Interact");
+        if (verboseMode) Debug.Log("[ObjectManager] Interact");
         // triggered when interaction button is pressed
         if (target == null)
         {
-            Debug.Log("No target");
+            if (verboseMode) Debug.Log("No target");
             return;
         }
 
-        //Debug.Log("Has target");
+        if (verboseMode) Debug.Log("Has target");
 
         // attack target if target breakable
         var breakableTarget = target.GetComponent<Breakable>();
         if ((breakableTarget != null) && (Time.time > raccoon.nextHit))
         {
-            //Debug.Log("Breakable target");
+            if (verboseMode) Debug.Log("Breakable target");
             raccoon.nextHit = Time.time + raccoon.HitRate;
             breakableTarget.trigger(raccoon.AttackPower);
         }
@@ -229,7 +238,7 @@ public class ObjectManager : MonoBehaviour
         var stairTarget = target.GetComponent<Stair>();
         if ((stairTarget != null))
         {
-            //Debug.Log("Stair target");
+            if (verboseMode) Debug.Log("Stair target");
             if (!stairMenuOpen)
             {
                 stairMenuOpen = true;
@@ -241,43 +250,17 @@ public class ObjectManager : MonoBehaviour
                 stairMenu.Hide();
             }
         }
-    }
 
-    private bool GetInteract()
-    {
-        if (GameManager.instance.UseController)
+        var toolTarget = target.GetComponent<Tool>();
+        if ((toolTarget != null))
         {
-            return Input.GetButtonDown("B");
-        }
-        else
-        {
-            return Input.GetKeyDown("e");
+            if (verboseMode) Debug.Log("Tool target");
+            if (curTool != null) curTool.Activate();
+            toolTarget.Activate();
+            curTool = toolTarget;
         }
     }
 
-    private bool GetStairUp()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("X");
-        }
-        else
-        {
-            return Input.GetKeyDown("x");
-        }
-    }
-
-    private bool GetStairDown()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("Y");
-        }
-        else
-        {
-            return Input.GetKeyDown("y");
-        }
-    }
 
     void EnableOutline(GameObject c)
     {
