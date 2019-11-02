@@ -5,7 +5,7 @@ using Util;
 
 public class Tool : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     private RaccoonController playerScript;
     private Rigidbody rb;
     public string toolType;
