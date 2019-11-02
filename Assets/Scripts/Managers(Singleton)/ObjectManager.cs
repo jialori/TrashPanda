@@ -64,7 +64,7 @@ public class ObjectManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("[ObjectManager] Update");
+        //Debug.Log("[ObjectManager] Update");
 
         if (!raccoon)
         {
@@ -127,7 +127,7 @@ public class ObjectManager : MonoBehaviour
                 if (hit.distance < targetDist && target?.GetComponent<ToolController>() == null)
                 {
                     target = hit.collider.gameObject;
-                    Debug.Log("[ObjectManager] target is Tool");
+                    //Debug.Log("[ObjectManager] target is Tool");
                     targetDist = hit.distance;
                 }
             }
@@ -181,7 +181,7 @@ public class ObjectManager : MonoBehaviour
             Breakable breakableTarget = target.GetComponent<Breakable>();
             if (breakableTarget != null)
             {
-                Debug.Log("[ObjectManager] target is breakable");
+                //Debug.Log("[ObjectManager] target is breakable");
                 healthBar.SetActive(true);
                 healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
             }
@@ -207,7 +207,7 @@ public class ObjectManager : MonoBehaviour
 
     void Interact()
     {
-        Debug.Log("[ObjectManager] Interact");
+        //Debug.Log("[ObjectManager] Interact");
         // triggered when interaction button is pressed
         if (target == null)
         {
@@ -215,13 +215,13 @@ public class ObjectManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("Has target");
+        //Debug.Log("Has target");
 
         // attack target if target breakable
         var breakableTarget = target.GetComponent<Breakable>();
         if ((breakableTarget != null) && (Time.time > raccoon.nextHit))
         {
-            Debug.Log("Breakable target");
+            //Debug.Log("Breakable target");
             raccoon.nextHit = Time.time + raccoon.HitRate;
             breakableTarget.trigger(raccoon.AttackPower);
         }
@@ -229,7 +229,7 @@ public class ObjectManager : MonoBehaviour
         var stairTarget = target.GetComponent<Stair>();
         if ((stairTarget != null))
         {
-            Debug.Log("Stair target");
+            //Debug.Log("Stair target");
             if (!stairMenuOpen)
             {
                 stairMenuOpen = true;
