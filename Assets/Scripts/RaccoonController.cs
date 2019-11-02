@@ -30,6 +30,8 @@ public class RaccoonController : MonoBehaviour
     [SerializeField] public float hitRate = 0.5f;
     public float HitRate { get => hitRate; }
 
+    public int level;
+
     private Vector3 movementVector;
 
     // For interaction with Breakable and Knockable
@@ -72,6 +74,28 @@ public class RaccoonController : MonoBehaviour
         camForward = camForward.normalized;
         camRight = camRight.normalized;
         var prevY = movementVector.y;
+
+        if (transform.position.y < 7)
+        {
+            level = 1;
+        }
+        else if (7 <= transform.position.y && transform.position.y < 14)
+        {
+            level = 2;
+        }
+        else if (14 <= transform.position.y && transform.position.y < 21)
+        {
+            level = 3;
+        }
+        else if (21 <= transform.position.y && transform.position.y < 28)
+        {
+            level = 4;
+        }
+        else
+        {
+            level = 5;
+        }
+        //Debug.Log("RaccoonController: Level = " + level.ToString() + "position.y = " + transform.position.y.ToString());
 
         // If the raccoon is stunned, she cannot move, jump or break objects
         if (!isStunned)

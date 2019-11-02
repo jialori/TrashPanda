@@ -7,6 +7,7 @@ public class CentralHumanController : MonoBehaviour
     public Transform target;                    // Human target to be chased (will always be the raccoon)
     List<HumanController> humans;               // List of humans currently in the game
     public bool spotted = false;                // Flag determining if the raccoon has been spotted
+    bool onSameFloor;
 
     // Intermediate variables
     GameObject[] H;
@@ -49,7 +50,7 @@ public class CentralHumanController : MonoBehaviour
             for (int i = 0; i < humans.Count; i++)
             {
                 //Debug.Log("2: " + i);
-                if (HumanController.onSameFloor(humans[i].transform, target))
+                if (humans[i].onSameFloor(target))
                 {
                     humans[i].lastKnownLocation = target.position;
                 }

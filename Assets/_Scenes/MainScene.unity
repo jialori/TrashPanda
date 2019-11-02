@@ -2644,7 +2644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &132795338
 Transform:
   m_ObjectHideFlags: 0
@@ -4138,6 +4138,11 @@ PrefabInstance:
       propertyPath: workerchase1
       value: 
       objectReference: {fileID: 8300000, guid: fdac9c53c878f8e43b643f20da79929a, type: 3}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 804164721918991238, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
       propertyPath: m_audioClip
@@ -4943,7 +4948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &251470024
 Transform:
   m_ObjectHideFlags: 0
@@ -5937,6 +5942,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor2-Worker
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: 5e024c15eae747241bad358ec4f0220a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: 5e024c15eae747241bad358ec4f0220a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5997,6 +6007,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 5e024c15eae747241bad358ec4f0220a,
+        type: 3}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e024c15eae747241bad358ec4f0220a, type: 3}
 --- !u!4 &310956533 stripped
@@ -8097,6 +8112,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 7ebc85674353b3b48a2c83c5fcd76024,
+        type: 3}
+      propertyPath: level
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ebc85674353b3b48a2c83c5fcd76024, type: 3}
 --- !u!4 &425275607 stripped
@@ -8190,7 +8210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &442188868
 Transform:
   m_ObjectHideFlags: 0
@@ -8478,7 +8498,7 @@ PrefabInstance:
     - target: {fileID: 4431350304345199992, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
@@ -8545,6 +8565,11 @@ PrefabInstance:
       propertyPath: workerchase1
       value: 
       objectReference: {fileID: 8300000, guid: 5d1c01ba9bec787469be66bef8cbd5b4, type: 3}
+    - target: {fileID: -8026170521396705519, guid: ab287cf4986bbe64fb0dcc81b08bae22,
+        type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 804164721918991238, guid: ab287cf4986bbe64fb0dcc81b08bae22,
         type: 3}
       propertyPath: m_audioClip
@@ -10678,6 +10703,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor4-Worker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: 7ebc85674353b3b48a2c83c5fcd76024,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: 7ebc85674353b3b48a2c83c5fcd76024,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10738,6 +10768,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 7ebc85674353b3b48a2c83c5fcd76024,
+        type: 3}
+      propertyPath: level
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ebc85674353b3b48a2c83c5fcd76024, type: 3}
 --- !u!4 &634697344 stripped
@@ -18535,6 +18570,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor2-Worker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: 5e024c15eae747241bad358ec4f0220a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: 5e024c15eae747241bad358ec4f0220a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18595,6 +18635,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 5e024c15eae747241bad358ec4f0220a,
+        type: 3}
+      propertyPath: level
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e024c15eae747241bad358ec4f0220a, type: 3}
 --- !u!4 &1126322834 stripped
@@ -18754,6 +18799,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: c5a900f7c275e74438cba8ab07f28495,
+        type: 3}
+      propertyPath: level
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5a900f7c275e74438cba8ab07f28495, type: 3}
 --- !u!4 &1140079736 stripped
@@ -19505,6 +19555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor3-Worker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: 5f728faf8f51936488450397b95db7aa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: 5f728faf8f51936488450397b95db7aa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19575,6 +19630,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 5f728faf8f51936488450397b95db7aa,
+        type: 3}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f728faf8f51936488450397b95db7aa, type: 3}
 --- !u!4 &1205407051 stripped
@@ -20370,6 +20430,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: 5f728faf8f51936488450397b95db7aa,
+        type: 3}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f728faf8f51936488450397b95db7aa, type: 3}
 --- !u!4 &1287670316 stripped
@@ -32930,6 +32995,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor5-Worker (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4431350304345199992, guid: c5a900f7c275e74438cba8ab07f28495,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 802775736531707755, guid: c5a900f7c275e74438cba8ab07f28495,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32990,6 +33060,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 268866533}
+    - target: {fileID: -8026170521396705519, guid: c5a900f7c275e74438cba8ab07f28495,
+        type: 3}
+      propertyPath: level
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5a900f7c275e74438cba8ab07f28495, type: 3}
 --- !u!4 &1901584555 stripped
@@ -33345,7 +33420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1931250073
 Transform:
   m_ObjectHideFlags: 0
