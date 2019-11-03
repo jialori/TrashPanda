@@ -266,7 +266,7 @@ public class HumanController : MonoBehaviour
         // The human will return to his original position if he can't find the raccoon
         if (idle)
         {
-            if (initialPosition.x - 1 <= transform.position.x && transform.position.x <= initialPosition.x + 1)
+            if (initialPosition.x - 1 <= transform.position.x && transform.position.x <= initialPosition.x + 1 && initialPosition.z - 1 <= transform.position.z && transform.position.z <= initialPosition.z + 1)
             {
                 Debug.Log("Now rotating to initial direction");
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, initialDirection, rotationSpeed);
