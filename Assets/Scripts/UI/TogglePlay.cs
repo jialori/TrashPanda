@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Util;
 
 public class TogglePlay : MonoBehaviour
 {
@@ -18,8 +19,8 @@ public class TogglePlay : MonoBehaviour
     void Update()
     {
         bool _validInput = false;
-        if (GetTogglePlay() ||
-            (GetA() && pauseMenu.activeSelf && es?.currentSelectedGameObject?.GetComponent<Button>()))
+        if (Controller.GetPause() ||
+            (Controller.GetA() && pauseMenu.activeSelf && es?.currentSelectedGameObject?.GetComponent<Button>()))
         {
             _validInput = true;
         }
@@ -31,27 +32,4 @@ public class TogglePlay : MonoBehaviour
         }
     }
 
-    private bool GetTogglePlay()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("Pause");
-        }
-        else
-        {
-            return Input.GetKeyDown(KeyCode.Escape);
-        }
-    }
-
-    private bool GetA()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("A");
-        }
-        else
-        {
-            return Input.GetKeyDown(KeyCode.Space);
-        }
-    }
 }

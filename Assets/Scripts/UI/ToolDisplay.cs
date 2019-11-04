@@ -5,14 +5,14 @@ public class ToolDisplay : MonoBehaviour
 {
     public Text toolDisplay;
 
-    public ToolController tool;
+    public Tool tool;
     private string tType;
 
 
     void Update()
     {
         // Display Tool Text;
-        tool = ToolController.toolInHand;
+        tool = ObjectManager.curTool;
         if (tool != null)
         {
             tType = tool.toolType;

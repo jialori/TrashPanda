@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 3760d6510efd41f4f93823ea0f91abce, type: 3}
+  - {fileID: 2100000, guid: f0025a3765a715d478454d4944c3a95d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalHealth: 10
-  health: 0
+  scorePoint: 0
 --- !u!64 &2016238058164037799
 MeshCollider:
   m_ObjectHideFlags: 0

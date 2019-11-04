@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using Util;
 
 public class RaccoonController : MonoBehaviour
 {
     private CharacterController characterController;
-    public CharacterController Controller { get => characterController; }
+    public CharacterController charController { get => characterController; }
     private Animator animator;
 
     [SerializeField] private Transform cam;
@@ -28,6 +29,8 @@ public class RaccoonController : MonoBehaviour
     [SerializeField] public float nextHit;
     [SerializeField] public float hitRate = 0.5f;
     public float HitRate { get => hitRate; }
+
+    public int level;
 
     private Vector3 movementVector;
 
@@ -72,17 +75,39 @@ public class RaccoonController : MonoBehaviour
         camRight = camRight.normalized;
         var prevY = movementVector.y;
 
+        if (transform.position.y < 7)
+        {
+            level = 1;
+        }
+        else if (7 <= transform.position.y && transform.position.y < 14)
+        {
+            level = 2;
+        }
+        else if (14 <= transform.position.y && transform.position.y < 21)
+        {
+            level = 3;
+        }
+        else if (21 <= transform.position.y && transform.position.y < 28)
+        {
+            level = 4;
+        }
+        else
+        {
+            level = 5;
+        }
+        //Debug.Log("RaccoonController: Level = " + level.ToString() + "position.y = " + transform.position.y.ToString());
+
         // If the raccoon is stunned, she cannot move, jump or break objects
         if (!isStunned)
         {
             // Movement
-            movementVector = (camForward * GetYAxis() + camRight * GetXAxis()) * movementSpeed;
+            movementVector = (camForward * Controller.GetYAxis() + camRight * Controller.GetXAxis()) * movementSpeed;
 
             // Jump
             if (characterController.isGrounded)
             {
                 movementVector.y = 0;
-                if (GetJump())
+                if (Controller.GetA())
                 {
                     movementVector.y = jumpPower;
                     animator.SetTrigger("jumped");
@@ -125,8 +150,7 @@ public class RaccoonController : MonoBehaviour
         }
 
         // Animation
-    	// animator.SetBool("isMoving", true);
-        if (!isStunned && !GetJump() && (GetXAxis() != 0.0f || GetYAxis() != 0.0f))
+        if (!isStunned && !Controller.GetA() && (Controller.GetXAxis() != 0.0f || Controller.GetYAxis() != 0.0f))
         {
         	animator.SetBool("isMoving", true);
         } else
@@ -155,53 +179,6 @@ public class RaccoonController : MonoBehaviour
         }
     }
 
-    private float GetXAxis()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetAxis("LeftJoystickX");
-        }
-        else
-        {
-            return Input.GetAxis("Horizontal");
-        }
-    }
-
-    private float GetYAxis()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return -Input.GetAxis("LeftJoystickY");
-        }
-        else
-        {
-            return Input.GetAxis("Vertical");
-        }
-    }
-
-    private float GetCamXAxis()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetAxis("RightJoystickX");
-        }
-        else
-        {
-            return Input.GetAxis("Mouse X");
-        }
-    }
-
-    private bool GetJump()
-    {
-        if (GameManager.instance.UseController)
-        {
-            return Input.GetButtonDown("A");
-        }
-        else
-        {
-            return Input.GetKeyDown(KeyCode.Space);
-        }
-    }
 
     public void AddStrengthModifier(float effectOnAttack, float effectOnSpeed)
     {

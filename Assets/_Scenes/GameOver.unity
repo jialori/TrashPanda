@@ -156,8 +156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -35}
-  m_SizeDelta: {x: 316.1, y: 177.29999}
+  m_AnchoredPosition: {x: 288, y: -135}
+  m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87906405
 MonoBehaviour:
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8490566, g: 0.40650588, b: 0.27634388, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &126566125
 RectTransform:
   m_ObjectHideFlags: 0
@@ -553,7 +553,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -130.9}
+  m_AnchoredPosition: {x: 0, y: -111.399994}
   m_SizeDelta: {x: 121.5, y: 49.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1172656731
@@ -683,7 +683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -72.5}
+  m_AnchoredPosition: {x: 0, y: -53}
   m_SizeDelta: {x: 121.5, y: 49.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1426700878
@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -943,6 +943,166 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1647257042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1647257043}
+  - component: {fileID: 1647257046}
+  - component: {fileID: 1647257045}
+  - component: {fileID: 1647257044}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1647257043
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647257042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1720454727}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -193, y: 0}
+  m_SizeDelta: {x: 200, y: 350}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1647257044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647257042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83753efe4e8d33d469fea23fa9988e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayTxt: {fileID: 1647257045}
+  fullText: "Lorem ipsum dolor sit amet,\nconsectetuer adipiscing elit. \nDonec placerat
+    nisl quis orci. Nullam congue libero sed wisi.\r\n    Vestibulum venenatis, elit
+    semper fringilla fermentum, \nnisl ligula aliquam justo, in cursus massa libero
+    et lectus. \nAliquam augue dui, lacinia a, vestibulum at, tristique eget, purus.\r\n
+    \   In arcu neque, rutrum vitae, scelerisque vel, interdum et, erat. Phasellus
+    magna dui, sagittis a, consequat et, convallis non, nisl. Nullam semper ligula
+    quis enim.\r\n    Quisque a dui eget est iaculis porttitor. Duis faucibus facilisis
+    tortor. Nullam wisi. Maecenas pharetra.\r\n    Sed dignissim. Proin sodales blandit
+    elit. Duis cursus. Class aptent taciti sociosqu ad litora torquent per conubia
+    nostra, per inceptos hymenaeos. Donec faucibus eros et orci. Phasellus est tellus,
+    volutpat ac, malesuada a, facilisis id, elit. In velit augue, euismod eget, tincidunt
+    sed, ornare in, dolor. Mauris auctor.\r\n    Praesent dapibus. Duis ac felis.
+    Vestibulum ut massa. Vestibulum semper eros.\r\n    Suspendisse molestie lorem
+    non dui. Fusce enim. Mauris vulputate. Vestibulum ante ipsum primis in faucibus
+    orci luctus et ultrices posuere cubilia Curae; Sed vel nibh.\r\n    Aenean massa.
+    Nullam volutpat mattis lacus. Cras in massa. Duis euismod pede id elit. Donec
+    aliquet dignissim libero. Donec arcu erat, ultricies sed, ultrices vel, convallis
+    non, elit. Curabitur arcu turpis, facilisis vel, ultrices semper, dictum eu, erat.
+    Nunc semper fringilla ligula. Sed sagittis rutrum arcu. Vivamus aliquam pede at
+    nisl. Vivamus rhoncus. Proin at purus. Quisque sed orci.\r\n    Morbi quis lectus.
+    Nullam placerat luctus orci. Nulla vitae sapien. Sed mollis est eget odio.\r\n
+    \   Vivamus libero augue, varius eu, facilisis et, tempus et, ipsum. Pellentesque
+    ut risus ac dolor vulputate pulvinar. Quisque eleifend lectus at urna. Maecenas
+    pulvinar. Nullam consectetuer interdum lorem. Sed mauris. Maecenas pulvinar. Nunc
+    ligula tortor, tempus sit amet, malesuada id, fermentum non, nulla. Nullam molestie
+    pede sit amet nibh.\r\n    Vivamus non felis. Sed ullamcorper. In facilisis magna
+    ac velit. Duis ac magna. Nulla facilisi. Sed nisl urna, sodales ut, rhoncus vel,
+    commodo in, libero. Nulla condimentum tincidunt turpis.\r\n    Donec quis justo
+    sed enim tincidunt bibendum. Morbi malesuada, dolor ac facilisis convallis, sem
+    lorem nonummy mi, semper feugiat eros dolor sed diam. Quisque id nulla.\r\n    Phasellus
+    vitae tortor. Maecenas facilisis egestas velit. Suspendisse justo lorem, pretium
+    id, vulputate semper, elementum eget, odio.\r\n    Ut eget metus a arcu dignissim
+    fringilla. Maecenas vel diam vitae justo varius scelerisque.\r\n    Nulla venenatis
+    sodales est. Suspendisse potenti. Suspendisse risus. Donec tempus commodo dolor.
+    Sed vitae dui. Integer semper interdum pede.\r\n    Mauris auctor. Vivamus orci.
+    Integer diam massa, accumsan ut, mollis semper, fermentum id, ipsum. Maecenas
+    ultrices, nibh a suscipit vehicula, ipsum massa pretium ligula, id eleifend pede
+    sem vel enim. Donec eget quam at lorem scelerisque gravida. Suspendisse a erat.
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+    hymenaeos. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+    ridiculus mus. Phasellus quis quam vel nibh feugiat vestibulum. Nullam eleifend
+    libero sit amet ipsum.\r\n    Maecenas justo tortor, dapibus id, viverra id, sollicitudin
+    vel, sem. Curabitur dictum quam sit amet felis.\r\n    Nam gravida. Morbi rutrum
+    elit at est. Vestibulum id wisi id dolor aliquet congue. Aliquam varius velit
+    eget dolor. Nam lacinia pretium lorem.\r\n    Morbi sodales dignissim risus. Phasellus
+    adipiscing. Mauris ipsum metus, vulputate vitae, laoreet id, consequat id, turpis.
+    Duis semper risus.\r\n    Fusce non nulla. Mauris mauris pede, interdum sed, dapibus
+    et, blandit id, libero. Proin vestibulum lectus non est. Morbi aliquam nulla sit
+    amet pede. Morbi lacinia, leo sed rhoncus commodo, felis dui suscipit metus, eu
+    viverra nisl dolor in elit. Sed erat.\r\n    In viverra commodo lorem. Cras\n
+    \   Nulla adipiscing, orci eu fermentum aliquet, felis magna ullamcorper leo,
+    vel accumsan erat sapien at diam. Suspendisse potenti. Phasellus vel wisi quis
+    quam hendrerit egestas. Cras wisi.\r\n    Nulla vel dui. Donec enim tellus, rutrum
+    eu, vestibulum a, porttitor a, arcu. Nam interdum libero in odio. Maecenas ac
+    lorem quis sapien adipiscing faucibus.\r\n    Sed felis mi, accumsan at, venenatis
+    et, placerat a, eros. Nunc euismod quam ut lorem.\r\n    Proin id odio. Proin
+    ullamcorper fermentum augue. Curabitur ultrices. Nulla vel mi in eros hendrerit
+    pulvinar. Sed pellentesque pharetra justo. Suspendisse potenti. Nulla a felis.
+    Vestibulum dapibus nunc vel nisl. Lorem ipsum dolor sit amet, consectetuer adipiscing
+    elit.\r\n    Vestibulum pulvinar libero ac nibh. Quisque condimentum, velit quis
+    facilisis sollicitudin, dui tellus bibendum eros, nec vulputate nibh tellus ac
+    leo. Morbi et eros.\r\n    Fusce ut neque. Suspendisse potenti. Praesent gravida.
+    Pellentesque rutrum. Nunc ultrices nisl ut eros. Vestibulum et mauris semper wisi
+    vulputate interdum. Donec elementum wisi eu neque. Mauris tincidunt ornare nibh.\r\n
+    \   Quisque venenatis augue sed neque. Phasellus mattis, ante sed pulvinar rhoncus,
+    augue lectus bibendum velit, sed ullamcorper sapien tellus sed orci. Aliquam eu
+    turpis.\r\n    Pellentesque imperdiet ante ut metus. Donec placerat ultricies
+    ipsum. Aliquam aliquet."
+  deltaDelay: 0.02
+--- !u!114 &1647257045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647257042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1647257046
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647257042}
+  m_CullTransparentMesh: 0
 --- !u!1 &1707612135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1199,7 @@ GameObject:
   - component: {fileID: 1720454728}
   - component: {fileID: 1720454730}
   m_Layer: 5
-  m_Name: Background
+  m_Name: ResultDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1058,13 +1218,14 @@ RectTransform:
   m_Children:
   - {fileID: 126566125}
   - {fileID: 1809651281}
+  - {fileID: 1647257043}
   m_Father: {fileID: 1599145823}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 704, y: 396}
+  m_SizeDelta: {x: 704, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1720454728
 MonoBehaviour:
@@ -1079,7 +1240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5566038, g: 0.47521362, b: 0.47521362, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1133,7 +1294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1809651281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1453,7 +1614,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_useController: 0
+  m_disableTimer: 0
   m_raccoon: {fileID: 0}
+  Workers: []
 --- !u!4 &7778095881042191522
 Transform:
   m_ObjectHideFlags: 0

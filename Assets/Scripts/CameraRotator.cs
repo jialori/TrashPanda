@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Util;
 
 public class CameraRotator : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class CameraRotator : MonoBehaviour
         //public float minYRotation = -270;
         // How fast the rotation can take place
         public float vOrbitSmooth = 50;
-        public float hOrbitSmooth = 50;
+        public float hOrbitSmooth = 100;
     }
 
     public class InputSettings
@@ -104,27 +105,10 @@ public class CameraRotator : MonoBehaviour
 
     void GetInput()
     {
-        //vOrbitInp = Input.GetAxis(input.ORBIT_VERTICAL);
-        vOrbitInp = -GetYAxis();
-        //hOrbitInp = Input.GetAxis(input.ORBIT_HORIZONTAL);
-        hOrbitInp = -GetXAxis();
-        hOrbitSnapInp = Input.GetAxis(input.ORBIT_HORIZONTAL_SNAP);
-    }
-
-    private float GetXAxis()
-    {
-        if (GameManager.instance.UseController)
-            return Input.GetAxis("RightJoystickX");
-        else
-            return Input.GetAxis("Mouse X");
-    }
-
-    private float GetYAxis()
-    {
-        if (GameManager.instance.UseController)
-            return Input.GetAxis("RightJoystickY");
-        else
-            return Input.GetAxis("Mouse Y");
+        vOrbitInp = -Controller.GetCamYAxis();
+        // hOrbitInp = Input.GetAxis(input.ORBIT_HORIZONTAL);
+        hOrbitInp = -Controller.GetCamXAxis();
+        // hOrbitSnapInp = Input.GetAxis(input.ORBIT_HORIZONTAL_SNAP);
     }
 
     void MoveToTar()
