@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2796421237797241340}
   - component: {fileID: -9155417439812026320}
   - component: {fileID: 1471356675757584792}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: KnockablePaintBucket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 7705571351094101946}
   - component: {fileID: 4769571760477581851}
   - component: {fileID: 3750722735182081114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: root_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 4526430115054904769}
   - component: {fileID: 5175643865322078638}
   - component: {fileID: 2110466844481863950}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 9186921001196467362}
   - component: {fileID: 4026002177807421286}
   - component: {fileID: 881541040806011728}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 7655165955878921178}
   - component: {fileID: 2664965693822375092}
   - component: {fileID: 5780958768759151325}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: root_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}

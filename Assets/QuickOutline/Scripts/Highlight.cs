@@ -98,10 +98,10 @@ public class Highlight : MonoBehaviour
     {
         // Note: hard code might be better
         // Otherwise need to tune each different prefab to which this script is attached to
-        knockable_outlineColor = Color.red + Color.yellow;
-        breakable_outlineColor = Color.green;
-        interactable_outlineColor = Color.blue;
-        tools_outlineColor = Color.red;
+        knockable_outlineColor = new Color(0.934f, 0.586f, 0.238f, 1);
+        breakable_outlineColor = new Color(0.1015625f, 0.847f, 0.1015625f, 1);
+        interactable_outlineColor = new Color(0.0664f, 0.457f, 0.847f, 1);
+        tools_outlineColor = new Color(0.828125f, 0.0664f, 0.0664f, 1);
 
         _DetermineColor();
         outlineMode = Mode.OutlineVisible;

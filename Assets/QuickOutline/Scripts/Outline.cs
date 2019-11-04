@@ -102,11 +102,10 @@ public class Outline : MonoBehaviour
     {
         // Note: hard code might be better
         // Otherwise need to tune each different prefab to which this script is attached to
-        var offset = new Color(0.5f, 0.5f, 0.5f, 0);
-        knockable_outlineColor = Color.red + Color.yellow - offset;
-        breakable_outlineColor = Color.green - offset;
-        interactable_outlineColor = Color.blue - offset;
-        tools_outlineColor = Color.red - offset;
+        knockable_outlineColor = new Color(0.715f, 0.387f, 0.0547f, 1);
+        breakable_outlineColor = new Color(0.078f, 0.676f, 0.078f, 1);
+        interactable_outlineColor = new Color(0.03125f, 0.21875f, 0.40234375f, 1);
+        tools_outlineColor = new Color(0.64453125f, 0.0508f, 0.0508f, 1);
 
         _DetermineColor();
         outlineMode = Mode.OutlineVisible;
