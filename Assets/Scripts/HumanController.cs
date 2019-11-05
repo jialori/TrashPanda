@@ -6,25 +6,26 @@ using UnityEngine.AI;
 public class HumanController : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float maxAngle = 30.0f;        // Field of view of this worker
-    [SerializeField] private float maxRadius = 15.0f;       // The farthest distance that this worker can see
-    [SerializeField] private int level;                     // The floor this worker is on 
-    Vector3 initialPosition;                                // Starting position of this worker. Will return here after losing sight of raccoon
-    Quaternion initialDirection;                            // Direction this worker initially faces. Will rotate to face this direction after returning to initialPosition
-    NavMeshAgent agent;                                     // Pathfinding AI
-    
-    CentralHumanController CHC;                             // Reference to the Central Human Controller
+    [SerializeField] private float maxAngle = 30.0f;            // Field of view of this worker
+    [SerializeField] private float maxRadius = 15.0f;           // The farthest distance that this worker can see
+    [SerializeField] private float hearingRadius = 40.0f;       // The farthest distance that this worker can hear
+    [SerializeField] private int level;                         // The floor this worker is on 
+    Vector3 initialPosition;                                    // Starting position of this worker. Will return here after losing sight of raccoon
+    Quaternion initialDirection;                                // Direction this worker initially faces. Will rotate to face this direction after returning to initialPosition
+    NavMeshAgent agent;                                         // Pathfinding AI
+    CentralHumanController CHC;                                 // Reference to the Central Human Controller
+    List<Breakable> breakableObjects;
     
     [Header("Target")]
-    [SerializeField] private Transform target;              // worker target to be chased (will always be the raccoon)
+    [SerializeField] private Transform target;              // Worker target to be chased (will always be the raccoon)
     public Vector3 lastKnownLocation;                       // Location where this worker last saw the raccoon
-    [SerializeField] private float attackRange = 1;         // Range of attack for this worker
     private float rotationSpeed = 5.0f;                     // How fast this worker rotates
     private float attackCooldown = 10.0f;                   // The cooldown timer for the worker's stun attack
     public bool seesRaccoon = false;                        // Flag determining whether this worker can see the raccoon or not
     private bool canAttack = true;                          // Flag determining whether this worker can attack
     private bool chasing = false;                           // Worker status: The worker knows where the raccoon is and is currently chasing her
     private bool searching = false;                         // Worker status: The raccoon has escaped the worker's sight and the worker is looking for her
+    private bool investigating = false;                     // Worker status: A noise has caught this worker's attention and the worker is investigating
     private bool idle = true;                               // Worker status: The worker does not know where the raccoon is and is not looking for her
 
     [Header("Voice Over")]
@@ -42,6 +43,7 @@ public class HumanController : MonoBehaviour
     private bool pause = false;
 
     // Intermediate variables
+    Breakable[] B;
     NavMeshPath p;
     [SerializeField] private string id;                     // This worker's identifier. Used for debugging
 
@@ -77,10 +79,21 @@ public class HumanController : MonoBehaviour
         Gizmos.DrawRay(transform.position, transform.forward * maxRadius);
     }
 
-    // Determine if the worker and the player are on the same floor
+    // Determine if this worker and the object 'target' are on the same floor
     public bool onSameFloor(Transform target)
     {
-        return level == target.GetComponent<RaccoonController>().level;
+        if (target.TryGetComponent(out RaccoonController raccoon))
+        {
+            return level == raccoon.level;
+        }
+        else if (target.TryGetComponent(out Breakable breakable))
+        {
+            return level == breakable.level;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     // Determine if the player has been seen by this worker
@@ -94,24 +107,16 @@ public class HumanController : MonoBehaviour
         // If the player is within the field of view angles
         if (angle <= maxAngle)
         {
-            //Debug.Log(1);
-            //Ray ray = new Ray(checkingObject.position, target.position - checkingObject.position);
-
             // If the player is close enough to the worker to be seen
             if (Vector3.Distance(checkingObject.position, target.position) < maxRadius)
             {
-                //Debug.Log(2);
                 NavMeshHit hit;
-
                 // If the player and worker are on the same floor
                 if (onSameFloor(target))
                 {
-                    //Debug.Log(3);
                     // If the worker can directly see the player (i.e. line of sight is not blocked by wall or bush)
                     if (!nav.Raycast(target.position, out hit))
                     {
-                        //Debug.Log("HumanController: Worker level = " + level.ToString() + "Raccoon level = " 
-                        //    + target.GetComponent<RaccoonController>().level.ToString());
                         return true;
                     }
                 }
@@ -134,6 +139,28 @@ public class HumanController : MonoBehaviour
         p = new NavMeshPath();
         initialPosition = transform.position;
         initialDirection = transform.rotation;
+
+        // Retrieve all breakable objects on the same floor as this worker
+        breakableObjects = new List<Breakable>();
+        B = FindObjectsOfType<Breakable>();
+        
+        for (int i = 0; i < B.Length; i++)
+        {
+            //Debug.Log(B[i]);
+            Debug.Log(B[i].ToString() + " level: " + B[i].level.ToString());
+            if (onSameFloor(B[i].transform))
+            {
+                breakableObjects.Add(B[i]);
+                Debug.Log(B[i].ToString() + " was added");
+            }
+            
+        }
+        Debug.Log(breakableObjects.Count);
+        for (int i = 0; i < breakableObjects.Count; i++)
+        {
+            Debug.Log(breakableObjects[i]);
+        }
+        
 
         anim = gameObject.GetComponent<Animator>();
         //Audio Component
