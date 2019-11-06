@@ -10,7 +10,8 @@ public class Breakable : MonoBehaviour
     [Header("Object Attributes")]
     public float totalHealth;
     public float scorePoint;
-    public int level;
+    public int level;               // The floor this object is on
+    public bool destroyed;          // Flag determining whether this object has been destroyed or not
     
     private float health; 
 
@@ -40,6 +41,7 @@ public class Breakable : MonoBehaviour
         {
             level = 5;
         }
+        destroyed = false;
     }
 
     public void trigger(float atk)
@@ -49,9 +51,11 @@ public class Breakable : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-            Debug.Log("broke some object");
+            //Debug.Log("broke some object");
             ScoreManager.instance.AddScore(scorePoint);
             Destroy(this.gameObject);
+            destroyed = true;
+            //Debug.Log("destroyed: " + destroyed.ToString() + ", position: " + transform.position.ToString());
         }
 
     }

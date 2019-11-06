@@ -14,7 +14,8 @@ public class HumanController : MonoBehaviour
     Quaternion initialDirection;                                // Direction this worker initially faces. Will rotate to face this direction after returning to initialPosition
     NavMeshAgent agent;                                         // Pathfinding AI
     CentralHumanController CHC;                                 // Reference to the Central Human Controller
-    List<Breakable> breakableObjects;
+    List<Breakable> breakableObjects;                           // List of breakable objects on this worker's floor
+    
     
     [Header("Target")]
     [SerializeField] private Transform target;              // Worker target to be chased (will always be the raccoon)
@@ -46,6 +47,7 @@ public class HumanController : MonoBehaviour
     Breakable[] B;
     NavMeshPath p;
     [SerializeField] private string id;                     // This worker's identifier. Used for debugging
+    List<Breakable> destroyedObjects;                       // List of destroyed objects. Used to remove objects from 'breakableObjects'
 
     private void Awake()
     {
@@ -142,24 +144,27 @@ public class HumanController : MonoBehaviour
 
         // Retrieve all breakable objects on the same floor as this worker
         breakableObjects = new List<Breakable>();
+        destroyedObjects = new List<Breakable>();
         B = FindObjectsOfType<Breakable>();
         
         for (int i = 0; i < B.Length; i++)
         {
             //Debug.Log(B[i]);
-            Debug.Log(B[i].ToString() + " level: " + B[i].level.ToString());
+            //Debug.Log(B[i].ToString() + " level: " + B[i].level.ToString());
             if (onSameFloor(B[i].transform))
             {
                 breakableObjects.Add(B[i]);
-                Debug.Log(B[i].ToString() + " was added");
+                //Debug.Log(B[i].ToString() + " was added");
             }
             
         }
+        
         Debug.Log(breakableObjects.Count);
         for (int i = 0; i < breakableObjects.Count; i++)
         {
             Debug.Log(breakableObjects[i]);
         }
+        
         
 
         anim = gameObject.GetComponent<Animator>();
@@ -213,6 +218,8 @@ public class HumanController : MonoBehaviour
             chasing = true;
             searching = false;
             idle = false;
+            investigating = false;
+            agent.ResetPath();
             agent.SetDestination(lastKnownLocation);
             //Debug.Log(id + " - worker's level: " + level.ToString() + ", raccoon's level: " + target.GetComponent<RaccoonController>().level.ToString());
 
@@ -283,6 +290,7 @@ public class HumanController : MonoBehaviour
             //Debug.Log("Lost Raccoon");
             chasing = false;
             searching = true;
+            investigating = false;
             idle = false;
             agent.ResetPath();
 
@@ -310,6 +318,37 @@ public class HumanController : MonoBehaviour
             searching = false;
             idle = true;
         }
+
+        
+        // For each breakable object on this worker's floor
+        for (int i = 0; i < breakableObjects.Count; i++)
+        {
+            // If the object was destroyed
+            if (breakableObjects[i].destroyed)
+            {
+                destroyedObjects.Add(breakableObjects[i]);
+                Debug.Log(breakableObjects[i].ToString() + " was destroyed. Distance from worker " + id + ": " + Vector3.Distance(breakableObjects[i].transform.position, transform.position).ToString());
+                // If this worker heard the object being destroyed and is not chasing the raccoon
+                if (!chasing && Vector3.Distance(breakableObjects[i].transform.position, transform.position) < hearingRadius)
+                {
+                    investigating = true;
+                    searching = false;
+                    idle = false;
+                    lastKnownLocation = breakableObjects[i].transform.position;
+                    agent.SetDestination(lastKnownLocation);
+                    Debug.Log("Worker " + id + " heard object " + breakableObjects[i].ToString() + " being destroyed. Now heading to " + breakableObjects[i].transform.position.ToString());
+                }
+            }
+            
+        }
+        
+        // Remove all objects that have been destroyed from 'breakableObjects'
+        for (int i = 0; i < destroyedObjects.Count; i++)
+        {
+            breakableObjects.Remove(destroyedObjects[i]);
+            Debug.Log(destroyedObjects[i].ToString() + " has been removed");
+        }
+        destroyedObjects.Clear();
 
         // The worker will return to his original position if he can't find the raccoon
         if (idle)
