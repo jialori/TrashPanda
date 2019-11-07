@@ -15,6 +15,7 @@ public class HumanController : MonoBehaviour
     NavMeshAgent agent;                                         // Pathfinding AI
     CentralHumanController CHC;                                 // Reference to the Central Human Controller
     List<Breakable> breakableObjects;                           // List of breakable objects on this worker's floor
+    List<Knockable> knockableObjects;                           // List of knockable objects on this worker's floor
     
     
     [Header("Target")]
@@ -45,9 +46,11 @@ public class HumanController : MonoBehaviour
 
     // Intermediate variables
     Breakable[] B;
+    Knockable[] K;
     NavMeshPath p;
     [SerializeField] private string id;                     // This worker's identifier. Used for debugging
     List<Breakable> destroyedObjects;                       // List of destroyed objects. Used to remove objects from 'breakableObjects'
+    List<Knockable> toppledObjects;                         // List of knocked over objects. Used to remove objects from 'knockableObjects'
 
     private void Awake()
     {
@@ -92,6 +95,10 @@ public class HumanController : MonoBehaviour
         {
             return level == breakable.level;
         }
+        else if (target.TryGetComponent(out Knockable knockable))
+        {
+            return level == knockable.level;
+        }
         else
         {
             return false;
@@ -112,12 +119,11 @@ public class HumanController : MonoBehaviour
             // If the player is close enough to the worker to be seen
             if (Vector3.Distance(checkingObject.position, target.position) < maxRadius)
             {
-                NavMeshHit hit;
                 // If the player and worker are on the same floor
                 if (onSameFloor(target))
                 {
                     // If the worker can directly see the player (i.e. line of sight is not blocked by wall or bush)
-                    if (!nav.Raycast(target.position, out hit))
+                    if (!nav.Raycast(target.position, out _))
                     {
                         return true;
                     }
@@ -164,8 +170,25 @@ public class HumanController : MonoBehaviour
         {
             Debug.Log(breakableObjects[i]);
         }
-        
-        
+
+        // Retrieve all knockable objects on the same floor as this worker
+        knockableObjects = new List<Knockable>();
+        toppledObjects = new List<Knockable>();
+        K = FindObjectsOfType<Knockable>();
+
+        for (int i = 0; i < K.Length; i++)
+        {
+            if (onSameFloor(K[i].transform))
+            {
+                knockableObjects.Add(K[i]);
+            }
+        }
+
+        Debug.Log(knockableObjects.Count);
+        for (int i = 0; i < knockableObjects.Count; i++)
+        {
+            Debug.Log(knockableObjects[i]);
+        }
 
         anim = gameObject.GetComponent<Animator>();
         //Audio Component
@@ -318,7 +341,6 @@ public class HumanController : MonoBehaviour
             searching = false;
             idle = true;
         }
-
         
         // For each breakable object on this worker's floor
         for (int i = 0; i < breakableObjects.Count; i++)
@@ -336,7 +358,7 @@ public class HumanController : MonoBehaviour
                     idle = false;
                     lastKnownLocation = breakableObjects[i].transform.position;
                     agent.SetDestination(lastKnownLocation);
-                    Debug.Log("Worker " + id + " heard object " + breakableObjects[i].ToString() + " being destroyed. Now heading to " + breakableObjects[i].transform.position.ToString());
+                    Debug.Log("Worker " + id + " heard object " + breakableObjects[i].ToString() + " being destroyed. Now heading to " + breakableObjects[i].transform.position.ToString() + " to investigate");
                 }
             }
             
@@ -349,6 +371,34 @@ public class HumanController : MonoBehaviour
             Debug.Log(destroyedObjects[i].ToString() + " has been removed");
         }
         destroyedObjects.Clear();
+
+        // For each knockable object on this worker's floor
+        for (int i = 0; i < knockableObjects.Count; i++)
+        {
+            // If the object was knocked over
+            if (knockableObjects[i].toppled)
+            {
+                toppledObjects.Add(knockableObjects[i]);
+                Debug.Log(knockableObjects[i].ToString() + " was knocked over. Distance from worker " + id + ": " + Vector3.Distance(knockableObjects[i].transform.position, transform.position).ToString());
+                // If this worker heard the object being knocked over and is not chasing the raccoon
+                if(!chasing && Vector3.Distance(knockableObjects[i].transform.position, transform.position) < hearingRadius)
+                {
+                    investigating = true;
+                    searching = false;
+                    idle = false;
+                    lastKnownLocation = knockableObjects[i].transform.position;
+                    agent.SetDestination(lastKnownLocation);
+                    Debug.Log("Worker " + id + " heard object " + knockableObjects[i].ToString() + " being knocked over. Now heading to " + knockableObjects[i].transform.position.ToString() + " to investigate");
+                }
+            }
+        }
+
+        for (int i = 0; i < toppledObjects.Count; i++)
+        {
+            knockableObjects.Remove(toppledObjects[i]);
+            Debug.Log(toppledObjects[i].ToString() + " has been removed");
+        }
+        toppledObjects.Clear();
 
         // The worker will return to his original position if he can't find the raccoon
         if (idle)

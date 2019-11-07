@@ -14,9 +14,9 @@ public class Knockable : MonoBehaviour
     // public float firstTimeScorePoint;
     // public float regularScorePoint;
     public float scorePoint;
-
     private bool pointCollected;
-
+    public int level;                       // The floor this object is on
+    public bool toppled;                // Flag determining whether this object has been knocked over or not
 
     private Rigidbody rb;
     private Collider cl;
@@ -37,9 +37,31 @@ public class Knockable : MonoBehaviour
         // rb.centerOfMass = 0;
         collidePoint = transform.position;// + (rb.centerOfMass + Vector3.up * cl.bounds.size.y * 0.8f);
         pointCollected = false;
+        toppled = false;
 
         KnockedSound = GetComponent<AudioSource>();
         _hasAudio = (KnockedSound && objectKnock) ? true : false;
+
+        if (transform.position.y < 7)
+        {
+            level = 1;
+        }
+        else if (7 <= transform.position.y && transform.position.y < 14)
+        {
+            level = 2;
+        }
+        else if (14 <= transform.position.y && transform.position.y < 21)
+        {
+            level = 3;
+        }
+        else if (21 <= transform.position.y && transform.position.y < 28)
+        {
+            level = 4;
+        }
+        else
+        {
+            level = 5;
+        }
 
         //Audio Engine
         if (_hasAudio)
@@ -54,11 +76,12 @@ public class Knockable : MonoBehaviour
   		pushForce.y = - Mathf.Abs(pushForce.x);
   		rb.AddForceAtPosition(pushForce, collidePoint);
 
-      //Debug.Log("collide at" + collidePoint);
-      if (!pointCollected) {
-        ScoreManager.instance.AddScore(scorePoint);
-        pointCollected = true;
-      }
+        //Debug.Log("collide at" + collidePoint);
+        if (!pointCollected) {
+            ScoreManager.instance.AddScore(scorePoint);
+            pointCollected = true;
+            toppled = true;
+        }
   	}
 
     public void OnCollisionEnter (Collision col)
