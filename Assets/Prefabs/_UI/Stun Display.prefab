@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 316484726653978107}
   - component: {fileID: 960394633567452770}
   - component: {fileID: 1635040183909759122}
+  - component: {fileID: 1926915301}
   m_Layer: 5
-  m_Name: Stun
+  m_Name: Stun Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,3 +157,17 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1926915301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176299340916534448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b141ceb35274ac4cbace4475b8a0a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunText: {fileID: 1635040183909759122}
+  raccoon: {fileID: 0}
