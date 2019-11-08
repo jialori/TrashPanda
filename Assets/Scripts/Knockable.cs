@@ -16,7 +16,7 @@ public class Knockable : MonoBehaviour
     public float scorePoint;
     private bool pointCollected;
     public int level;                       // The floor this object is on
-    public bool toppled;                // Flag determining whether this object has been knocked over or not
+    public bool toppled;                    // Flag determining whether this object has been knocked over or not
 
     private Rigidbody rb;
     private Collider cl;
@@ -41,27 +41,6 @@ public class Knockable : MonoBehaviour
 
         KnockedSound = GetComponent<AudioSource>();
         _hasAudio = (KnockedSound && objectKnock) ? true : false;
-
-        if (transform.position.y < 7)
-        {
-            level = 1;
-        }
-        else if (7 <= transform.position.y && transform.position.y < 14)
-        {
-            level = 2;
-        }
-        else if (14 <= transform.position.y && transform.position.y < 21)
-        {
-            level = 3;
-        }
-        else if (21 <= transform.position.y && transform.position.y < 28)
-        {
-            level = 4;
-        }
-        else
-        {
-            level = 5;
-        }
 
         //Audio Engine
         if (_hasAudio)

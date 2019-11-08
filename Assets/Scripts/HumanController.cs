@@ -155,7 +155,6 @@ public class HumanController : MonoBehaviour
         
         for (int i = 0; i < B.Length; i++)
         {
-            //Debug.Log(B[i]);
             //Debug.Log(B[i].ToString() + " level: " + B[i].level.ToString());
             if (onSameFloor(B[i].transform))
             {
@@ -164,12 +163,13 @@ public class HumanController : MonoBehaviour
             }
             
         }
-        
+        /*
         Debug.Log(breakableObjects.Count);
         for (int i = 0; i < breakableObjects.Count; i++)
         {
             Debug.Log(breakableObjects[i]);
         }
+        */
 
         // Retrieve all knockable objects on the same floor as this worker
         knockableObjects = new List<Knockable>();
@@ -178,17 +178,20 @@ public class HumanController : MonoBehaviour
 
         for (int i = 0; i < K.Length; i++)
         {
+            //Debug.Log(K[i].ToString() + " level: " + K[i].level.ToString());
             if (onSameFloor(K[i].transform))
             {
                 knockableObjects.Add(K[i]);
+                //Debug.Log(K[i].ToString() + " was added");
             }
         }
-
+        
         Debug.Log(knockableObjects.Count);
         for (int i = 0; i < knockableObjects.Count; i++)
         {
             Debug.Log(knockableObjects[i]);
         }
+        
 
         anim = gameObject.GetComponent<Animator>();
         //Audio Component
