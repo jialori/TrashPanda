@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1225ab613ed234db546c783279e674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 0
-  scorePoint: 0
+  totalHealth: 3
+  scorePoint: 5
   level: 0
   destroyed: 0
 --- !u!64 &5983350697387012549
