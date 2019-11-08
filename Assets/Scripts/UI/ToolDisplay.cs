@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ToolDisplay : MonoBehaviour
 {
-    public Text toolDisplay;
+    [SerializeField] private TextMeshProUGUI toolDisplay;
 
-    public Tool tool;
+    private Tool tool;
     private string tType;
 
 

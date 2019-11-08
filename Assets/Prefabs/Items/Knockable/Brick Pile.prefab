@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8981540773032076540}
   - component: {fileID: 3729846118424553327}
+  - component: {fileID: -5931078645062794404}
   m_Layer: 9
   m_Name: Brick Pile
   m_TagString: Untagged
@@ -51,7 +52,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 3
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  highlightOn: 0
+--- !u!114 &-5931078645062794404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195894977179699999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43593c156b33acc4e8b406e5d8b10d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

@@ -110,7 +110,7 @@ public class ObjectManager : MonoBehaviour
             // knockable layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist * 3, knockableMask))
             {
-                if (verboseMode) Debug.Log("[ObjectManager] target is Knockable");
+                // if (verboseMode) Debug.Log("[ObjectManager] target is Knockable");
                 inRangeKnockables.Add(hit.collider.gameObject);
             }
 
@@ -131,11 +131,17 @@ public class ObjectManager : MonoBehaviour
             // tools layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, toolsMask))
             {
-                if (verboseMode) Debug.Log("[ObjectManager] hit something");
-                // if (verboseMode) Debug.Log(hit.collider.gameObject.name);
+                if (verboseMode) Debug.Log("[ObjectManager] tools hit something");
+                if (verboseMode) Debug.Log(hit.collider.gameObject.name);
                 if (hit.distance < targetDist && hit.collider.gameObject.GetComponent<Tool>() != null)
                 {
                     if (verboseMode) Debug.Log("[ObjectManager] target is Tool");
+                    target = hit.collider.gameObject;
+                    targetDist = hit.distance;
+                }
+                if (hit.distance < targetDist && hit.collider.gameObject.GetComponent<ActiveToolController>() != null)
+                {
+                    if (verboseMode) Debug.Log("[ObjectManager] target is Active Tool");
                     target = hit.collider.gameObject;
                     targetDist = hit.distance;
                 }
@@ -148,7 +154,7 @@ public class ObjectManager : MonoBehaviour
                 if (hit.distance < targetDist)
                 {
                     target = hit.collider.gameObject;
-                    // if (verboseMode) Debug.Log("[ObjectManager] target is Stair");
+                    if (verboseMode) Debug.Log("[ObjectManager] target is Stair");
                     targetDist = hit.distance;
                 }
 
@@ -258,6 +264,13 @@ public class ObjectManager : MonoBehaviour
             if (curTool != null) curTool.Activate();
             toolTarget.Activate();
             curTool = toolTarget;
+        }
+
+        var activeToolTarget = target.GetComponent<ActiveToolController>();
+        if (activeToolTarget != null)
+        {
+            if (verboseMode) Debug.Log("Activated tool target");
+            activeToolTarget.Activate();
         }
     }
 

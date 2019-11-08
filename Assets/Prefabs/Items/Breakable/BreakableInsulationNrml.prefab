@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 99c7a84ab1dbb0a469ba060ae2dbb0b6, type: 2}
+  - {fileID: 2100000, guid: ecdac70591bf93c4b8b548b7af47ef44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,6 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 10
   scorePoint: 15
+  level: 0
+  destroyed: 0
 --- !u!65 &7037016234518683187
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 2
+  outlineWidth: 1
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -140,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 3
+  outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
 
-    [SerializeField] private Text scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     void Update()
     {
-        scoreText.text = "Score: " + ScoreManager.instance.score;
+        scoreText.text = "$" + ScoreManager.instance.score * 1000;
     }
 }

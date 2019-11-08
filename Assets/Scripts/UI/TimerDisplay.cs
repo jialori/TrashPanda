@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using TMPro;
 
 public class TimerDisplay: MonoBehaviour
 {
 
-	[SerializeField] private Text timerText;
+	[SerializeField] private TextMeshProUGUI timerText;
 
     void Update()
     {
-        timerText.text = "Time Left: " + TimerManager.instance.GetCurrentTime().ToString("F");
+        var time = TimerManager.instance.GetCurrentTime();
+        var mins = Mathf.Ceil(time / 60);
+        var secs = time - mins * 60;
+        timerText.text = mins + " min " + secs + " sec";
     }
 
 }

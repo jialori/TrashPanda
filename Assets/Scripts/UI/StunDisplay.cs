@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using TMPro;
 
 public class StunDisplay : MonoBehaviour
 {
-    [SerializeField] private Text stunText;
+    [SerializeField] private TextMeshProUGUI stunText;
     [SerializeField] RaccoonController raccoon;
 
     void Start()
