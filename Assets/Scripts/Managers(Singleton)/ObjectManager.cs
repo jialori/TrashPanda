@@ -164,7 +164,7 @@ public class ObjectManager : MonoBehaviour
         // interact if interact button is pressed
         if (!raccoon.isStunned && Controller.GetB()) Interact();
 
-        if (target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
+        if (target == null || target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
         {
             stairMenuOpen = false;
             stairMenu.Hide();
