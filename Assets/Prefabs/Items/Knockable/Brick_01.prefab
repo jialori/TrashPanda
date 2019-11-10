@@ -77,7 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f7b3644d7058b4e814783cc1fec183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: brick
   scorePoint: 1
+  level: 0
+  toppled: 0
   objectKnock: {fileID: 8300000, guid: e6472e589e921514095d1325840820bc, type: 3}
 --- !u!82 &2394341515521302903
 AudioSource:

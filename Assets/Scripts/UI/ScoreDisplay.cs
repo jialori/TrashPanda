@@ -8,6 +8,6 @@ public class ScoreDisplay : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = "$" + ScoreManager.instance.score * 1000;
+        scoreText.text = "$" + ScoreManager.instance.score * ScoreManager.instance.scoreMultiplier;
     }
 }

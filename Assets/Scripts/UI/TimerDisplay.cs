@@ -11,7 +11,7 @@ public class TimerDisplay: MonoBehaviour
         var time = TimerManager.instance.GetCurrentTime();
         var mins = Mathf.Ceil(time / 60);
         var secs = time - mins * 60;
-        timerText.text = mins + " min " + secs + " sec";
+        timerText.text = string.Format("{0:00} min {1:00} sec", mins, secs);
     }
 
 }

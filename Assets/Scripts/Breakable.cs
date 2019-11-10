@@ -17,6 +17,8 @@ public class Breakable : MonoBehaviour
 
     public float Health { get => health;}
 
+    private ScoreManager.ActionTypes aType = ScoreManager.ActionTypes.BREAK;
+    public string name;
 
     private void Start()
     {
@@ -32,7 +34,7 @@ public class Breakable : MonoBehaviour
         {
             health = 0;
             //Debug.Log("broke some object");
-            ScoreManager.instance.AddScore(scorePoint);
+            ScoreManager.instance.AddScore(name, aType, scorePoint);
             Destroy(this.gameObject);
             destroyed = true;
             //Debug.Log("destroyed: " + destroyed.ToString() + ", position: " + transform.position.ToString());
