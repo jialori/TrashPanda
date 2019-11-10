@@ -11,7 +11,7 @@ public class HumanController : MonoBehaviour
     [SerializeField] private float hearingRadius = 40.0f;       // The farthest distance that this worker can hear
     [SerializeField] private int level;                         // The floor this worker is on 
     Vector3 initialPosition;                                    // Starting position of this worker. Will return here after losing sight of raccoon
-    Quaternion initialDirection;                                // Direction this worker initially faces. Will rotate to face this direction after returning to initialPosition
+    Quaternion initialDirection;                                // Direction this worker initially faces. Will rotate to face this direction after returning to 'initialPosition'
     NavMeshAgent agent;                                         // Pathfinding AI
     CentralHumanController CHC;                                 // Reference to the Central Human Controller
     List<Breakable> breakableObjects;                           // List of breakable objects on this worker's floor
@@ -26,7 +26,7 @@ public class HumanController : MonoBehaviour
     public bool seesRaccoon = false;                        // Flag determining whether this worker can see the raccoon or not
     private bool canAttack = true;                          // Flag determining whether this worker can attack
     private bool chasing = false;                           // Worker status: The worker knows where the raccoon is and is currently chasing her
-    private bool searching = false;                         // Worker status: The raccoon has escaped the worker's sight and the worker is looking for her
+    //private bool searching = false;                         // Worker status: The raccoon has escaped the worker's sight and the worker is looking for her
     private bool investigating = false;                     // Worker status: A noise has caught this worker's attention and the worker is investigating
     private bool idle = true;                               // Worker status: The worker does not know where the raccoon is and is not looking for her
 
@@ -56,8 +56,8 @@ public class HumanController : MonoBehaviour
     {
         workerChaseVO = Resources.LoadAll<AudioClip>("Audio/ChaseVO");
         workerStunVO = Resources.LoadAll<AudioClip>("Audio/StunVO");
-        Debug.Log("[HumanController] workerChaseVO.length: " + workerChaseVO.Length);
-        Debug.Log("[HumanController] workerStunVO.length: " + workerStunVO.Length);
+        //Debug.Log("[HumanController] workerChaseVO.length: " + workerChaseVO.Length);
+        //Debug.Log("[HumanController] workerStunVO.length: " + workerStunVO.Length);
     }
 
     // Outline detection cones in the editor
@@ -241,7 +241,7 @@ public class HumanController : MonoBehaviour
         {
             //Debug.Log("Now chasing Raccoon");
             chasing = true;
-            searching = false;
+            //searching = false;
             idle = false;
             investigating = false;
             agent.ResetPath();
@@ -314,9 +314,8 @@ public class HumanController : MonoBehaviour
         {
             //Debug.Log("Lost Raccoon");
             chasing = false;
-            searching = true;
             investigating = false;
-            idle = false;
+            idle = true;
             agent.ResetPath();
 
             // Animation
@@ -329,21 +328,23 @@ public class HumanController : MonoBehaviour
         }
         */
 
+        /*
         // The worker will turn to his left and right in case the raccoon is beside him
         if (searching && !chasing && !idle)
         {
-            /*
+            
             Debug.Log("Searching for Raccoon");
             agent.isStopped = true;
             transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f), Time.deltaTime * rotationSpeed);
             transform.Rotate(new Vector3(0.0f, 270.0f, 0.0f), Time.deltaTime * rotationSpeed);
             transform.Rotate(new Vector3(0.0f, 270.0f, 0.0f), Time.deltaTime * rotationSpeed);
             agent.isStopped = false;
-            */
+            
             searching = false;
             idle = true;
         }
-        
+        */
+
         // For each breakable object on this worker's floor
         for (int i = 0; i < breakableObjects.Count; i++)
         {
@@ -351,16 +352,16 @@ public class HumanController : MonoBehaviour
             if (breakableObjects[i].destroyed)
             {
                 destroyedObjects.Add(breakableObjects[i]);
-                Debug.Log(breakableObjects[i].ToString() + " was destroyed. Distance from worker " + id + ": " + Vector3.Distance(breakableObjects[i].transform.position, transform.position).ToString());
+                //Debug.Log(breakableObjects[i].ToString() + " was destroyed. Distance from worker " + id + ": " + Vector3.Distance(breakableObjects[i].transform.position, transform.position).ToString());
                 // If this worker heard the object being destroyed and is not chasing the raccoon
                 if (!chasing && Vector3.Distance(breakableObjects[i].transform.position, transform.position) < hearingRadius)
                 {
                     investigating = true;
-                    searching = false;
+                    //searching = false;
                     idle = false;
                     lastKnownLocation = breakableObjects[i].transform.position;
                     agent.SetDestination(lastKnownLocation);
-                    Debug.Log("Worker " + id + " heard object " + breakableObjects[i].ToString() + " being destroyed. Now heading to " + breakableObjects[i].transform.position.ToString() + " to investigate");
+                    //Debug.Log("Worker " + id + " heard object " + breakableObjects[i].ToString() + " being destroyed. Now heading to " + breakableObjects[i].transform.position.ToString() + " to investigate");
                 }
             }
             
@@ -370,7 +371,7 @@ public class HumanController : MonoBehaviour
         for (int i = 0; i < destroyedObjects.Count; i++)
         {
             breakableObjects.Remove(destroyedObjects[i]);
-            Debug.Log(destroyedObjects[i].ToString() + " has been removed");
+            //Debug.Log(destroyedObjects[i].ToString() + " has been removed");
         }
         destroyedObjects.Clear();
 
@@ -381,16 +382,16 @@ public class HumanController : MonoBehaviour
             if (knockableObjects[i].toppled)
             {
                 toppledObjects.Add(knockableObjects[i]);
-                Debug.Log(knockableObjects[i].ToString() + " was knocked over. Distance from worker " + id + ": " + Vector3.Distance(knockableObjects[i].transform.position, transform.position).ToString());
+                //Debug.Log(knockableObjects[i].ToString() + " was knocked over. Distance from worker " + id + ": " + Vector3.Distance(knockableObjects[i].transform.position, transform.position).ToString());
                 // If this worker heard the object being knocked over and is not chasing the raccoon
                 if(!chasing && Vector3.Distance(knockableObjects[i].transform.position, transform.position) < hearingRadius)
                 {
                     investigating = true;
-                    searching = false;
+                    //searching = false;
                     idle = false;
                     lastKnownLocation = knockableObjects[i].transform.position;
                     agent.SetDestination(lastKnownLocation);
-                    Debug.Log("Worker " + id + " heard object " + knockableObjects[i].ToString() + " being knocked over. Now heading to " + knockableObjects[i].transform.position.ToString() + " to investigate");
+                    //Debug.Log("Worker " + id + " heard object " + knockableObjects[i].ToString() + " being knocked over. Now heading to " + knockableObjects[i].transform.position.ToString() + " to investigate");
                 }
             }
         }
@@ -398,7 +399,7 @@ public class HumanController : MonoBehaviour
         for (int i = 0; i < toppledObjects.Count; i++)
         {
             knockableObjects.Remove(toppledObjects[i]);
-            Debug.Log(toppledObjects[i].ToString() + " has been removed");
+            //Debug.Log(toppledObjects[i].ToString() + " has been removed");
         }
         toppledObjects.Clear();
 

@@ -69,7 +69,7 @@ public class ObjectManager : MonoBehaviour
 
     void Update()
     {
-        if (verboseMode) Debug.Log("[ObjectManager] Update");
+        //if (verboseMode) Debug.Log("[ObjectManager] Update");
 
         if (!raccoon)
         {
@@ -139,6 +139,7 @@ public class ObjectManager : MonoBehaviour
                     target = hit.collider.gameObject;
                     targetDist = hit.distance;
                 }
+                //Debug.Log("hit.distance < targetDist: " + (hit.distance < targetDist).ToString() + ", hit.collider.gameObject.GetComponent<Tool>() != null: " + (hit.collider.gameObject.GetComponent<Tool>() != null).ToString());
                 if (hit.distance < targetDist && hit.collider.gameObject.GetComponent<ActiveToolController>() != null)
                 {
                     if (verboseMode) Debug.Log("[ObjectManager] target is Active Tool");
@@ -257,6 +258,7 @@ public class ObjectManager : MonoBehaviour
             }
         }
 
+        /*
         var toolTarget = target.GetComponent<Tool>();
         if ((toolTarget != null))
         {
@@ -272,6 +274,7 @@ public class ObjectManager : MonoBehaviour
             if (verboseMode) Debug.Log("Activated tool target");
             activeToolTarget.Activate();
         }
+        */
     }
 
 
