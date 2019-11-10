@@ -33,7 +33,7 @@ public class HumanController : MonoBehaviour
     [Header("Voice Over")]
     AudioSource WorkerAudio;                // Audiosource files and script
     public AudioClip[] workerChaseVO;       // Chasing VO
-    public AudioClip[] workerStunVO;        // Chasing VO
+    public AudioClip[] workerStunVO;        // Stunning VO
     public float replayInterval;            // Time till replay is ready
     private float _timer = 0;
     private bool alreadyPlayed = false;     // Helps with OneShot trigger to only have one instance of sound    
@@ -58,7 +58,6 @@ public class HumanController : MonoBehaviour
         workerStunVO = Resources.LoadAll<AudioClip>("Audio/StunVO");
         Debug.Log("[HumanController] workerChaseVO.length: " + workerChaseVO.Length);
         Debug.Log("[HumanController] workerStunVO.length: " + workerStunVO.Length);
-
     }
 
     // Outline detection cones in the editor

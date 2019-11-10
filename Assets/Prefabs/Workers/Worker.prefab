@@ -19,7 +19,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 7.488138
   MaxDistance: 52.976486
   Pan2D: 0
@@ -110,17 +110,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAngle: 30
   maxRadius: 15
+  hearingRadius: 40
+  level: 0
   target: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd, type: 3}
   lastKnownLocation: {x: 0, y: 0, z: 0}
   seesRaccoon: 0
   workerChaseVO:
   - {fileID: 8300000, guid: fdac9c53c878f8e43b643f20da79929a, type: 3}
-  - {fileID: 8300000, guid: b52c692148abcc14c83d9090b2e9f686, type: 3}
+  - {fileID: 8300000, guid: 5d1c01ba9bec787469be66bef8cbd5b4, type: 3}
   - {fileID: 8300000, guid: 199bb7bf5196d404eaf4cf2d7d7da1f4, type: 3}
+  - {fileID: 8300000, guid: a46360111e10e7747a17b9c49ee4aa38, type: 3}
+  - {fileID: 8300000, guid: b52c692148abcc14c83d9090b2e9f686, type: 3}
+  - {fileID: 8300000, guid: 1ac65fef4ab4e7145950b3fe6851c850, type: 3}
+  - {fileID: 8300000, guid: af875a05ed2eded40850a408d3b5a0f1, type: 3}
   workerStunVO:
   - {fileID: 8300000, guid: 87afb9e6105a46344983c24c6760dfa8, type: 3}
   - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
+  - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
+  - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
+  - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
   replayInterval: 4
+  id: 
 --- !u!195 &-4966690112171863789
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -160,11 +170,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Human
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9757719e35eb39e44872d19686c70bcd, type: 2}
     - target: {fileID: -4216859302048453862, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -235,6 +240,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9757719e35eb39e44872d19686c70bcd, type: 2}
     - target: {fileID: -211428952282553288, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
