@@ -98,6 +98,7 @@ MonoBehaviour:
   scorePoint: 15
   level: 0
   destroyed: 0
+  name: insulation
 --- !u!65 &7037016234518683187
 BoxCollider:
   m_ObjectHideFlags: 0

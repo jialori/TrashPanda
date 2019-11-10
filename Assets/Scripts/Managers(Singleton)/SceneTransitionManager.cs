@@ -27,8 +27,12 @@ public class SceneTransitionManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == MENU)
         {
-        // play BGM when start at Menu
-        AudioManager.instance.Play("MainMenuBGM");
+            // play BGM when start at Menu
+            AudioManager.instance.Play("MainMenuBGM");
+        } 
+        else if (SceneManager.GetActiveScene().name == GAME)
+        {
+            GameManager.instance.StartGame();
         }
     }
 

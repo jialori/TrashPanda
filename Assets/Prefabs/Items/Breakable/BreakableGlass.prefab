@@ -111,6 +111,7 @@ MonoBehaviour:
   scorePoint: 0
   level: 0
   destroyed: 0
+  name: glass
 --- !u!114 &743365311405503617
 MonoBehaviour:
   m_ObjectHideFlags: 0

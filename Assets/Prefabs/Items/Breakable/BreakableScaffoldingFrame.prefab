@@ -99,6 +99,7 @@ MonoBehaviour:
   scorePoint: 20
   level: 0
   destroyed: 0
+  name: scaffolding
   breakSFX: {fileID: 0}
   hitSFX: {fileID: 8300000, guid: cc20f376ebf7a0440b268aea8b0d49ca, type: 3}
 --- !u!64 &-6723483562340407823
