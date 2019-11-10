@@ -8,7 +8,8 @@ public class RaccoonController : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private Transform cam;
-    [SerializeField] private CameraRotator camController;
+    [SerializeField] private CameraRotator camController;    
+    public float turningRate = 360f;
 
     [Header("Character Stats")]
     [SerializeField] private float attackPower = 1;
@@ -46,6 +47,15 @@ public class RaccoonController : MonoBehaviour
     public float stunTimer = 3.0f;
 
     private bool pause = false;
+
+
+    void Awake()
+    {
+        if (camController == null)
+        {
+            Debug.Log("InspectorWarning: camController in Raccoon is missing. Please assign Camera to it.");
+        }
+    }
 
     void Start()
     {
@@ -103,6 +113,21 @@ public class RaccoonController : MonoBehaviour
             // Movement
             movementVector = (camForward * Controller.GetYAxis() + camRight * Controller.GetXAxis()) * movementSpeed;
 
+            // Rotation
+            if ((Controller.GetYAxis() != 0 || Controller.GetXAxis() != 0))
+            {
+                // Turn towards camera first
+                // float lookS = turningRate;
+                // Vector3 lookDir = transform.position - cam.position;
+                // lookDir.y = 0;
+                // Quaternion tarRotation = Quaternion.LookRotation(lookDir);
+                // transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, lookS * Time.deltaTime);
+            
+                // turn towards direction of moving
+                Quaternion tarRotation = Quaternion.LookRotation(movementVector);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, lookS * Time.deltaTime);
+            }
+
             // Jump
             if (characterController.isGrounded)
             {
@@ -133,20 +158,6 @@ public class RaccoonController : MonoBehaviour
                 isStunned = false;
                 stunTimer = 3.0f;
             }
-        }
-
-        // Rotation
-        if (camController != null)
-        {
-            float lookS = camController.position.lookSmooth;
-            Vector3 lookDir = transform.position - cam.position;
-            lookDir.y = 0;
-            Quaternion tarRotation = Quaternion.LookRotation(lookDir);
-            transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, lookS * Time.deltaTime);
-        }
-        else
-        {
-            Debug.Log("InspectorWarning: camController in Raccoon is Not correct. Please assign Camera to it.");
         }
 
         // Animation
