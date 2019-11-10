@@ -12,7 +12,10 @@ public class Breakable : MonoBehaviour
     public float scorePoint;
     public int level;               // The floor this object is on
     public bool destroyed;          // Flag determining whether this object has been destroyed or not
-    
+    AudioSource breakSound;         // Audiosource files and script
+    public AudioClip breakSFX;      //SFX for breaking object
+    public AudioClip hitSFX;        //SFX for hitting object
+
     private float health; 
 
     public float Health { get => health;}
@@ -24,12 +27,17 @@ public class Breakable : MonoBehaviour
     {
         health = totalHealth;
         destroyed = false;
+
+        breakSound = GetComponent<AudioSource>();
     }
 
     public void trigger(float atk)
     {
         health -= calcDamage(atk);
         Debug.Log("Object health" + health);
+
+        breakSound.PlayOneShot(hitSFX, 0.8F);
+
         if (health <= 0)
         {
             health = 0;
@@ -39,7 +47,6 @@ public class Breakable : MonoBehaviour
             destroyed = true;
             //Debug.Log("destroyed: " + destroyed.ToString() + ", position: " + transform.position.ToString());
         }
-
     }
 
     public float calcDamage(float atk)
