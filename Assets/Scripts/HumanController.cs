@@ -185,13 +185,13 @@ public class HumanController : MonoBehaviour
                 //Debug.Log(K[i].ToString() + " was added");
             }
         }
-        
+        /*
         Debug.Log(knockableObjects.Count);
         for (int i = 0; i < knockableObjects.Count; i++)
         {
             Debug.Log(knockableObjects[i]);
         }
-        
+        */
 
         anim = gameObject.GetComponent<Animator>();
         //Audio Component
