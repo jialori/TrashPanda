@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4948859728086416751}
   m_LocalRotation: {x: -0.69404703, y: 0.13527302, z: 0.13527302, w: 0.69404703}
   m_LocalPosition: {x: 1.2272968, y: 78.4964, z: -80.601776}
-  m_LocalScale: {x: 2.5, y: 2.500001, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4948859728086416751}
-  m_Mesh: {fileID: -1780324035782819024, guid: 906a6999c39453e4c91bfa829b07586a, type: 3}
+  m_Mesh: {fileID: -1780324035782819024, guid: c5d7e91db4ddf1b46b44eb02f402238b, type: 3}
 --- !u!23 &6670173818239158707
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -99,9 +99,9 @@ MonoBehaviour:
   scorePoint: 20
   level: 0
   destroyed: 0
-  name: scaffolding
   breakSFX: {fileID: 0}
   hitSFX: {fileID: 8300000, guid: cc20f376ebf7a0440b268aea8b0d49ca, type: 3}
+  name: scaffolding
 --- !u!64 &-6723483562340407823
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ MeshCollider:
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
-  m_Mesh: {fileID: -1780324035782819024, guid: 906a6999c39453e4c91bfa829b07586a, type: 3}
+  m_Mesh: {fileID: -1780324035782819024, guid: c5d7e91db4ddf1b46b44eb02f402238b, type: 3}
 --- !u!114 &-7981682895937448404
 MonoBehaviour:
   m_ObjectHideFlags: 0
