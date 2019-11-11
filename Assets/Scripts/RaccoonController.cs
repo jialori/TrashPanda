@@ -117,7 +117,7 @@ public class RaccoonController : MonoBehaviour
             if ((Controller.GetYAxis() != 0 || Controller.GetXAxis() != 0))
             {
                 // Turn towards camera first
-                // float lookS = turningRate;
+                float lookS = turningRate;
                 // Vector3 lookDir = transform.position - cam.position;
                 // lookDir.y = 0;
                 // Quaternion tarRotation = Quaternion.LookRotation(lookDir);
