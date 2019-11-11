@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5280991952750702637}
   - component: {fileID: 3752303935212866075}
   - component: {fileID: 7434974486121821922}
+  - component: {fileID: 755185911994583329}
   m_Layer: 0
   m_Name: DirtPile_01
   m_TagString: Untagged
@@ -78,3 +79,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &755185911994583329
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156526040203395646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 5060444177187149915, guid: 4e11dddefcd09f84c8898d1aeb13337d, type: 3}
