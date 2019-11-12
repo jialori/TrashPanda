@@ -11,6 +11,9 @@ public class SceneTransitionManager : MonoBehaviour
     public string GAME;
     public string GAME_OVER;
 
+    [Header("References")]
+    public AudioListener audioListener_GAME;
+
     void Awake()
     {
         if (instance != null)
