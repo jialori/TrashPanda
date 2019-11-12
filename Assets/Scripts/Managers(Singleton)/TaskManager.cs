@@ -21,7 +21,7 @@ public class TaskManager : MonoBehaviour
     // Makes a task from 'taskPool' active so that it can be completed by the player
     void addRandomTask(List<GameTask> activeTasks, List<GameTask> taskPool, Random rnd)
     {
-        int i = rnd.Next(taskPool.Count);
+        int i = Random.Range(0, taskPool.Count);
         activeTasks.Add(taskPool[i]);
         // Remove the added task from taskPool so that it can't be added again
         taskPool.RemoveAt(i);

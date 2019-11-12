@@ -13,7 +13,7 @@ public class DestroyObjectsOnFloor : GameTask
     // Intermediate variables
     Breakable[] B;
 
-    override bool isComplete()
+    public override bool isComplete()
     {
         return destroyed.Count >= numToDestroy;
     }
@@ -48,5 +48,10 @@ public class DestroyObjectsOnFloor : GameTask
                 }
             }
         }
+    }
+
+    protected override void updateProgress()
+    {
+
     }
 }

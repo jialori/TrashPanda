@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameTask : MonoBehaviour
+public abstract class GameTask : MonoBehaviour
 {
     protected string description;
 
