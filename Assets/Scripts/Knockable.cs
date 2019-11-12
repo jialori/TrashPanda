@@ -13,7 +13,7 @@ public class Knockable : MonoBehaviour
     [Header("Object Attributes")]
     // public float firstTimeScorePoint;
     // public float regularScorePoint;
-    public string name;
+    public string objName;
     public float scorePoint;
     public int level;                       // The floor this object is on
     public bool toppled;                    // Flag determining whether this object has been knocked over or not
@@ -56,7 +56,7 @@ public class Knockable : MonoBehaviour
 
         //Debug.Log("collide at" + collidePoint);
         if (!toppled) {
-            ScoreManager.instance.AddScore(name, aType, scorePoint);
+            ScoreManager.instance.AddScore(objName, aType, scorePoint);
             toppled = true;
         }
 
