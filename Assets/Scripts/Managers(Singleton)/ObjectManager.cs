@@ -22,6 +22,7 @@ public class ObjectManager : MonoBehaviour
     private int interactableMask;
 
     private bool stairMenuOpen;
+    private bool shouldStairMenuBeOpen;
     public static Tool curTool;
 
     [Header("Detection (Outline, for all items)")]
@@ -34,11 +35,11 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     [SerializeField] private Image healthBarFill;
     [SerializeField] private StairMenu stairMenu;
+    public bool verboseMode = true;
 
     private RaccoonController raccoon;
     private bool startUp = false;
-
-    public bool verboseMode = true;
+    
 
     void Awake()
     {
@@ -165,11 +166,11 @@ public class ObjectManager : MonoBehaviour
         // interact if interact button is pressed
         if (!raccoon.isStunned && Controller.GetB()) Interact();
 
-        if (target == null || target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
-        {
-            stairMenuOpen = false;
-            stairMenu.Hide();
-        }
+        // if (target == null || target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
+        // {
+        //     stairMenuOpen = false;
+        //     stairMenu.Hide();
+        // }
 
         // Go up or down stairs
         if (target != null && stairMenuOpen)
@@ -250,6 +251,15 @@ public class ObjectManager : MonoBehaviour
             {
                 stairMenuOpen = true;
                 stairMenu.Show(stairTarget.GetFloor());
+
+                // disable stair, move raccoon to position
+                // foreach(var obj in GameObject.FindGameObjectsWithTag("Stair")) 
+                // {
+                //     obj.GetComponent<BoxCollider>().enabled = false;
+                //     obj.transform.GetChild(0).gameObject.SetActive(false);
+                //     raccoon.GetComponent<CharacterController>().Move(stairTarget.GetPosition() - raccoon.transform.position);
+                //     raccoon.isFrozen = true;
+                // }
             }
             else
             {

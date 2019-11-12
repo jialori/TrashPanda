@@ -22,8 +22,8 @@ public class Tool : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerScript = GameManager.instance.Raccoon.GetComponent<RaccoonController>();
         // Once the player completes a task, equip the bonus tool and start its timer
-        timer = 10f;
-        Equip();
+        // timer = 10f;
+        // Equip();
     }
 
     private void Update()

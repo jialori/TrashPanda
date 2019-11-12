@@ -45,7 +45,7 @@ public class RaccoonController : MonoBehaviour
     private bool isOnDownStair = false;
     public bool isStunned = false;
     public float stunTimer = 3.0f;
-
+    public bool isFrozen = false;
     private bool pause = false;
 
 
@@ -105,10 +105,10 @@ public class RaccoonController : MonoBehaviour
         {
             level = 5;
         }
-        //Debug.Log("RaccoonController: Level = " + level.ToString() + "position.y = " + transform.position.y.ToString());
+        Debug.Log("RaccoonController: position.x = " + transform.position.x.ToString() + " position.y = " + transform.position.y.ToString() + " position.z = " + transform.position.z.ToString());
 
         // If the raccoon is stunned, she cannot move, jump or break objects
-        if (!isStunned)
+        if (!isStunned && !isFrozen)
         {
             // Movement
             movementVector = (camForward * Controller.GetYAxis() + camRight * Controller.GetXAxis()) * movementSpeed;
@@ -161,7 +161,7 @@ public class RaccoonController : MonoBehaviour
         }
 
         // Animation
-        if (!isStunned && !Controller.GetA() && (Controller.GetXAxis() != 0.0f || Controller.GetYAxis() != 0.0f))
+        if (!isStunned && !isFrozen && !Controller.GetA() && (Controller.GetXAxis() != 0.0f || Controller.GetYAxis() != 0.0f))
         {
         	animator.SetBool("isMoving", true);
         } else
@@ -205,28 +205,6 @@ public class RaccoonController : MonoBehaviour
         movementSpeed -= effectOnSpeed;
         Debug.Log("Attack has changed:" + attackPower);
         Debug.Log("Speed has changed:" + movementSpeed);
-    }
-
-    public void BreakObjectsNearby()
-    {
-        RaycastHit hit;
-        // Bottom of controller. Slightly above ground so it doesn't bump into slanted platforms.
-        Vector3 p1 = transform.position + Vector3.up * 0.01f;
-        Vector3 p2 = p1 + Vector3.up * characterController.height;
-        // Check around the character in 360 degree
-        for (int i = 0; i < 360; i += radiusStep)
-        {
-            // Check if anything with the breakable layer touches this object
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask))
-            {
-                Breakable breakable = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
-                if ((breakable != null) && (Time.time > nextHit))
-                {
-                    nextHit = Time.time + hitRate;
-                    breakable.trigger(attackPower);
-                }
-            }
-        }
     }
 
     public void UseStairs(bool up)
