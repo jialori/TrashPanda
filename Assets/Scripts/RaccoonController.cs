@@ -168,11 +168,7 @@ public class RaccoonController : MonoBehaviour
         }
 
         // Animation
-<<<<<<< HEAD
-        if (!isStunned && !isFrozen && !Controller.GetA() && (Controller.GetXAxis() != 0.0f || Controller.GetYAxis() != 0.0f))
-=======
         if (!isStunned && !Controller.GetA() && (moveX != 0.0f || moveY != 0.0f))
->>>>>>> 433cc0ec5a884172dfdd88c00d37ca30cea4e97a
         {
         	animator.SetBool("isMoving", true);
         } else
@@ -218,31 +214,6 @@ public class RaccoonController : MonoBehaviour
         Debug.Log("Speed has changed:" + movementSpeed);
     }
 
-<<<<<<< HEAD
-=======
-    public void BreakObjectsNearby()
-    {
-        RaycastHit hit;
-        // Bottom of controller. Slightly above ground so it doesn't bump into slanted platforms.
-        Vector3 p1 = transform.position + Vector3.up * 0.01f;
-        Vector3 p2 = p1 + Vector3.up * characterController.height;
-        // Check around the character in 360 degree
-        for (int i = 0; i < 360; i += radiusStep)
-        {
-            // Check if anything with the breakable layer touches this object
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, MyLayers.breakableMask))
-            {
-                Breakable breakable = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
-                if ((breakable != null) && (Time.time > nextHit))
-                {
-                    nextHit = Time.time + hitRate;
-                    breakable.trigger(attackPower);
-                }
-            }
-        }
-    }
-
->>>>>>> 433cc0ec5a884172dfdd88c00d37ca30cea4e97a
     public void UseStairs(bool up)
     {
         characterController.enabled = false;
