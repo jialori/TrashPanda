@@ -102,6 +102,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4806d65bbd8d2574b832b8c18d0e97ed, type: 2}
+    - target: {fileID: 8047781693568974649, guid: 8b43aac5268d15541ac61c1d20e00f26,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3724311199117322423, guid: 8b43aac5268d15541ac61c1d20e00f26,
         type: 3}
       propertyPath: m_Mesh
