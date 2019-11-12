@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class ExplodeScript : MonoBehaviour
 {
-    public float minForce;
-    public float maxForce;
-    public float radius;
     public bool startExplo = false;
-    public float destroyDelay = 3;
+    public float destroyDelay = 5;
 
 
     // Update is called once per frame
-    public void Explode(Vector3 relativeForce)
+    public void Explode(Vector3 momentum)
     {
         foreach (Transform t in transform)
         {
             Rigidbody rb = t.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.AddForce(relativeForce, ForceMode.Impulse);
+                rb.AddForce(momentum/rb.mass, ForceMode.Impulse);
             }
             Destroy(t.gameObject, destroyDelay);
         }

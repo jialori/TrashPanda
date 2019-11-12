@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -2572791444967736377}
   - component: {fileID: 8644563854692369545}
   - component: {fileID: 2810470623461007023}
+  - component: {fileID: 8469732744242542249}
   m_Layer: 9
   m_Name: KnockableWheelbarrow
   m_TagString: Untagged
@@ -215,6 +216,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8469732744242542249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440477233608964624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252fc92a929fe204393776fbbafc6a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orgObj: {fileID: 2440477233608964624}
+  fracturedObj: {fileID: 6984765874255059019, guid: d8b8c3ac8739715449fbd2910188f494,
+    type: 3}
 --- !u!1 &8902805917742731597
 GameObject:
   m_ObjectHideFlags: 0
