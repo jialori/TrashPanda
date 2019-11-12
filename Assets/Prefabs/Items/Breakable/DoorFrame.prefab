@@ -96,6 +96,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 0
   scorePoint: 0
+  dustTime: 1
+  DestroyEffect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef,
+    type: 3}
 --- !u!64 &5983350697387012549
 MeshCollider:
   m_ObjectHideFlags: 0

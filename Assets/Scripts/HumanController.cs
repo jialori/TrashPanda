@@ -298,13 +298,7 @@ public class HumanController : MonoBehaviour
 
     public void TogglePlay()
     {
-        if (pause)
-        {
-            agent.Resume();
-        } else 
-        {
-            agent.Stop();
-        }
+        agent.isStopped = pause ? false : true;
         pause = !pause;
         anim.enabled = !anim.enabled;
     }
