@@ -15,8 +15,8 @@ public class Knockable : MonoBehaviour
     // public float regularScorePoint;
     public string objName;
     public float scorePoint;
-    public int level;                       // The floor this object is on
-    public bool toppled;                    // Flag determining whether this object has been knocked over or not
+    public int level; // The floor this object is on
+    public bool toppled; // Flag determining whether this object has been knocked over or not
 
     private Rigidbody rb;
     private Collider cl;
@@ -35,7 +35,7 @@ public class Knockable : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cl = GetComponent<Collider>();
         // rb.centerOfMass = 0;
-        collidePoint = transform.position;// + (rb.centerOfMass + Vector3.up * cl.bounds.size.y * 0.8f);
+        collidePoint = transform.position; // + (rb.centerOfMass + Vector3.up * cl.bounds.size.y * 0.8f);
         toppled = false;
 
         KnockedSound = GetComponent<AudioSource>();
@@ -48,28 +48,28 @@ public class Knockable : MonoBehaviour
         }
     }
 
-
-  	public void trigger(Vector3 pushForce) 
-  	{
-  		pushForce.y = - Mathf.Abs(pushForce.x);
-  		rb.AddForceAtPosition(pushForce, collidePoint);
+    public void trigger(Vector3 pushForce)
+    {
+        pushForce.y = -Mathf.Abs(pushForce.x);
+        rb.AddForceAtPosition(pushForce, collidePoint);
 
         //Debug.Log("collide at" + collidePoint);
-        if (!toppled) {
+        if (!toppled)
+        {
             ScoreManager.instance.AddScore(objName, aType, scorePoint);
             toppled = true;
             TaskManager.instance.UpdateProgress(gameObject);
         }
 
-  	}
+    }
 
-    public void OnCollisionEnter (Collision col)
+    public void OnCollisionEnter(Collision col)
     {
         // Debug.Log("hit");
         if (_hasAudio)
         {
-            float volume = Mathf.Clamp(col.relativeVelocity.magnitude / 45.0f, 0.0f, 1.0f);        
-            KnockedSound.PlayOneShot(objectKnock, volume); 
+            float volume = Mathf.Clamp(col.relativeVelocity.magnitude / 45.0f, 0.0f, 1.0f);
+            KnockedSound.PlayOneShot(objectKnock, volume);
         }
     }
 
