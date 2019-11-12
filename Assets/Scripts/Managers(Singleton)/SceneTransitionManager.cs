@@ -41,16 +41,15 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("[SceneManager] StartGame");
+        // Debug.Log("[SceneManager] StartGame");
         AudioManager.instance.StopCurrent();
         GameManager.instance.Reset();
         SceneManager.LoadScene(GAME);
-        GameManager.instance.StartGame();
     }
 
     public void EndGame()
     {
-        Debug.Log("[SceneManager] EndGame");
+        // Debug.Log("[SceneManager] EndGame");
         AudioManager.instance.StopCurrent();
         AudioManager.instance.Play("MainMenuBGM");
         SceneManager.LoadScene(GAME_OVER);

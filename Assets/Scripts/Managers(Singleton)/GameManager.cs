@@ -38,13 +38,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Reset()
-    {
-        ScoreManager.instance?.Reset();
-        ObjectManager.instance?.Reset();
-        TimerManager.instance?.Reset();
-    }
-
     void Update()
     {
         if (!m_raccoon)
@@ -52,6 +45,15 @@ public class GameManager : MonoBehaviour
             m_raccoon = GameObject.FindGameObjectWithTag("Raccoon")?.GetComponent<RaccoonController>();
         }
     }
+
+
+    public void Reset()
+    {
+        ScoreManager.instance?.Reset();
+        ObjectManager.instance?.Reset();
+        TimerManager.instance?.Reset();
+    }
+
 
     public void TogglePlay()
     {
@@ -69,4 +71,5 @@ public class GameManager : MonoBehaviour
         }
         // TODO: Need to Toggle all the objects as well (potentially being knocked over)
     }
+
 }

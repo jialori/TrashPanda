@@ -47,19 +47,19 @@ public class RaccoonController : MonoBehaviour
 
     private bool pause = false;
 
-    void Start()
+    void Awake()
     {
-        AudioManager.instance.Play("ThemeSong");
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-
         // For interaction with breakable and knockable
         raycastPaddedDist = characterController.radius + raycastPadding;
         breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
         knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
+    }
 
-        // Set Raccoon's attack power
-        // attackPower = 1;
+    void Start()
+    {
+        AudioManager.instance.Play("ThemeSong");
     }
 
     void Update()

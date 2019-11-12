@@ -8,17 +8,23 @@ using Util;
 public class TogglePlay : MonoBehaviour
 {
 
-    public GameObject pauseMenu;
-    public EventSystem es;
+    private EventSystem es;
 
-    void Start()
+    [Header("GameObject References")]
+    public GameObject pauseMenu;
+    public Text countDownText;
+
+    bool _validInput;
+
+    void Awake()
     {
         es = GetComponent<EventSystem>();
+        _validInput = false
     }
 
     void Update()
     {
-        bool _validInput = false;
+        // Pause Menu
         if (Controller.GetPause() ||
             (Controller.GetA() && pauseMenu.activeSelf && es?.currentSelectedGameObject?.GetComponent<Button>()))
         {
@@ -29,6 +35,7 @@ public class TogglePlay : MonoBehaviour
         {
             GameManager.instance.TogglePlay();
             pauseMenu.SetActive(!pauseMenu.activeSelf);
+            _validInput = false
         }
     }
 

@@ -8,12 +8,13 @@ public class StunDisplay : MonoBehaviour
 
     void Start()
     {
-        //raccoon = GameObject.Find("Raccoon").GetComponent<RaccoonController>();
+        raccoon = GameManager.instance.Raccoon;
     }
 
     void Update()
     {
-        if (raccoon.isStunned)
+        // TODO: inefficient, use coroutine instead
+        if ((raccoon ? raccoon.isStunned : false))
         {
             stunText.enabled = true;
         }
