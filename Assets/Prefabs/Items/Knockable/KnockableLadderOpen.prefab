@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4026447599281359798}
   - component: {fileID: 356207946491630842}
   - component: {fileID: 328533688822690238}
+  - component: {fileID: 6329657032063779651}
   - component: {fileID: 1913202962451212569}
   - component: {fileID: 1786963065037419816}
   - component: {fileID: -7203124503576812385}
@@ -133,6 +134,22 @@ MonoBehaviour:
   orgObj: {fileID: 4943987482653242202}
   fracturedObj: {fileID: 521777264523923749, guid: 96b276bd6f427b04e9e9ad96b4a6bcd7,
     type: 3}
+  mass: 0.001
+--- !u!114 &6329657032063779651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943987482653242202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93063d7cfd093f4aae172dd1849b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustTime: 1
+  effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
+  starLifetime: 2.5
 --- !u!64 &1913202962451212569
 MeshCollider:
   m_ObjectHideFlags: 0

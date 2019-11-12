@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class DestroyEffect : MonoBehaviour
 {
+    // Need to add DestroyEffect script to any breakable or knockable objects
     public float dustTime = 1;
     public GameObject effect;
+    public float starLifetime = 3f; // 3 for Scaffolding, 1 for bucket
 
 
     private bool dusting = false;
     private float leftDustTime;
     private GameObject dust;
-    // Start is called before the first frame update
+
     void Start()
     {
         leftDustTime = dustTime;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         Dusting();
@@ -27,7 +29,9 @@ public class DestroyEffect : MonoBehaviour
     {
         dusting = true;
         leftDustTime = dustTime;
-        if (!dust) dust = Instantiate(effect, GetComponent<Renderer>().bounds.center, Quaternion.identity);
+        if (!dust) dust = Instantiate(effect, GetComponent<Collider>().bounds.center, Quaternion.identity);
+        var psm = dust.GetComponent<ParticleSystem>().main;
+        psm.startLifetime = starLifetime;
         dust.GetComponent<ParticleSystem>().Play();
 
         if (destroyed) Destroy(gameObject, (float)(dustTime * 0.9));

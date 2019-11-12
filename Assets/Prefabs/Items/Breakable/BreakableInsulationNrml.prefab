@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3654112107096353509}
   - component: {fileID: 2335648316804166393}
   - component: {fileID: -7564543605564332025}
+  - component: {fileID: 4994102341885909886}
   m_Layer: 8
   m_Name: BreakableInsulationNrml
   m_TagString: Untagged
@@ -97,13 +98,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 10
   scorePoint: 15
-  dustTime: 1
-  DestroyEffect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef,
-    type: 3}
   level: 0
-  destroyed: 0
   breakSFX: {fileID: 8300000, guid: cc20f376ebf7a0440b268aea8b0d49ca, type: 3}
   hitSFX: {fileID: 8300000, guid: 75e692918e38c274b82e7cbb1312a6a8, type: 3}
+  destroyed: 0
   objName: 
 --- !u!65 &7037016234518683187
 BoxCollider:
@@ -250,3 +248,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4994102341885909886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775158752565686155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93063d7cfd093f4aae172dd1849b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustTime: 1
+  effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
+  starSize: 4

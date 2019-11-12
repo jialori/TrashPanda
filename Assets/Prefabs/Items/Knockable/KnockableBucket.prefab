@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -1325903741936959803}
   - component: {fileID: -7275290043522313247}
   - component: {fileID: 3775362437402685331}
+  - component: {fileID: -91018464388582920}
   m_Layer: 9
   m_Name: KnockableBucket
   m_TagString: Untagged
@@ -263,3 +264,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-91018464388582920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7998367819914754091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93063d7cfd093f4aae172dd1849b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustTime: 1
+  effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
+  starLifetime: 0.5

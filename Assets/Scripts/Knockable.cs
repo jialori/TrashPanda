@@ -18,6 +18,7 @@ public class Knockable : MonoBehaviour
     public int level; // The floor this object is on
     public bool toppled; // Flag determining whether this object has been knocked over or not
 
+    private DestroyEffect df;
     private Rigidbody rb;
     private Collider cl;
 
@@ -46,6 +47,8 @@ public class Knockable : MonoBehaviour
         {
             KnockedSound.clip = objectKnock;
         }
+
+        df = GetComponent<DestroyEffect>();
     }
 
     public void trigger(Vector3 pushForce)
@@ -59,6 +62,7 @@ public class Knockable : MonoBehaviour
             ScoreManager.instance.AddScore(objName, aType, scorePoint);
             toppled = true;
             TaskManager.instance.UpdateProgress(gameObject);
+            df.StartDusting(false);
         }
 
     }
@@ -70,6 +74,7 @@ public class Knockable : MonoBehaviour
         {
             float volume = Mathf.Clamp(col.relativeVelocity.magnitude / 45.0f, 0.0f, 1.0f);
             KnockedSound.PlayOneShot(objectKnock, volume);
+            
         }
     }
 

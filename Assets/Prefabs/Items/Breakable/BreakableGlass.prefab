@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 743365311405503617}
   - component: {fileID: -7410776090744837387}
   - component: {fileID: 8456735291633561811}
+  - component: {fileID: -9026096741876659955}
   m_Layer: 8
   m_Name: BreakableGlass
   m_TagString: Untagged
@@ -110,13 +111,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 3
   scorePoint: 0
-  dustTime: 1
-  DestroyEffect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef,
-    type: 3}
   level: 0
-  destroyed: 0
   breakSFX: {fileID: 8300000, guid: ccb46da70aa330f409427233f24c1c3c, type: 3}
   hitSFX: {fileID: 8300000, guid: cc20f376ebf7a0440b268aea8b0d49ca, type: 3}
+  destroyed: 0
   objName: 
 --- !u!114 &743365311405503617
 MonoBehaviour:
@@ -250,3 +248,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-9026096741876659955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4424728594786868249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93063d7cfd093f4aae172dd1849b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustTime: 1
+  effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
+  starLifetime: 3

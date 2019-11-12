@@ -7,11 +7,19 @@ public class SpawnFracturedModel : MonoBehaviour
     public GameObject orgObj;
     public GameObject fracturedObj;
     public float mass = 0.001f;
+    private DestroyEffect df;
 
+    private void Start()
+    {
+        df = GetComponent<DestroyEffect>();
+    }
     void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > 1.5)
+        {
+            df.StartDusting(true);
             SpawnFracturedObj(collision.relativeVelocity * mass);
+        }
     }
 
     public void SpawnFracturedObj(Vector3 momentum)

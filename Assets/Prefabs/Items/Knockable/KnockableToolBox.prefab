@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 809701625529788964}
   - component: {fileID: 8962793893765883820}
   - component: {fileID: 5661174259658728312}
+  - component: {fileID: -3593115725692573748}
   m_Layer: 9
   m_Name: KnockableToolBox
   m_TagString: Untagged
@@ -690,6 +691,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3593115725692573748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031766054481402096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93063d7cfd093f4aae172dd1849b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustTime: 1
+  effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
+  starLifetime: 0.5
 --- !u!1 &5985822558359001218
 GameObject:
   m_ObjectHideFlags: 0
