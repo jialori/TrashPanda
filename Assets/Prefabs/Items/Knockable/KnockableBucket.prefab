@@ -96,7 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f7b3644d7058b4e814783cc1fec183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: bucket
   scorePoint: 5
+  level: 0
+  toppled: 0
   objectKnock: {fileID: 8300000, guid: 75e692918e38c274b82e7cbb1312a6a8, type: 3}
 --- !u!54 &420270385177549150
 Rigidbody:
@@ -141,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 2
+  outlineWidth: 1
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -159,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 3
+  outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

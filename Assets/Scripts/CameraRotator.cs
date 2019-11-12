@@ -38,7 +38,7 @@ public class CameraRotator : MonoBehaviour
         //public float minYRotation = -270;
         // How fast the rotation can take place
         public float vOrbitSmooth = 50;
-        public float hOrbitSmooth = 50;
+        public float hOrbitSmooth = 100;
     }
 
     public class InputSettings
@@ -105,11 +105,10 @@ public class CameraRotator : MonoBehaviour
 
     void GetInput()
     {
-        //vOrbitInp = Input.GetAxis(input.ORBIT_VERTICAL);
         vOrbitInp = -Controller.GetCamYAxis();
-        //hOrbitInp = Input.GetAxis(input.ORBIT_HORIZONTAL);
+        // hOrbitInp = Input.GetAxis(input.ORBIT_HORIZONTAL);
         hOrbitInp = -Controller.GetCamXAxis();
-        hOrbitSnapInp = Input.GetAxis(input.ORBIT_HORIZONTAL_SNAP);
+        // hOrbitSnapInp = Input.GetAxis(input.ORBIT_HORIZONTAL_SNAP);
     }
 
     void MoveToTar()

@@ -23,10 +23,7 @@ public class TimerManager : MonoBehaviour
         {
             instance = this;
         }
-    }
 
-    void Start()
-    {
         timer = totalTime;
         timerOn = false;
     }

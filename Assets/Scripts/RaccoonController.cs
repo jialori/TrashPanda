@@ -8,7 +8,10 @@ public class RaccoonController : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private Transform cam;
-    [SerializeField] private CameraRotator camController;
+    [SerializeField] private CameraRotator camController;    
+
+    [Tooltip("How many degrees the raccoon can turn per 1 second.")]
+    public float turningRate = 360f;
 
     [Header("Character Stats")]
     [SerializeField] private float attackPower = 1;
@@ -35,10 +38,10 @@ public class RaccoonController : MonoBehaviour
     private Vector3 movementVector;
 
     // For interaction with Breakable and Knockable
-    private string breakableMaskName = "Breakable";
-    private string knockableMaskName = "Knockable";
-    private int breakableMask;
-    private int knockableMask;
+    // private string breakableMaskName = "Breakable";
+    // private string knockableMaskName = "Knockable";
+    // private int MyLayers.breakableMask;
+    // private int MyLayers.knockableMask;
 
     private bool isOnUpStair = false;
     private bool isOnDownStair = false;
@@ -46,6 +49,15 @@ public class RaccoonController : MonoBehaviour
     public float stunTimer = 3.0f;
 
     private bool pause = false;
+
+
+    void Awake()
+    {
+        if (camController == null)
+        {
+            Debug.Log("InspectorWarning: camController in Raccoon is missing. Please assign Camera to it.");
+        }
+    }
 
     void Start()
     {
@@ -55,8 +67,6 @@ public class RaccoonController : MonoBehaviour
 
         // For interaction with breakable and knockable
         raycastPaddedDist = characterController.radius + raycastPadding;
-        breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
-        knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
 
         // Set Raccoon's attack power
         // attackPower = 1;
@@ -97,11 +107,33 @@ public class RaccoonController : MonoBehaviour
         }
         //Debug.Log("RaccoonController: Level = " + level.ToString() + "position.y = " + transform.position.y.ToString());
 
+        float moveX = Controller.GetXAxis();
+        float moveY = Controller.GetYAxis();
         // If the raccoon is stunned, she cannot move, jump or break objects
         if (!isStunned)
         {
             // Movement
-            movementVector = (camForward * Controller.GetYAxis() + camRight * Controller.GetXAxis()) * movementSpeed;
+            movementVector = (camForward * moveY + camRight * moveX) * movementSpeed;
+
+            // Rotation
+            if ((moveX != 0 || moveY != 0))
+            {
+                // Turn towards camera first
+                // Vector3 lookDir = transform.position - cam.position;
+                // lookDir.y = 0;
+                // Quaternion tarRotation = Quaternion.LookRotation(lookDir);
+                // transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, turningRate * Time.deltaTime);
+            
+                // Turn towards direction of moving
+                int sign = (moveY >= 0) ? 1 : -1;
+                Quaternion tarRotation = Quaternion.LookRotation(sign * movementVector);
+                if (Quaternion.Angle(transform.rotation, tarRotation) >= 175) 
+                {
+                    // To prevent raccoon turning from the backside (quaternion default behavior)
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, -0.1f * turningRate * Time.deltaTime);
+                }
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, turningRate * Time.deltaTime);
+            }
 
             // Jump
             if (characterController.isGrounded)
@@ -135,22 +167,8 @@ public class RaccoonController : MonoBehaviour
             }
         }
 
-        // Rotation
-        if (camController != null)
-        {
-            float lookS = camController.position.lookSmooth;
-            Vector3 lookDir = transform.position - cam.position;
-            lookDir.y = 0;
-            Quaternion tarRotation = Quaternion.LookRotation(lookDir);
-            transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, lookS * Time.deltaTime);
-        }
-        else
-        {
-            Debug.Log("InspectorWarning: camController in Raccoon is Not correct. Please assign Camera to it.");
-        }
-
         // Animation
-        if (!isStunned && !Controller.GetA() && (Controller.GetXAxis() != 0.0f || Controller.GetYAxis() != 0.0f))
+        if (!isStunned && !Controller.GetA() && (moveX != 0.0f || moveY != 0.0f))
         {
         	animator.SetBool("isMoving", true);
         } else
@@ -206,7 +224,7 @@ public class RaccoonController : MonoBehaviour
         for (int i = 0; i < 360; i += radiusStep)
         {
             // Check if anything with the breakable layer touches this object
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, MyLayers.breakableMask))
             {
                 Breakable breakable = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
                 if ((breakable != null) && (Time.time > nextHit))

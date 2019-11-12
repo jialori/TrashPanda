@@ -17,10 +17,18 @@ public class Breakable : MonoBehaviour
     private float leftDustTime;
     private GameObject dust;
     
+    public int level;               // The floor this object is on
+    public bool destroyed;          // Flag determining whether this object has been destroyed or not
+    AudioSource breakSound;         // Audiosource files and script
+    public AudioClip breakSFX;      //SFX for breaking object
+    public AudioClip hitSFX;        //SFX for hitting object
+
     private float health; 
 
     public float Health { get => health;}
 
+    private ScoreManager.ActionTypes aType = ScoreManager.ActionTypes.BREAK;
+    public string objName;
 
     private void Start()
     {
@@ -40,6 +48,9 @@ public class Breakable : MonoBehaviour
         leftDustTime = dustTime;
         if (!dust) dust = Instantiate(DestroyEffect, GetComponent<Renderer>().bounds.center, Quaternion.identity);
         dust.GetComponent<ParticleSystem>().Play();
+        destroyed = false;
+
+        breakSound = GetComponent<AudioSource>();
     }
 
     private void Dusting()
@@ -56,13 +67,19 @@ public class Breakable : MonoBehaviour
     {
         health -= calcDamage(atk);
         Debug.Log("Object health" + health);
+
+        breakSound.PlayOneShot(hitSFX, 0.8F);
+
         if (health <= 0)
         {
             health = 0;
-            Debug.Log("broke some object");
-            ScoreManager.instance.AddScore(scorePoint);
+            //Debug.Log("broke some object");
+            ScoreManager.instance.AddScore(objName, aType, scorePoint);
             StartDusting();
+            destroyed = true;
+            //Debug.Log("destroyed: " + destroyed.ToString() + ", position: " + transform.position.ToString());
             Destroy(gameObject, (float)(dustTime * 0.9));
+
         }
         StartDusting();
     }
