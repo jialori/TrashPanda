@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 99c7a84ab1dbb0a469ba060ae2dbb0b6, type: 2}
+  - {fileID: 2100000, guid: ecdac70591bf93c4b8b548b7af47ef44, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,6 +99,11 @@ MonoBehaviour:
   dustTime: 1
   DestroyEffect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef,
     type: 3}
+  level: 0
+  destroyed: 0
+  breakSFX: {fileID: 0}
+  hitSFX: {fileID: 0}
+  objName: 
 --- !u!64 &5983350697387012549
 MeshCollider:
   m_ObjectHideFlags: 0
