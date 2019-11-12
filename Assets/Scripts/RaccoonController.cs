@@ -96,7 +96,7 @@ public class RaccoonController : MonoBehaviour
         {
             level = 5;
         }
-        Debug.Log("RaccoonController: position.x = " + transform.position.x.ToString() + " position.y = " + transform.position.y.ToString() + " position.z = " + transform.position.z.ToString());
+        // Debug.Log("RaccoonController: position.x = " + transform.position.x.ToString() + " position.y = " + transform.position.y.ToString() + " position.z = " + transform.position.z.ToString());
 
         float moveX = Controller.GetXAxis();
         float moveY = Controller.GetYAxis();
@@ -218,5 +218,4 @@ public class RaccoonController : MonoBehaviour
         pause = !pause;
         animator.enabled = !animator.enabled;
     }
-
 }

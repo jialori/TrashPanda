@@ -8,6 +8,7 @@ public class Tool : MonoBehaviour
     //private GameObject player;
     private RaccoonController playerScript;
     private Rigidbody rb;
+    private static float timerLength = 20f; // Total amount of time
     private float timer;                    // Time before this bonus tool expires
     public string toolType;
 
@@ -15,15 +16,11 @@ public class Tool : MonoBehaviour
 
     [Header("Tool Attributes")]
     public float effectOnAttack = 10;
-    public float effectOnSpeed = -5;
-
     private void Start()
     {
+        Debug.Log("tool start");
         rb = GetComponent<Rigidbody>();
         playerScript = GameManager.instance.Raccoon.GetComponent<RaccoonController>();
-        // Once the player completes a task, equip the bonus tool and start its timer
-        // timer = 10f;
-        // Equip();
     }
 
     private void Update()
@@ -38,31 +35,26 @@ public class Tool : MonoBehaviour
             {
                 UnEquip();
             }
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
-
-    // The function called by 
-    /*
-    public void Activate()
-    {
-        if (!beingCarried)
-        {
-            Equip();
-        } else {
-            UnEquip();
-        }
-    }
-    */
 
     public void Equip() 
     {
         // Called
+        rb = GetComponent<Rigidbody>();
+        playerScript = GameManager.instance.Raccoon.GetComponent<RaccoonController>();
         rb.isKinematic = true;
         beingCarried = true;
         transform.parent = playerScript.transform;
         transform.localPosition = playerScript.transform.forward;
-    	playerScript.AddStrengthModifier(effectOnAttack, effectOnSpeed);
+        var offset = playerScript.transform.right * -0.5f; 
+        offset.y = 0;
+        transform.localPosition += offset;
+    	playerScript.AddStrengthModifier(effectOnAttack, 0);
+
+        timer = timerLength;
+        ObjectManager.instance.EquipTool(this);
     }
 
     public void UnEquip()
@@ -72,7 +64,12 @@ public class Tool : MonoBehaviour
 	    Vector3 currLoc = transform.position;
 	    transform.parent = null;
 	    transform.position = currLoc;
-	    playerScript.RemoveStrengthModifier(effectOnAttack, effectOnSpeed);	
+	    playerScript.RemoveStrengthModifier(effectOnAttack, 0);	
+        ObjectManager.instance.UnequipTool(this);
     }
 
+    public void AddTime()
+    {
+        timer += timerLength;
+    }
 }

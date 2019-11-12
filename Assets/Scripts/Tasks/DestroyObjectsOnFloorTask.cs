@@ -13,26 +13,23 @@ public class DestroyObjectsOnFloorTask : GameTask
     // Intermediate variables
     Breakable[] B;
 
-    public override bool isComplete()
-    {
-        return destroyed.Count >= numToDestroy;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
+        description = "Smash " + numToDestroy + " items on floor " + level;
+
         destroyed = new List<Breakable>();
 
         // Retrieve all breakable objects
         breakableObjects = new List<Breakable>();
-        B = FindObjectsOfType<Breakable>();
-        for (int i = 0; i < B.Length; i++)
-        {
-            if (B[i].level == level)
-            {
-                breakableObjects.Add(B[i]);
-            }
-        }
+        // B = FindObjectsOfType<Breakable>();
+        // for (int i = 0; i < B.Length; i++)
+        // {
+        //     if (B[i].level == level)
+        //     {
+        //         breakableObjects.Add(B[i]);
+        //     }
+        // }
     }
 
     // Update is called once per frame
@@ -50,7 +47,12 @@ public class DestroyObjectsOnFloorTask : GameTask
         }
     }
 
-    protected override void updateProgress()
+    public override bool isComplete()
+    {
+        return destroyed.Count >= numToDestroy;
+    }
+
+    public override void updateProgress(TaskProgress progress)
     {
 
     }

@@ -422,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolType: 
   effectOnAttack: 10
-  effectOnSpeed: -5
+  effectOnSpeed: 0
 --- !u!64 &2391188288250792655
 MeshCollider:
   m_ObjectHideFlags: 0

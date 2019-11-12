@@ -78,8 +78,8 @@ public class Breakable : MonoBehaviour
             StartDusting();
             destroyed = true;
             //Debug.Log("destroyed: " + destroyed.ToString() + ", position: " + transform.position.ToString());
+            TaskManager.instance.UpdateProgress(this.gameObject);
             Destroy(gameObject, (float)(dustTime * 0.9));
-
         }
         StartDusting();
     }

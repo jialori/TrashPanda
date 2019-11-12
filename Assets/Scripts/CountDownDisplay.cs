@@ -35,10 +35,12 @@ public class CountDownDisplay : MonoBehaviour
         }
         
         countDownText.text = "START!";
-        yield return new WaitForSeconds(1.0f);
-
-        countDownDisplay.SetActive(false);
+        
         GameManager.instance.Raccoon.TogglePlay();
-    	TimerManager.instance.StartTimer();
+        TimerManager.instance.StartTimer();
+
+        
+        yield return new WaitForSeconds(1.0f);
+        countDownDisplay.SetActive(false);
     }
 }
