@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyObjectsOnFloor : GameTask
+public class DestroyObjectsOnFloorTask : GameTask
 {
     int numToDestroy;                       // Number of objects to destroy to complete this goal
     int level;                              // The relevant floor level
