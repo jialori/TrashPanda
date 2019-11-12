@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e72c286dad5d82148907893dffc7d318, type: 2}
+  - {fileID: 2100000, guid: f0025a3765a715d478454d4944c3a95d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,8 +109,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 2
   scorePoint: 0
+  dustTime: 1
+  DestroyEffect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef,
+    type: 3}
   level: 0
   destroyed: 0
+  breakSFX: {fileID: 0}
+  hitSFX: {fileID: 0}
+  objName: 
 --- !u!114 &-757262658194559659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 1
+  outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -142,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 2
+  outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

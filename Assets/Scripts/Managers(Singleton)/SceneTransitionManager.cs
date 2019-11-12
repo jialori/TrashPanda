@@ -11,6 +11,8 @@ public class SceneTransitionManager : MonoBehaviour
     public string GAME;
     public string GAME_OVER;
 
+    [SerializeField] private CountDownDisplay countDownDisplay;
+
     void Awake()
     {
         if (instance != null)
@@ -27,8 +29,14 @@ public class SceneTransitionManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == MENU)
         {
-        // play BGM when start at Menu
-        AudioManager.instance.Play("MainMenuBGM");
+            // play BGM when start at Menu
+            AudioManager.instance.Play("MainMenuBGM");
+        } 
+        else if (SceneManager.GetActiveScene().name == GAME)
+        {
+            // GameManager.instance.StartGame();
+            // StartGameSteps();
+            StartGame();
         }
     }
 
@@ -44,7 +52,8 @@ public class SceneTransitionManager : MonoBehaviour
         // Debug.Log("[SceneManager] StartGame");
         AudioManager.instance.StopCurrent();
         GameManager.instance.Reset();
-        SceneManager.LoadScene(GAME);
+        if (SceneManager.GetActiveScene().name != GAME) SceneManager.LoadScene(GAME);
+        StartGameSteps();
     }
 
     public void EndGame()
@@ -59,6 +68,20 @@ public class SceneTransitionManager : MonoBehaviour
     {
         // Debug.Log("Quit");
         Application.Quit();
+    }
+
+
+    void StartGameSteps()
+    {
+        if (!GameManager.instance.m_disableCountDown)
+        {
+            StartCoroutine(countDownDisplay.CountDown());
+        } 
+        else
+        {
+            TimerManager.instance.StartTimer();
+        }
+
     }
 
 }

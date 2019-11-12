@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Util
 {
-	class Controller {
-
+	class Controller 
+	{
 		public static bool GetA()
 		{
 		    if (GameManager.instance.UseController)
@@ -109,6 +109,18 @@ namespace Util
 	            return Input.GetAxis("Mouse Y");
 	    }
 
+	}
+
+	class MyLayers {
+	    static private string breakableMaskName = "Breakable";
+	    static private string knockableMaskName = "Knockable";
+	    static private string toolsMaskName = "Tools";
+	    static private string interactableMaskName = "Interactable";
+	    
+        static public int breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
+        static public int knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
+        static public int toolsMask = 1 << LayerMask.NameToLayer(toolsMaskName);
+        static public int interactableMask = 1 << LayerMask.NameToLayer(interactableMaskName);
 	}
 
 }

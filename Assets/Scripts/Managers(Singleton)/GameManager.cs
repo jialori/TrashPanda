@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     // true if wee start at MainScene or its copy directly (not transitioned from other scenes)
     // [SerializeField] public bool m_devMode = false;
     [SerializeField] public bool m_disableTimer = false;
+    [SerializeField] public bool m_disableCountDown = false;
 
     [SerializeField] private RaccoonController m_raccoon;
     public RaccoonController Raccoon { get => m_raccoon; }
@@ -25,16 +26,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        }
-    }
-
-    void Start() { }
-
-    public void StartGame()
-    {
-        if (!m_disableTimer)
-        {
-            TimerManager.instance.StartTimer();
         }
     }
 

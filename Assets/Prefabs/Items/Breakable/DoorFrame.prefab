@@ -94,10 +94,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1225ab613ed234db546c783279e674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalHealth: 3
-  scorePoint: 5
+  totalHealth: 0
+  scorePoint: 0
+  dustTime: 1
+  DestroyEffect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef,
+    type: 3}
   level: 0
   destroyed: 0
+  breakSFX: {fileID: 0}
+  hitSFX: {fileID: 0}
+  objName: 
 --- !u!64 &5983350697387012549
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -125,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 1
+  outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -143,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineWidth: 2
+  outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

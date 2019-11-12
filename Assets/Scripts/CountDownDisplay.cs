@@ -15,15 +15,16 @@ public class CountDownDisplay : MonoBehaviour
 		countDownText = GetComponent<Text>();
 	}
 
-	void Start()
-	{
+	// void Start()
+	// {
         // Count Down on Start
         // countDownText.GetComponent<CountDownDisplay>().StartCoroutine("CountDown");
-        StartCoroutine("CountDown");
-	}
+        // StartCoroutine("CountDown");
+	// }
 
-    private IEnumerator CountDown()
+    public IEnumerator CountDown()
     {
+    	TimerManager.instance.StopTimer();
         GameManager.instance.Raccoon.TogglePlay();
         countDownDisplay.SetActive(true);
 
@@ -37,7 +38,7 @@ public class CountDownDisplay : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         countDownDisplay.SetActive(false);
-        GameManager.instance.Raccoon?.TogglePlay();
-        GameManager.instance.StartGame();
+        GameManager.instance.Raccoon.TogglePlay();
+    	TimerManager.instance.StartTimer();
     }
 }

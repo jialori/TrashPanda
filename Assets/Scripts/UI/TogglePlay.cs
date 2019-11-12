@@ -19,7 +19,7 @@ public class TogglePlay : MonoBehaviour
     void Awake()
     {
         es = GetComponent<EventSystem>();
-        _validInput = false
+        _validInput = false;
     }
 
     void Update()
@@ -35,7 +35,7 @@ public class TogglePlay : MonoBehaviour
         {
             GameManager.instance.TogglePlay();
             pauseMenu.SetActive(!pauseMenu.activeSelf);
-            _validInput = false
+            _validInput = false;
         }
     }
 
