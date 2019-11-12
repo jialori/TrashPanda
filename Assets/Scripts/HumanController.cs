@@ -123,6 +123,8 @@ public class HumanController : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         //Audio Component
         WorkerAudio = GetComponent<AudioSource>();
+        workerChaseVO = Resources.LoadAll<AudioClip>("Audio/ChaseVO");
+        workerStunVO = Resources.LoadAll<AudioClip>("Audio/StunVO");
     }
 
     void Update() 

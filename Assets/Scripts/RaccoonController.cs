@@ -37,12 +37,6 @@ public class RaccoonController : MonoBehaviour
 
     private Vector3 movementVector;
 
-    // For interaction with Breakable and Knockable
-    // private string breakableMaskName = "Breakable";
-    // private string knockableMaskName = "Knockable";
-    // private int MyLayers.breakableMask;
-    // private int MyLayers.knockableMask;
-
     private bool isOnUpStair = false;
     private bool isOnDownStair = false;
     public bool isStunned = false;
@@ -57,19 +51,16 @@ public class RaccoonController : MonoBehaviour
         {
             Debug.Log("InspectorWarning: camController in Raccoon is missing. Please assign Camera to it.");
         }
+
+        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        // For interaction with breakable and knockable
+        raycastPaddedDist = characterController.radius + raycastPadding;
     }
 
     void Start()
     {
         AudioManager.instance.Play("ThemeSong");
-        characterController = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
-
-        // For interaction with breakable and knockable
-        raycastPaddedDist = characterController.radius + raycastPadding;
-
-        // Set Raccoon's attack power
-        // attackPower = 1;
     }
 
     void Update()
@@ -118,7 +109,7 @@ public class RaccoonController : MonoBehaviour
             // Rotation
             if ((moveX != 0 || moveY != 0))
             {
-                // Turn towards camera first
+                // Turn towards camera
                 // Vector3 lookDir = transform.position - cam.position;
                 // lookDir.y = 0;
                 // Quaternion tarRotation = Quaternion.LookRotation(lookDir);
@@ -129,7 +120,7 @@ public class RaccoonController : MonoBehaviour
                 Quaternion tarRotation = Quaternion.LookRotation(sign * movementVector);
                 if (Quaternion.Angle(transform.rotation, tarRotation) >= 175) 
                 {
-                    // To prevent raccoon turning from the backside (quaternion default behavior)
+                    // To prevent raccoon from turning through the backside (quaternion default behavior)
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, -0.1f * turningRate * Time.deltaTime);
                 }
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, turningRate * Time.deltaTime);
@@ -227,5 +218,4 @@ public class RaccoonController : MonoBehaviour
         pause = !pause;
         animator.enabled = !animator.enabled;
     }
-
 }

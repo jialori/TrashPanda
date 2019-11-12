@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class GameTask : MonoBehaviour
+public abstract class GameTask
 {
-    protected string description;
+    public string description;
 
     public abstract bool isComplete();
 
-    protected abstract void updateProgress();
+    public abstract void updateProgress(TaskProgress progress);
 }

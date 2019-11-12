@@ -32,6 +32,18 @@ public class PauseMenuController : MonoBehaviour
         pauseMenu.SetActive(!pauseMenu.activeSelf);
     }
 
+    // does not change the game's pause state
+    public void OpenPauseMenu()
+    {
+        pauseMenu.SetActive(true);
+    }
+
+    // does not change the game's pause state
+    public void ClosePauseMenu()
+    {
+        pauseMenu.SetActive(false);
+    }
+
     // public void ResetPause(GameObject element)
     public void Reset()
     {

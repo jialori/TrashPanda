@@ -31,6 +31,8 @@ public class AudioManager : MonoBehaviour
 
             s.source.outputAudioMixerGroup = mixerGroup;
         }
+
+        _curPlaying = "";
     }
 
     void Start()
@@ -70,6 +72,11 @@ public class AudioManager : MonoBehaviour
     public void StopCurrent()
     {
         Sound s = Array.Find(sounds, item => item.name == _curPlaying);
+        if (s == null)
+        {
+            Debug.LogWarning("Currently playing Sound: " + name + " not found!");
+            return;
+        }
         s.source.Stop();
     }
 

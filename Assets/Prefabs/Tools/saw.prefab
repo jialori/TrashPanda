@@ -216,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8692228993338773780}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 3.37, y: 1.6, z: -17.65}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.20000024, y: 0.2, z: 0.20000024}
   m_Children:
   - {fileID: 6588225313509700820}
@@ -326,10 +326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bff89796b2646d419eeb9ee2311ce75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   toolType: 
   effectOnAttack: 10
-  effectOnSpeed: -5
 --- !u!64 &1209382034513424623
 MeshCollider:
   m_ObjectHideFlags: 0

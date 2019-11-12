@@ -68,7 +68,7 @@ public class Breakable : MonoBehaviour
         health -= calcDamage(atk);
         Debug.Log("Object health" + health);
 
-        breakSound.PlayOneShot(hitSFX, 0.8F);
+        breakSound?.PlayOneShot(hitSFX, 0.8F);
 
         if (health <= 0)
         {
@@ -78,8 +78,8 @@ public class Breakable : MonoBehaviour
             StartDusting();
             destroyed = true;
             //Debug.Log("destroyed: " + destroyed.ToString() + ", position: " + transform.position.ToString());
+            TaskManager.instance.UpdateProgress(this.gameObject);
             Destroy(gameObject, (float)(dustTime * 0.9));
-
         }
         StartDusting();
     }

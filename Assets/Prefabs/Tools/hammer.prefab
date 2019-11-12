@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toolType: Hammer
   effectOnAttack: 10
-  effectOnSpeed: -5
+  effectOnSpeed: 0
 --- !u!64 &5255098257410295114
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -43,7 +43,15 @@ public class TimerManager : MonoBehaviour
 
     public void StartTimer()
     {
-        timerOn = true;
+        if (!GameManager.instance.m_disableTimer)
+        {
+            timerOn = true;
+        }
+    }
+
+    public void StopTimer()
+    {
+        timerOn = false;
     }
 
     public float GetCurrentTime()

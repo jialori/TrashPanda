@@ -8,15 +8,15 @@ public class SettingsMenuController : MonoBehaviour
 {
     public GameObject settingsMenu;
     public PauseMenuController pauseMenuController;
-    public Selectable firstSelected;
+    public GameObject firstSelected;
 
     public Toggle useMouseToggle;
     public Toggle useControllerToggle;
 
     void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(null); // fix Unity highlighting
-        firstSelected?.Select();
+        // EventSystem.current.SetSelectedGameObject(null); // fix Unity highlighting
+        EventSystem.current.SetSelectedGameObject(firstSelected);
     }
 
     void Start()
@@ -49,8 +49,8 @@ public class SettingsMenuController : MonoBehaviour
 
     public void CloseSettings()
     {
+        EventSystem.current.SetSelectedGameObject(null); // fix Unity highlighting
         settingsMenu.SetActive(false);
-        pauseMenuController.Reset();
     }
 
     public void AdjustGlobalVolume(float newVolume)

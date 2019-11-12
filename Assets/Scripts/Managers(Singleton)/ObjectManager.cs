@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -71,11 +71,11 @@ public class ObjectManager : MonoBehaviour
         }
 
         // reset target and in range
-        DisableOutline(target);
+        DisableHighlight(target);
         target = null;
         foreach (var k in inRangeKnockables)
         {
-            DisableOutline(k);
+            DisableHighlight(k);
         }
         inRangeKnockables.Clear();
 
@@ -107,7 +107,7 @@ public class ObjectManager : MonoBehaviour
             // breakable layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, MyLayers.breakableMask))
             {
-                if (hit.distance < targetDist && (target == null || target.GetComponent<Breakable>() != null))
+                if (hit.distance < targetDist && curTool != null && (target == null || target.GetComponent<Breakable>() != null))
                 {
                     target = hit.collider.gameObject;
                     //if (verboseMode) Debug.Log("[ObjectManager] target is Breakable");
@@ -116,24 +116,24 @@ public class ObjectManager : MonoBehaviour
             }
 
             // tools layer
-            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, MyLayers.toolsMask))
-            {
-                if (verboseMode) Debug.Log("[ObjectManager] tools hit something");
-                if (verboseMode) Debug.Log(hit.collider.gameObject.name);
-                if (hit.distance < targetDist && hit.collider.gameObject.GetComponent<Tool>() != null)
-                {
-                    if (verboseMode) Debug.Log("[ObjectManager] target is Tool");
-                    target = hit.collider.gameObject;
-                    targetDist = hit.distance;
-                }
-                //Debug.Log("hit.distance < targetDist: " + (hit.distance < targetDist).ToString() + ", hit.collider.gameObject.GetComponent<Tool>() != null: " + (hit.collider.gameObject.GetComponent<Tool>() != null).ToString());
-                if (hit.distance < targetDist && hit.collider.gameObject.GetComponent<ActiveToolController>() != null)
-                {
-                    if (verboseMode) Debug.Log("[ObjectManager] target is Active Tool");
-                    target = hit.collider.gameObject;
-                    targetDist = hit.distance;
-                }
-            }
+            // if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, MyLayers.toolsMask))
+            // {
+            //     if (verboseMode) Debug.Log("[ObjectManager] tools hit something");
+            //     if (verboseMode) Debug.Log(hit.collider.gameObject.name);
+            //     if (hit.distance < targetDist && hit.collider.gameObject.GetComponent<Tool>() != null)
+            //     {
+            //         if (verboseMode) Debug.Log("[ObjectManager] target is Tool");
+            //         target = hit.collider.gameObject;
+            //         targetDist = hit.distance;
+            //     }
+            //     //Debug.Log("hit.distance < targetDist: " + (hit.distance < targetDist).ToString() + ", hit.collider.gameObject.GetComponent<Tool>() != null: " + (hit.collider.gameObject.GetComponent<Tool>() != null).ToString());
+            //     if (hit.distance < targetDist && hit.collider.gameObject.GetComponent<ActiveToolController>() != null)
+            //     {
+            //         if (verboseMode) Debug.Log("[ObjectManager] target is Active Tool");
+            //         target = hit.collider.gameObject;
+            //         targetDist = hit.distance;
+            //     }
+            // }
 
             // interactable layer
             if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, MyLayers.interactableMask))
@@ -182,19 +182,18 @@ public class ObjectManager : MonoBehaviour
         if (target != null)
         {
             Breakable breakableTarget = target.GetComponent<Breakable>();
-            if (breakableTarget != null)
+            if (curTool != null && breakableTarget != null)
             {
                 if (verboseMode) Debug.Log("[ObjectManager] target is breakable");
                 healthBar.SetActive(true);
                 healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
+                EnableHighlight(target);
             }
-            else
+            else if (breakableTarget == null)
             {
                 healthBar.SetActive(false);
+                EnableHighlight(target);
             }
-
-            // Outline target
-            EnableOutline(target);
         }
         else
         {
@@ -204,7 +203,7 @@ public class ObjectManager : MonoBehaviour
         // Outline in range knockables
         foreach (var k in inRangeKnockables)
         {
-            EnableOutline(k.gameObject);
+            EnableHighlight(k.gameObject);
         }
     }
 
@@ -222,7 +221,7 @@ public class ObjectManager : MonoBehaviour
 
         // attack target if target breakable
         var breakableTarget = target.GetComponent<Breakable>();
-        if ((breakableTarget != null) && (Time.time > raccoon.nextHit))
+        if (curTool != null && (breakableTarget != null) && (Time.time > raccoon.nextHit))
         {
             if (verboseMode) Debug.Log("Breakable target");
             raccoon.nextHit = Time.time + raccoon.HitRate;
@@ -253,28 +252,10 @@ public class ObjectManager : MonoBehaviour
                 stairMenu.Hide();
             }
         }
-
-        /*
-        var toolTarget = target.GetComponent<Tool>();
-        if ((toolTarget != null))
-        {
-            if (verboseMode) Debug.Log("Tool target");
-            if (curTool != null) curTool.Activate();
-            toolTarget.Activate();
-            curTool = toolTarget;
-        }
-
-        var activeToolTarget = target.GetComponent<ActiveToolController>();
-        if (activeToolTarget != null)
-        {
-            if (verboseMode) Debug.Log("Activated tool target");
-            activeToolTarget.Activate();
-        }
-        */
     }
 
 
-    void EnableOutline(GameObject c)
+    void EnableHighlight(GameObject c)
     {
         if (c == null) return;
         Outline ol = c.GetComponent<Outline>() as Outline;
@@ -290,7 +271,7 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-    void DisableOutline(GameObject c)
+    void DisableHighlight(GameObject c)
     {
         if (c == null) return;
         Outline ol = c.GetComponent<Outline>() as Outline;
@@ -311,5 +292,33 @@ public class ObjectManager : MonoBehaviour
     {
         target = null;
         inRangeKnockables.Clear();
+    }
+
+    public void EquipTool(Tool tool)
+    {
+        curTool = tool;
+        
+        // enable outline for breakables
+        var breakables = GameObject.FindObjectsOfType<GameObject>().Where(obj => obj.GetComponent<Breakable>() != null);
+        foreach(var breakable in breakables) 
+        {
+            var outline = breakable.GetComponent<Outline>();
+            if (outline != null) outline.enabled = true;
+        }
+    }
+
+    public void UnequipTool(Tool tool)
+    {
+        curTool = null;
+         // disable outline for breakables
+        var breakables = GameObject.FindObjectsOfType<GameObject>().Where(obj => obj.GetComponent<Breakable>() != null);
+        foreach(var breakable in breakables) 
+        {
+            var outline = breakable.GetComponent<Outline>();
+            if (outline != null) outline.enabled = false;
+
+            var highlight = breakable.GetComponent<Highlight>();
+            if (highlight != null) highlight.enabled = false;
+        }
     }
 }

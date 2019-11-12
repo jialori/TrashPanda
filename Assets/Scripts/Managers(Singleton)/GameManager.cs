@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     // [SerializeField] public bool m_devMode = false;
     [SerializeField] public bool m_disableTimer = false;
     [SerializeField] public float m_volume;
+    [SerializeField] public bool m_disableCountDown = false;
 
     [SerializeField] private RaccoonController m_raccoon;
     public RaccoonController Raccoon { get => m_raccoon; }
@@ -29,15 +30,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start() {}
-
-    public void StartGame()
+    void Update()
     {
-        if (!m_disableTimer)
+        if (!m_raccoon)
         {
-            TimerManager.instance.StartTimer();
+            m_raccoon = GameObject.FindGameObjectWithTag("Raccoon")?.GetComponent<RaccoonController>();
         }
     }
+
 
     public void Reset()
     {
@@ -46,13 +46,6 @@ public class GameManager : MonoBehaviour
         TimerManager.instance?.Reset();
     }
 
-    void Update()
-    {
-        if (!m_raccoon)
-        {
-            m_raccoon = GameObject.FindGameObjectWithTag("Raccoon")?.GetComponent<RaccoonController>();
-        }
-    }
 
     public void TogglePlay()
     {
@@ -70,4 +63,5 @@ public class GameManager : MonoBehaviour
         }
         // TODO: Need to Toggle all the objects as well (potentially being knocked over)
     }
+
 }

@@ -58,6 +58,7 @@ public class Knockable : MonoBehaviour
         if (!toppled) {
             ScoreManager.instance.AddScore(objName, aType, scorePoint);
             toppled = true;
+            TaskManager.instance.UpdateProgress(this.gameObject);
         }
 
   	}
