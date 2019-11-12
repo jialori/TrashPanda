@@ -68,7 +68,7 @@ public class Breakable : MonoBehaviour
         health -= calcDamage(atk);
         Debug.Log("Object health" + health);
 
-        breakSound.PlayOneShot(hitSFX, 0.8F);
+        breakSound?.PlayOneShot(hitSFX, 0.8F);
 
         if (health <= 0)
         {
