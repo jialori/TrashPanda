@@ -38,10 +38,10 @@ public class RaccoonController : MonoBehaviour
     private Vector3 movementVector;
 
     // For interaction with Breakable and Knockable
-    private string breakableMaskName = "Breakable";
-    private string knockableMaskName = "Knockable";
-    private int breakableMask;
-    private int knockableMask;
+    // private string breakableMaskName = "Breakable";
+    // private string knockableMaskName = "Knockable";
+    // private int MyLayers.breakableMask;
+    // private int MyLayers.knockableMask;
 
     private bool isOnUpStair = false;
     private bool isOnDownStair = false;
@@ -67,8 +67,6 @@ public class RaccoonController : MonoBehaviour
 
         // For interaction with breakable and knockable
         raycastPaddedDist = characterController.radius + raycastPadding;
-        breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
-        knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
 
         // Set Raccoon's attack power
         // attackPower = 1;
@@ -226,7 +224,7 @@ public class RaccoonController : MonoBehaviour
         for (int i = 0; i < 360; i += radiusStep)
         {
             // Check if anything with the breakable layer touches this object
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, breakableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, raycastPaddedDist, MyLayers.breakableMask))
             {
                 Breakable breakable = hit.collider.gameObject.GetComponent<Breakable>() as Breakable;
                 if ((breakable != null) && (Time.time > nextHit))

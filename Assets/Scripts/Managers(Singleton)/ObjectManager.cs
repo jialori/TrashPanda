@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Util;
+using Util; // MyLayers, Controller
 
 public class ObjectManager : MonoBehaviour
 {
@@ -10,16 +10,6 @@ public class ObjectManager : MonoBehaviour
     public static ObjectManager instance;
     private static GameObject target;
     private static List<GameObject> inRangeKnockables = new List<GameObject>();
-
-    // Masks
-    private string breakableMaskName = "Breakable";
-    private string knockableMaskName = "Knockable";
-    private string toolsMaskName = "Tools";
-    private string interactableMaskName = "Interactable";
-    private int breakableMask;
-    private int knockableMask;
-    private int toolsMask;
-    private int interactableMask;
 
     private bool stairMenuOpen;
     public static Tool curTool;
@@ -59,10 +49,6 @@ public class ObjectManager : MonoBehaviour
         if (verboseMode) Debug.Log("[ObjectManager] Start");
 
         raccoon = GameManager.instance.Raccoon;
-        breakableMask = 1 << LayerMask.NameToLayer(breakableMaskName);
-        knockableMask = 1 << LayerMask.NameToLayer(knockableMaskName);
-        toolsMask = 1 << LayerMask.NameToLayer(toolsMaskName);
-        interactableMask = 1 << LayerMask.NameToLayer(interactableMaskName);
 
         startUp = true;
     }
@@ -108,7 +94,7 @@ public class ObjectManager : MonoBehaviour
             var dir = raccoon.transform.TransformDirection(Vector3.forward) * 5 + new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i));
 
             // knockable layer
-            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist * 3, knockableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist * 3, MyLayers.knockableMask))
             {
                 // if (verboseMode) Debug.Log("[ObjectManager] target is Knockable");
                 inRangeKnockables.Add(hit.collider.gameObject);
@@ -118,7 +104,7 @@ public class ObjectManager : MonoBehaviour
             // ^ not really, the statement is true for each iteration, but not so overall  
 
             // breakable layer
-            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, breakableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, MyLayers.breakableMask))
             {
                 if (hit.distance < targetDist && (target == null || target.GetComponent<Breakable>() != null))
                 {
@@ -129,7 +115,7 @@ public class ObjectManager : MonoBehaviour
             }
 
             // tools layer
-            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, toolsMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, MyLayers.toolsMask))
             {
                 if (verboseMode) Debug.Log("[ObjectManager] tools hit something");
                 if (verboseMode) Debug.Log(hit.collider.gameObject.name);
@@ -149,7 +135,7 @@ public class ObjectManager : MonoBehaviour
             }
 
             // interactable layer
-            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, interactableMask))
+            if (Physics.CapsuleCast(p1, p2, 0, dir, out hit, raycastPaddedDist, MyLayers.interactableMask))
             {
                 // currently the only other interactable object is Stair
                 if (hit.distance < targetDist)
