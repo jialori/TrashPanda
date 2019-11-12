@@ -9,6 +9,8 @@ public class RaccoonController : MonoBehaviour
 
     [SerializeField] private Transform cam;
     [SerializeField] private CameraRotator camController;    
+
+    [Tooltip("How many degrees the raccoon can turn per 1 second.")]
     public float turningRate = 360f;
 
     [Header("Character Stats")]
@@ -107,25 +109,32 @@ public class RaccoonController : MonoBehaviour
         }
         //Debug.Log("RaccoonController: Level = " + level.ToString() + "position.y = " + transform.position.y.ToString());
 
+        float moveX = Controller.GetXAxis();
+        float moveY = Controller.GetYAxis();
         // If the raccoon is stunned, she cannot move, jump or break objects
         if (!isStunned)
         {
             // Movement
-            movementVector = (camForward * Controller.GetYAxis() + camRight * Controller.GetXAxis()) * movementSpeed;
+            movementVector = (camForward * moveY + camRight * moveX) * movementSpeed;
 
             // Rotation
-            if ((Controller.GetYAxis() != 0 || Controller.GetXAxis() != 0))
+            if ((moveX != 0 || moveY != 0))
             {
                 // Turn towards camera first
-                float lookS = turningRate;
                 // Vector3 lookDir = transform.position - cam.position;
                 // lookDir.y = 0;
                 // Quaternion tarRotation = Quaternion.LookRotation(lookDir);
-                // transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, lookS * Time.deltaTime);
+                // transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, turningRate * Time.deltaTime);
             
-                // turn towards direction of moving
-                Quaternion tarRotation = Quaternion.LookRotation(movementVector);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, lookS * Time.deltaTime);
+                // Turn towards direction of moving
+                int sign = (moveY >= 0) ? 1 : -1;
+                Quaternion tarRotation = Quaternion.LookRotation(sign * movementVector);
+                if (Quaternion.Angle(transform.rotation, tarRotation) >= 175) 
+                {
+                    // To prevent raccoon turning from the backside (quaternion default behavior)
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, -0.1f * turningRate * Time.deltaTime);
+                }
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, turningRate * Time.deltaTime);
             }
 
             // Jump
@@ -161,7 +170,7 @@ public class RaccoonController : MonoBehaviour
         }
 
         // Animation
-        if (!isStunned && !Controller.GetA() && (Controller.GetXAxis() != 0.0f || Controller.GetYAxis() != 0.0f))
+        if (!isStunned && !Controller.GetA() && (moveX != 0.0f || moveY != 0.0f))
         {
         	animator.SetBool("isMoving", true);
         } else
