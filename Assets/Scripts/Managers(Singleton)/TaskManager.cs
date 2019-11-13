@@ -19,8 +19,12 @@ public class TaskManager : MonoBehaviour
     public List<GameObject> tools; // A list of tools that could be generated as a result of completing tasks
     [SerializeField] private GameObject objectiveComplete;
     [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private GameObject newObjective;
+    [SerializeField] private TextMeshProUGUI newDescription;
     [SerializeField] private TrashManiaDisplay trashManiaDisplay;
     [SerializeField] private List<TextMeshProUGUI> pauseMenuTasks;
+    [SerializeField] private List<TextMeshProUGUI> countdownTasks;
+
     public static TaskManager instance;
 
     void Awake()
@@ -37,11 +41,15 @@ public class TaskManager : MonoBehaviour
     }
 
     // Makes a task from 'taskPool' active so that it can be completed by the player
-    void addRandomTask()
+    GameTask addRandomTask()
     {
         int i = Random.Range(0, taskPool.Count);
         if (activeTasks.Find(task => task == taskPool[i]) == null)
+        {
             activeTasks.Add(taskPool[i]);
+            return taskPool[i];
+        }
+        return null;
     }
 
     void Start()
@@ -63,14 +71,14 @@ public class TaskManager : MonoBehaviour
         taskPool.Add(new KnockOverNSpecificItemsTask(3, "Paint Bucket"));
         taskPool.Add(new KnockOverNSpecificItemsTask(5, "Tool Box"));
 
-        addRandomTask();
-        addRandomTask();
-        addRandomTask();
+        while (activeTasks.Count < 3)
+            addRandomTask();
 
         for (int i = 0; i < activeTasks.Count; i++)
         {
             Debug.Log(activeTasks[i].description);
             pauseMenuTasks[i].text = activeTasks[i].description;
+            countdownTasks[i].text = activeTasks[i].description;
         }
     }
 
@@ -94,14 +102,20 @@ public class TaskManager : MonoBehaviour
             // Remove the completed task and add a new one
             var completedTask = activeTasks[completedTaskIdx];
             activeTasks.RemoveAt(completedTaskIdx);
+            GameTask newTask = null;
             if (taskPool.Count > 0)
             {
-                addRandomTask();
+                newTask = addRandomTask();
             }
+            // Update pause menu task list with new task
+            Debug.Log("new task desc: " + activeTasks[completedTaskIdx].description);
+            pauseMenuTasks[completedTaskIdx].text = activeTasks[completedTaskIdx].description;
 
             // Show objective complete
             Debug.Log("Calling showobjectivecomplete");
             StartCoroutine(ShowObjectiveComplete(completedTask));
+            StartCoroutine(ShowNewObjective(newTask));
+
 
             // Generate a tool for the raccoon here
             Debug.Log("Calling spawnrandomtool");
@@ -110,6 +124,7 @@ public class TaskManager : MonoBehaviour
         }
 
         // update task text if there are changes
+        
     }
 
     private void SpawnRandomTool()
@@ -156,6 +171,16 @@ public class TaskManager : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         objectiveComplete.SetActive(false);
         Debug.Log("hide Objective Complete");
-
+    }
+    private IEnumerator ShowNewObjective(GameTask newTask)
+    {
+        if (newTask == null) yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(2.0f);
+        newDescription.text = newTask.description;
+        newObjective.SetActive(true);
+        Debug.Log("Show new objective");
+        yield return new WaitForSeconds(2.0f);
+        newObjective.SetActive(false);
+        Debug.Log("hide new objective");
     }
 }

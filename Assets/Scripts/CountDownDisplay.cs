@@ -35,6 +35,7 @@ public class CountDownDisplay : MonoBehaviour
         }
         
         countDownText.text = "START!";
+        transform.GetChild(0).gameObject.SetActive(false);
         
         GameManager.instance.Raccoon.TogglePlay();
         TimerManager.instance.StartTimer();
