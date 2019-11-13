@@ -14,10 +14,10 @@ public class HumanController : MonoBehaviour
     public int level;
 
     List<Breakable> breakableObjects;           // List of breakable objects on this worker's floor
-    List<Breakable> destroyedObjects;           // List of destroyed objects. Used to remove objects from 'breakableObjects'
+    List<Breakable> destroyedObjects = new List<Breakable>();           // List of destroyed objects. Used to remove objects from 'breakableObjects'
 
     List<Knockable> knockableObjects;           // List of knockable objects on this worker's floor
-    List<Knockable> toppledObjects;             // List of knocked over objects. Used to remove objects from 'knockableObjects'
+    List<Knockable> toppledObjects = new List<Knockable>();             // List of knocked over objects. Used to remove objects from 'knockableObjects'
 
     Vector3 initialPosition;                // Starting position of this worker. Will return here after losing sight of raccoon
     public Transform target;                // Worker target to be chased (will always be the raccoon)
@@ -322,7 +322,7 @@ public class HumanController : MonoBehaviour
             if (knockableObjects[i].toppled)
             {
                 toppledObjects.Add(knockableObjects[i]);
-                Debug.Log(knockableObjects[i].ToString() + " was knocked over. Distance from worker " + id + ": " + Vector3.Distance(knockableObjects[i].transform.position, transform.position).ToString());
+                // Debug.Log(knockableObjects[i].ToString() + " was knocked over. Distance from worker " + id + ": " + Vector3.Distance(knockableObjects[i].transform.position, transform.position).ToString());
                 // If this worker heard the object being knocked over and is not chasing the raccoon
                 if (!chasing && Vector3.Distance(knockableObjects[i].transform.position, transform.position) < hearingRadius)
                 {
@@ -331,7 +331,7 @@ public class HumanController : MonoBehaviour
                     idle = false;
                     lastKnownLocation = knockableObjects[i].transform.position;
                     agent.SetDestination(lastKnownLocation);
-                    Debug.Log("Worker " + id + " heard object " + knockableObjects[i].ToString() + " being knocked over. Now heading to " + knockableObjects[i].transform.position.ToString() + " to investigate");
+                    // Debug.Log("Worker " + id + " heard object " + knockableObjects[i].ToString() + " being knocked over. Now heading to " + knockableObjects[i].transform.position.ToString() + " to investigate");
                 }
             }
         }
@@ -339,7 +339,7 @@ public class HumanController : MonoBehaviour
         for (int i = 0; i < toppledObjects.Count; i++)
         {
             knockableObjects.Remove(toppledObjects[i]);
-            Debug.Log(toppledObjects[i].ToString() + " has been removed");
+            // Debug.Log(toppledObjects[i].ToString() + " has been removed");
         }
         toppledObjects.Clear();
 

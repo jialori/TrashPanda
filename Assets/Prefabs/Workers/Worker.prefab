@@ -125,9 +125,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: af875a05ed2eded40850a408d3b5a0f1, type: 3}
   workerStunVO:
   - {fileID: 8300000, guid: 87afb9e6105a46344983c24c6760dfa8, type: 3}
-  - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
-  - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
-  - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
+  - {fileID: 8300000, guid: b41e088eb4af93748a50424efa68d1a3, type: 3}
+  - {fileID: 8300000, guid: c8de5c7090328994d9ea2e62fbe28dea, type: 3}
+  - {fileID: 8300000, guid: 47a98e2cd3361114780517de70c62ee2, type: 3}
   - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
   replayInterval: 4
   id: 
@@ -170,6 +170,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Human
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9757719e35eb39e44872d19686c70bcd, type: 2}
     - target: {fileID: -4216859302048453862, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -240,17 +245,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9757719e35eb39e44872d19686c70bcd, type: 2}
-    - target: {fileID: -211428952282553288, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
+    - target: {fileID: 4063311462909369826, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d815e21e9a88ee042b2483b972025551, type: 2}
-    - target: {fileID: 4063311462909369826, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
+    - target: {fileID: -211428952282553288, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

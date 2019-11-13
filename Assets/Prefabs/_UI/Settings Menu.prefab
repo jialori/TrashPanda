@@ -84,7 +84,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5355230074538834470}
         m_MethodName: useMouse
         m_Mode: 1
         m_Arguments:
@@ -334,6 +334,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: OpenPauseMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5355230074449303412
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 5355230074538834466}
   pauseMenuController: {fileID: 0}
-  firstSelected: {fileID: 5355230074697248547}
+  firstSelected: {fileID: 5355230074697248541}
   useMouseToggle: {fileID: 5355230073928497998}
   useControllerToggle: {fileID: 5355230075173511044}
 --- !u!1 &5355230074673270446
@@ -1412,7 +1423,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5355230074538834470}
         m_MethodName: useController
         m_Mode: 1
         m_Arguments:

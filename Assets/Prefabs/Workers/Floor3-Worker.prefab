@@ -10,7 +10,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 199bb7bf5196d404eaf4cf2d7d7da1f4, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -19,9 +19,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  DopplerLevel: 0
+  MinDistance: 7.488138
+  MaxDistance: 52.976486
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -110,14 +110,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAngle: 30
   maxRadius: 15
+  hearingRadius: 40
+  level: 0
   target: {fileID: 113956176984252431, guid: a3d1e7eae245a7b40b41802bbec029dd, type: 3}
   lastKnownLocation: {x: 0, y: 0, z: 0}
   seesRaccoon: 0
-  workerChaseSFX:
+  workerChaseVO:
   - {fileID: 8300000, guid: fdac9c53c878f8e43b643f20da79929a, type: 3}
   - {fileID: 8300000, guid: 5d1c01ba9bec787469be66bef8cbd5b4, type: 3}
   - {fileID: 8300000, guid: 199bb7bf5196d404eaf4cf2d7d7da1f4, type: 3}
+  - {fileID: 8300000, guid: a46360111e10e7747a17b9c49ee4aa38, type: 3}
+  - {fileID: 8300000, guid: b52c692148abcc14c83d9090b2e9f686, type: 3}
+  - {fileID: 8300000, guid: 1ac65fef4ab4e7145950b3fe6851c850, type: 3}
+  - {fileID: 8300000, guid: af875a05ed2eded40850a408d3b5a0f1, type: 3}
+  workerStunVO:
+  - {fileID: 8300000, guid: 87afb9e6105a46344983c24c6760dfa8, type: 3}
+  - {fileID: 8300000, guid: b41e088eb4af93748a50424efa68d1a3, type: 3}
+  - {fileID: 8300000, guid: c8de5c7090328994d9ea2e62fbe28dea, type: 3}
+  - {fileID: 8300000, guid: 47a98e2cd3361114780517de70c62ee2, type: 3}
+  - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
   replayInterval: 4
+  id: 
 --- !u!195 &-4966690112171863789
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -9,8 +9,8 @@ public class KnockOverNSpecificItemsTask : GameTask
     public KnockOverNSpecificItemsTask(int num, string itemType)
     {
         numGoal = num;
+        this.itemType = itemType;
         description = "Knock over " + num + " " + itemType + "s";
-
     }
 
     public override bool isComplete()
@@ -22,8 +22,8 @@ public class KnockOverNSpecificItemsTask : GameTask
     {
         if (progress.Type == TaskProgress.TaskType.Knockable)
         {
-            if (progress.Object != null)
-                Debug.Log(progress.Object.GetComponent<Knockable>().name);
+            // if (progress.Object != null)
+                // Debug.Log(progress.Object.GetComponent<Knockable>().name);
             Debug.Log(this.itemType);
             if (progress.Object != null && progress.Object.GetComponent<Knockable>().objName == itemType)
             {
