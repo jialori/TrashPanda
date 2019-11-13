@@ -18,11 +18,15 @@ public class Breakable : MonoBehaviour
     private float leftDustTime;
     private GameObject dust;
     
+    
     public int level;               // The floor this object is on
-    public bool destroyed;          // Flag determining whether this object has been destroyed or not
+    
     AudioSource breakSound;         // Audiosource files and script
     public AudioClip breakSFX;      //SFX for breaking object
     public AudioClip hitSFX;        //SFX for hitting object
+    public bool destroyed = false;          // Flag determining whether this object has been destroyed or not
+
+    private DestroyEffect df;
 
     private float health; 
 
@@ -38,35 +42,11 @@ public class Breakable : MonoBehaviour
 
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
         CHC.registerObject(transform);
+        df = GetComponent<DestroyEffect>();
     }
 
 
-    private void Update()
-    {
-        Dusting();
-    }
 
-    private void StartDusting()
-    {
-        dusting = true;
-        leftDustTime = dustTime;
-        if (!dust) dust = Instantiate(DestroyEffect, GetComponent<Renderer>().bounds.center, Quaternion.identity);
-        dust.GetComponent<ParticleSystem>().Play();
-        destroyed = false;
-
-        breakSound = GetComponent<AudioSource>();
-    }
-
-    private void Dusting()
-    {
-        if (dusting) leftDustTime -= Time.deltaTime;
-
-        if (leftDustTime <= 0)
-        {
-            dust.GetComponent<ParticleSystem>().Stop();
-            dusting = false;
-        }
-    }
     public void trigger(float atk)
     {
         health -= calcDamage(atk);
@@ -79,13 +59,14 @@ public class Breakable : MonoBehaviour
             health = 0;
             //Debug.Log("broke some object");
             ScoreManager.instance.AddScore(objName, aType, scorePoint);
-            StartDusting();
+            df.StartDusting(true);
             destroyed = true;
             //Debug.Log("destroyed: " + destroyed.ToString() + ", position: " + transform.position.ToString());
             TaskManager.instance.UpdateProgress(this.gameObject);
-            Destroy(gameObject, (float)(dustTime * 0.9));
         }
-        StartDusting();
+        else df.StartDusting(false);
+        breakSound = GetComponent<AudioSource>();
+
     }
 
     public float calcDamage(float atk)

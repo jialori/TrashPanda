@@ -11,6 +11,7 @@ public class SceneTransitionManager : MonoBehaviour
     public string GAME;
     public string GAME_OVER;
 
+    [Header("References")]
     [SerializeField] private CountDownDisplay countDownDisplay;
 
     void Awake()

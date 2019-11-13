@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6066596479313200096}
   - component: {fileID: -757262658194559659}
   - component: {fileID: -2762618069844840724}
+  - component: {fileID: 438549834142348555}
   m_Layer: 8
   m_Name: BreakableScaffoldingPlatform
   m_TagString: Untagged
@@ -109,13 +110,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 2
   scorePoint: 0
-  dustTime: 1
-  DestroyEffect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef,
-    type: 3}
   level: 0
-  destroyed: 0
   breakSFX: {fileID: 0}
   hitSFX: {fileID: 0}
+  destroyed: 0
   objName: 
 --- !u!114 &-757262658194559659
 MonoBehaviour:
@@ -153,3 +151,18 @@ MonoBehaviour:
   bakeKeys: []
   bakeValues: []
   highlightOn: 0
+--- !u!114 &438549834142348555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893404044471300610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93063d7cfd093f4aae172dd1849b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustTime: 1
+  effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
+  starSize: 4

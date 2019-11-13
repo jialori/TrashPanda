@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -7981682895937448404}
   - component: {fileID: 7919176415081921040}
   - component: {fileID: -157867914257203957}
+  - component: {fileID: 795274453174085549}
   m_Layer: 8
   m_Name: BreakableScaffoldingFrame
   m_TagString: Untagged
@@ -97,13 +98,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHealth: 10
   scorePoint: 20
-  dustTime: 1
-  DestroyEffect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef,
-    type: 3}
   level: 0
-  destroyed: 0
   breakSFX: {fileID: 8300000, guid: ccb46da70aa330f409427233f24c1c3c, type: 3}
   hitSFX: {fileID: 8300000, guid: cc20f376ebf7a0440b268aea8b0d49ca, type: 3}
+  destroyed: 0
   objName: Scaffolding
 --- !u!64 &-6723483562340407823
 MeshCollider:
@@ -251,3 +249,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &795274453174085549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948859728086416751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93063d7cfd093f4aae172dd1849b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustTime: 1
+  effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
+  starSize: 4

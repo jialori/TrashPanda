@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5606457746149423518}
   - component: {fileID: 5606457746149423507}
   - component: {fileID: -7247016894731174386}
+  - component: {fileID: 2297039328163638656}
   m_Layer: 9
   m_Name: Knockable
   m_TagString: Untagged
@@ -107,7 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f7b3644d7058b4e814783cc1fec183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objName: 
   scorePoint: 5
+  level: 0
+  toppled: 0
+  objectKnock: {fileID: 0}
 --- !u!54 &5606457746149423507
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,8 +142,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 0.20392156, g: 1, b: 0.45000926, a: 0.95686275}
   outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  highlightOn: 0
+--- !u!114 &2297039328163638656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5606457746149423513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93063d7cfd093f4aae172dd1849b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dustTime: 1
+  effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
+  starLifetime: 0.5

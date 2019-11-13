@@ -6,14 +6,23 @@ public class SpawnFracturedModel : MonoBehaviour
 {
     public GameObject orgObj;
     public GameObject fracturedObj;
+    public float mass = 0.001f;
+    private DestroyEffect df;
 
+    private void Start()
+    {
+        df = GetComponent<DestroyEffect>();
+    }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude > 2)
-            SpawnFracturedObj(collision.relativeVelocity);
+        if (collision.relativeVelocity.magnitude > 1.5)
+        {
+            df.StartDusting(true);
+            SpawnFracturedObj(collision.relativeVelocity * mass);
+        }
     }
 
-    public void SpawnFracturedObj(Vector3 relativeForce)
+    public void SpawnFracturedObj(Vector3 momentum)
     {
         Vector3 orgPos = transform.position;
         Vector3 scale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -23,6 +32,6 @@ public class SpawnFracturedModel : MonoBehaviour
         Debug.Log(orgPos);
         GameObject newObj = Instantiate(fracturedObj, orgPos, orgQua) as GameObject;
         newObj.transform.localScale = scale;
-        newObj.GetComponent<ExplodeScript>().Explode(relativeForce);
+        newObj.GetComponent<ExplodeScript>().Explode(momentum);
     }
 }
