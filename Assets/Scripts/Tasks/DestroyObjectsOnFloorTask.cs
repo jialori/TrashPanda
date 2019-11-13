@@ -53,4 +53,10 @@ public class DestroyObjectsOnFloorTask : GameTask
     {
 
     }
+
+    public override void Reset()
+    {
+        destroyed = new List<Breakable>();
+    }
+
 }

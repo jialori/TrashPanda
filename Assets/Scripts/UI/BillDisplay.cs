@@ -60,6 +60,8 @@ public class BillDisplay : MonoBehaviour
 		// 	[ScoreManager.ActionTypes.BREAK] = billLogsTemplates_BREAK,
 		// 	[ScoreManager.ActionTypes.KNOCK] = billLogsTemplates_KNOCK
 		// };
+
+		ScoreManager.instance.billDisplay = this;
     }
 
     // void Update()
@@ -107,7 +109,7 @@ public class BillDisplay : MonoBehaviour
     	// string s = "<color=orange>-{0:C2}</color>  |  You {1}ed a {2}!\n";
     	// note font used is not monospaced!
     	// string s = "<color=orange>-{0,6}</color>  |     *** {1,1} ***\n";
-    	string s = "<color=orange>-  {0}</color>   * {1} *\n";
+    	string s = "<color=orange>- {0}</color> ** {1} **\n";
     	// return string.Format(s, damage*GameManager.instance.scoreMultiplier, aType.ToString(), item);
     	return string.Format(s, damage*ScoreManager.instance.scoreMultiplier, item);
     }

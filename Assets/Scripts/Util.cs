@@ -70,7 +70,7 @@ namespace Util
 		    }
 		    else
 		    {
-		        return Input.GetKeyDown(KeyCode.Escape);
+		        return Input.GetKeyDown("p");
 		    }
 		}
 

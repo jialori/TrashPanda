@@ -25,8 +25,8 @@ public class TogglePlay : MonoBehaviour
     void Update()
     {
         // Pause Menu
-        if (Controller.GetPause() ||
-            (Controller.GetA() && pauseMenu.activeSelf && es?.currentSelectedGameObject?.GetComponent<Button>()))
+        if (Controller.GetPause()) //||
+            // (Controller.GetA() && pauseMenu.activeSelf && es?.currentSelectedGameObject?.GetComponent<Button>()))
         {
             _validInput = true;
         }

@@ -7,7 +7,7 @@ public class TimerDisplay: MonoBehaviour
 
 	[SerializeField] private TextMeshProUGUI timerText;
 
-    void Start()
+    void OnEnable()
     {
     	StartCoroutine(UpdateTimerDisplay());
     }

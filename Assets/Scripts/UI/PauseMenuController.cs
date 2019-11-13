@@ -14,7 +14,7 @@ public class PauseMenuController : MonoBehaviour
 
     void OnEnable()
     {
-        // EventSystem.current.SetSelectedGameObject(null); // fix Unity highlighting
+        EventSystem.current.SetSelectedGameObject(null); // fix Unity highlighting
         EventSystem.current.SetSelectedGameObject(firstSelected);
     }
 
@@ -45,10 +45,10 @@ public class PauseMenuController : MonoBehaviour
     }
 
     // public void ResetPause(GameObject element)
-    public void Reset()
-    {
-        EventSystem.current.SetSelectedGameObject(firstSelected);
-        EventSystem.current.SetSelectedGameObject(null); // fix Unity highlighting
-    }
+    // public void Reset()
+    // {
+    //     EventSystem.current.SetSelectedGameObject(null); // fix Unity highlighting
+    //     EventSystem.current.SetSelectedGameObject(firstSelected);
+    // }
 
 }

@@ -100,7 +100,7 @@ public class BillFinalShowcase : MonoBehaviour
     	// note font used is not monospaced!
     	// string s = "<color=orange>-{0,6}</color>  |     *** {1,1} ***\n";
     	string s;
-    	if (item.Length <= 5)
+    	if (item.Length <= 7)
     	{
 	    	s = "<color=orange>-{0,4}</color> | *** {1} ***\n";		
     	}

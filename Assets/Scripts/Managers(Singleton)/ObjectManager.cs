@@ -34,15 +34,15 @@ public class ObjectManager : MonoBehaviour
     void Awake()
     {
         if (verboseMode) if (verboseMode) Debug.Log("[ObjectManager] Awake");
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        // if (instance != null)
+        // {
+        //     Destroy(gameObject);
+        // }
+        // else
+        // {
+        //     instance = this;
+        //     DontDestroyOnLoad(gameObject);
+        // }
     }
 
     void Start()
@@ -320,5 +320,10 @@ public class ObjectManager : MonoBehaviour
             var highlight = breakable.GetComponent<Highlight>();
             if (highlight != null) highlight.enabled = false;
         }
+    }
+
+    public void RegisterHealthBarObj(GameObject hb)
+    {
+        healthBar = hb;
     }
 }

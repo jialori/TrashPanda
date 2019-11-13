@@ -22,8 +22,10 @@ public class TaskManager : MonoBehaviour
     [SerializeField] private GameObject newObjective;
     [SerializeField] private TextMeshProUGUI newDescription;
     [SerializeField] private TrashManiaDisplay trashManiaDisplay;
-    [SerializeField] private List<TextMeshProUGUI> pauseMenuTasks;
-    [SerializeField] private List<TextMeshProUGUI> countdownTasks;
+    [SerializeField] public List<TextMeshProUGUI> pauseMenuTasks;
+    [SerializeField] public List<TextMeshProUGUI> countdownTasks;
+    private bool addTextDoneCountdown = false;
+    private bool addTextDonePausemenu = false;
 
     public static TaskManager instance;
 
@@ -38,6 +40,10 @@ public class TaskManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        // Instantiate lists
+        activeTasks = new List<GameTask>();
+        taskPool = new List<GameTask>();
     }
 
     // Makes a task from 'taskPool' active so that it can be completed by the player
@@ -54,10 +60,6 @@ public class TaskManager : MonoBehaviour
 
     void Start()
     {
-        // Instantiate lists
-        activeTasks = new List<GameTask>();
-        taskPool = new List<GameTask>();
-
         // Add possible tasks here
         taskPool.Add(new KnockOverNItemsTask(30));
         taskPool.Add(new KnockOverNItemsTask(10));
@@ -76,14 +78,45 @@ public class TaskManager : MonoBehaviour
 
         for (int i = 0; i < activeTasks.Count; i++)
         {
-            Debug.Log(activeTasks[i].description);
+            // Debug.Log(activeTasks[i].description);
             pauseMenuTasks[i].text = activeTasks[i].description;
             countdownTasks[i].text = activeTasks[i].description;
         }
+        addTextDoneCountdown = true;
+        addTextDonePausemenu = true;
     }
 
     void Update()
     {
+        // Debug.Log(addTextDoneCountdown);
+        // Debug.Log(countdownTasks.Count);
+        // Debug.Log(pauseMenuTasks.Count);
+        if (!addTextDoneCountdown && countdownTasks.Count > 0)
+        {
+            while (activeTasks.Count < 3)
+               addRandomTask();
+
+            for (int i = 0; i < activeTasks.Count; i++)
+            {
+                // pauseMenuTasks[i].text = activeTasks[i].description;
+                countdownTasks[i].text = activeTasks[i].description;
+            }
+            TaskManager.instance.addTextDoneCountdown = true;
+        }
+
+        if (!addTextDonePausemenu && pauseMenuTasks.Count > 0)
+        {
+            while (activeTasks.Count < 3)
+               addRandomTask();
+
+            for (int i = 0; i < activeTasks.Count; i++)
+            {
+                pauseMenuTasks[i].text = activeTasks[i].description;
+                // countdownTasks[i].text = activeTasks[i].description;
+            }
+            TaskManager.instance.addTextDonePausemenu = true;
+        }
+
         var completedTaskIdx = -1;
         // For each active task
         for (int i = 0; i < activeTasks.Count; i++)
@@ -91,7 +124,7 @@ public class TaskManager : MonoBehaviour
             // If the task has been completed
             if (activeTasks[i].isComplete())
             {
-                Debug.Log("Task " + activeTasks[i].description + " has been completed");
+                // Debug.Log("Task " + activeTasks[i].description + " has been completed");
                 completedTaskIdx = i;
                 break;
             }
@@ -108,17 +141,17 @@ public class TaskManager : MonoBehaviour
                 newTask = addRandomTask();
             }
             // Update pause menu task list with new task
-            Debug.Log("new task desc: " + newTask.description);
+            // Debug.Log("new task desc: " + newTask.description);
             pauseMenuTasks[completedTaskIdx].text = newTask.description;
 
             // Show objective complete
-            Debug.Log("Calling showobjectivecomplete");
+            // Debug.Log("Calling showobjectivecomplete");
             StartCoroutine(ShowObjectiveComplete(completedTask));
             StartCoroutine(ShowNewObjective(newTask));
 
 
             // Generate a tool for the raccoon here
-            Debug.Log("Calling spawnrandomtool");
+            // Debug.Log("Calling spawnrandomtool");
 
             SpawnRandomTool();
         }
@@ -145,7 +178,7 @@ public class TaskManager : MonoBehaviour
     {
         if (obj.GetComponent<Knockable>() != null)
         {
-            Debug.Log("Knockable Progress");
+            // Debug.Log("Knockable Progress");
             UpdateProgressForTasks(new TaskProgress(TaskProgress.TaskType.Knockable, obj));
         }
         else if (obj.GetComponent<Breakable>() != null)
@@ -158,7 +191,7 @@ public class TaskManager : MonoBehaviour
     {
         foreach (var task in activeTasks)
         {
-            Debug.Log("Update progress for task");
+            // Debug.Log("Update progress for task");
             task.updateProgress(progress);
         }
     }
@@ -167,20 +200,52 @@ public class TaskManager : MonoBehaviour
     {
         description.text = completedTask.description;
         objectiveComplete.SetActive(true);
-        Debug.Log("Show Objective Complete");
+        // Debug.Log("Show Objective Complete");
         yield return new WaitForSeconds(2.0f);
+
+        // while (description.color.a < 0.2)
+        // {
+        //     float alphaVal = Mathf.PingPong(Time.time / 1.0f, 1f);
+        //     description.color = new Color(description.color.r, description.color.g, description.color.b, Mathf.Clamp(alphaVal, 0.0f, 1.0f));            
+        //     yield return new WaitForSeconds(0.1f);
+        // }
+
         objectiveComplete.SetActive(false);
-        Debug.Log("hide Objective Complete");
+    //     Debug.Log("hide Objective Complete");
     }
     private IEnumerator ShowNewObjective(GameTask newTask)
     {
         if (newTask == null) yield return new WaitForEndOfFrame();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.5f);
         newDescription.text = newTask.description;
         newObjective.SetActive(true);
-        Debug.Log("Show new objective");
+        // while (newDescription.color.a != 1)
+        // {
+        //     float alphaVal = 1f + Mathf.PingPong(Time.time / 0.5f, -1f);
+        //     newDescription.color = new Color(newDescription.color.r, newDescription.color.g, newDescription.color.b, Mathf.Clamp(alphaVal, 0.0f, 1.0f));            
+        //     yield return new WaitForSeconds(0.1f);
+        // }
+        // Debug.Log("Show new objective");
         yield return new WaitForSeconds(2.0f);
         newObjective.SetActive(false);
-        Debug.Log("hide new objective");
+        // Debug.Log("hide new objective");
+    }
+
+    public void Reset()
+    {
+        foreach (var task in TaskManager.instance.taskPool)
+        {
+            // Debug.Log("Update progress for task");
+            task.Reset();
+        }
+
+        instance.activeTasks.Clear();
+
+        TaskManager.instance.pauseMenuTasks.Clear();
+        TaskManager.instance.countdownTasks.Clear();
+        TaskManager.instance.addTextDoneCountdown = false;
+        TaskManager.instance.addTextDonePausemenu = false;
+        // Debug.Log("Dont need to add text is: " + addTextDoneCountdown);
+
     }
 }

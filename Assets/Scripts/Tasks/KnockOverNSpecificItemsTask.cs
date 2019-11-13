@@ -24,12 +24,17 @@ public class KnockOverNSpecificItemsTask : GameTask
         {
             // if (progress.Object != null)
                 // Debug.Log(progress.Object.GetComponent<Knockable>().name);
-            Debug.Log(this.itemType);
+            // Debug.Log(this.itemType);
             if (progress.Object != null && progress.Object.GetComponent<Knockable>().objName == itemType)
             {
                 numDestroyed++;
                 Debug.Log("progress: " + description);
             }
         }
+    }
+
+    public override void Reset()
+    {
+        numDestroyed = 0;
     }
 }

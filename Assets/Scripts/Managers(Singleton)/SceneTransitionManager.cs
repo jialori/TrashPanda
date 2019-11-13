@@ -45,11 +45,12 @@ public class SceneTransitionManager : MonoBehaviour
     void Update()
     {
         var curScene = SceneManager.GetActiveScene();
-        Debug.Log(curScene.name);
-        if (!countdownDone && countDownDisplay != null && curScene.name == GAME)
+        // Debug.Log("countdownDone is " + SceneTransitionManager.instance.countdownDone);
+        if (!SceneTransitionManager.instance.countdownDone && countDownDisplay != null && curScene.name == GAME)
         {
+            // Debug.Log("Started coroutinte");
             StartCoroutine(countDownDisplay.CountDown());
-            countdownDone = true;
+            SceneTransitionManager.instance.countdownDone = true;
         }
     }
 
@@ -65,8 +66,12 @@ public class SceneTransitionManager : MonoBehaviour
         // Debug.Log("[SceneManager] StartGame");
         AudioManager.instance.StopCurrent();
         GameManager.instance.Reset();
-        if (SceneManager.GetActiveScene().name != GAME) SceneManager.LoadScene(GAME);
         StartGameSteps();
+        if (SceneManager.GetActiveScene().name != GAME) 
+        {
+            TaskManager.instance?.Reset();
+            SceneManager.LoadScene(GAME);
+        }
     }
 
     public void EndGame()
@@ -88,19 +93,20 @@ public class SceneTransitionManager : MonoBehaviour
     {
         if (!GameManager.instance.m_disableCountDown)
         {
-            countdownDone = false;
+            SceneTransitionManager.instance.countdownDone = false;
         } 
         else
         {
-            countdownDone = true;
+            SceneTransitionManager.instance.countdownDone = true;
             TimerManager.instance.StartTimer();
         }
+        // Debug.Log("start gameSteps, countdownDone is " + SceneTransitionManager.instance.countdownDone);
 
     }
     
     public void RegisterCountdownObj(CountDownDisplay display)
     {
-        Debug.Log("register countdown");
+        // Debug.Log("register countdown");
         countDownDisplay = display;
     }
 }

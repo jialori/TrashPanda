@@ -200,16 +200,16 @@ public class RaccoonController : MonoBehaviour
     {
         attackPower += effectOnAttack;
         movementSpeed += effectOnSpeed;
-        Debug.Log("Attack has changed:" + attackPower);
-        Debug.Log("Speed has changed:" + movementSpeed);
+        // Debug.Log("Attack has changed:" + attackPower);
+        // Debug.Log("Speed has changed:" + movementSpeed);
     }
 
     public void RemoveStrengthModifier(float effectOnAttack, float effectOnSpeed)
     {
         attackPower -= effectOnAttack;
         movementSpeed -= effectOnSpeed;
-        Debug.Log("Attack has changed:" + attackPower);
-        Debug.Log("Speed has changed:" + movementSpeed);
+        // Debug.Log("Attack has changed:" + attackPower);
+        // Debug.Log("Speed has changed:" + movementSpeed);
     }
 
     public void UseStairs(bool up)
@@ -222,7 +222,7 @@ public class RaccoonController : MonoBehaviour
 
     public void TogglePlay()
     {
-        Debug.Log("Toggled");
+        // Debug.Log("Toggled");
         pause = !pause;
         animator.enabled = !animator.enabled;
     }

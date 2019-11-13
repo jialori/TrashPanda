@@ -24,4 +24,9 @@ public class KnockOverNItemsTask : GameTask
             Debug.Log("progress: " + description);
         }
     }
+
+    public override void Reset()
+    {
+        numDestroyed = 0;
+    }
 }

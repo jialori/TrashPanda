@@ -7,4 +7,6 @@ public abstract class GameTask
     public abstract bool isComplete();
 
     public abstract void updateProgress(TaskProgress progress);
+
+    public abstract void Reset();
 }

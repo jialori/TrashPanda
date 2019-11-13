@@ -25,6 +25,7 @@ public class CountDownDisplay : MonoBehaviour
 
     public IEnumerator CountDown()
     {
+        Debug.Log("Count down routine called.");
     	TimerManager.instance.StopTimer();
         // GameManager.instance.Raccoon?.TogglePlay();
         countDownDisplay.SetActive(true);
