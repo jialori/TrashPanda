@@ -10,6 +10,13 @@ public class Breakable : MonoBehaviour
     [Header("Object Attributes")]
     public float totalHealth;
     public float scorePoint;
+    public float dustTime = 1;
+    public GameObject DestroyEffect;
+    CentralHumanController CHC;             // Reference to the Central Human Controller
+
+    private bool dusting = false;
+    private float leftDustTime;
+    private GameObject dust;
     
     
     public int level;               // The floor this object is on
@@ -31,6 +38,10 @@ public class Breakable : MonoBehaviour
     private void Start()
     {
         health = totalHealth;
+        leftDustTime = dustTime;
+
+        CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
+        //CHC.registerObject(transform);
         df = GetComponent<DestroyEffect>();
     }
 

@@ -15,8 +15,9 @@ public class Knockable : MonoBehaviour
     // public float regularScorePoint;
     public string objName;
     public float scorePoint;
-    public int level; // The floor this object is on
-    public bool toppled; // Flag determining whether this object has been knocked over or not
+    public int level;                       // The floor this object is on
+    public bool toppled;                    // Flag determining whether this object has been knocked over or not
+    CentralHumanController CHC;             // Reference to the Central Human Controller
 
     private DestroyEffect df;
     private Rigidbody rb;
@@ -38,6 +39,9 @@ public class Knockable : MonoBehaviour
         // rb.centerOfMass = 0;
         collidePoint = transform.position; // + (rb.centerOfMass + Vector3.up * cl.bounds.size.y * 0.8f);
         toppled = false;
+
+        CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
+        //CHC.registerObject(transform);
 
         KnockedSound = GetComponent<AudioSource>();
         _hasAudio = (KnockedSound && objectKnock) ? true : false;

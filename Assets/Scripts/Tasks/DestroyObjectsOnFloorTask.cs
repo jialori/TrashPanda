@@ -10,6 +10,8 @@ public class DestroyObjectsOnFloorTask : GameTask
     List<Breakable> breakableObjects;       // List of breakable objects on the relevant floor level
     List<Breakable> destroyed;              // List of objects that have been destroyed so far
 
+    CentralHumanController CHC;
+
     // Intermediate variables
     Breakable[] B;
 
@@ -20,16 +22,11 @@ public class DestroyObjectsOnFloorTask : GameTask
 
         destroyed = new List<Breakable>();
 
+        CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
+
         // Retrieve all breakable objects
-        breakableObjects = new List<Breakable>();
-        // B = FindObjectsOfType<Breakable>();
-        // for (int i = 0; i < B.Length; i++)
-        // {
-        //     if (B[i].level == level)
-        //     {
-        //         breakableObjects.Add(B[i]);
-        //     }
-        // }
+        breakableObjects = CHC.allObjects[level - 1].Item1;
+
     }
 
     // Update is called once per frame
