@@ -14,8 +14,8 @@ public class BillDisplay : MonoBehaviour
     public int maxLogNum;
 
     [Header("Text Pop Up Effect")]
-	public int newLogFontSize_1;
-	public int newLogFontSize_2;
+	private int newLogFontSize_1;
+	private int newLogFontSize_2;
 	public int newLogFontSize_3;
 
 	// Templates for bill statements
@@ -43,6 +43,12 @@ public class BillDisplay : MonoBehaviour
 
     void Awake()
     {
+    	newLogFontSize_1 = newLogFontSize_3 - 12;
+    	newLogFontSize_2 = newLogFontSize_3 + 2;
+
+       	newest.text = "";
+    	history.text = "";
+
     	newLog = "";
 	    newLogLength = 0;
     	historyLogs = new StringBuilder();
@@ -73,13 +79,14 @@ public class BillDisplay : MonoBehaviour
     	history.text = historyLogs.ToString(first_display_idx, last_display_idx - first_display_idx);
 
     	// newest log
-    	newLog = FormatLog(item, aType, damage);
-    	newLogLength = newLog.Length;
+    	newLog = FormatLogPopUp(item, aType, damage);
+       	newest.text = newLog;
+    	newLog = FormatLog(item, aType, damage); // reformat
     	billLogs.Add(newLog);
+    	newLogLength = newLog.Length;
        	historyLogs.Append(newLog);
        	StopCoroutine(PopUpText(newest));
        	StartCoroutine(PopUpText(newest));
-       	newest.text = newLog;
    		curLogNum++;
     }
 
@@ -89,7 +96,18 @@ public class BillDisplay : MonoBehaviour
     	// string s = "<color=orange>-{0:C2}</color>  |  You {1}ed a {2}!\n";
     	// note font used is not monospaced!
     	// string s = "<color=orange>-{0,6}</color>  |     *** {1,1} ***\n";
-    	string s = "<color=orange>-{0,6}</color>  |     *** {1} ***\n";
+    	string s = "<color=orange>-{0,4}</color> | *** {1} ***\n";
+    	// return string.Format(s, damage*GameManager.instance.scoreMultiplier, aType.ToString(), item);
+    	return string.Format(s, damage*ScoreManager.instance.scoreMultiplier, item);
+    }
+
+    string FormatLogPopUp(string item, ScoreManager.ActionTypes aType, float damage)
+    {
+    	// string s = actionToStats[aType][rnd.Next(actionToStats[aType].Length)];
+    	// string s = "<color=orange>-{0:C2}</color>  |  You {1}ed a {2}!\n";
+    	// note font used is not monospaced!
+    	// string s = "<color=orange>-{0,6}</color>  |     *** {1,1} ***\n";
+    	string s = "<color=orange>-  {0}</color>   * {1} *\n";
     	// return string.Format(s, damage*GameManager.instance.scoreMultiplier, aType.ToString(), item);
     	return string.Format(s, damage*ScoreManager.instance.scoreMultiplier, item);
     }
