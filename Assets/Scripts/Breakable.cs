@@ -12,6 +12,7 @@ public class Breakable : MonoBehaviour
     public float scorePoint;
     public float dustTime = 1;
     public GameObject DestroyEffect;
+    CentralHumanController CHC;             // Reference to the Central Human Controller
 
     private bool dusting = false;
     private float leftDustTime;
@@ -34,6 +35,9 @@ public class Breakable : MonoBehaviour
     {
         health = totalHealth;
         leftDustTime = dustTime;
+
+        CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
+        CHC.registerObject(transform);
     }
 
 
