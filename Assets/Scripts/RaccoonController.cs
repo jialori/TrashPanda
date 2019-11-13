@@ -57,7 +57,10 @@ public class RaccoonController : MonoBehaviour
         animator = GetComponent<Animator>();
         // For interaction with breakable and knockable
         raycastPaddedDist = characterController.radius + raycastPadding;
-        stunEffect = GetComponent<ParticleSystem>();
+        stunEffect = GetComponentInChildren<ParticleSystem>();
+        stunEffect.Stop();
+        var sm = stunEffect.main;
+        sm.simulationSpeed = 2f;
     }
 
     void Start()
