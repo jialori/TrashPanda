@@ -44,7 +44,7 @@ public class Knockable : MonoBehaviour
         //CHC.registerObject(transform);
 
         KnockedSound = GetComponent<AudioSource>();
-        _hasAudio = (KnockedSound && objectKnock) ? true : false;
+        StartCoroutine(AudioLoadIn());
 
         //Audio Engine
         if (_hasAudio)
@@ -70,15 +70,28 @@ public class Knockable : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision col)
+    public void OnCollisionStay(Collision col)
     {
         // Debug.Log("hit");
         if (_hasAudio)
         {
-            float volume = Mathf.Clamp(col.relativeVelocity.magnitude / 45.0f, 0.0f, 1.0f);
+            float volume = Mathf.Clamp(col.relativeVelocity.magnitude / 38.0f, 0.0f, 1.0f);
             KnockedSound.PlayOneShot(objectKnock, volume);
-            
+            StartCoroutine(AudioWaitTime());
         }
     }
 
+    private IEnumerator AudioWaitTime()
+    {
+        _hasAudio = false;
+        yield return new WaitForSeconds(0.5F);
+        _hasAudio = true;
+    }
+
+    private IEnumerator AudioLoadIn()
+    {
+        _hasAudio = false;
+        yield return new WaitForSeconds(2);
+        _hasAudio = true;
+    }
 }

@@ -143,6 +143,8 @@ public class HumanController : MonoBehaviour
         initialPosition = transform.position;
 
         anim = gameObject.GetComponent<Animator>();
+        anim.SetBool("idle", true);
+
         //Audio Component
         WorkerAudio = GetComponent<AudioSource>();
         workerChaseVO = Resources.LoadAll<AudioClip>("Audio/ChaseVO");
@@ -173,6 +175,7 @@ public class HumanController : MonoBehaviour
         anim.SetBool("scared", seesRaccoon);
         
 
+
         // 'lastKnownLocation' is assigned by the Central Human Controller. If a new 'lastKnownLocation' is assigned, then the raccoon has been spotted
         // somewhere and the worker will head to that location if he can reach it
 
@@ -192,7 +195,8 @@ public class HumanController : MonoBehaviour
             //searching = false;
             investigating = false;
             idle = false;
-            
+            anim.SetBool("idle", false);
+
             agent.ResetPath();
             agent.SetDestination(lastKnownLocation);
 
@@ -217,6 +221,7 @@ public class HumanController : MonoBehaviour
             chasing = false;
             searching = false;
             idle = true;
+            anim.SetBool("idle", true);
         }
         */
 
@@ -228,6 +233,7 @@ public class HumanController : MonoBehaviour
             //searching = true;
             investigating = false;
             idle = false;
+            anim.SetBool("idle", false);
             agent.ResetPath();
 
             // Animation
@@ -282,6 +288,7 @@ public class HumanController : MonoBehaviour
             
             searching = false;
             idle = true;
+            anim.SetBool("idle", true);
         }
         */
 
@@ -299,6 +306,7 @@ public class HumanController : MonoBehaviour
                     investigating = true;
                     //searching = false;
                     idle = false;
+                    anim.SetBool("idle", false);
                     lastKnownLocation = breakableObjects[i].transform.position;
                     agent.SetDestination(lastKnownLocation);
                     Debug.Log("Worker " + id + " heard object " + breakableObjects[i].ToString() + " being destroyed. Now heading to " + breakableObjects[i].transform.position.ToString() + " to investigate");
@@ -329,6 +337,7 @@ public class HumanController : MonoBehaviour
                     investigating = true;
                     //searching = false;
                     idle = false;
+                    anim.SetBool("idle", false);
                     lastKnownLocation = knockableObjects[i].transform.position;
                     agent.SetDestination(lastKnownLocation);
                     // Debug.Log("Worker " + id + " heard object " + knockableObjects[i].ToString() + " being knocked over. Now heading to " + knockableObjects[i].transform.position.ToString() + " to investigate");
@@ -351,6 +360,7 @@ public class HumanController : MonoBehaviour
                 //Debug.Log("Can't find Raccoon. Returning to initial position");
                 if (agent.SetDestination(initialPosition))
                 {
+                    anim.SetBool("idle", false);
                     //Debug.Log("Now heading to " + agent.destination.ToString() + ". Initial position is " + initialPosition.ToString());
                 }
             }

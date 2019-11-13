@@ -73,7 +73,7 @@ MonoBehaviour:
   scorePoint: 10
   level: 0
   toppled: 0
-  objectKnock: {fileID: 0}
+  objectKnock: {fileID: 8300000, guid: 75e692918e38c274b82e7cbb1312a6a8, type: 3}
 --- !u!114 &2796421237797241340
 MonoBehaviour:
   m_ObjectHideFlags: 0
