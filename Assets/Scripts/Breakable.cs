@@ -41,7 +41,7 @@ public class Breakable : MonoBehaviour
         leftDustTime = dustTime;
 
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
-        CHC.registerObject(transform);
+        //CHC.registerObject(transform);
         df = GetComponent<DestroyEffect>();
     }
 

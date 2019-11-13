@@ -41,7 +41,7 @@ public class Knockable : MonoBehaviour
         toppled = false;
 
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
-        CHC.registerObject(transform);
+        //CHC.registerObject(transform);
 
         KnockedSound = GetComponent<AudioSource>();
         _hasAudio = (KnockedSound && objectKnock) ? true : false;
