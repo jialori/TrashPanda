@@ -68,7 +68,6 @@ public class Knockable : MonoBehaviour
             TaskManager.instance.UpdateProgress(gameObject);
             df.StartDusting(false);
         }
-
     }
 
     public void OnCollisionStay(Collision col)

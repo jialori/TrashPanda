@@ -17,9 +17,7 @@ public class TimerDisplay: MonoBehaviour
     	while (true)
     	{
 	        var time = TimerManager.instance.GetCurrentTime();
-	        var mins = Mathf.Floor(time / 60);
-	        var secs = time % 60;
-	        timerText.text = string.Format("{0:00} min {1:00} sec", mins, secs);
+	        timerText.text = Util.Util.GetFormattedTime(time);
 	        yield return new WaitForSeconds(1f);
     	}
     }

@@ -19,6 +19,8 @@ public class TaskManager : MonoBehaviour
     public List<GameObject> tools; // A list of tools that could be generated as a result of completing tasks
     [SerializeField] private GameObject objectiveComplete;
     [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private TrashManiaDisplay trashManiaDisplay;
+    [SerializeField] private List<TextMeshProUGUI> pauseMenuTasks;
     public static TaskManager instance;
 
     void Awake()
@@ -66,7 +68,10 @@ public class TaskManager : MonoBehaviour
         addRandomTask();
 
         for (int i = 0; i < activeTasks.Count; i++)
+        {
             Debug.Log(activeTasks[i].description);
+            pauseMenuTasks[i].text = activeTasks[i].description;
+        }
     }
 
     void Update()
@@ -95,11 +100,16 @@ public class TaskManager : MonoBehaviour
             }
 
             // Show objective complete
-            ShowObjectiveComplete(completedTask);
+            Debug.Log("Calling showobjectivecomplete");
+            StartCoroutine(ShowObjectiveComplete(completedTask));
 
             // Generate a tool for the raccoon here
+            Debug.Log("Calling spawnrandomtool");
+
             SpawnRandomTool();
         }
+
+        // update task text if there are changes
     }
 
     private void SpawnRandomTool()
@@ -108,7 +118,7 @@ public class TaskManager : MonoBehaviour
         {
             var randTool = tools[Random.Range(0, tools.Count - 1)];
             var randToolItem = Instantiate(randTool, new Vector3(0, 0, 0), Quaternion.identity);
-            randToolItem.GetComponent<Tool>()?.Equip();
+            randToolItem.GetComponent<Tool>()?.Equip(trashManiaDisplay);
         }
         else
         {
@@ -142,7 +152,10 @@ public class TaskManager : MonoBehaviour
     {
         description.text = completedTask.description;
         objectiveComplete.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
+        Debug.Log("Show Objective Complete");
+        yield return new WaitForSeconds(2.0f);
         objectiveComplete.SetActive(false);
+        Debug.Log("hide Objective Complete");
+
     }
 }

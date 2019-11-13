@@ -263,4 +263,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dustTime: 1
   effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
-  starSize: 4
+  starLifetime: 4

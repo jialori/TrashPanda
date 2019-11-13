@@ -135,6 +135,7 @@ MonoBehaviour:
   orgObj: {fileID: 4943987482653242202}
   fracturedObj: {fileID: 521777264523923749, guid: 96b276bd6f427b04e9e9ad96b4a6bcd7,
     type: 3}
+  raccoon: {fileID: 113956176984252424, guid: a3d1e7eae245a7b40b41802bbec029dd, type: 3}
   mass: 0.001
 --- !u!114 &6329657032063779651
 MonoBehaviour:
