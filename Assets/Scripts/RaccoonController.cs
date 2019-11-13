@@ -115,20 +115,24 @@ public class RaccoonController : MonoBehaviour
             // Rotation
             if ((moveX != 0 || moveY != 0))
             {
-                // Turn towards camera
+                // - Turn towards camera
                 // Vector3 lookDir = transform.position - cam.position;
                 // lookDir.y = 0;
                 // Quaternion tarRotation = Quaternion.LookRotation(lookDir);
                 // transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, turningRate * Time.deltaTime);
             
-                // Turn towards direction of moving
-                int sign = (moveY >= 0) ? 1 : -1;
-                Quaternion tarRotation = Quaternion.LookRotation(sign * movementVector);
-                if (Quaternion.Angle(transform.rotation, tarRotation) >= 175) 
-                {
-                    // To prevent raccoon from turning through the backside (quaternion default behavior)
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, -0.1f * turningRate * Time.deltaTime);
-                }
+                // - Turn towards direction of moving (except when walking backwards)
+                // int sign = (moveY >= 0) ? 1 : -1;
+                // Quaternion tarRotation = Quaternion.LookRotation(sign * movementVector);
+                // if (Quaternion.Angle(transform.rotation, tarRotation) >= 175) 
+                // {
+                //     // To prevent raccoon from turning through the backside (quaternion default behavior)
+                //     transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, -0.1f * turningRate * Time.deltaTime);
+                // }
+                // transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, turningRate * Time.deltaTime);
+                
+                // - Turn towards direction of moving
+                Quaternion tarRotation = Quaternion.LookRotation(movementVector);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, turningRate * Time.deltaTime);
             }
 
