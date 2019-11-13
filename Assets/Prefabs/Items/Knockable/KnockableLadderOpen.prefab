@@ -135,7 +135,6 @@ MonoBehaviour:
   orgObj: {fileID: 4943987482653242202}
   fracturedObj: {fileID: 521777264523923749, guid: 96b276bd6f427b04e9e9ad96b4a6bcd7,
     type: 3}
-  raccoon: {fileID: 113956176984252424, guid: a3d1e7eae245a7b40b41802bbec029dd, type: 3}
   mass: 0.001
 --- !u!114 &6329657032063779651
 MonoBehaviour:
@@ -152,10 +151,6 @@ MonoBehaviour:
   dustTime: 1
   effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
   starLifetime: 2.5
-  Sources: []
-  Foley: {fileID: 0}
-  SFX: {fileID: 0}
-  destroySFX: {fileID: 8300000, guid: 98322da3fad94504c93fbfe17b0abfa5, type: 3}
 --- !u!64 &1913202962451212569
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -218,7 +213,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.682
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
