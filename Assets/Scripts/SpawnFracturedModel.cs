@@ -6,8 +6,11 @@ public class SpawnFracturedModel : MonoBehaviour
 {
     public GameObject orgObj;
     public GameObject fracturedObj;
+    //public GameObject raccoon;
     public float mass = 0.001f;
     private DestroyEffect df;
+    //private bool fragile = false;
+
 
     private void Start()
     {
@@ -15,7 +18,8 @@ public class SpawnFracturedModel : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude > 1.5)
+        //if (collision.gameObject == raccoon) fragile = true;
+        if (collision.relativeVelocity.magnitude > 1.5) //&& fragile)
         {
             df.StartDusting(true);
             SpawnFracturedObj(collision.relativeVelocity * mass);
@@ -27,9 +31,8 @@ public class SpawnFracturedModel : MonoBehaviour
         Vector3 orgPos = transform.position;
         Vector3 scale = new Vector3(1.5f, 1.5f, 1.5f);
         Quaternion orgQua = transform.rotation;
-        Debug.Log(transform.localScale);
+        Debug.Log("Object " + orgObj + " destroyed.");
         Destroy(orgObj);
-        Debug.Log(orgPos);
         GameObject newObj = Instantiate(fracturedObj, orgPos, orgQua) as GameObject;
         newObj.transform.localScale = scale;
         newObj.GetComponent<ExplodeScript>().Explode(momentum);

@@ -43,6 +43,7 @@ public class Breakable : MonoBehaviour
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
         //CHC.registerObject(transform);
         df = GetComponent<DestroyEffect>();
+        breakSound = GetComponent<AudioSource>();
     }
 
 
@@ -52,7 +53,7 @@ public class Breakable : MonoBehaviour
         health -= calcDamage(atk);
         Debug.Log("Object health" + health);
 
-        breakSound?.PlayOneShot(hitSFX, 0.8F);
+        breakSound.PlayOneShot(hitSFX, 0.8F);
 
         if (health <= 0)
         {
@@ -65,8 +66,6 @@ public class Breakable : MonoBehaviour
             TaskManager.instance.UpdateProgress(this.gameObject);
         }
         else df.StartDusting(false);
-        breakSound = GetComponent<AudioSource>();
-
     }
 
     public float calcDamage(float atk)

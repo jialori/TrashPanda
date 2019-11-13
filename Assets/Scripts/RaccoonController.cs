@@ -36,6 +36,7 @@ public class RaccoonController : MonoBehaviour
     public int level;
 
     private Vector3 movementVector;
+    private ParticleSystem stunEffect;
 
     private bool isOnUpStair = false;
     private bool isOnDownStair = false;
@@ -56,6 +57,10 @@ public class RaccoonController : MonoBehaviour
         animator = GetComponent<Animator>();
         // For interaction with breakable and knockable
         raycastPaddedDist = characterController.radius + raycastPadding;
+        stunEffect = GetComponentInChildren<ParticleSystem>();
+        stunEffect.Stop();
+        var sm = stunEffect.main;
+        sm.simulationSpeed = 2f;
     }
 
     void Start()
@@ -155,6 +160,7 @@ public class RaccoonController : MonoBehaviour
             {
                 isStunned = false;
                 stunTimer = 3.0f;
+                stunEffect.Stop();
             }
         }
 
@@ -217,5 +223,11 @@ public class RaccoonController : MonoBehaviour
     {
         pause = !pause;
         animator.enabled = !animator.enabled;
+    }
+
+    public void StunRaccoon()
+    {
+        isStunned = true;
+        stunEffect.Play();
     }
 }
