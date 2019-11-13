@@ -95,9 +95,12 @@ public class TaskManager : MonoBehaviour
             }
 
             // Show objective complete
-            ShowObjectiveComplete(completedTask);
+            Debug.Log("Calling showobjectivecomplete");
+            StartCoroutine(ShowObjectiveComplete(completedTask));
 
             // Generate a tool for the raccoon here
+            Debug.Log("Calling spawnrandomtool");
+
             SpawnRandomTool();
         }
     }
@@ -142,7 +145,10 @@ public class TaskManager : MonoBehaviour
     {
         description.text = completedTask.description;
         objectiveComplete.SetActive(true);
+        Debug.Log("Show Objective Complete");
         yield return new WaitForSeconds(1.0f);
         objectiveComplete.SetActive(false);
+        Debug.Log("hide Objective Complete");
+
     }
 }
