@@ -5006,8 +5006,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101e523a3b7b35847a1c24945cf1218e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_useController: 0
+  m_useController: 1
   m_disableTimer: 0
+  m_volume: 0
+  m_disableCountDown: 0
   m_raccoon: {fileID: 0}
   Workers: []
 --- !u!1 &7778095879517490359

@@ -13,6 +13,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private CountDownDisplay countDownDisplay;
+    private bool countdownDone = false;
 
     void Awake()
     {
@@ -38,6 +39,17 @@ public class SceneTransitionManager : MonoBehaviour
             // GameManager.instance.StartGame();
             // StartGameSteps();
             StartGame();
+        }
+    }
+
+    void Update()
+    {
+        var curScene = SceneManager.GetActiveScene();
+        Debug.Log(curScene.name);
+        if (!countdownDone && countDownDisplay != null && curScene.name == GAME)
+        {
+            StartCoroutine(countDownDisplay.CountDown());
+            countdownDone = true;
         }
     }
 
@@ -76,13 +88,19 @@ public class SceneTransitionManager : MonoBehaviour
     {
         if (!GameManager.instance.m_disableCountDown)
         {
-            StartCoroutine(countDownDisplay.CountDown());
+            countdownDone = false;
         } 
         else
         {
+            countdownDone = true;
             TimerManager.instance.StartTimer();
         }
 
     }
-
+    
+    public void RegisterCountdownObj(CountDownDisplay display)
+    {
+        Debug.Log("register countdown");
+        countDownDisplay = display;
+    }
 }

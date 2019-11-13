@@ -43,7 +43,7 @@ public class RaccoonController : MonoBehaviour
     public bool isStunned = false;
     public float stunTimer = 3.0f;
     public bool isFrozen = false;
-    private bool pause = false;
+    private bool pause = true;
 
 
     void Awake()
@@ -61,6 +61,7 @@ public class RaccoonController : MonoBehaviour
         stunEffect.Stop();
         var sm = stunEffect.main;
         sm.simulationSpeed = 2f;
+        animator.enabled = false;
     }
 
     void Start()
@@ -221,6 +222,7 @@ public class RaccoonController : MonoBehaviour
 
     public void TogglePlay()
     {
+        Debug.Log("Toggled");
         pause = !pause;
         animator.enabled = !animator.enabled;
     }
