@@ -11,6 +11,7 @@ public class Tool : MonoBehaviour
     private static float timerLength = 20f; // Total amount of time
     private float timer;                    // Time before this bonus tool expires
     public string toolType;
+    private TrashManiaDisplay trashManiaDisplay;
 
     protected bool beingCarried = false;
 
@@ -39,7 +40,7 @@ public class Tool : MonoBehaviour
         }
     }
 
-    public void Equip() 
+    public void Equip(TrashManiaDisplay display) 
     {
         // Called
         rb = GetComponent<Rigidbody>();
@@ -55,6 +56,9 @@ public class Tool : MonoBehaviour
 
         timer = timerLength;
         ObjectManager.instance.EquipTool(this);
+        this.trashManiaDisplay = display;
+        trashManiaDisplay.gameObject.SetActive(true);
+        trashManiaDisplay.Enable(this);
     }
 
     public void UnEquip()
@@ -66,10 +70,17 @@ public class Tool : MonoBehaviour
 	    transform.position = currLoc;
 	    playerScript.RemoveStrengthModifier(effectOnAttack, 0);	
         ObjectManager.instance.UnequipTool(this);
+        trashManiaDisplay.Disable();
+        trashManiaDisplay.gameObject.SetActive(false);
     }
 
     public void AddTime()
     {
         timer += timerLength;
+    }
+
+    public float GetTimer()
+    {
+        return timer;
     }
 }
