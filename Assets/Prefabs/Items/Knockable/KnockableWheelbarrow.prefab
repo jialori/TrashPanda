@@ -232,6 +232,7 @@ MonoBehaviour:
   orgObj: {fileID: 2440477233608964624}
   fracturedObj: {fileID: 6984765874255059019, guid: d8b8c3ac8739715449fbd2910188f494,
     type: 3}
+  raccoon: {fileID: 113956176984252424, guid: a3d1e7eae245a7b40b41802bbec029dd, type: 3}
   mass: 0.001
 --- !u!114 &4620077505044909581
 MonoBehaviour:
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dustTime: 1
   effect: {fileID: 7383589881290028933, guid: 568cc5555f45faa4d93ea5120fba92ef, type: 3}
-  starSize: 1
+  starLifetime: 3
 --- !u!1 &8902805917742731597
 GameObject:
   m_ObjectHideFlags: 0
