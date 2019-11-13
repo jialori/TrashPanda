@@ -149,7 +149,7 @@ public class HumanController : MonoBehaviour
         workerStunVO = Resources.LoadAll<AudioClip>("Audio/StunVO");
 
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
-        CHC.registerObject(transform);
+        //CHC.registerObject(transform);
 
         breakableObjects = CHC.allObjects[level - 1].Item1;
         knockableObjects = CHC.allObjects[level - 1].Item2;

@@ -8,8 +8,8 @@ public class CentralHumanController : MonoBehaviour
     public Transform target;                    // Human target to be chased (will always be the raccoon)
     public bool spotted = false;                // Flag determining if the raccoon has been spotted
 
-    public List<Tuple<List<Breakable>, List<Knockable>>> allObjects;           // List of all breakable and knockable objects per floor
-    public List<List<HumanController>> humans;                                 // List of humans currently in the game
+    public List<Tuple<List<Breakable>, List<Knockable>>> allObjects;            // List of all breakable and knockable objects per floor
+    List<HumanController> humans;                                               // List of humans currently in the game
     /*
     Tuple<List<Breakable>, List<Knockable>> objects_F1;
     Tuple<List<Breakable>, List<Knockable>> objects_F2;
@@ -18,33 +18,38 @@ public class CentralHumanController : MonoBehaviour
     Tuple<List<Breakable>, List<Knockable>> objects_F5;
     */
 
+    // Intermediate variables
+    GameObject[] H;
+    HumanController h;
+
     public void registerObject(Transform obj)
     {
         if (obj.TryGetComponent(out Breakable breakableObj))
         {
             allObjects[breakableObj.level - 1].Item1.Add(breakableObj);
+            Debug.Log("CHC: Added " + breakableObj.ToString() + " to breakable objects on level " + breakableObj.level.ToString());
+            Debug.Log("CHC: Now has " + allObjects[breakableObj.level - 1].Item1.Count + " breakable objects on floor " + breakableObj.level.ToString());
         }
         else if (obj.TryGetComponent(out Knockable knockableObj))
         {
             allObjects[knockableObj.level - 1].Item2.Add(knockableObj);
+            Debug.Log("CHC: Added " + knockableObj.ToString() + " to knockable objects on level " + knockableObj.level.ToString());
+            Debug.Log("CHC: Now has " + allObjects[knockableObj.level - 1].Item1.Count + " knockable objects on floor " + knockableObj.level.ToString());
         }
+        /*
         else if (obj.TryGetComponent(out HumanController worker))
         {
             humans[worker.level - 1].Add(worker);
         }
+        */
     }
 
     // Start is called before the first frame update
     void Awake()
     {
         // Initialize variables
-        humans = new List<List<HumanController>>();
-
-        for (int i = 0; i < 5; i++)
-        {
-            humans[i] = new List<HumanController>();
-        }
-        /*
+        humans = new List<HumanController>();
+        
         H = GameObject.FindGameObjectsWithTag("Human");
         // Retrieve all enemies
         for (int i = 0; i < H.Length; i++)
@@ -52,7 +57,7 @@ public class CentralHumanController : MonoBehaviour
             h = H[i].GetComponent<HumanController>();
             humans.Add(h);
         }
-        */
+        
 
         allObjects = new List<Tuple<List<Breakable>, List<Knockable>>>();
 
@@ -88,12 +93,11 @@ public class CentralHumanController : MonoBehaviour
     {
         // Check if any of the humans have spotted the raccoon
         spotted = false;
-        // For each floor
+        // For each worker
         for (int i = 0; i < humans.Count; i++)
         {
-            for(int j = 0; j < humans[i].Count; j++)
             // If the selected worker has seen the raccoon
-            if (humans[i][j].seesRaccoon)
+            if (humans[i].seesRaccoon)
             {
                 spotted = true;
             }
@@ -103,13 +107,16 @@ public class CentralHumanController : MonoBehaviour
         if (spotted)
         {
             //Debug.Log(1);
-            // For each worker on the same floor as the raccoon
-            for (int i = 0; i < humans[target.GetComponent<RaccoonController>().level].Count; i++)
+            // For each worker
+            for (int i = 0; i < humans.Count; i++)
             {
-                //Debug.Log("2: " + i)
-                // Inform worker of the location of the raccoon
-                humans[target.GetComponent<RaccoonController>().level][i].lastKnownLocation = target.position;
-                
+                //Debug.Log("2: " + i);
+                // If the selected worker is on the same floor as the raccoon
+                if (humans[i].onSameFloor(target))
+                {
+                    // Inform worker of the location of the raccoon
+                    humans[i].lastKnownLocation = target.position;
+                }
             }
         }
     }
