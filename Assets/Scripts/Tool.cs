@@ -8,7 +8,7 @@ public class Tool : MonoBehaviour
     //private GameObject player;
     private RaccoonController playerScript;
     private Rigidbody rb;
-    private static float timerLength = 20f; // Total amount of time
+    private static float timerLength = 10f; // Total amount of time
     private float timer;                    // Time before this bonus tool expires
     public string toolType;
     private TrashManiaDisplay trashManiaDisplay;
@@ -55,6 +55,7 @@ public class Tool : MonoBehaviour
     	playerScript.AddStrengthModifier(effectOnAttack, 0);
 
         timer = timerLength;
+        Debug.Log(ObjectManager.instance);
         ObjectManager.instance.EquipTool(this);
         this.trashManiaDisplay = display;
         trashManiaDisplay.gameObject.SetActive(true);

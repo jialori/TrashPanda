@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -42,19 +43,23 @@ public class TaskManager : MonoBehaviour
         }
 
         // Instantiate lists
-        activeTasks = new List<GameTask>();
+        activeTasks = new List<GameTask>(){null, null, null};
         taskPool = new List<GameTask>();
     }
 
     // Makes a task from 'taskPool' active so that it can be completed by the player
     GameTask addRandomTask()
     {
-        int i = Random.Range(0, taskPool.Count);
-        if (activeTasks.Find(task => task == taskPool[i]) == null)
+        int newTaskIdx = Random.Range(0, taskPool.Count - 1);
+        for (int i = 0; i < activeTasks.Count; i++)
         {
-            activeTasks.Add(taskPool[i]);
-            return taskPool[i];
+            if (activeTasks[i] == null)
+            {
+                activeTasks[i] = taskPool[newTaskIdx];
+                return activeTasks[i];
+            }
         }
+        
         return null;
     }
 
@@ -73,7 +78,7 @@ public class TaskManager : MonoBehaviour
         taskPool.Add(new KnockOverNSpecificItemsTask(3, "Paint Bucket"));
         taskPool.Add(new KnockOverNSpecificItemsTask(5, "Tool Box"));
 
-        while (activeTasks.Count < 3)
+        while (activeTasks.Any(task => task == null))
             addRandomTask();
 
         for (int i = 0; i < activeTasks.Count; i++)
@@ -134,14 +139,10 @@ public class TaskManager : MonoBehaviour
         {
             // Remove the completed task and add a new one
             var completedTask = activeTasks[completedTaskIdx];
-            activeTasks.RemoveAt(completedTaskIdx);
+            activeTasks[completedTaskIdx] = null;
             GameTask newTask = null;
-            if (taskPool.Count > 0)
-            {
-                newTask = addRandomTask();
-            }
-            // Update pause menu task list with new task
-            // Debug.Log("new task desc: " + newTask.description);
+            newTask = addRandomTask();
+            Debug.Log(newTask);
             pauseMenuTasks[completedTaskIdx].text = newTask.description;
 
             // Show objective complete

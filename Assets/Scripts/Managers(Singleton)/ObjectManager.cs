@@ -34,15 +34,15 @@ public class ObjectManager : MonoBehaviour
     void Awake()
     {
         if (verboseMode) if (verboseMode) Debug.Log("[ObjectManager] Awake");
-        // if (instance != null)
-        // {
-        //     Destroy(gameObject);
-        // }
-        // else
-        // {
-        //     instance = this;
-        //     DontDestroyOnLoad(gameObject);
-        // }
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            // DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Start()
