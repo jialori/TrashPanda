@@ -2,6 +2,16 @@ using UnityEngine;
 
 namespace Util
 {
+	class Util
+	{
+		public static string GetFormattedTime(float time)
+		{
+			var mins = Mathf.Floor(time / 60);
+	        var secs = time % 60;
+			return string.Format("{0:00} min {1:00} sec", mins, secs);
+		}
+	}
+
 	class Controller 
 	{
 		public static bool GetA()
@@ -108,7 +118,6 @@ namespace Util
 	        else
 	            return Input.GetAxis("Mouse Y");
 	    }
-
 	}
 
 	class MyLayers {
