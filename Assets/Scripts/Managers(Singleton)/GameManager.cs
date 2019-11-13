@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public List<HumanController> Workers = new List<HumanController>();
     public static GameManager instance;
 
+    public bool paused;
+
     void Awake()
     {
         if (instance != null)
@@ -63,5 +65,4 @@ public class GameManager : MonoBehaviour
         }
         // TODO: Need to Toggle all the objects as well (potentially being knocked over)
     }
-
 }

@@ -108,8 +108,8 @@ public class TaskManager : MonoBehaviour
                 newTask = addRandomTask();
             }
             // Update pause menu task list with new task
-            Debug.Log("new task desc: " + activeTasks[completedTaskIdx].description);
-            pauseMenuTasks[completedTaskIdx].text = activeTasks[completedTaskIdx].description;
+            Debug.Log("new task desc: " + newTask.description);
+            pauseMenuTasks[completedTaskIdx].text = newTask.description;
 
             // Show objective complete
             Debug.Log("Calling showobjectivecomplete");
