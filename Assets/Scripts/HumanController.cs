@@ -238,7 +238,7 @@ public class HumanController : MonoBehaviour
         {
             // Stun attack here
             //Debug.Log("stun attack used");
-            target.GetComponent<RaccoonController>().isStunned = true;
+            target.GetComponent<RaccoonController>().StunRaccoon();
             anim.SetBool("attack", true);
 
             // Start cooldown after attack
