@@ -21,6 +21,16 @@ public class CentralHumanController : MonoBehaviour
     // Intermediate variables
     GameObject[] H;
     HumanController h;
+    Breakable[] B1;
+    Knockable[] K1;
+    Breakable[] B2;
+    Knockable[] K2;
+    Breakable[] B3;
+    Knockable[] K3;
+    Breakable[] B4;
+    Knockable[] K4;
+    Breakable[] B5;
+    Knockable[] K5;
 
     public void registerObject(Transform obj)
     {
@@ -65,6 +75,75 @@ public class CentralHumanController : MonoBehaviour
         {
             allObjects[i] = new Tuple<List<Breakable>, List<Knockable>>(new List<Breakable>(), new List<Knockable>());
         }
+        K1 = GameObject.Find("Level 1 Knockables").GetComponentsInChildren<Knockable>();
+        Debug.Log(K1);
+        Debug.Log("K1 length: " + K1.Length.ToString());
+        for (int i = 0; i < K1.Length; i++)
+        {
+            Debug.Log("K1 index: " + i.ToString());
+            allObjects[0].Item2.Add(K1[i]);
+        }
+
+        B2 = GameObject.Find("Level 2 Breakables").GetComponentsInChildren<Breakable>();
+        Debug.Log("B2 length: " + B2.Length.ToString());
+        for (int i = 0; i < B2.Length; i++)
+        {
+            Debug.Log("B2 index: " + i.ToString());
+            allObjects[1].Item1.Add(B2[i]);
+        }
+        K2 = GameObject.Find("Level 2 Knockables").GetComponentsInChildren<Knockable>();
+        Debug.Log("K2 length: " + K2.Length.ToString());
+        for (int i = 0; i < K2.Length; i++)
+        {
+            Debug.Log("K2 index: " + i.ToString());
+            allObjects[1].Item2.Add(K2[i]);
+        }
+
+        B3 = GameObject.Find("Level 3 Breakables").GetComponentsInChildren<Breakable>();
+        Debug.Log("B3 length: " + B3.Length.ToString());
+        for (int i = 0; i < B3.Length; i++)
+        {
+            Debug.Log("B3 index: " + i.ToString());
+            allObjects[2].Item1.Add(B3[i]);
+        }
+        K3 = GameObject.Find("Level 3 Knockables").GetComponentsInChildren<Knockable>();
+        Debug.Log("K3 length: " + K3.Length.ToString());
+        for (int i = 0; i < K3.Length; i++)
+        {
+            Debug.Log("K3 index: " + i.ToString());
+            allObjects[2].Item2.Add(K3[i]);
+        }
+
+        B4 = GameObject.Find("Level 4 Breakables").GetComponentsInChildren<Breakable>();
+        Debug.Log("B4 length: " + B4.Length.ToString());
+        for (int i = 0; i < B4.Length; i++)
+        {
+            Debug.Log("B4 index: " + i.ToString());
+            allObjects[3].Item1.Add(B4[i]);
+        }
+        K4 = GameObject.Find("Level 4 Knockables").GetComponentsInChildren<Knockable>();
+        Debug.Log("K4 length: " + K4.Length.ToString());
+        for (int i = 0; i < K4.Length; i++)
+        {
+            Debug.Log("K4 index: " + i.ToString());
+            allObjects[3].Item2.Add(K4[i]);
+        }
+
+        B5 = GameObject.Find("Level 5 Breakables").GetComponentsInChildren<Breakable>();
+        Debug.Log("B5 length: " + B5.Length.ToString());
+        for (int i = 0; i < B5.Length; i++)
+        {
+            Debug.Log("B5 index: " + i.ToString());
+            allObjects[4].Item1.Add(B5[i]);
+        }
+        K5 = GameObject.Find("Level 5 Knockables").GetComponentsInChildren<Knockable>();
+        Debug.Log("K5 length: " + K5.Length.ToString());
+        for (int i = 0; i < K5.Length; i++)
+        {
+            Debug.Log("K5 index: " + i.ToString());
+            allObjects[4].Item2.Add(K5[i]);
+        }
+
         /*
         objects_F1 = new Tuple<List<Breakable>, List<Knockable>>();
         objects_F1[0] = new List<Breakable>();
