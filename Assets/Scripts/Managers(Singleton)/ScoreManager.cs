@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
     public float score;
 
-    private List<BillEntry> billRecord = new List<BillEntry>();
+    public List<BillEntry> billRecord = new List<BillEntry>();
     public BillDisplay billDisplay;
     public int scoreMultiplier = 1;
 
