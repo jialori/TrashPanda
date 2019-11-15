@@ -216,8 +216,8 @@ public class HumanController : MonoBehaviour
             anim.SetBool("chasing", true);
             anim.SetBool("scared", false);
         }
-        Debug.Log("Distance(x): " + System.Math.Abs(transform.position.x - lastKnownLocation.x).ToString() + ", Distance(z): " + System.Math.Abs(transform.position.z - lastKnownLocation.z).ToString());
-        Debug.Log("seesRaccoon: " + seesRaccoon);
+        //Debug.Log("Distance(x): " + System.Math.Abs(transform.position.x - lastKnownLocation.x).ToString() + ", Distance(z): " + System.Math.Abs(transform.position.z - lastKnownLocation.z).ToString());
+        //Debug.Log("seesRaccoon: " + seesRaccoon);
 
         /*
         // If the raccoon leaves the nav mesh, the worker will return to the 'idle' state
