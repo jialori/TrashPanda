@@ -9,14 +9,15 @@ public class HumanController : MonoBehaviour
     [SerializeField] private float maxAngle = 30.0f;                    // Field of view of this worker
     [SerializeField] private float maxRadius = 15.0f;                   // The farthest distance that this worker can see
     [SerializeField] private float hearingRadius = 40.0f;               // The farthest distance that this worker can hear
+    [SerializeField] private int level;                                 // The floor this worker is on 
     private float rotationSpeed = 5.0f;                                 // How fast this worker rotates
     private float attackCooldown = 10.0f;                               // The cooldown timer for the worker's stun attack
-    public int level;
+    Quaternion initialDirection;                                        // Direction this worker initially faces. Will rotate to face this direction after returning to 'initialPosition'
 
-    List<Breakable> breakableObjects;           // List of breakable objects on this worker's floor
+    List<Breakable> breakableObjects;                                   // List of breakable objects on this worker's floor
     List<Breakable> destroyedObjects = new List<Breakable>();           // List of destroyed objects. Used to remove objects from 'breakableObjects'
 
-    List<Knockable> knockableObjects;           // List of knockable objects on this worker's floor
+    List<Knockable> knockableObjects;                                   // List of knockable objects on this worker's floor
     List<Knockable> toppledObjects = new List<Knockable>();             // List of knocked over objects. Used to remove objects from 'knockableObjects'
 
     Vector3 initialPosition;                // Starting position of this worker. Will return here after losing sight of raccoon
@@ -111,17 +112,16 @@ public class HumanController : MonoBehaviour
             if (Vector3.Distance(checkingObject.position, target.position) < maxRadius)
             {
                 //Debug.Log(2);
-                NavMeshHit hit;
 
                 // If the player and worker are on the same floor
                 if (onSameFloor(target))
                 {
                     //Debug.Log(3);
                     // If the worker can directly see the player (i.e. line of sight is not blocked by wall or bush)
-                    if (!nav.Raycast(target.position, out hit))
+                    if (!nav.Raycast(target.position, out _))
                     {
-                        //Debug.Log("HumanController: Worker level = " + level.ToString() + "Raccoon level = " 
-                        //    + target.GetComponent<RaccoonController>().level.ToString());
+                        Debug.Log("HumanController: Worker level = " + level.ToString() + "Raccoon level = " 
+                            + target.GetComponent<RaccoonController>().level.ToString());
                         return true;
                     }
                 }
@@ -138,9 +138,10 @@ public class HumanController : MonoBehaviour
         GameManager.instance.Workers.Add(this);
 
         agent = GetComponent<NavMeshAgent>();
-        agent.stoppingDistance = 2f;
+        agent.stoppingDistance = 1f;
         p = new NavMeshPath();
         initialPosition = transform.position;
+        initialDirection = transform.rotation;
 
         anim = gameObject.GetComponent<Animator>();
         anim.SetBool("idle", true);
@@ -161,8 +162,9 @@ public class HumanController : MonoBehaviour
     {
         if (pause) return;
 
-        if (!onSameFloor(target))
-            return;
+        // I don't know who put this here but get rid of it!!! It messes up the workers when the raccoon leaves the floor!!!
+        //if (!onSameFloor(target))
+        //    return;
 
         _timer += Time.deltaTime;
         if (alreadyPlayed && _timer > replayInterval)
@@ -173,7 +175,7 @@ public class HumanController : MonoBehaviour
         seesRaccoon = inFOV(agent, transform, target, maxAngle, maxRadius);
         // Animation
         anim.SetBool("scared", seesRaccoon);
-        
+
 
 
         // 'lastKnownLocation' is assigned by the Central Human Controller. If a new 'lastKnownLocation' is assigned, then the raccoon has been spotted
@@ -187,17 +189,21 @@ public class HumanController : MonoBehaviour
         //}
 
         // When the worker is at the same floor and not reach lastKnownLocation yet
-        if (CHC.spotted && agent.CalculatePath(lastKnownLocation, p) 
-            && Vector3.Distance(transform.position, lastKnownLocation) > 2.5)
+        if (CHC.spotted && agent.CalculatePath(lastKnownLocation, p)
+            && System.Math.Abs(transform.position.x - lastKnownLocation.x) > 2 &&
+            System.Math.Abs(transform.position.z - lastKnownLocation.z) > 2 &&
+            onSameFloor(target))
         {
             //Debug.Log("Now chasing Raccoon");
+            
+            
             chasing = true;
             //searching = false;
             investigating = false;
             idle = false;
             anim.SetBool("idle", false);
 
-            agent.ResetPath();
+            //agent.ResetPath();
             agent.SetDestination(lastKnownLocation);
 
             //Audio trigger for sighting Raccoon
@@ -210,8 +216,8 @@ public class HumanController : MonoBehaviour
             anim.SetBool("chasing", true);
             anim.SetBool("scared", false);
         }
-        //Debug.Log("seesRaccoon: " + seesRaccoon);
-        //Debug.Log("Distance: " + Vector3.Distance(transform.position, lastKnownLocation));
+        Debug.Log("Distance(x): " + System.Math.Abs(transform.position.x - lastKnownLocation.x).ToString() + ", Distance(z): " + System.Math.Abs(transform.position.z - lastKnownLocation.z).ToString());
+        Debug.Log("seesRaccoon: " + seesRaccoon);
 
         /*
         // If the raccoon leaves the nav mesh, the worker will return to the 'idle' state
@@ -226,21 +232,31 @@ public class HumanController : MonoBehaviour
         */
 
         // The worker will stop if he is at 'lastKnownLocation' and can't see the raccoon
-        if (!seesRaccoon && Vector3.Distance(transform.position, lastKnownLocation) <= 2.5)
+        if (!seesRaccoon && System.Math.Abs(transform.position.x - lastKnownLocation.x) <= 4 &&
+            System.Math.Abs(transform.position.z - lastKnownLocation.z) <= 4)
         {
             //Debug.Log("Lost Raccoon");
-            chasing = false;
-            //searching = true;
-            investigating = false;
-            idle = false;
-            anim.SetBool("idle", false);
-            agent.ResetPath();
+            // If the raccoon is nearby, the worker will still chase her
+            if (System.Math.Abs(transform.position.x - target.position.x) <= 4 &&
+                System.Math.Abs(transform.position.z - target.position.z) <= 4)
+            {
+                transform.LookAt(target);
+            }
+            // Otherwise, the worker will go idle
+            else
+            {
+                chasing = false;
+                investigating = false;
+                idle = true;
+                agent.ResetPath();
 
-            // Animation
-            anim.SetBool("chasing", false);
+                // Animation
+                anim.SetBool("chasing", false);
+            }
         }
 
-        if (seesRaccoon && Vector3.Distance(transform.position, target.position) <= 2.0 && canAttack)
+        if (seesRaccoon && System.Math.Abs(transform.position.x - lastKnownLocation.x) <= 2 &&
+            System.Math.Abs(transform.position.z - lastKnownLocation.z) <= 2 && canAttack)
         {
             // Stun attack here
             //Debug.Log("stun attack used");
@@ -299,7 +315,7 @@ public class HumanController : MonoBehaviour
             if (breakableObjects[i].destroyed)
             {
                 destroyedObjects.Add(breakableObjects[i]);
-                Debug.Log(breakableObjects[i].ToString() + " was destroyed. Distance from worker " + id + ": " + Vector3.Distance(breakableObjects[i].transform.position, transform.position).ToString());
+                //Debug.Log(breakableObjects[i].ToString() + " was destroyed. Distance from worker " + id + ": " + Vector3.Distance(breakableObjects[i].transform.position, transform.position).ToString());
                 // If this worker heard the object being destroyed and is not chasing the raccoon
                 if (!chasing && Vector3.Distance(breakableObjects[i].transform.position, transform.position) < hearingRadius)
                 {
@@ -309,7 +325,7 @@ public class HumanController : MonoBehaviour
                     anim.SetBool("idle", false);
                     lastKnownLocation = breakableObjects[i].transform.position;
                     agent.SetDestination(lastKnownLocation);
-                    Debug.Log("Worker " + id + " heard object " + breakableObjects[i].ToString() + " being destroyed. Now heading to " + breakableObjects[i].transform.position.ToString() + " to investigate");
+                    //Debug.Log("Worker " + id + " heard object " + breakableObjects[i].ToString() + " being destroyed. Now heading to " + breakableObjects[i].transform.position.ToString() + " to investigate");
                 }
             }
 
@@ -355,7 +371,14 @@ public class HumanController : MonoBehaviour
         // The worker will return to his original position if he can't find the raccoon
         if (idle)
         {
-            if (transform.position != initialPosition)
+            if (System.Math.Abs(transform.position.x - initialPosition.x) <= 2 &&
+            System.Math.Abs(transform.position.z - initialPosition.z) <= 2)
+            {
+                //Debug.Log("In starting position. current position: " + transform.position.ToString() + " initial position: " + initialPosition.ToString());
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, initialDirection, rotationSpeed);
+                anim.SetBool("idle", true);
+            }
+            else if (transform.position != initialPosition)
             {
                 //Debug.Log("Can't find Raccoon. Returning to initial position");
                 if (agent.SetDestination(initialPosition))

@@ -7,6 +7,7 @@ public class CentralHumanController : MonoBehaviour
 {
     public bool verboseMode;
     public Transform target;                    // Human target to be chased (will always be the raccoon)
+    public Transform LKL;
     public bool spotted = false;                // Flag determining if the raccoon has been spotted
 
     public List<Tuple<List<Breakable>, List<Knockable>>> allObjects;            // List of all breakable and knockable objects per floor
@@ -38,6 +39,7 @@ public class CentralHumanController : MonoBehaviour
     void Awake()
     {
         // Initialize variables
+        LKL = GameObject.Find("LastKnownLocation").transform;
         var humanObjs = GameObject.FindGameObjectsWithTag("Human");
         // Debug.Log("humanObjs length: " + humanObjs.Length);
         humans = humanObjs.Select(obj => obj.GetComponent<HumanController>()).ToList();
@@ -153,6 +155,7 @@ public class CentralHumanController : MonoBehaviour
         if (spotted)
         {
             //Debug.Log(1);
+            LKL.position = target.position;
             // For each worker
             for (int i = 0; i < humans.Count; i++)
             {

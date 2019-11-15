@@ -21,7 +21,7 @@ public class KnockOverNItemsTask : GameTask
         {
             numDestroyed ++;
 
-            Debug.Log("progress: " + description);
+            //Debug.Log("progress: " + description);
         }
     }
 

@@ -18,7 +18,7 @@ public class TrashManiaDisplay : MonoBehaviour
     {
         if (this.gameObject.activeSelf)
         {
-            Debug.Log(enabledTool);
+            //Debug.Log(enabledTool);
             timeLeft.text = Util.Util.GetFormattedTime(enabledTool.GetTimer());
         }
     }
