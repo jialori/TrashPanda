@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public bool UseController { get => m_useController; }
     // true if wee start at MainScene or its copy directly (not transitioned from other scenes)
     // [SerializeField] public bool m_devMode = false;
+    [SerializeField] public float totalTime;
     [SerializeField] public bool m_disableTimer = false;
     [SerializeField] public float m_volume;
     [SerializeField] public bool m_disableCountDown = false;
@@ -39,15 +40,6 @@ public class GameManager : MonoBehaviour
             m_raccoon = GameObject.FindGameObjectWithTag("Raccoon")?.GetComponent<RaccoonController>();
         }
     }
-
-
-    public void Reset()
-    {
-        ScoreManager.instance?.Reset();
-        ObjectManager.instance?.Reset();
-        TimerManager.instance?.Reset();
-    }
-
 
     public void TogglePlay()
     {

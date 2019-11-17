@@ -101,12 +101,10 @@ public class TaskManager : MonoBehaviour
         Debug.Log(completedTasks.Count);
         if (!addTextDoneCountdown && countdownTasks.Count > 0)
         {
-            while (activeTasks.Count < 3)
-               addRandomTask();
+           addRandomTask();
 
             for (int i = 0; i < activeTasks.Count; i++)
             {
-                // pauseMenuTasks[i].text = activeTasks[i].description;
                 countdownTasks[i].text = activeTasks[i].description;
             }
             TaskManager.instance.addTextDoneCountdown = true;
@@ -114,13 +112,11 @@ public class TaskManager : MonoBehaviour
 
         if (!addTextDonePausemenu && pauseMenuTasks.Count > 0)
         {
-            while (activeTasks.Count < 3)
-               addRandomTask();
+           addRandomTask();
 
             for (int i = 0; i < activeTasks.Count; i++)
             {
                 pauseMenuTasks[i].text = activeTasks[i].description;
-                // countdownTasks[i].text = activeTasks[i].description;
             }
             TaskManager.instance.addTextDonePausemenu = true;
         }
@@ -244,7 +240,7 @@ public class TaskManager : MonoBehaviour
             task.Reset();
         }
 
-        instance.activeTasks.Clear();
+        activeTasks = new List<GameTask>(){null, null, null};
 
         TaskManager.instance.pauseMenuTasks.Clear();
         TaskManager.instance.countdownTasks.Clear();

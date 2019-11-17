@@ -65,7 +65,9 @@ public class SceneTransitionManager : MonoBehaviour
     {
         // Debug.Log("[SceneManager] StartGame");
         AudioManager.instance.StopCurrent();
-        GameManager.instance.Reset();
+        ScoreManager.instance?.Reset();
+        ObjectManager.instance?.Reset();
+        TimerManager.instance?.Reset();
         StartGameSteps();
         if (SceneManager.GetActiveScene().name != GAME) 
         {
@@ -76,7 +78,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void EndGame()
     {
-        // Debug.Log("[SceneManager] EndGame");
+        Debug.Log("[SceneManager] EndGame");
         AudioManager.instance.StopCurrent();
         AudioManager.instance.Play("MainMenuBGM");
         SceneManager.LoadScene(GAME_OVER);
@@ -94,11 +96,11 @@ public class SceneTransitionManager : MonoBehaviour
         if (!GameManager.instance.m_disableCountDown)
         {
             SceneTransitionManager.instance.countdownDone = false;
+            TimerManager.instance.StartTimer();
         } 
         else
         {
             SceneTransitionManager.instance.countdownDone = true;
-            TimerManager.instance.StartTimer();
         }
         // Debug.Log("start gameSteps, countdownDone is " + SceneTransitionManager.instance.countdownDone);
 

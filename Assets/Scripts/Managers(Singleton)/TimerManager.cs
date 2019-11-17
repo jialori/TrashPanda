@@ -7,7 +7,6 @@ public class TimerManager : MonoBehaviour
 
     public static TimerManager instance;
 
-    [SerializeField] private float totalTime;
     private float timer;
     [System.NonSerialized] public bool timerOn = false;
 
@@ -24,14 +23,19 @@ public class TimerManager : MonoBehaviour
             instance = this;
         }
 
-        timer = totalTime;
         timerOn = false;
+    }
+
+    void Start()
+    {
+        timer = GameManager.instance.totalTime;
     }
 
     void Update()
     {
         if (timerOn)
         {
+            Debug.Log("timer on");
             if (timer > 0) timer = Mathf.Max(timer - Time.deltaTime, 0);
             else
             {
@@ -61,7 +65,7 @@ public class TimerManager : MonoBehaviour
 
     public void Reset()
     {
-        instance.timer = totalTime;
+        instance.timer = GameManager.instance.totalTime;
         timerOn = false;
     }
 
