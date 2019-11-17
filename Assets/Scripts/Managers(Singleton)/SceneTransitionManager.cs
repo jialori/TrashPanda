@@ -15,6 +15,8 @@ public class SceneTransitionManager : MonoBehaviour
     [SerializeField] private CountDownDisplay countDownDisplay;
     private bool countdownDone = false;
 
+    private string currentScene; 
+
     void Awake()
     {
         if (instance != null)
@@ -45,6 +47,7 @@ public class SceneTransitionManager : MonoBehaviour
     void Update()
     {
         var curScene = SceneManager.GetActiveScene();
+        currentScene = curScene.name;
         // Debug.Log("countdownDone is " + SceneTransitionManager.instance.countdownDone);
         if (!SceneTransitionManager.instance.countdownDone && countDownDisplay != null && curScene.name == GAME)
         {
@@ -109,5 +112,10 @@ public class SceneTransitionManager : MonoBehaviour
     {
         // Debug.Log("register countdown");
         countDownDisplay = display;
+    }
+
+    public string GetCurrentScene()
+    {
+        return currentScene;
     }
 }
