@@ -35,7 +35,6 @@ public class TimerManager : MonoBehaviour
     {
         if (timerOn)
         {
-            Debug.Log("timer on");
             if (timer > 0) timer = Mathf.Max(timer - Time.deltaTime, 0);
             else
             {

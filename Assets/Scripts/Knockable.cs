@@ -32,6 +32,10 @@ public class Knockable : MonoBehaviour
     public AudioClip objectKnock;
     private bool _hasAudio;
 
+    void Awake()
+    {
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,7 +45,7 @@ public class Knockable : MonoBehaviour
         toppled = false;
 
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
-        //CHC.registerObject(transform);
+        CHC.registerObject(this.gameObject);
 
         KnockedSound = GetComponent<AudioSource>();
         StartCoroutine(AudioLoadIn());

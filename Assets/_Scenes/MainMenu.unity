@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 1580800343275420984, guid: 412dfe4967a0de94e8627325f3832600,
         type: 3}
       propertyPath: totalTime
-      value: 180
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 412dfe4967a0de94e8627325f3832600, type: 3}
@@ -4858,6 +4858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_useController: 1
+  totalTime: 180
   m_disableTimer: 0
   m_volume: 0
   m_disableCountDown: 0

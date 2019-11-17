@@ -78,7 +78,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("[SceneManager] EndGame");
+        // Debug.Log("[SceneManager] EndGame");
         AudioManager.instance.StopCurrent();
         AudioManager.instance.Play("MainMenuBGM");
         SceneManager.LoadScene(GAME_OVER);
@@ -102,7 +102,6 @@ public class SceneTransitionManager : MonoBehaviour
         {
             SceneTransitionManager.instance.countdownDone = true;
         }
-        // Debug.Log("start gameSteps, countdownDone is " + SceneTransitionManager.instance.countdownDone);
 
     }
     

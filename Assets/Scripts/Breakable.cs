@@ -35,13 +35,19 @@ public class Breakable : MonoBehaviour
     private ScoreManager.ActionTypes aType = ScoreManager.ActionTypes.BREAK;
     public string objName;
 
-    private void Start()
+    void Awake()
+    {
+    }
+
+
+    void Start()
     {
         health = totalHealth;
         leftDustTime = dustTime;
 
         CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
-        //CHC.registerObject(transform);
+        CHC.registerObject(this.gameObject);
+
         df = GetComponent<DestroyEffect>();
         breakSound = GetComponent<AudioSource>();
     }
