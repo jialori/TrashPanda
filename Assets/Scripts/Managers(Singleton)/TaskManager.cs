@@ -216,7 +216,7 @@ public class TaskManager : MonoBehaviour
     }
     private IEnumerator ShowNewObjective(GameTask newTask)
     {
-        if (newTask == null) yield return new WaitForEndOfFrame();
+        if (newTask == null || SceneTransitionManager.instance.GetCurrentScene() != "MainScene") yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(2.5f);
         newDescription.text = newTask.description;
         newObjective.SetActive(true);
@@ -244,6 +244,7 @@ public class TaskManager : MonoBehaviour
 
         TaskManager.instance.pauseMenuTasks.Clear();
         TaskManager.instance.countdownTasks.Clear();
+        TaskManager.instance.completedTasks.Clear();
         TaskManager.instance.addTextDoneCountdown = false;
         TaskManager.instance.addTextDonePausemenu = false;
         // Debug.Log("Dont need to add text is: " + addTextDoneCountdown);
