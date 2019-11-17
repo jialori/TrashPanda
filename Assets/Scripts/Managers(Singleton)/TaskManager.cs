@@ -17,6 +17,7 @@ public class TaskManager : MonoBehaviour
      */
     List<GameTask> activeTasks; // The tasks that are active and can be completed
     List<GameTask> taskPool; // The tasks that can be added to 'activeTasks'
+    List<GameTask> completedTasks; // The tasks that have been completed
     public List<GameObject> tools; // A list of tools that could be generated as a result of completing tasks
     [SerializeField] private GameObject objectiveComplete;
     [SerializeField] private TextMeshProUGUI description;
@@ -45,6 +46,7 @@ public class TaskManager : MonoBehaviour
         // Instantiate lists
         activeTasks = new List<GameTask>(){null, null, null};
         taskPool = new List<GameTask>();
+        completedTasks = new List<GameTask>();
     }
 
     // Makes a task from 'taskPool' active so that it can be completed by the player
@@ -96,6 +98,7 @@ public class TaskManager : MonoBehaviour
         // Debug.Log(addTextDoneCountdown);
         // Debug.Log(countdownTasks.Count);
         // Debug.Log(pauseMenuTasks.Count);
+        Debug.Log(completedTasks.Count);
         if (!addTextDoneCountdown && countdownTasks.Count > 0)
         {
             while (activeTasks.Count < 3)
@@ -140,6 +143,7 @@ public class TaskManager : MonoBehaviour
             // Remove the completed task and add a new one
             var completedTask = activeTasks[completedTaskIdx];
             activeTasks[completedTaskIdx] = null;
+            completedTasks.Add(completedTask);
             GameTask newTask = null;
             newTask = addRandomTask();
             Debug.Log(newTask);
