@@ -343,7 +343,7 @@ public class HumanController : MonoBehaviour
         for (int i = 0; i < knockableObjects.Count; i++)
         {
             // If the object was knocked over
-            if (knockableObjects[i].toppled)
+            if (knockableObjects[i] && knockableObjects[i].toppled)
             {
                 toppledObjects.Add(knockableObjects[i]);
                 // Debug.Log(knockableObjects[i].ToString() + " was knocked over. Distance from worker " + id + ": " + Vector3.Distance(knockableObjects[i].transform.position, transform.position).ToString());

@@ -173,7 +173,7 @@ public class Highlight : MonoBehaviour
     {
         foreach (var renderer in renderers)
         {
-
+            if (!renderer) continue;
             // Remove outline shaders
             var materials = renderer.sharedMaterials.ToList();
 

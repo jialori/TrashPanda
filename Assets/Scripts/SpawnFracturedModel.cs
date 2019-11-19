@@ -19,7 +19,7 @@ public class SpawnFracturedModel : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //if (collision.gameObject == raccoon) fragile = true;
-        if (collision.relativeVelocity.magnitude > 1.5) //&& fragile)
+        if (ObjectManager.curTool != null) 
         {
             df.StartDusting(true);
             SpawnFracturedObj(collision.relativeVelocity * mass);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExplodeScript : MonoBehaviour
 {
-    public bool startExplo = false;
+    public bool startExplosion = false;
     public float destroyDelay = 5;
 
 
