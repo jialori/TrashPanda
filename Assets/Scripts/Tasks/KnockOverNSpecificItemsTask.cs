@@ -23,7 +23,7 @@ public class KnockOverNSpecificItemsTask : GameTask
         if (progress.Type == TaskProgress.TaskType.Knockable)
         {
             // if (progress.Object != null)
-                // Debug.Log(progress.Object.GetComponent<Knockable>().name);
+            // Debug.Log(progress.Object.GetComponent<Knockable>().name);
             // Debug.Log(this.itemType);
             if (progress.Object != null && progress.Object.GetComponent<Knockable>().objName == itemType)
             {
@@ -36,5 +36,10 @@ public class KnockOverNSpecificItemsTask : GameTask
     public override void Reset()
     {
         numDestroyed = 0;
+    }
+
+    public string getItemType()
+    {
+        return itemType;
     }
 }

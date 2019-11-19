@@ -44,25 +44,9 @@ public class TaskManager : MonoBehaviour
         }
 
         // Instantiate lists
-        activeTasks = new List<GameTask>(){null, null, null};
+        activeTasks = new List<GameTask>() { null, null, null };
         taskPool = new List<GameTask>();
         completedTasks = new List<GameTask>();
-    }
-
-    // Makes a task from 'taskPool' active so that it can be completed by the player
-    GameTask addRandomTask()
-    {
-        int newTaskIdx = Random.Range(0, taskPool.Count - 1);
-        for (int i = 0; i < activeTasks.Count; i++)
-        {
-            if (activeTasks[i] == null)
-            {
-                activeTasks[i] = taskPool[newTaskIdx];
-                return activeTasks[i];
-            }
-        }
-        
-        return null;
     }
 
     void Start()
@@ -101,7 +85,7 @@ public class TaskManager : MonoBehaviour
         // Debug.Log(completedTasks.Count);
         if (!addTextDoneCountdown && countdownTasks.Count > 0)
         {
-           addRandomTask();
+            addRandomTask();
 
             for (int i = 0; i < activeTasks.Count; i++)
             {
@@ -112,7 +96,7 @@ public class TaskManager : MonoBehaviour
 
         if (!addTextDonePausemenu && pauseMenuTasks.Count > 0)
         {
-           addRandomTask();
+            addRandomTask();
 
             for (int i = 0; i < activeTasks.Count; i++)
             {
@@ -150,7 +134,6 @@ public class TaskManager : MonoBehaviour
             StartCoroutine(ShowObjectiveComplete(completedTask));
             StartCoroutine(ShowNewObjective(newTask));
 
-
             // Generate a tool for the raccoon here
             // Debug.Log("Calling spawnrandomtool");
 
@@ -158,7 +141,73 @@ public class TaskManager : MonoBehaviour
         }
 
         // update task text if there are changes
-        
+    }
+
+    // Makes a task from 'taskPool' active so that it can be completed by the player
+    GameTask addRandomTask()
+    {
+        // Find the slot to add new task to
+        int idxToAdd = -1;
+        for (int i = 0; i < activeTasks.Count; i++)
+        {
+            if (activeTasks[i] == null)
+            {
+                idxToAdd = i;
+            }
+        }
+
+        if (idxToAdd == -1) return null;
+
+        // Find a new task to add
+        var choices = Enumerable.Range(0, taskPool.Count - 1).ToList();
+        var randomIdx = Random.Range(0, choices.Count());
+        int newTaskIdx = choices[randomIdx];
+        var newTask = taskPool[newTaskIdx];
+
+        // Check to make sure the new task isn't a repeat
+        bool hasKnockOverNItemsTask = false;
+        var specificItems = new List<string>();
+        foreach (var task in activeTasks)
+        {
+            if (task as KnockOverNItemsTask != null)
+            {
+                hasKnockOverNItemsTask = true;
+                continue;
+            }
+            var specificTask = task as KnockOverNSpecificItemsTask;
+            if (specificTask != null)
+            {
+                specificItems.Add(specificTask.getItemType());
+            }
+        }
+
+        while (true)
+        {
+            if (newTask.GetType() == typeof(KnockOverNItemsTask))
+            {
+                if (!hasKnockOverNItemsTask)
+                {
+                    break;
+                }
+            }
+            var newSpecificTask = newTask as KnockOverNSpecificItemsTask;
+            if (newSpecificTask != null)
+            {
+                if (!specificItems.Contains(newSpecificTask.getItemType()))
+                {
+                    break;
+                }
+            }
+
+            choices.Remove(newTaskIdx);
+            randomIdx = Random.Range(0, choices.Count());
+            newTaskIdx = choices[randomIdx];
+            newTask = taskPool[newTaskIdx];
+        }
+
+        activeTasks[idxToAdd] = newTask;
+
+        return newTask;
     }
 
     private void SpawnRandomTool()
@@ -212,7 +261,7 @@ public class TaskManager : MonoBehaviour
         // }
 
         objectiveComplete.SetActive(false);
-    //     Debug.Log("hide Objective Complete");
+        //     Debug.Log("hide Objective Complete");
     }
     private IEnumerator ShowNewObjective(GameTask newTask)
     {
@@ -240,7 +289,7 @@ public class TaskManager : MonoBehaviour
             task.Reset();
         }
 
-        activeTasks = new List<GameTask>(){null, null, null};
+        activeTasks = new List<GameTask>() { null, null, null };
 
         TaskManager.instance.pauseMenuTasks.Clear();
         TaskManager.instance.countdownTasks.Clear();
