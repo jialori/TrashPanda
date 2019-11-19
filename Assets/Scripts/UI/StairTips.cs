@@ -17,16 +17,17 @@ public class StairTips : MonoBehaviour
     {
         // Debug.Log("[StairMenu] Show");
         this.gameObject.SetActive(true);
+        upText.SetActive(true);
+        downText.SetActive(true);           
         if (floorNum == 1)
         {
-            downText.SetActive(true);
-        } else if (floorNum == 5)
+            downText.SetActive(false);
+        } 
+        else if (floorNum == 5)
         {
-            upText.SetActive(true);
-        } else {
-	        upText.SetActive(true);
-	        downText.SetActive(true);        	
-        }
+            upText.SetActive(false);
+        } 
+
     }
 
     public void Hide()

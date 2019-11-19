@@ -177,13 +177,13 @@ public class ObjectManager : MonoBehaviour
             {
                 raccoon.UseStairs(true);
                 stairTipOpen = false;
-                // stairMenu.Hide();
+                stairTips.Hide();
             }
             else if (Controller.GetY() && stairTarget.GetFloor() != 1)
             {
                 raccoon.UseStairs(false);
                 stairTipOpen = false;
-                // stairMenu.Hide();
+                stairTips.Hide();
             }
             
             // if (!stairMenuOpen)
