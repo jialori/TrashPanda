@@ -8,9 +8,9 @@ public class StairTips : MonoBehaviour
     [SerializeField] private GameObject downText;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        this.gameObject.SetActive(false);
     }
 
     public void Show(int floorNum)

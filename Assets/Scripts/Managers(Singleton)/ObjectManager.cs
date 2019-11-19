@@ -24,8 +24,12 @@ public class ObjectManager : MonoBehaviour
     [Header("Unity")]
     [SerializeField] private GameObject healthBar;
     [SerializeField] private Image healthBarFill;
-    [SerializeField] private StairMenu stairMenu;
-    [SerializeField] public StairTips stairTips;
+    // [SerializeField] private StairMenu stairMenu;
+    
+    // assignment code is in UIStorage
+    public StairTips stairTips;
+    public BreakTips breakTip;
+
     public bool verboseMode = true;
 
     private RaccoonController raccoon;
@@ -153,12 +157,8 @@ public class ObjectManager : MonoBehaviour
         // interact if interact button is pressed
         if (!raccoon.isStunned && Controller.GetB()) Interact();
 
-        // if (target == null || target != null && target.GetComponent<Stair>() == null && stairTipOpen)
-        // {
-        //     stairTipOpen = false;
-        //     stairTips.Hide();
-        // }
 
+        // interact with stairs
         var stairTarget = target?.GetComponent<Stair>();
         if ((stairTarget != null))
         {
@@ -185,62 +185,49 @@ public class ObjectManager : MonoBehaviour
                 stairTipOpen = false;
                 stairTips.Hide();
             }
-            
-            // if (!stairMenuOpen)
-            // {
-            //     stairMenuOpen = true;
-            //     stairMenu.Show(stairTarget.GetFloor());
-            // }
-            // else
-            // {
-            //     stairMenuOpen = false;
-            //     stairMenu.Hide();
-            // }
         } else if (stairTipOpen) {
             stairTips.Hide();
             stairTipOpen = false;
         }
 
-        // Go up or down stairs
-        // if (target != null && stairMenuOpen)
+        // display target health
+        // if (target != null)
         // {
-        //     var raccoon = GameManager.instance.Raccoon;
-        //     var stair = target.GetComponent<Stair>();
-        //     if (stair == null) return;
-        //     if (Controller.GetX() && stair.GetFloor() != 5)
+        //     Breakable breakableTarget = target.GetComponent<Breakable>();
+        //     if (curTool != null && breakableTarget != null)
         //     {
-        //         raccoon.UseStairs(true);
-        //         stairMenuOpen = false;
-        //         stairMenu.Hide();
+        //         if (verboseMode) Debug.Log("[ObjectManager] target is breakable");
+        //         healthBar.SetActive(true);
+        //         healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
+        //         EnableHighlight(target);
         //     }
-        //     else if (Controller.GetY() && stair.GetFloor() != 1)
+        //     else if (breakableTarget == null)
         //     {
-        //         raccoon.UseStairs(false);
-        //         stairMenuOpen = false;
-        //         stairMenu.Hide();
+        //         healthBar.SetActive(false);
+        //         EnableHighlight(target);
         //     }
         // }
+        // else
+        // {
+        //     healthBar.SetActive(false);
+        // }
 
-        // display target health
-        if (target != null)
+        // display break tip
+        Breakable breakableTarget = target?.GetComponent<Breakable>();
+        if (breakableTarget != null)
         {
-            Breakable breakableTarget = target.GetComponent<Breakable>();
             if (curTool != null && breakableTarget != null)
             {
                 if (verboseMode) Debug.Log("[ObjectManager] target is breakable");
-                healthBar.SetActive(true);
-                healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
-                EnableHighlight(target);
-            }
-            else if (breakableTarget == null)
-            {
-                healthBar.SetActive(false);
-                EnableHighlight(target);
+                breakTip.Show();
+                // healthBar.SetActive(true);
+                // healthBarFill.fillAmount = breakableTarget.Health / breakableTarget.totalHealth;
+                // EnableHighlight(target);
             }
         }
         else
         {
-            healthBar.SetActive(false);
+            breakTip.Hide();
         }
 
         // Outline in range knockables

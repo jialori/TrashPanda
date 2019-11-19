@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool m_disableTimer = false;
     [SerializeField] public float m_volume;
     [SerializeField] public bool m_disableCountDown = false;
+    [SerializeField] public bool m_simplifyTasks = false;
 
     [SerializeField] private RaccoonController m_raccoon;
     public RaccoonController Raccoon { get => m_raccoon; }

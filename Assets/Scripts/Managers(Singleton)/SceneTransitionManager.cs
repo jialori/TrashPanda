@@ -17,6 +17,8 @@ public class SceneTransitionManager : MonoBehaviour
 
     private string currentScene; 
 
+    public bool gameOn;
+
     void Awake()
     {
         if (instance != null)
@@ -27,6 +29,8 @@ public class SceneTransitionManager : MonoBehaviour
         {
             instance = this;
         }
+
+        gameOn = false;
     }
 
     void Start()
@@ -59,6 +63,7 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void Menu()
     {
+        gameOn = false;
         AudioManager.instance.StopCurrent();
         SceneManager.LoadScene(MENU);
         AudioManager.instance.Play("MainMenuBGM");
@@ -67,6 +72,7 @@ public class SceneTransitionManager : MonoBehaviour
     public void StartGame()
     {
         // Debug.Log("[SceneManager] StartGame");
+        gameOn = true;
         AudioManager.instance.StopCurrent();
         ScoreManager.instance?.Reset();
         ObjectManager.instance?.Reset();
@@ -83,6 +89,7 @@ public class SceneTransitionManager : MonoBehaviour
     {
         // Debug.Log("[SceneManager] EndGame");
         AudioManager.instance.StopCurrent();
+        gameOn = false;
         AudioManager.instance.Play("MainMenuBGM");
         SceneManager.LoadScene(GAME_OVER);
     }

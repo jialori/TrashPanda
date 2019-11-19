@@ -68,17 +68,7 @@ public class TaskManager : MonoBehaviour
     void Start()
     {
         // Add possible tasks here
-        taskPool.Add(new KnockOverNItemsTask(30));
-        taskPool.Add(new KnockOverNItemsTask(10));
-        taskPool.Add(new KnockOverNItemsTask(20));
-        taskPool.Add(new KnockOverNSpecificItemsTask(3, "Ladder"));
-        taskPool.Add(new KnockOverNSpecificItemsTask(5, "Ladder"));
-        taskPool.Add(new KnockOverNSpecificItemsTask(10, "Brick"));
-        taskPool.Add(new KnockOverNSpecificItemsTask(15, "Brick"));
-        taskPool.Add(new KnockOverNSpecificItemsTask(3, "Wheelbarrow"));
-        taskPool.Add(new KnockOverNSpecificItemsTask(5, "Wheelbarrow"));
-        taskPool.Add(new KnockOverNSpecificItemsTask(3, "Paint Bucket"));
-        taskPool.Add(new KnockOverNSpecificItemsTask(5, "Tool Box"));
+        AddInitialTasks();
 
         while (activeTasks.Any(task => task == null))
             addRandomTask();
@@ -99,6 +89,8 @@ public class TaskManager : MonoBehaviour
         // Debug.Log(countdownTasks.Count);
         // Debug.Log(pauseMenuTasks.Count);
         // Debug.Log(completedTasks.Count);
+        if (!SceneTransitionManager.instance.gameOn) return;
+
         if (!addTextDoneCountdown && countdownTasks.Count > 0)
         {
            addRandomTask();
@@ -250,4 +242,44 @@ public class TaskManager : MonoBehaviour
         // Debug.Log("Dont need to add text is: " + addTextDoneCountdown);
 
     }
+
+    public List<GameTask> GetCompletedTasks() 
+    {
+        return completedTasks;
+    }
+
+    void AddInitialTasks() 
+    {
+        if (!GameManager.instance.m_simplifyTasks) 
+        {
+            taskPool.Add(new KnockOverNItemsTask(30));
+            taskPool.Add(new KnockOverNItemsTask(10));
+            taskPool.Add(new KnockOverNItemsTask(20));
+            taskPool.Add(new KnockOverNSpecificItemsTask(3, "Ladder"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(5, "Ladder"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(10, "Brick"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(15, "Brick"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(3, "Wheelbarrow"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(5, "Wheelbarrow"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(3, "Paint Bucket"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(5, "Tool Box"));
+        } 
+        else 
+        {
+            taskPool.Add(new KnockOverNItemsTask(1));
+            taskPool.Add(new KnockOverNItemsTask(1));
+            taskPool.Add(new KnockOverNItemsTask(1));
+            taskPool.Add(new KnockOverNSpecificItemsTask(1, "Ladder"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(1, "Ladder"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(1, "Brick"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(1, "Brick"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(1, "Wheelbarrow"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(1, "Wheelbarrow"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(1, "Paint Bucket"));
+            taskPool.Add(new KnockOverNSpecificItemsTask(1, "Tool Box"));
+        }
+        
+    }
+
+
 }
