@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour
     // [HideInInspector] public List<HumanController> Workers = new List<HumanController>();
     [HideInInspector] public bool paused;
 
-    [HideInInspector] public CentralHumanController CHC;             // Reference to the Central Human Controller
-
+    [HideInInspector] public CentralHumanController CHC; // Reference to the Central Human Controller
 
     void Awake()
     {
@@ -45,6 +44,13 @@ public class GameManager : MonoBehaviour
         if (!m_raccoon)
         {
             m_raccoon = GameObject.FindGameObjectWithTag("Raccoon")?.GetComponent<RaccoonController>();
+        }
+
+        if (Util.Controller.GetPause())
+        {
+            Debug.Log("Paused");
+            TogglePlay();
+            UIManager.instance.TogglePauseMenu();
         }
     }
 

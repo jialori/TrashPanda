@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Util;
 
 public class TogglePlay : MonoBehaviour
@@ -26,8 +26,9 @@ public class TogglePlay : MonoBehaviour
     {
         // Pause Menu
         if (Controller.GetPause()) //||
-            // (Controller.GetA() && pauseMenu.activeSelf && es?.currentSelectedGameObject?.GetComponent<Button>()))
+        // (Controller.GetA() && pauseMenu.activeSelf && es?.currentSelectedGameObject?.GetComponent<Button>()))
         {
+            Debug.Log("TOggle play paused");
             _validInput = true;
         }
 

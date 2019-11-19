@@ -26,9 +26,11 @@ public class TaskManager : MonoBehaviour
     [SerializeField] public TrashManiaDisplay trashManiaDisplay;
     [SerializeField] public List<TextMeshProUGUI> pauseMenuTasks;
     [SerializeField] public List<TextMeshProUGUI> countdownTasks;
+    [SerializeField] public List<TextMeshProUGUI> onScreenTasks;
     public bool linkedUI = false;
     private bool addTextDoneCountdown = false;
     private bool addTextDonePausemenu = false;
+    private bool addTextDoneOnScreen = false;
 
     public static TaskManager instance;
 
@@ -63,9 +65,11 @@ public class TaskManager : MonoBehaviour
             // Debug.Log(activeTasks[i].description);
             pauseMenuTasks[i].text = activeTasks[i].description;
             countdownTasks[i].text = activeTasks[i].description;
+            onScreenTasks[i].text = activeTasks[i].description;
         }
         addTextDoneCountdown = true;
         addTextDonePausemenu = true;
+        addTextDoneOnScreen = true;
     }
 
     void Update()
@@ -97,6 +101,15 @@ public class TaskManager : MonoBehaviour
             TaskManager.instance.addTextDonePausemenu = true;
         }
 
+        if (!addTextDoneOnScreen && onScreenTasks.Count > 0)
+        {
+            for (int i = 0; i < activeTasks.Count; i++)
+            {
+                onScreenTasks[i].text = activeTasks[i].description;
+            }
+            TaskManager.instance.addTextDoneOnScreen = true;
+        }
+
         var completedTaskIdx = -1;
         // For each active task
         for (int i = 0; i < activeTasks.Count; i++)
@@ -108,6 +121,9 @@ public class TaskManager : MonoBehaviour
                 completedTaskIdx = i;
                 break;
             }
+
+            pauseMenuTasks[i].text = activeTasks[i].description;
+            onScreenTasks[i].text = activeTasks[i].description;
         }
         // Completed a task
         if (completedTaskIdx != -1)
@@ -120,6 +136,7 @@ public class TaskManager : MonoBehaviour
             newTask = addRandomTask();
             Debug.Log(newTask);
             pauseMenuTasks[completedTaskIdx].text = newTask.description;
+            onScreenTasks[completedTaskIdx].text = newTask.description;
 
             // Show objective complete
             // Debug.Log("Calling showobjectivecomplete");
@@ -300,14 +317,14 @@ public class TaskManager : MonoBehaviour
 
     }
 
-    public List<GameTask> GetCompletedTasks() 
+    public List<GameTask> GetCompletedTasks()
     {
         return completedTasks;
     }
 
-    void AddInitialTasks() 
+    void AddInitialTasks()
     {
-        if (!GameManager.instance.m_simplifyTasks) 
+        if (!GameManager.instance.m_simplifyTasks)
         {
             taskPool.Add(new KnockOverNItemsTask(30));
             taskPool.Add(new KnockOverNItemsTask(10));
@@ -320,8 +337,8 @@ public class TaskManager : MonoBehaviour
             taskPool.Add(new KnockOverNSpecificItemsTask(5, "Wheelbarrow"));
             taskPool.Add(new KnockOverNSpecificItemsTask(3, "Paint Bucket"));
             taskPool.Add(new KnockOverNSpecificItemsTask(5, "Tool Box"));
-        } 
-        else 
+        }
+        else
         {
             taskPool.Add(new KnockOverNItemsTask(1));
             taskPool.Add(new KnockOverNItemsTask(1));
@@ -335,13 +352,12 @@ public class TaskManager : MonoBehaviour
             taskPool.Add(new KnockOverNSpecificItemsTask(1, "Paint Bucket"));
             taskPool.Add(new KnockOverNSpecificItemsTask(1, "Tool Box"));
         }
-        
+
     }
 
     public void NotifyUIReady()
     {
         TaskManager.instance.linkedUI = true;
     }
-
 
 }

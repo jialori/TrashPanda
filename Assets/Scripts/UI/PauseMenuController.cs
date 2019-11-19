@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Util;
 
 public class PauseMenuController : MonoBehaviour
@@ -19,12 +19,7 @@ public class PauseMenuController : MonoBehaviour
     }
 
     void Update()
-    {
-        if (Controller.GetPause())
-        {
-            TogglePauseMenu();
-        }
-    }
+    { }
 
     public void TogglePauseMenu()
     {

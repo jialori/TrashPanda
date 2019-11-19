@@ -29,6 +29,7 @@ public class KnockOverNSpecificItemsTask : GameTask
             {
                 numDestroyed++;
                 Debug.Log("progress: " + description);
+                description = "Knock over " + numDestroyed + "/" + numGoal + " " + itemType + "s";
             }
         }
     }

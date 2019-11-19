@@ -1,21 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class UIStorage : MonoBehaviour
 {
-	public StairTips stairTip;
-	public BreakTips breakTip;
+    public StairTips stairTip;
+    public BreakTips breakTip;
 
-	public TextMeshProUGUI taskDisplay_CountDown_1;
-	public TextMeshProUGUI taskDisplay_CountDown_2;
-	public TextMeshProUGUI taskDisplay_CountDown_3;
-
-	public TextMeshProUGUI taskDisplay_PauseMenu_1;
-	public TextMeshProUGUI taskDisplay_PauseMenu_2;
-	public TextMeshProUGUI taskDisplay_PauseMenu_3;
+    [SerializeField] private TextMeshProUGUI[] taskDisplayCountdown;
+    [SerializeField] private TextMeshProUGUI[] taskDisplayPauseMenu;
+    [SerializeField] private TextMeshProUGUI[] taskDisplayOnScreen;
 
     public GameObject task_objectiveComplete;
     public TextMeshProUGUI task_description;
@@ -29,21 +25,19 @@ public class UIStorage : MonoBehaviour
         ObjectManager.instance.stairTips = stairTip;
         ObjectManager.instance.breakTip = breakTip;
 
-        TaskManager.instance.countdownTasks.Add(taskDisplay_CountDown_1);
-        TaskManager.instance.countdownTasks.Add(taskDisplay_CountDown_2);
-        TaskManager.instance.countdownTasks.Add(taskDisplay_CountDown_3);
+        TaskManager.instance.countdownTasks.AddRange(taskDisplayCountdown);
 
-        TaskManager.instance.pauseMenuTasks.Add(taskDisplay_PauseMenu_1);
-        TaskManager.instance.pauseMenuTasks.Add(taskDisplay_PauseMenu_2);
-        TaskManager.instance.pauseMenuTasks.Add(taskDisplay_PauseMenu_3);
+        TaskManager.instance.countdownTasks.AddRange(taskDisplayPauseMenu);
 
-	    TaskManager.instance.objectiveComplete = task_objectiveComplete;
-	    TaskManager.instance.description = task_description;
-	    TaskManager.instance.newObjective = task_newObjective;
-	    TaskManager.instance.newDescription = task_newDescription;
-	    TaskManager.instance.trashManiaDisplay = task_trashManiaDisplay;
+        TaskManager.instance.onScreenTasks.AddRange(taskDisplayOnScreen);
 
-	    TaskManager.instance.NotifyUIReady();
+        TaskManager.instance.objectiveComplete = task_objectiveComplete;
+        TaskManager.instance.description = task_description;
+        TaskManager.instance.newObjective = task_newObjective;
+        TaskManager.instance.newDescription = task_newDescription;
+        TaskManager.instance.trashManiaDisplay = task_trashManiaDisplay;
+
+        TaskManager.instance.NotifyUIReady();
 
     }
 }

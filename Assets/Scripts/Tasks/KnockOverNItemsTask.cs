@@ -5,7 +5,7 @@ public class KnockOverNItemsTask : GameTask
     private int numDestroyed;
     private int numGoal;
     public KnockOverNItemsTask(int num)
-    {  
+    {
         numGoal = num;
         description = "Knock over " + num + " items";
     }
@@ -19,7 +19,8 @@ public class KnockOverNItemsTask : GameTask
     {
         if (progress.Type == TaskProgress.TaskType.Knockable)
         {
-            numDestroyed ++;
+            numDestroyed++;
+            description = "Knock over " + numDestroyed + "/" + numGoal + " items";
 
             //Debug.Log("progress: " + description);
         }
