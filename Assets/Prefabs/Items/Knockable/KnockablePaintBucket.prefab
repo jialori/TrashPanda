@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -1777923071428096726}
   - component: {fileID: 89139078174492240}
   - component: {fileID: 8438272804795748290}
+  - component: {fileID: -8956309847134563039}
   m_Layer: 9
   m_Name: KnockablePaintBucket
   m_TagString: Untagged
@@ -285,6 +286,20 @@ MonoBehaviour:
   fracturedObj: {fileID: 2098123299032530945, guid: 70648c5c2102d644597e4909109134f6,
     type: 3}
   mass: 0.001
+--- !u!64 &-8956309847134563039
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098123299032530945}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -8545447256379345787, guid: 998af37c0694ca940b26caad02842d94, type: 3}
 --- !u!1 &4791924479107619840
 GameObject:
   m_ObjectHideFlags: 0
