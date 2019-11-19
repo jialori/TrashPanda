@@ -1,5 +1,5 @@
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Util; // MyLayers, Controller
@@ -22,23 +22,18 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private float raycastPadding = 21.2f;
 
     [Header("Unity")]
-    [SerializeField] private GameObject healthBar;
-    [SerializeField] private Image healthBarFill;
-    // [SerializeField] private StairMenu stairMenu;
-    
-    // assignment code is in UIStorage
-    public StairTips stairTips;
-    public BreakTips breakTip;
-
+    [SerializeField] private StairMenu stairMenu;
+    [SerializeField] public StairTips stairTips;
+    [SerializeField] public BreakTips breakTip;
     public bool verboseMode = true;
 
     private RaccoonController raccoon;
     private bool startUp = false;
-    
 
     void Awake()
     {
-        if (verboseMode) if (verboseMode) Debug.Log("[ObjectManager] Awake");
+        if (verboseMode)
+            if (verboseMode) Debug.Log("[ObjectManager] Awake");
         if (instance != null)
         {
             Destroy(gameObject);
@@ -165,7 +160,8 @@ public class ObjectManager : MonoBehaviour
             if (verboseMode) Debug.Log("Stair target");
 
             // Show UI
-            if (!stairTipOpen) {
+            if (!stairTipOpen)
+            {
                 stairTips.Show(stairTarget.GetFloor());
                 stairTipOpen = true;
             }
@@ -185,7 +181,9 @@ public class ObjectManager : MonoBehaviour
                 stairTipOpen = false;
                 stairTips.Hide();
             }
-        } else if (stairTipOpen) {
+        }
+        else if (stairTipOpen)
+        {
             stairTips.Hide();
             stairTipOpen = false;
         }
@@ -212,7 +210,7 @@ public class ObjectManager : MonoBehaviour
         //     healthBar.SetActive(false);
         // }
 
-        // display break tip
+        // Display break tip
         Breakable breakableTarget = target?.GetComponent<Breakable>();
         if (breakableTarget != null)
         {
@@ -259,7 +257,6 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
-
     void EnableHighlight(GameObject c)
     {
         if (c == null) return;
@@ -302,10 +299,10 @@ public class ObjectManager : MonoBehaviour
     public void EquipTool(Tool tool)
     {
         curTool = tool;
-        
+
         // enable outline for breakables
         var breakables = GameObject.FindObjectsOfType<GameObject>().Where(obj => obj.GetComponent<Breakable>() != null);
-        foreach(var breakable in breakables) 
+        foreach (var breakable in breakables)
         {
             var outline = breakable.GetComponent<Outline>();
             if (outline != null) outline.enabled = true;
@@ -315,9 +312,9 @@ public class ObjectManager : MonoBehaviour
     public void UnequipTool(Tool tool)
     {
         curTool = null;
-         // disable outline for breakables
+        // disable outline for breakables
         var breakables = GameObject.FindObjectsOfType<GameObject>().Where(obj => obj.GetComponent<Breakable>() != null);
-        foreach(var breakable in breakables) 
+        foreach (var breakable in breakables)
         {
             var outline = breakable.GetComponent<Outline>();
             if (outline != null) outline.enabled = false;
@@ -325,10 +322,5 @@ public class ObjectManager : MonoBehaviour
             var highlight = breakable.GetComponent<Highlight>();
             if (highlight != null) highlight.enabled = false;
         }
-    }
-
-    public void RegisterHealthBarObj(GameObject hb)
-    {
-        healthBar = hb;
     }
 }

@@ -6,7 +6,5 @@ public class RegisterToObjectManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Awake()
-    {
-        ObjectManager.instance.RegisterHealthBarObj(this.gameObject);
-    }
+    { }
 }
