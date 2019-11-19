@@ -11,7 +11,7 @@ public class ObjectManager : MonoBehaviour
     private static GameObject target;
     private static List<GameObject> inRangeKnockables = new List<GameObject>();
 
-    private bool stairMenuOpen;
+    private bool stairTipOpen;
     private bool shouldStairMenuBeOpen;
     public static Tool curTool;
 
@@ -25,6 +25,7 @@ public class ObjectManager : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     [SerializeField] private Image healthBarFill;
     [SerializeField] private StairMenu stairMenu;
+    [SerializeField] public StairTips stairTips;
     public bool verboseMode = true;
 
     private RaccoonController raccoon;
@@ -152,31 +153,73 @@ public class ObjectManager : MonoBehaviour
         // interact if interact button is pressed
         if (!raccoon.isStunned && Controller.GetB()) Interact();
 
-        // if (target == null || target != null && target.GetComponent<Stair>() == null && stairMenuOpen)
+        // if (target == null || target != null && target.GetComponent<Stair>() == null && stairTipOpen)
         // {
-        //     stairMenuOpen = false;
-        //     stairMenu.Hide();
+        //     stairTipOpen = false;
+        //     stairTips.Hide();
         // }
 
-        // Go up or down stairs
-        if (target != null && stairMenuOpen)
+        var stairTarget = target?.GetComponent<Stair>();
+        if ((stairTarget != null))
         {
+            if (verboseMode) Debug.Log("Stair target");
+
+            // Show UI
+            if (!stairTipOpen) {
+                stairTips.Show(stairTarget.GetFloor());
+                stairTipOpen = true;
+            }
+
             var raccoon = GameManager.instance.Raccoon;
-            var stair = target.GetComponent<Stair>();
-            if (stair == null) return;
-            if (Controller.GetX() && stair.GetFloor() != 5)
+            // var stair = target.GetComponent<Stair>();
+            if (stairTarget == null) return;
+            if (Controller.GetX() && stairTarget.GetFloor() != 5)
             {
                 raccoon.UseStairs(true);
-                stairMenuOpen = false;
-                stairMenu.Hide();
+                stairTipOpen = false;
+                // stairMenu.Hide();
             }
-            else if (Controller.GetY() && stair.GetFloor() != 1)
+            else if (Controller.GetY() && stairTarget.GetFloor() != 1)
             {
                 raccoon.UseStairs(false);
-                stairMenuOpen = false;
-                stairMenu.Hide();
+                stairTipOpen = false;
+                // stairMenu.Hide();
             }
+            
+            // if (!stairMenuOpen)
+            // {
+            //     stairMenuOpen = true;
+            //     stairMenu.Show(stairTarget.GetFloor());
+            // }
+            // else
+            // {
+            //     stairMenuOpen = false;
+            //     stairMenu.Hide();
+            // }
+        } else if (stairTipOpen) {
+            stairTips.Hide();
+            stairTipOpen = false;
         }
+
+        // Go up or down stairs
+        // if (target != null && stairMenuOpen)
+        // {
+        //     var raccoon = GameManager.instance.Raccoon;
+        //     var stair = target.GetComponent<Stair>();
+        //     if (stair == null) return;
+        //     if (Controller.GetX() && stair.GetFloor() != 5)
+        //     {
+        //         raccoon.UseStairs(true);
+        //         stairMenuOpen = false;
+        //         stairMenu.Hide();
+        //     }
+        //     else if (Controller.GetY() && stair.GetFloor() != 1)
+        //     {
+        //         raccoon.UseStairs(false);
+        //         stairMenuOpen = false;
+        //         stairMenu.Hide();
+        //     }
+        // }
 
         // display target health
         if (target != null)
@@ -226,31 +269,6 @@ public class ObjectManager : MonoBehaviour
             if (verboseMode) Debug.Log("Breakable target");
             raccoon.nextHit = Time.time + raccoon.HitRate;
             breakableTarget.trigger(raccoon.AttackPower);
-        }
-
-        var stairTarget = target.GetComponent<Stair>();
-        if ((stairTarget != null))
-        {
-            if (verboseMode) Debug.Log("Stair target");
-            if (!stairMenuOpen)
-            {
-                stairMenuOpen = true;
-                stairMenu.Show(stairTarget.GetFloor());
-
-                // disable stair, move raccoon to position
-                // foreach(var obj in GameObject.FindGameObjectsWithTag("Stair")) 
-                // {
-                //     obj.GetComponent<BoxCollider>().enabled = false;
-                //     obj.transform.GetChild(0).gameObject.SetActive(false);
-                //     raccoon.GetComponent<CharacterController>().Move(stairTarget.GetPosition() - raccoon.transform.position);
-                //     raccoon.isFrozen = true;
-                // }
-            }
-            else
-            {
-                stairMenuOpen = false;
-                stairMenu.Hide();
-            }
         }
     }
 

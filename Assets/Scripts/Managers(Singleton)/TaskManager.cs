@@ -98,7 +98,7 @@ public class TaskManager : MonoBehaviour
         // Debug.Log(addTextDoneCountdown);
         // Debug.Log(countdownTasks.Count);
         // Debug.Log(pauseMenuTasks.Count);
-        Debug.Log(completedTasks.Count);
+        // Debug.Log(completedTasks.Count);
         if (!addTextDoneCountdown && countdownTasks.Count > 0)
         {
            addRandomTask();

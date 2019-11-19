@@ -222,6 +222,7 @@ public class RaccoonController : MonoBehaviour
         if (up) characterController.transform.position += new Vector3(0, 8.5f, 0);
         else characterController.transform.position -= new Vector3(0, 8, 0);
         characterController.enabled = true;
+        characterController.transform.eulerAngles = new Vector3(0, -90, 0);
     }
 
     public void TogglePlay()
