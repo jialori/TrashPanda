@@ -21,8 +21,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool m_disableCountDown = false;
     [SerializeField] public bool m_simplifyTasks = false;
 
-    [HideInInspector] public List<HumanController> Workers = new List<HumanController>();
+    // [HideInInspector] public List<HumanController> Workers = new List<HumanController>();
     [HideInInspector] public bool paused;
+
+    [HideInInspector] public CentralHumanController CHC;             // Reference to the Central Human Controller
+
 
     void Awake()
     {
@@ -52,7 +55,8 @@ public class GameManager : MonoBehaviour
             TimerManager.instance?.TogglePlay();
         }
         Raccoon?.TogglePlay();
-        foreach (HumanController worker in Workers)
+
+        foreach (HumanController worker in GameManager.instance.CHC?.humans)
         {
             if (worker)
             {

@@ -8,7 +8,7 @@ namespace Util
 		{
 			var mins = Mathf.Floor(time / 60);
 	        var secs = time % 60;
-			return string.Format("{0:00} min {1:00} sec", mins, secs);
+			return string.Format("{0:00} :  {1:00} ", mins, secs);
 		}
 	}
 

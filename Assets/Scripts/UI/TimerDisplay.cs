@@ -7,16 +7,17 @@ public class TimerDisplay: MonoBehaviour
 
 	[SerializeField] private TextMeshProUGUI timerText;
 
-    void OnEnable()
+    void Start()
     {
     	StartCoroutine(UpdateTimerDisplay());
     }
 
     IEnumerator UpdateTimerDisplay()
     {
+        var time = TimerManager.instance.GetCurrentTime();
     	while (true)
     	{
-	        var time = TimerManager.instance.GetCurrentTime();
+            time = TimerManager.instance.GetCurrentTime();
 	        timerText.text = Util.Util.GetFormattedTime(time);
 	        yield return new WaitForSeconds(1f);
     	}

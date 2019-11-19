@@ -134,9 +134,6 @@ public class HumanController : MonoBehaviour
 
     void Start()
     {
-        // Register itself at GameManager
-        GameManager.instance.Workers.Add(this);
-
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 1f;
         p = new NavMeshPath();
@@ -150,17 +147,24 @@ public class HumanController : MonoBehaviour
         WorkerAudio = GetComponent<AudioSource>();
         workerChaseVO = Resources.LoadAll<AudioClip>("Audio/ChaseVO");
         workerStunVO = Resources.LoadAll<AudioClip>("Audio/StunVO");
-
-        CHC = GameObject.Find("CentralHumanController").GetComponent<CentralHumanController>();
-        //CHC.registerObject(transform);
-
-        breakableObjects = CHC.allObjects[level - 1].Item1;
-        knockableObjects = CHC.allObjects[level - 1].Item2;
     }
 
     void Update() 
     {
         if (pause) return;
+
+        // Register worker to CHC; code cannot be placed into Start because Gamemanager's CHC might not have been initialized yet
+        // there are better ways to do this
+        if (CHC == null) 
+        {
+            // Register itself at GameManager
+            CHC = GameManager.instance.CHC;
+            CHC.humans.Add(this);
+
+            breakableObjects = CHC?.allObjects[level - 1].Item1;
+            knockableObjects = CHC?.allObjects[level - 1].Item2;
+            return;
+        }
 
         // I don't know who put this here but get rid of it!!! It messes up the workers when the raccoon leaves the floor!!!
         //if (!onSameFloor(target))

@@ -9,6 +9,14 @@ public class ObjectiveFinalShowcase : MonoBehaviour
 {
 	public List<TextMeshProUGUI> objectiveDisplays;
 
+	void Awake()
+	{
+       for (int i=0; i < objectiveDisplays.Count; i++) 
+        {
+	        objectiveDisplays[i].text = "";
+        }
+	}
+
     void Start()
     {
     	StartCoroutine("AutoScrollObjectiveList");
@@ -24,7 +32,7 @@ public class ObjectiveFinalShowcase : MonoBehaviour
         for (int i=0; i < count; i++) 
         {
 	        objectiveDisplays[i].text = completedTasks[i].description;
-	        yield return new WaitForSeconds(.3f);
+	        yield return new WaitForSeconds(.2f);
         }
 
         if (count < 3)
@@ -39,7 +47,7 @@ public class ObjectiveFinalShowcase : MonoBehaviour
 		        // Debug.Log("current displaying as first :" + (i + 1 + j + 1));
 		        objectiveDisplays[j].text = completedTasks[i + 1 + j].description;
         	}
-	        yield return new WaitForSeconds(.3f);        		
+	        yield return new WaitForSeconds(.2f);        		
         }
 
     }

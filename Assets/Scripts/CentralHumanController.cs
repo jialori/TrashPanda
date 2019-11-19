@@ -11,7 +11,7 @@ public class CentralHumanController : MonoBehaviour
     public bool spotted = false;                // Flag determining if the raccoon has been spotted
 
     public List<Tuple<List<Breakable>, List<Knockable>>> allObjects;            // List of all breakable and knockable objects per floor
-    List<HumanController> humans;                                               // List of humans currently in the game
+    public List<HumanController> humans;                                               // List of humans currently in the game
 
     public void registerObject(GameObject obj)
     {
@@ -51,16 +51,19 @@ public class CentralHumanController : MonoBehaviour
         {
             allObjects.Add(new Tuple<List<Breakable>, List<Knockable>>(new List<Breakable>(), new List<Knockable>()));
         }
+        
     }
 
     void Start()
     {
-        humans = GameManager.instance.Workers;
+        // humans = GameManager.instance.Workers;
+        GameManager.instance.CHC = this;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!SceneTransitionManager.instance.gameOn) return;
         // Check if any of the humans have spotted the raccoon
         spotted = false;
         // For each worker

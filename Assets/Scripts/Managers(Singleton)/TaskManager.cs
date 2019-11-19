@@ -19,13 +19,14 @@ public class TaskManager : MonoBehaviour
     List<GameTask> taskPool; // The tasks that can be added to 'activeTasks'
     List<GameTask> completedTasks; // The tasks that have been completed
     public List<GameObject> tools; // A list of tools that could be generated as a result of completing tasks
-    [SerializeField] private GameObject objectiveComplete;
-    [SerializeField] private TextMeshProUGUI description;
-    [SerializeField] private GameObject newObjective;
-    [SerializeField] private TextMeshProUGUI newDescription;
-    [SerializeField] private TrashManiaDisplay trashManiaDisplay;
+    [SerializeField] public GameObject objectiveComplete;
+    [SerializeField] public TextMeshProUGUI description;
+    [SerializeField] public GameObject newObjective;
+    [SerializeField] public TextMeshProUGUI newDescription;
+    [SerializeField] public TrashManiaDisplay trashManiaDisplay;
     [SerializeField] public List<TextMeshProUGUI> pauseMenuTasks;
     [SerializeField] public List<TextMeshProUGUI> countdownTasks;
+    public bool linkedUI = false;
     private bool addTextDoneCountdown = false;
     private bool addTextDonePausemenu = false;
 
@@ -74,11 +75,12 @@ public class TaskManager : MonoBehaviour
         // Debug.Log(pauseMenuTasks.Count);
         // Debug.Log(completedTasks.Count);
         if (!SceneTransitionManager.instance.gameOn) return;
+        if (!linkedUI) return;
 
+        Debug.Log(addTextDoneCountdown);
+        Debug.Log(countdownTasks.Count);
         if (!addTextDoneCountdown && countdownTasks.Count > 0)
         {
-            addRandomTask();
-
             for (int i = 0; i < activeTasks.Count; i++)
             {
                 countdownTasks[i].text = activeTasks[i].description;
@@ -88,8 +90,6 @@ public class TaskManager : MonoBehaviour
 
         if (!addTextDonePausemenu && pauseMenuTasks.Count > 0)
         {
-            addRandomTask();
-
             for (int i = 0; i < activeTasks.Count; i++)
             {
                 pauseMenuTasks[i].text = activeTasks[i].description;
@@ -123,6 +123,8 @@ public class TaskManager : MonoBehaviour
 
             // Show objective complete
             // Debug.Log("Calling showobjectivecomplete");
+            StopCoroutine("ShowObjectiveComplete");
+            StopCoroutine("ShowNewObjective");
             StartCoroutine(ShowObjectiveComplete(completedTask));
             StartCoroutine(ShowNewObjective(newTask));
 
@@ -197,7 +199,7 @@ public class TaskManager : MonoBehaviour
             newTask = taskPool[newTaskIdx];
         }
 
-        activeTasks[idxToAdd] = newTask;
+        TaskManager.instance.activeTasks[idxToAdd] = newTask;
 
         return newTask;
     }
@@ -241,7 +243,7 @@ public class TaskManager : MonoBehaviour
     private IEnumerator ShowObjectiveComplete(GameTask completedTask)
     {
         description.text = completedTask.description;
-        objectiveComplete.SetActive(true);
+        objectiveComplete?.SetActive(true);
         // Debug.Log("Show Objective Complete");
         yield return new WaitForSeconds(2.0f);
 
@@ -252,7 +254,7 @@ public class TaskManager : MonoBehaviour
         //     yield return new WaitForSeconds(0.1f);
         // }
 
-        objectiveComplete.SetActive(false);
+        objectiveComplete?.SetActive(false);
         //     Debug.Log("hide Objective Complete");
     }
     private IEnumerator ShowNewObjective(GameTask newTask)
@@ -260,7 +262,7 @@ public class TaskManager : MonoBehaviour
         if (newTask == null || SceneTransitionManager.instance.GetCurrentScene() != "MainScene") yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(2.5f);
         newDescription.text = newTask.description;
-        newObjective.SetActive(true);
+        newObjective?.SetActive(true);
         // while (newDescription.color.a != 1)
         // {
         //     float alphaVal = 1f + Mathf.PingPong(Time.time / 0.5f, -1f);
@@ -269,7 +271,7 @@ public class TaskManager : MonoBehaviour
         // }
         // Debug.Log("Show new objective");
         yield return new WaitForSeconds(2.0f);
-        newObjective.SetActive(false);
+        newObjective?.SetActive(false);
         // Debug.Log("hide new objective");
     }
 
@@ -281,13 +283,19 @@ public class TaskManager : MonoBehaviour
             task.Reset();
         }
 
-        activeTasks = new List<GameTask>() { null, null, null };
+        TaskManager.instance.activeTasks = new List<GameTask>() { null, null, null };
+        while (activeTasks.Any(task => task == null))
+            addRandomTask();
 
         TaskManager.instance.pauseMenuTasks.Clear();
         TaskManager.instance.countdownTasks.Clear();
         TaskManager.instance.completedTasks.Clear();
         TaskManager.instance.addTextDoneCountdown = false;
         TaskManager.instance.addTextDonePausemenu = false;
+
+        StopCoroutine("ShowObjectiveComplete");
+        StopCoroutine("ShowNewObjective");
+        TaskManager.instance.linkedUI = false;
         // Debug.Log("Dont need to add text is: " + addTextDoneCountdown);
 
     }
@@ -328,6 +336,11 @@ public class TaskManager : MonoBehaviour
             taskPool.Add(new KnockOverNSpecificItemsTask(1, "Tool Box"));
         }
         
+    }
+
+    public void NotifyUIReady()
+    {
+        TaskManager.instance.linkedUI = true;
     }
 
 
