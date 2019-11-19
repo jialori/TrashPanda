@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private RaccoonController m_raccoon;
+    public RaccoonController Raccoon { get => m_raccoon; }
+    public static GameManager instance;
+
+    [Header("Settings")]
     [SerializeField] public bool m_useController;
     public bool UseController { get => m_useController; }
     // true if wee start at MainScene or its copy directly (not transitioned from other scenes)
     // [SerializeField] public bool m_devMode = false;
     [SerializeField] public float totalTime;
-    [SerializeField] public bool m_disableTimer = false;
     [SerializeField] public float m_volume;
+
+    [Header("Debug Settings")]
+    [SerializeField] public bool m_disableTimer = false;
     [SerializeField] public bool m_disableCountDown = false;
     [SerializeField] public bool m_simplifyTasks = false;
 
-    [SerializeField] private RaccoonController m_raccoon;
-    public RaccoonController Raccoon { get => m_raccoon; }
-    public List<HumanController> Workers = new List<HumanController>();
-    public static GameManager instance;
-
-    public bool paused;
+    [HideInInspector] public List<HumanController> Workers = new List<HumanController>();
+    [HideInInspector] public bool paused;
 
     void Awake()
     {
