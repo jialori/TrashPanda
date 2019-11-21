@@ -24,7 +24,7 @@ public class Breakable : MonoBehaviour
     AudioSource breakSound;         // Audiosource files and script
     public AudioClip breakSFX;      //SFX for breaking object
     public AudioClip hitSFX;        //SFX for hitting object
-    public bool destroyed = false;          // Flag determining whether this object has been destroyed or not
+    public bool destroyed = false;  // Flag determining whether this object has been destroyed or not
 
     private DestroyEffect df;
 
@@ -59,13 +59,12 @@ public class Breakable : MonoBehaviour
         health -= calcDamage(atk);
         Debug.Log("Object health" + health);
 
-        breakSound.PlayOneShot(hitSFX, 0.8F);
-
         if (health <= 0)
         {
             health = 0;
             //Debug.Log("broke some object");
             ScoreManager.instance.AddScore(objName, aType, scorePoint);
+            breakSound.PlayOneShot(hitSFX, 0.5F);
             df.StartDusting(true);
             destroyed = true;
             //Debug.Log("destroyed: " + destroyed.ToString() + ", position: " + transform.position.ToString());
@@ -73,6 +72,7 @@ public class Breakable : MonoBehaviour
         }
         else df.StartDusting(false);
     }
+
 
     public float calcDamage(float atk)
     {

@@ -27,6 +27,7 @@ public class Knockable : MonoBehaviour
     private ScoreManager.ActionTypes aType = ScoreManager.ActionTypes.KNOCK;
     // The point at which force is applid
     private Vector3 collidePoint;
+    
     //Audio Engine
     AudioSource KnockedSound;
     public AudioClip objectKnock;
@@ -79,7 +80,7 @@ public class Knockable : MonoBehaviour
         // Debug.Log("hit");
         if (_hasAudio)
         {
-            float volume = Mathf.Clamp(col.relativeVelocity.magnitude / 38.0f, 0.0f, 1.0f);
+            float volume = Mathf.Clamp(col.relativeVelocity.magnitude / 40.0f, 0.0f, 1.0f);
             KnockedSound.PlayOneShot(objectKnock, volume);
             StartCoroutine(AudioWaitTime());
         }

@@ -287,3 +287,5 @@ MonoBehaviour:
   fracturedObj: {fileID: 7998367819914754091, guid: 37dd3922fea50a54e94d3c316297c1b5,
     type: 3}
   mass: 0.001
+  destroySound: {fileID: 3775362437402685331}
+  destroySFX: {fileID: 8300000, guid: 98322da3fad94504c93fbfe17b0abfa5, type: 3}

@@ -8,7 +8,7 @@ public class RaccoonController : MonoBehaviour
     private Animator animator;
 
     [SerializeField] private Transform cam;
-    [SerializeField] private CameraRotator camController;    
+    [SerializeField] private CameraRotator camController;
 
     [Tooltip("How many degrees the raccoon can turn per 1 second.")]
     public float turningRate = 360f;
@@ -45,6 +45,12 @@ public class RaccoonController : MonoBehaviour
     public bool isFrozen = false;
     private bool pause = true;
 
+    public AudioSource[] raccoonSounds;
+
+    public AudioSource sfx1;
+    public AudioSource sfx2;
+
+    public AudioClip stunnedSFX;
 
     void Awake()
     {
@@ -67,6 +73,9 @@ public class RaccoonController : MonoBehaviour
     void Start()
     {
         AudioManager.instance.Play("ThemeSong");
+        raccoonSounds = GetComponents<AudioSource>();
+        sfx1 = raccoonSounds[0];
+        sfx2 = raccoonSounds[1];
     }
 
     void Update()
@@ -236,5 +245,6 @@ public class RaccoonController : MonoBehaviour
     {
         isStunned = true;
         stunEffect.Play();
+        sfx2.PlayOneShot(stunnedSFX, 0.3f);
     }
 }
