@@ -132,6 +132,21 @@ public class HumanController : MonoBehaviour
         return false;
     }
 
+    // Check if this worker is stuck. If so, revert him back to the idle state
+    IEnumerator isStuck()
+    {
+        // Wait a few seconds
+        yield return new WaitForSeconds(5);
+        // If the worker is still not moving after some time, make him idle
+        if (agent.velocity == Vector3.zero)
+        {
+            chasing = false;
+            investigating = false;
+            idle = true;
+            agent.ResetPath();
+        }
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -371,6 +386,14 @@ public class HumanController : MonoBehaviour
             // Debug.Log(toppledObjects[i].ToString() + " has been removed");
         }
         toppledObjects.Clear();
+
+        if (!seesRaccoon && 
+            (System.Math.Abs(transform.position.x - initialPosition.x) > 2 || 
+            System.Math.Abs(transform.position.z - initialPosition.z) > 2) &&
+            agent.velocity == Vector3.zero)
+        {
+            StartCoroutine(isStuck());
+        }
 
         // The worker will return to his original position if he can't find the raccoon
         if (idle)
