@@ -409,7 +409,7 @@ public class HumanController : MonoBehaviour
     {
         // randomize        
         int randIdx = Random.Range(0, workerChaseVO.Length);
-        WorkerAudio.PlayOneShot(workerChaseVO[randIdx], 0.8F);
+        WorkerAudio.PlayOneShot(workerChaseVO[randIdx], 0.5F);
         // Ensures a true OneShot and no repeated sound
         alreadyPlayed = true;
         _timer = 0;
