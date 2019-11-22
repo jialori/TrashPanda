@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using Util;
+using System.Collections;
 
 public class RaccoonController : MonoBehaviour
 {
+    public CameraShaker camShaker;
     private CharacterController characterController;
     public CharacterController charController { get => characterController; }
     private Animator animator;
@@ -241,10 +243,17 @@ public class RaccoonController : MonoBehaviour
         animator.enabled = !animator.enabled;
     }
 
-    public void StunRaccoon()
+    public void StunRaccoon(Vector3 stunFrom)
     {
         isStunned = true;
+        StartCoroutine(Stun(stunFrom));
+    }
+
+    private IEnumerator Stun(Vector3 stunFrom)
+    {
+        yield return new WaitForSeconds(1);
         stunEffect.Play();
         sfx2.PlayOneShot(stunnedSFX, 0.3f);
+        StartCoroutine(camShaker.Shake(0.5f, .4f, stunFrom));
     }
 }

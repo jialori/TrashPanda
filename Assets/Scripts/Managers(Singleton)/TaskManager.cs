@@ -81,8 +81,8 @@ public class TaskManager : MonoBehaviour
         if (!SceneTransitionManager.instance.gameOn) return;
         if (!linkedUI) return;
 
-        Debug.Log(addTextDoneCountdown);
-        Debug.Log(countdownTasks.Count);
+        //Debug.Log(addTextDoneCountdown);
+        //Debug.Log(countdownTasks.Count);
         if (!addTextDoneCountdown && countdownTasks.Count > 0)
         {
             for (int i = 0; i < activeTasks.Count; i++)

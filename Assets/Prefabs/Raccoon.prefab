@@ -59,8 +59,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4edf4386a6f8541bed1a7edd358fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  camController: {fileID: 0}
+  camShaker: {fileID: 7346046934491267704, guid: 670360c703b4edb4ab3f84df70f1fa50,
+    type: 3}
+  cam: {fileID: 6296049667027843010, guid: 95698a4cb49306e4b99934323a8c7d80, type: 3}
+  camController: {fileID: 6296049667027843011, guid: 95698a4cb49306e4b99934323a8c7d80,
+    type: 3}
   turningRate: 360
   attackPower: 5
   movementSpeed: 8
