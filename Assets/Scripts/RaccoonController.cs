@@ -178,6 +178,11 @@ public class RaccoonController : MonoBehaviour
                 stunTimer = 3.0f;
                 stunEffect.Stop();
             }
+
+            // raccoon is still affected by gravity when stunned
+            movementVector = new Vector3(0, 0, 0);
+            movementVector.y = - gravity * Time.deltaTime;
+            characterController.Move(movementVector * Time.deltaTime);
         }
 
         // Animation
