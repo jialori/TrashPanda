@@ -235,8 +235,9 @@ public class HumanController : MonoBehaviour
             anim.SetBool("chasing", true);
             anim.SetBool("scared", false);
         }
-        //Debug.Log("Distance(x): " + System.Math.Abs(transform.position.x - lastKnownLocation.x).ToString() + ", Distance(z): " + System.Math.Abs(transform.position.z - lastKnownLocation.z).ToString());
-        //Debug.Log("seesRaccoon: " + seesRaccoon);
+        Debug.Log("(Worker " + GetInstanceID().ToString() + ") Distance(x): " + System.Math.Abs(transform.position.x - lastKnownLocation.x).ToString()
+            + ", Distance(z): " + System.Math.Abs(transform.position.z - lastKnownLocation.z).ToString());
+        Debug.Log("(Worker " + GetInstanceID().ToString() + ") seesRaccoon: " + seesRaccoon);
 
         /*
         // If the raccoon leaves the nav mesh, the worker will return to the 'idle' state
@@ -392,6 +393,7 @@ public class HumanController : MonoBehaviour
             System.Math.Abs(transform.position.z - initialPosition.z) > 2) &&
             agent.velocity == Vector3.zero)
         {
+            Debug.Log("(Worker " + GetInstanceID().ToString() + ") may be stuck. Now running the 'isStuck' Coroutine");
             StartCoroutine(isStuck());
         }
 
