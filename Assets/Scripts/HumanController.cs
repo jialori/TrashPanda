@@ -120,8 +120,8 @@ public class HumanController : MonoBehaviour
                     // If the worker can directly see the player (i.e. line of sight is not blocked by wall or bush)
                     if (!nav.Raycast(target.position, out _))
                     {
-                        Debug.Log("HumanController: Worker level = " + level.ToString() + "Raccoon level = " 
-                            + target.GetComponent<RaccoonController>().level.ToString());
+                        //Debug.Log("HumanController: Worker level = " + level.ToString() + "Raccoon level = " 
+                        //    + target.GetComponent<RaccoonController>().level.ToString());
                         return true;
                     }
                 }
@@ -235,9 +235,9 @@ public class HumanController : MonoBehaviour
             anim.SetBool("chasing", true);
             anim.SetBool("scared", false);
         }
-        Debug.Log("(Worker " + GetInstanceID().ToString() + ") Distance(x): " + System.Math.Abs(transform.position.x - lastKnownLocation.x).ToString()
-            + ", Distance(z): " + System.Math.Abs(transform.position.z - lastKnownLocation.z).ToString());
-        Debug.Log("(Worker " + GetInstanceID().ToString() + ") seesRaccoon: " + seesRaccoon);
+        //Debug.Log("(Worker " + GetInstanceID().ToString() + ") Distance(x): " + System.Math.Abs(transform.position.x - lastKnownLocation.x).ToString()
+        //    + ", Distance(z): " + System.Math.Abs(transform.position.z - lastKnownLocation.z).ToString());
+        //Debug.Log("(Worker " + GetInstanceID().ToString() + ") seesRaccoon: " + seesRaccoon);
 
         /*
         // If the raccoon leaves the nav mesh, the worker will return to the 'idle' state
@@ -388,12 +388,14 @@ public class HumanController : MonoBehaviour
         }
         toppledObjects.Clear();
 
+        // If the worker does not see the raccoon and is not near his starting position
         if (!seesRaccoon && 
             (System.Math.Abs(transform.position.x - initialPosition.x) > 2 || 
             System.Math.Abs(transform.position.z - initialPosition.z) > 2) &&
             agent.velocity == Vector3.zero)
         {
-            Debug.Log("(Worker " + GetInstanceID().ToString() + ") may be stuck. Now running the 'isStuck' Coroutine");
+            // Start coroutine to return the worker to the idle state
+            //Debug.Log("(Worker " + GetInstanceID().ToString() + ") may be stuck. Now running the 'isStuck' Coroutine");
             StartCoroutine(isStuck());
         }
 

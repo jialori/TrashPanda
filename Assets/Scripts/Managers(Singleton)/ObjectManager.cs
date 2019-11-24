@@ -169,6 +169,7 @@ public class ObjectManager : MonoBehaviour
             var raccoon = GameManager.instance.Raccoon;
             // var stair = target.GetComponent<Stair>();
             if (stairTarget == null) return;
+            if (Controller.GetX()) Debug.Log("stairTarget: " + stairTarget.GetFloor().ToString());
             if (Controller.GetX() && stairTarget.GetFloor() != 5)
             {
                 raccoon.UseStairs(true);
