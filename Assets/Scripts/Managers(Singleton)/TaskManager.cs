@@ -32,6 +32,9 @@ public class TaskManager : MonoBehaviour
     private bool addTextDonePausemenu = false;
     private bool addTextDoneOnScreen = false;
 
+    public AudioSource SFX;
+    public AudioClip ObjCompleteSFX;
+
     public static TaskManager instance;
 
     void Awake()
@@ -70,6 +73,8 @@ public class TaskManager : MonoBehaviour
         addTextDoneCountdown = true;
         addTextDonePausemenu = true;
         addTextDoneOnScreen = true;
+
+        GetComponent<AudioSource>();
     }
 
     void Update()
@@ -129,6 +134,7 @@ public class TaskManager : MonoBehaviour
         if (completedTaskIdx != -1)
         {
             // Remove the completed task and add a new one
+            SFX.PlayOneShot(ObjCompleteSFX, 0.6F);
             var completedTask = activeTasks[completedTaskIdx];
             activeTasks[completedTaskIdx] = null;
             completedTasks.Add(completedTask);

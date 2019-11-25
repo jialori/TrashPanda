@@ -13,6 +13,9 @@ public class Tool : MonoBehaviour
     public string toolType;
     private TrashManiaDisplay trashManiaDisplay;
 
+    public AudioSource SFX;
+    public AudioClip ToolGetSFX;
+
     protected bool beingCarried = false;
 
     // public float effectOnAttack = 10;
