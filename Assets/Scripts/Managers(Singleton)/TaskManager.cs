@@ -78,7 +78,7 @@ public class TaskManager : MonoBehaviour
         // Debug.Log(countdownTasks.Count);
         // Debug.Log(pauseMenuTasks.Count);
         // Debug.Log(completedTasks.Count);
-        if (!SceneTransitionManager.instance.gameOn) return;
+        if (!SceneTransitionManager.instance.isGameOn()) return;
         if (!linkedUI) return;
 
         //Debug.Log(addTextDoneCountdown);

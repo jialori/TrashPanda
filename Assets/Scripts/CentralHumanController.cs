@@ -63,7 +63,7 @@ public class CentralHumanController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!SceneTransitionManager.instance.gameOn) return;
+        if (!SceneTransitionManager.instance.isGameOn()) return;
         // Check if any of the humans have spotted the raccoon
         spotted = false;
         // For each worker

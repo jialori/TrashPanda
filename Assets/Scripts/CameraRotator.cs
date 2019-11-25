@@ -82,6 +82,8 @@ public class CameraRotator : MonoBehaviour
 
     private void Update()
     {
+        if (!SceneTransitionManager.instance.isGameOn()) {return;}
+
         GetInput();
         MoveToTar();
         LookAtTar();

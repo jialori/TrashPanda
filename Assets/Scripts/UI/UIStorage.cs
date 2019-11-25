@@ -19,6 +19,12 @@ public class UIStorage : MonoBehaviour
     public TextMeshProUGUI task_newDescription;
     public TrashManiaDisplay task_trashManiaDisplay;
 
+
+    public GameObject canvas;
+    public GameObject mainCamera;
+    public CountDownDisplay countDownDisplay;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +42,13 @@ public class UIStorage : MonoBehaviour
         TaskManager.instance.newObjective = task_newObjective;
         TaskManager.instance.newDescription = task_newDescription;
         TaskManager.instance.trashManiaDisplay = task_trashManiaDisplay;
-
         TaskManager.instance.NotifyUIReady();
+
+        SceneTransitionManager.instance.GAME_UI = canvas;
+        SceneTransitionManager.instance.NotifyUIReady();
+        SceneTransitionManager.instance.GAME_CAMERA = mainCamera;
+        SceneTransitionManager.instance.NotifyCameraReady();
+        SceneTransitionManager.instance.countDownDisplay = countDownDisplay;
 
     }
 }

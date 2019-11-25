@@ -7,13 +7,15 @@ public class TimerDisplay: MonoBehaviour
 
 	[SerializeField] private TextMeshProUGUI timerText;
 
-    void Start()
+    void OnEnable()
     {
     	StartCoroutine(UpdateTimerDisplay());
     }
 
     IEnumerator UpdateTimerDisplay()
     {
+        yield return new WaitUntil(()=>TimerManager.instance != null);
+
         var time = TimerManager.instance.GetCurrentTime();
     	while (true)
     	{
