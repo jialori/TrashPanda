@@ -73,17 +73,20 @@ public class HumanController : MonoBehaviour
         Gizmos.DrawRay(transform.position, transform.forward * maxRadius);
     }
 
-    // Determine if the worker and the player are on the same floor
+    // Determine if the worker and a specified object are on the same floor
     public bool onSameFloor(Transform target)
     {
+        // If the compared object is the raccoon
         if (target.TryGetComponent(out RaccoonController raccoon))
         {
             return level == raccoon.level;
         }
+        // If the compared object is breakable
         else if (target.TryGetComponent(out Breakable breakable))
         {
             return level == breakable.level;
         }
+        // If the compared object is knockable
         else if (target.TryGetComponent(out Knockable knockable))
         {
             return level == knockable.level;

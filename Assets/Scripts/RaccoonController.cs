@@ -170,6 +170,7 @@ public class RaccoonController : MonoBehaviour
         }
         else if (isStunned)
         {
+            //Debug.Log("Raccoon is stunned");
             if (stunTimer > 0)
             {
                 stunTimer -= Time.deltaTime;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System;
 
 public class StunDisplay : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class StunDisplay : MonoBehaviour
 
     void Start()
     {
-        raccoon = GameManager.instance.Raccoon;
+        // Commented this out because it was causing the stun display text to not appear when stunned
+        //raccoon = GameManager.instance.Raccoon;
     }
 
     void Update()
@@ -20,6 +22,7 @@ public class StunDisplay : MonoBehaviour
         }
         else
         {
+            //Debug.Log("raccoon: " + Convert.ToBoolean(raccoon).ToString() + ", raccoon.isStunned: " + raccoon.isStunned.ToString());
             stunText.enabled = false;
         }
     }

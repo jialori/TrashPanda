@@ -89,7 +89,7 @@ public class CameraRotator : MonoBehaviour
         MoveToTar();
         LookAtTar();
         OrbitTar();
-        RenderTransparent();
+        //RenderTransparent();
 
         coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
         coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
@@ -107,6 +107,7 @@ public class CameraRotator : MonoBehaviour
         position.adjustDis = coll.AdjustedDisWithRaycast(lookAtPtPos);
     }
 
+    /*
     // Render objects between the raccoon and camera transparent
     void RenderTransparent()
     {
@@ -131,6 +132,7 @@ public class CameraRotator : MonoBehaviour
             }
         }
     }
+    */
 
     void GetInput()
     {
@@ -228,12 +230,14 @@ public class CameraRotator : MonoBehaviour
 
         bool CollisionDectectedAtClipPts(Vector3[] clipPts, Vector3 tarPos)
         {
+            //Debug.Log("Now checking for collisions");
             for (int i = 0; i < clipPts.Length; i++)
             {
                 Ray ray = new Ray(tarPos, clipPts[i] - tarPos);
                 float distance = Vector3.Distance(clipPts[i], tarPos);
                 if (Physics.Raycast(ray, distance, collisionLayer))
                 {
+                    //Debug.Log("Collision found");
                     return true;
                 }
             }
