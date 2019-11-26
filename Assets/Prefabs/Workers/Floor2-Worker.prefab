@@ -116,9 +116,18 @@ MonoBehaviour:
   lastKnownLocation: {x: 0, y: 0, z: 0}
   seesRaccoon: 0
   workerChaseVO:
+  - {fileID: 8300000, guid: 02361a26524a9d5419a1fe61ab5c3a59, type: 3}
   - {fileID: 8300000, guid: fdac9c53c878f8e43b643f20da79929a, type: 3}
   - {fileID: 8300000, guid: 5d1c01ba9bec787469be66bef8cbd5b4, type: 3}
+  - {fileID: 8300000, guid: 3f3329d4211e4b042a4f78920128abfb, type: 3}
+  - {fileID: 8300000, guid: bbcedd7e2bee4a84c9e1419f42cdc8b1, type: 3}
   - {fileID: 8300000, guid: 199bb7bf5196d404eaf4cf2d7d7da1f4, type: 3}
+  - {fileID: 8300000, guid: 3b003d3fbd222dd4aaa390a4db21d2b9, type: 3}
+  - {fileID: 8300000, guid: f37f3366eff16be44b5a760ee665d353, type: 3}
+  - {fileID: 8300000, guid: bf1ff6c3f599e834fb76511e33f3db5c, type: 3}
+  - {fileID: 8300000, guid: 27477d7bddb0e3145a57c902a7d609ca, type: 3}
+  - {fileID: 8300000, guid: d4838dfa93f3a714a9fb95d7451f47a8, type: 3}
+  - {fileID: 8300000, guid: a1ceb387498f65946b0a73caeffcf5e1, type: 3}
   - {fileID: 8300000, guid: a46360111e10e7747a17b9c49ee4aa38, type: 3}
   - {fileID: 8300000, guid: b52c692148abcc14c83d9090b2e9f686, type: 3}
   - {fileID: 8300000, guid: 1ac65fef4ab4e7145950b3fe6851c850, type: 3}
@@ -129,7 +138,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c8de5c7090328994d9ea2e62fbe28dea, type: 3}
   - {fileID: 8300000, guid: 47a98e2cd3361114780517de70c62ee2, type: 3}
   - {fileID: 8300000, guid: f59563931ca73bd42aa1d87eb379ed03, type: 3}
-  replayInterval: 4
+  replayInterval: 5
   id: 
 --- !u!195 &-4966690112171863789
 NavMeshAgent:
@@ -170,11 +179,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Human
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9757719e35eb39e44872d19686c70bcd, type: 2}
     - target: {fileID: -4216859302048453862, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -245,12 +249,17 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 4063311462909369826, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
+    - target: {fileID: -6057140222963153312, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9757719e35eb39e44872d19686c70bcd, type: 2}
+    - target: {fileID: -211428952282553288, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d815e21e9a88ee042b2483b972025551, type: 2}
-    - target: {fileID: -211428952282553288, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
+    - target: {fileID: 4063311462909369826, guid: 9908d9b720521fa4c9e401ae2a12e8b1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

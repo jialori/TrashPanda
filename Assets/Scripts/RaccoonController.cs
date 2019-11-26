@@ -46,6 +46,7 @@ public class RaccoonController : MonoBehaviour
     public float stunTimer = 3.0f;
     public bool isFrozen = false;
     private bool pause = true;
+    private Transform initTransform;
 
     public AudioSource[] raccoonSounds;
 
@@ -70,11 +71,12 @@ public class RaccoonController : MonoBehaviour
         var sm = stunEffect.main;
         sm.simulationSpeed = 2f;
         animator.enabled = false;
+
+        initTransform = this.gameObject.transform;
     }
 
     void Start()
     {
-        AudioManager.instance.Play("ThemeSong");
         raccoonSounds = GetComponents<AudioSource>();
         sfx1 = raccoonSounds[0];
         sfx2 = raccoonSounds[1];
@@ -216,22 +218,6 @@ public class RaccoonController : MonoBehaviour
     }
 
 
-    public void AddStrengthModifier(float effectOnAttack, float effectOnSpeed)
-    {
-        attackPower += effectOnAttack;
-        movementSpeed += effectOnSpeed;
-        // Debug.Log("Attack has changed:" + attackPower);
-        // Debug.Log("Speed has changed:" + movementSpeed);
-    }
-
-    public void RemoveStrengthModifier(float effectOnAttack, float effectOnSpeed)
-    {
-        attackPower -= effectOnAttack;
-        movementSpeed -= effectOnSpeed;
-        // Debug.Log("Attack has changed:" + attackPower);
-        // Debug.Log("Speed has changed:" + movementSpeed);
-    }
-
     public void UseStairs(bool up)
     {
         characterController.enabled = false;
@@ -241,7 +227,19 @@ public class RaccoonController : MonoBehaviour
         characterController.transform.eulerAngles = new Vector3(0, -90, 0);
     }
 
-    public void TogglePlay()
+    public void Pause()
+    {
+        pause = true;
+        animator.enabled = false;        
+    }
+
+    public void UnPause()
+    {
+        pause = false;
+        animator.enabled = true;        
+    }
+
+    public void TogglePause()
     {
         // Debug.Log("Toggled");
         pause = !pause;
@@ -251,7 +249,13 @@ public class RaccoonController : MonoBehaviour
     public void StunRaccoon(Vector3 stunFrom)
     {
         isStunned = true;
-        StartCoroutine(Stun(stunFrom));
+        camShaker.ShakeCamera();
+        // StartCoroutine(Stun(stunFrom));
+    }
+
+    public void Reset()
+    {
+        this.gameObject.transform.SetPositionAndRotation(initTransform.position, initTransform.rotation);
     }
 
     private IEnumerator Stun(Vector3 stunFrom)
@@ -259,6 +263,6 @@ public class RaccoonController : MonoBehaviour
         yield return new WaitForSeconds(1);
         stunEffect.Play();
         sfx2.PlayOneShot(stunnedSFX, 0.3f);
-        StartCoroutine(camShaker.Shake(0.5f, .4f, stunFrom));
+        // StartCoroutine(camShaker.Shake(0.5f, .4f, stunFrom));
     }
 }

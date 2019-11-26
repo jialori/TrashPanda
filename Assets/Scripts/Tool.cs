@@ -13,10 +13,14 @@ public class Tool : MonoBehaviour
     public string toolType;
     private TrashManiaDisplay trashManiaDisplay;
 
+    public AudioSource SFX;
+    public AudioClip ToolGetSFX;
+
     protected bool beingCarried = false;
 
-    [Header("Tool Attributes")]
-    public float effectOnAttack = 10;
+    // public float effectOnAttack = 10;
+
+    
     private void Start()
     {
         Debug.Log("tool start");
@@ -52,7 +56,7 @@ public class Tool : MonoBehaviour
         var offset = playerScript.transform.right * -0.5f; 
         offset.y = 0;
         transform.localPosition += offset;
-    	playerScript.AddStrengthModifier(effectOnAttack, 0);
+    	// playerScript.AddStrengthModifier(effectOnAttack, 0);
 
         timer = timerLength;
         Debug.Log(ObjectManager.instance);
@@ -69,7 +73,7 @@ public class Tool : MonoBehaviour
 	    Vector3 currLoc = transform.position;
 	    transform.parent = null;
 	    transform.position = currLoc;
-	    playerScript.RemoveStrengthModifier(effectOnAttack, 0);	
+	    // playerScript.RemoveStrengthModifier(effectOnAttack, 0);	
         ObjectManager.instance.UnequipTool(this);
         trashManiaDisplay.Disable();
         trashManiaDisplay.gameObject.SetActive(false);

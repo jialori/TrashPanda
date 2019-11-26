@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         {
             TimerManager.instance?.TogglePlay();
         }
-        Raccoon?.TogglePlay();
+        Raccoon?.TogglePause();
 
         foreach (HumanController worker in GameManager.instance.CHC?.humans)
         {

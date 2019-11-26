@@ -13,21 +13,13 @@ public class CountDownDisplay : MonoBehaviour
 	{
 		countDownDisplay = this.gameObject;
 		countDownText = GetComponent<Text>();
-        SceneTransitionManager.instance.RegisterCountdownObj(this);
 	}
-
-	// void Start()
-	// {
-        // Count Down on Start
-        // countDownText.GetComponent<CountDownDisplay>().StartCoroutine("CountDown");
-        // StartCoroutine("CountDown");
-	// }
 
     public IEnumerator CountDown()
     {
-        Debug.Log("Count down routine called.");
+        // Debug.Log("Count down routine called.");
     	TimerManager.instance.StopTimer();
-        // GameManager.instance.Raccoon?.TogglePlay();
+        GameManager.instance.Raccoon?.Pause();
         countDownDisplay.SetActive(true);
 
         for (int t = 3; t > 0; t--)
@@ -39,9 +31,8 @@ public class CountDownDisplay : MonoBehaviour
         countDownText.text = "START!";
         transform.GetChild(0).gameObject.SetActive(false);
         
-        GameManager.instance.Raccoon?.TogglePlay();
+        GameManager.instance.Raccoon?.UnPause();
         TimerManager.instance.StartTimer();
-
         
         yield return new WaitForSeconds(1.0f);
         countDownDisplay.SetActive(false);

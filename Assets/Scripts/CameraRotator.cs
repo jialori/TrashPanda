@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Util;
+using System;
 
 public class CameraRotator : MonoBehaviour
 {
@@ -82,10 +83,13 @@ public class CameraRotator : MonoBehaviour
 
     private void Update()
     {
+        if (!SceneTransitionManager.instance.isGameOn()) {return;}
+
         GetInput();
         MoveToTar();
         LookAtTar();
         OrbitTar();
+        RenderTransparent();
 
         coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
         coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
@@ -101,6 +105,31 @@ public class CameraRotator : MonoBehaviour
 
         coll.CheckColliding(lookAtPtPos); // using raycasts
         position.adjustDis = coll.AdjustedDisWithRaycast(lookAtPtPos);
+    }
+
+    // Render objects between the raccoon and camera transparent
+    void RenderTransparent()
+    {
+        // Retrieve all objects between raccoon and camera
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(transform.position, transform.forward, distance);
+        
+        // For each object hit by the raycast
+        for (int i = 0; i < hits.Length; i++)
+        {
+            // Retrieve the object's renderer
+            RaycastHit hit = hits[i];
+            Renderer rend = hit.transform.GetComponent<Renderer>();
+            Debug.Log("Object " + hit.transform.ToString() + " was hit by raycast between raccoon and camera");
+            Debug.Log("Rend: " + Convert.ToBoolean(rend).ToString() + ", object is raccoon: " + (hit.transform != target).ToString());
+
+            if (rend && hit.transform != target)
+            {
+                // Make object transparent here
+
+                // Need some way to restore the object's shader when it is no longer blocking the camera's view
+            }
+        }
     }
 
     void GetInput()
