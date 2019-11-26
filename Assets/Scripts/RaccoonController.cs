@@ -251,7 +251,7 @@ public class RaccoonController : MonoBehaviour
     {
         isStunned = true;
         camShaker.ShakeCamera();
-        // StartCoroutine(Stun(stunFrom));
+        StartCoroutine(Stun(stunFrom));
     }
 
     public void Reset()
@@ -261,9 +261,8 @@ public class RaccoonController : MonoBehaviour
 
     private IEnumerator Stun(Vector3 stunFrom)
     {
-        yield return new WaitForSeconds(1);
         stunEffect.Play();
         sfx2.PlayOneShot(stunnedSFX, 0.3f);
-        // StartCoroutine(camShaker.Shake(0.5f, .4f, stunFrom));
+        yield return new WaitForSeconds(1);
     }
 }
