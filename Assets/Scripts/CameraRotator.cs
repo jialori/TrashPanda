@@ -89,7 +89,7 @@ public class CameraRotator : MonoBehaviour
         MoveToTar();
         LookAtTar();
         OrbitTar();
-        RenderTransparent();
+        //RenderTransparent();
 
         coll.UpdateCamClipPts(transform.position, transform.rotation, ref coll.adjustedCamClipPts);
         coll.UpdateCamClipPts(des, transform.rotation, ref coll.desiredCamClipPts);
@@ -142,7 +142,8 @@ public class CameraRotator : MonoBehaviour
 
     void MoveToTar()
     {
-        lookAtPtPos = target.position + position.targetLookAtOffset;
+        //lookAtPtPos = target.position + position.targetLookAtOffset;
+        lookAtPtPos = target.position + coll.AdjustLookAtPos(target.position, position.targetLookAtOffset);
         // des = Quaternion.Euler(orbit.xRotation, orbit.yRotation + target.eulerAngles.y, 0) * -Vector3.forward * position.disFromTar;
         des = Quaternion.Euler(orbit.xRotation, orbit.yRotation, 0) * -Vector3.forward * position.disFromTar;
         des += lookAtPtPos;
@@ -200,6 +201,19 @@ public class CameraRotator : MonoBehaviour
             cam = camera;
             adjustedCamClipPts = new Vector3[5];
             desiredCamClipPts = new Vector3[5];
+        }
+
+        public Vector3 AdjustLookAtPos(Vector3 raccoonPos, Vector3 lookAtOffset)
+        {
+            Ray ray = new Ray(raccoonPos, Vector3.up);
+            float orgDis = lookAtOffset.magnitude;
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, orgDis + .5f, collisionLayer))
+            {
+                if (hit.distance < orgDis)
+                    return hit.distance * Vector3.up * 0.8f;
+            }
+            return lookAtOffset;
         }
 
         public void UpdateCamClipPts(Vector3 camPos, Quaternion atRotation, ref Vector3[] intoArray)
