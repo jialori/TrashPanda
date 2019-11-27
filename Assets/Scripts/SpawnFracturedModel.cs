@@ -25,6 +25,14 @@ public class SpawnFracturedModel : MonoBehaviour
     }
   }
 
+    // For testing only
+    //void Update()
+    //{
+        //if (Input.GetButtonDown("Fire1"))
+        //{
+            ////SpawnFracturedObj(Vector3.up);
+        }
+    //}
   public void SpawnFracturedObj(Vector3 momentum)
   {
     Vector3 orgPos = transform.position;

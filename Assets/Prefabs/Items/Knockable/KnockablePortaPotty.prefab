@@ -15,8 +15,10 @@ GameObject:
   - component: {fileID: 2412014310358700088}
   - component: {fileID: 3305766185669685663}
   - component: {fileID: 6988997849770632559}
+  - component: {fileID: 5840544586687077428}
   - component: {fileID: -4928928305353721503}
   - component: {fileID: 5094011053914919284}
+  - component: {fileID: 3014435814213853539}
   m_Layer: 9
   m_Name: KnockablePortaPotty
   m_TagString: Untagged
@@ -217,6 +219,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5840544586687077428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306903803590322900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252fc92a929fe204393776fbbafc6a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orgObj: {fileID: 6306903803590322900}
+  fracturedObj: {fileID: 6306903803590322900}
+  mass: 0.005
 --- !u!114 &-4928928305353721503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +262,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5200634, y: 0.5726681, z: 3.8651505}
   m_Center: {x: 0.016392708, y: 0.28550482, z: -0.54226875}
+--- !u!114 &3014435814213853539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306903803590322900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 653aab0a7d7fa014ba255fe1f5cbeabe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startExplosion: 0
+  destroyDelay: 3
 --- !u!1001 &3810947623678584788
 PrefabInstance:
   m_ObjectHideFlags: 0
