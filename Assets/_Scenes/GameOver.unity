@@ -4603,7 +4603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 7022285247020870373}
-  firstSelected: {fileID: 0}
+  firstSelected: {fileID: 1426700876}
   buttons: []
 --- !u!1 &7022285247020870373
 GameObject:
