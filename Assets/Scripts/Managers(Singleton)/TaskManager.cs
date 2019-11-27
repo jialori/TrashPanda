@@ -269,7 +269,7 @@ public class TaskManager : MonoBehaviour
 
     private IEnumerator ShowObjectiveComplete(GameTask completedTask)
     {
-        description.text = completedTask.description;
+        description.text = completedTask.initialDescription;
         objectiveComplete?.SetActive(true);
         // Debug.Log("Show Objective Complete");
         yield return new WaitForSeconds(2.0f);
@@ -288,7 +288,7 @@ public class TaskManager : MonoBehaviour
     {
         if (newTask == null || SceneTransitionManager.instance.GetCurrentScene() != "MainScene") yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(2.5f);
-        newDescription.text = newTask.description;
+        newDescription.text = newTask.initialDescription;
         newObjective?.SetActive(true);
         // while (newDescription.color.a != 1)
         // {

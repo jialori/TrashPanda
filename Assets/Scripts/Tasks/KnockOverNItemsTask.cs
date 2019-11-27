@@ -7,7 +7,8 @@ public class KnockOverNItemsTask : GameTask
     public KnockOverNItemsTask(int num)
     {
         numGoal = num;
-        description = "Knock over " + num + " items";
+        initialDescription = "Knock over " + num + " items";
+        description = initialDescription;
     }
 
     public override bool isComplete()
@@ -17,7 +18,7 @@ public class KnockOverNItemsTask : GameTask
 
     public override void updateProgress(TaskProgress progress)
     {
-        if (progress.Type == TaskProgress.TaskType.Knockable)
+        if (progress.Type == TaskProgress.TaskType.Knockable && numDestroyed != numGoal)
         {
             numDestroyed++;
             description = "Knock over " + numDestroyed + "/" + numGoal + " items";
