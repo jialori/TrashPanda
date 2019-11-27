@@ -14,6 +14,7 @@ public class ObjectiveFinalShowcase : MonoBehaviour
        for (int i=0; i < objectiveDisplays.Count; i++) 
         {
 	        objectiveDisplays[i].text = "";
+            objectiveDisplays[i].gameObject.SetActive(false);
         }
 	}
 
@@ -32,6 +33,7 @@ public class ObjectiveFinalShowcase : MonoBehaviour
         for (int i=0; i < count; i++) 
         {
 	        objectiveDisplays[i].text = completedTasks[i].description;
+            objectiveDisplays[i].gameObject.SetActive(true);
 	        yield return new WaitForSeconds(.2f);
         }
 

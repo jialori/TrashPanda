@@ -67,7 +67,7 @@ public class RaccoonController : MonoBehaviour
         animator = GetComponent<Animator>();
         // For interaction with breakable and knockable
         raycastPaddedDist = characterController.radius + raycastPadding;
-        stunEffect = GetComponentInChildren<ParticleSystem>();
+        stunEffect = GetComponentInChildren<ParticleSystem>(true);
         stunEffect.Stop();
         var sm = stunEffect.main;
         sm.simulationSpeed = 2f;
@@ -169,7 +169,7 @@ public class RaccoonController : MonoBehaviour
             }
 
             movementVector.y -= gravity * Time.deltaTime;
-            // Debug.Log("movementVector = " + movementVector);
+            Debug.Log("movementVector = " + movementVector);
             characterController.Move(movementVector * Time.deltaTime);
         }
         else if (isStunned)
