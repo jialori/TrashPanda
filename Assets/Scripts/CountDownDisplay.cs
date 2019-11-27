@@ -13,6 +13,7 @@ public class CountDownDisplay : MonoBehaviour
 	{
 		countDownDisplay = this.gameObject;
 		countDownText = GetComponent<Text>();
+        countDownText.text = "";
 	}
 
     public IEnumerator CountDown()
@@ -21,6 +22,8 @@ public class CountDownDisplay : MonoBehaviour
     	TimerManager.instance.StopTimer();
         GameManager.instance.Raccoon?.Pause();
         countDownDisplay.SetActive(true);
+
+        AudioManager.instance.Play("ThemeSong");
 
         for (int t = 3; t > 0; t--)
         {

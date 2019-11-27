@@ -127,7 +127,7 @@ public class SceneTransitionManager : MonoBehaviour
         SceneTransitionManager.instance.gameOn = true;
 
         AudioManager.instance.StopCurrent();
-        AudioManager.instance.Play("ThemeSong");
+        // AudioManager.instance.Play("ThemeSong");
     }
 
 
@@ -144,7 +144,7 @@ public class SceneTransitionManager : MonoBehaviour
         SceneTransitionManager.instance.gameOn = true;
 
         AudioManager.instance.StopCurrent();
-        AudioManager.instance.Play("ThemeSong");
+        // AudioManager.instance.Play("ThemeSong");
     }
 
 
@@ -209,6 +209,7 @@ public class SceneTransitionManager : MonoBehaviour
         if (GameManager.instance.m_disableCountDown)
         {
             TimerManager.instance.StartTimer();
+            AudioManager.instance.Play("ThemeSong");
         } 
         else
         {
