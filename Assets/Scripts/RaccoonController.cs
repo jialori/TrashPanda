@@ -234,8 +234,14 @@ public class RaccoonController : MonoBehaviour
         characterController.enabled = false;
         if (up) characterController.transform.position += new Vector3(0, 8.5f, 0);
         else characterController.transform.position -= new Vector3(0, 8, 0);
+
+        // Set to x-z position tight in front of door
+            characterController.transform.position.x = 27.41;
+        characterController.transform.position.z = -16.53;
+
         characterController.enabled = true;
         characterController.transform.eulerAngles = new Vector3(0, -90, 0);
+
     }
 
     public void Pause()
