@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1415354874431852805}
   - component: {fileID: 5901236334036660945}
   - component: {fileID: 5143734979806489979}
+  - component: {fileID: 4424137713889622293}
   - component: {fileID: 6393741484895496061}
   - component: {fileID: 1695631416}
   m_Layer: 9
@@ -127,6 +128,22 @@ MonoBehaviour:
   bakeKeys: []
   bakeValues: []
   highlightOn: 0
+--- !u!114 &4424137713889622293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151277801952945782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252fc92a929fe204393776fbbafc6a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orgObj: {fileID: 151277801952945782}
+  fracturedObj: {fileID: 3715187182771025923, guid: 9b4e3b8022ce7594eaffc0fdf653f213,
+    type: 3}
+  mass: 0.001
 --- !u!114 &6393741484895496061
 MonoBehaviour:
   m_ObjectHideFlags: 0
