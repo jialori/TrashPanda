@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Util;
-using System.Collections;
 
 public class RaccoonController : MonoBehaviour
 {
@@ -88,7 +88,7 @@ public class RaccoonController : MonoBehaviour
 
     void Update()
     {
-    	if (pause) return;
+        if (pause) return;
 
         // Adjust movement for camera angle
         var camForward = cam.forward;
@@ -137,7 +137,7 @@ public class RaccoonController : MonoBehaviour
                 // lookDir.y = 0;
                 // Quaternion tarRotation = Quaternion.LookRotation(lookDir);
                 // transform.rotation = Quaternion.Lerp(Quaternion.identity, tarRotation, turningRate * Time.deltaTime);
-            
+
                 // - Turn towards direction of moving (except when walking backwards)
                 // int sign = (moveY >= 0) ? 1 : -1;
                 // Quaternion tarRotation = Quaternion.LookRotation(sign * movementVector);
@@ -147,7 +147,7 @@ public class RaccoonController : MonoBehaviour
                 //     transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, -0.1f * turningRate * Time.deltaTime);
                 // }
                 // transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, turningRate * Time.deltaTime);
-                
+
                 // - Turn towards direction of moving
                 Quaternion tarRotation = Quaternion.LookRotation(movementVector);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, tarRotation, turningRate * Time.deltaTime);
@@ -169,7 +169,7 @@ public class RaccoonController : MonoBehaviour
             else
             {
                 movementVector.y = prevY;
-            
+
                 animator.SetBool("isGrounded", false);
 
             }
@@ -194,17 +194,18 @@ public class RaccoonController : MonoBehaviour
 
             // raccoon is still affected by gravity when stunned
             movementVector = new Vector3(0, 0, 0);
-            movementVector.y = - gravity * Time.deltaTime;
+            movementVector.y = -gravity * Time.deltaTime;
             characterController.Move(movementVector * Time.deltaTime);
         }
 
         // Animation
         if (!isStunned && !Controller.GetA() && (moveX != 0.0f || moveY != 0.0f))
         {
-        	animator.SetBool("isMoving", true);
-        } else
+            animator.SetBool("isMoving", true);
+        }
+        else
         {
-        	animator.SetBool("isMoving", false);	
+            animator.SetBool("isMoving", false);
         }
 
     }
@@ -228,7 +229,6 @@ public class RaccoonController : MonoBehaviour
         }
     }
 
-
     public void UseStairs(bool up)
     {
         characterController.enabled = false;
@@ -248,13 +248,13 @@ public class RaccoonController : MonoBehaviour
     public void Pause()
     {
         pause = true;
-        animator.enabled = false;        
+        animator.enabled = false;
     }
 
     public void UnPause()
     {
         pause = false;
-        animator.enabled = true;        
+        animator.enabled = true;
     }
 
     public void TogglePause()
