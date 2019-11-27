@@ -169,14 +169,14 @@ public class ObjectManager : MonoBehaviour
             var raccoon = GameManager.instance.Raccoon;
             // var stair = target.GetComponent<Stair>();
             if (stairTarget == null) return;
-            if (Controller.GetX()) Debug.Log("stairTarget: " + stairTarget.GetFloor().ToString());
-            if (Controller.GetX() && stairTarget.GetFloor() != 5)
+            // if (Controller.GetX()) Debug.Log("stairTarget: " + stairTarget.GetFloor().ToString());
+            if (Controller.GetY() && stairTarget.GetFloor() != 5)
             {
                 raccoon.UseStairs(true);
                 stairTipOpen = false;
                 stairTips.Hide();
             }
-            else if (Controller.GetY() && stairTarget.GetFloor() != 1)
+            else if (Controller.GetX() && stairTarget.GetFloor() != 1)
             {
                 raccoon.UseStairs(false);
                 stairTipOpen = false;
