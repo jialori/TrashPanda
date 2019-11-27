@@ -5993,7 +5993,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8799564522189665618, guid: 89634abb0387bcc40b13ae93f3142589,
           type: 3}
-        m_MethodName: StartGame
+        m_MethodName: StartGameOnMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6123,7 +6123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8799564522189665618, guid: 89634abb0387bcc40b13ae93f3142589,
           type: 3}
-        m_MethodName: StartGame
+        m_MethodName: StartGameOnMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11597,7 +11597,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8799564522189665618, guid: 89634abb0387bcc40b13ae93f3142589,
           type: 3}
-        m_MethodName: StartGame
+        m_MethodName: StartGameOnMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14675,7 +14675,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8799564522189665618, guid: 89634abb0387bcc40b13ae93f3142589,
           type: 3}
-        m_MethodName: StartGame
+        m_MethodName: StartGameOnMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15515,7 +15515,7 @@ MonoBehaviour:
   m_volume: 0
   m_disableTimer: 0
   m_disableCountDown: 0
-  m_simplifyTasks: 0
+  m_simplifyTasks: 1
   paused: 0
   CHC: {fileID: 0}
 --- !u!4 &1985394234
@@ -15931,7 +15931,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8799564522189665618, guid: 89634abb0387bcc40b13ae93f3142589,
           type: 3}
-        m_MethodName: StartGame
+        m_MethodName: StartGameOnMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
