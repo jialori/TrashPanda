@@ -58,7 +58,8 @@ public class TaskManager : MonoBehaviour
         // // Add possible tasks here
         InitializeTasks();
 
-        while (TaskManager.instance.activeTasks.Any(task => task == null)){
+        while (TaskManager.instance.activeTasks.Any(task => task == null))
+        {
             addRandomTask();
             Debug.Log("alooo");
         }
@@ -228,6 +229,8 @@ public class TaskManager : MonoBehaviour
 
     private IEnumerator ShowObjectiveComplete(GameTask completedTask)
     {
+        // make sure new objective has disappeared
+        newObjective?.SetActive(false);
         description.text = completedTask.initialDescription;
         objectiveComplete?.SetActive(true);
         // Debug.Log("Show Objective Complete");
@@ -247,6 +250,8 @@ public class TaskManager : MonoBehaviour
     {
         if (newTask == null || SceneTransitionManager.instance.GetCurrentScene() != "MainScene") yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(2.5f);
+        // make sure objective complete has disappeared
+        objectiveComplete?.SetActive(false);
         newDescription.text = newTask.initialDescription;
         newObjective?.SetActive(true);
         // while (newDescription.color.a != 1)
