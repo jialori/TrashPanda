@@ -162,10 +162,16 @@ public class RaccoonController : MonoBehaviour
                     movementVector.y = jumpPower;
                     animator.SetTrigger("jumped");
                 }
+
+                animator.SetBool("isGrounded", true);
+
             }
             else
             {
                 movementVector.y = prevY;
+            
+                animator.SetBool("isGrounded", false);
+
             }
 
             movementVector.y -= gravity * Time.deltaTime;
