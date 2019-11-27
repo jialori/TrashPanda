@@ -31,7 +31,7 @@ public class SpawnFracturedModel : MonoBehaviour
         //if (Input.GetButtonDown("Fire1"))
         //{
             ////SpawnFracturedObj(Vector3.up);
-        }
+        //}
     //}
   public void SpawnFracturedObj(Vector3 momentum)
   {
