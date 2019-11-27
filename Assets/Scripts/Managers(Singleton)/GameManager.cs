@@ -41,8 +41,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!m_raccoon)
+        if (m_raccoon == null)
         {
+            Debug.Log("searched for Raccoon");
             m_raccoon = GameObject.FindGameObjectWithTag("Raccoon")?.GetComponent<RaccoonController>();
         }
 

@@ -49,6 +49,8 @@ public class HumanController : MonoBehaviour
 
     // For Play/Pause toggle 
     private bool pause = false;
+    private bool hasTarget = false;
+
 
     // Outline detection cones in the editor
     private void OnDrawGizmos()
@@ -152,7 +154,8 @@ public class HumanController : MonoBehaviour
 
     void Start()
     {
-        target = GameManager.instance.Raccoon.transform;
+        // target = GameManager.instance.Raccoon.transform;
+        StartCoroutine(FindTarget());
 
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 1f;
@@ -169,9 +172,17 @@ public class HumanController : MonoBehaviour
         workerStunVO = Resources.LoadAll<AudioClip>("Audio/StunVO");
     }
 
+    private IEnumerator FindTarget()
+    {
+        yield return new WaitUntil(() => GameManager.instance.Raccoon != null);
+        target = GameManager.instance.Raccoon.transform;
+        hasTarget = true;
+    }
+
     void Update() 
     {
         if (pause) return;
+        if (!hasTarget) return;
 
         // Register worker to CHC; code cannot be placed into Start because Gamemanager's CHC might not have been initialized yet
         // there are better ways to do this
