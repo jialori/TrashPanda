@@ -124,7 +124,7 @@ MonoBehaviour:
   scorePoint: 15
   level: 1
   toppled: 0
-  objectKnock: {fileID: 8300000, guid: 75e692918e38c274b82e7cbb1312a6a8, type: 3}
+  objectKnock: {fileID: 8300000, guid: b502b5e1c9c83f946af016ad2c372735, type: 3}
 --- !u!82 &8966132441013294175
 AudioSource:
   m_ObjectHideFlags: 0
@@ -137,7 +137,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.51
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -145,8 +145,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 1535.7031
+  MinDistance: 3
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
