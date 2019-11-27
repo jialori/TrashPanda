@@ -66,9 +66,9 @@ public class TaskManager : MonoBehaviour
         for (int i = 0; i < activeTasks.Count; i++)
         {
             // Debug.Log(activeTasks[i].description);
-            pauseMenuTasks[i].text = activeTasks[i].description;
-            countdownTasks[i].text = activeTasks[i].description;
-            onScreenTasks[i].text = activeTasks[i].description;
+            TaskManager.instance.pauseMenuTasks[i].text = activeTasks[i].description;
+            TaskManager.instance.countdownTasks[i].text = activeTasks[i].description;
+            TaskManager.instance.onScreenTasks[i].text = activeTasks[i].description;
         }
         addTextDoneCountdown = true;
         addTextDonePausemenu = true;
@@ -83,11 +83,14 @@ public class TaskManager : MonoBehaviour
         // Debug.Log(countdownTasks.Count);
         // Debug.Log(pauseMenuTasks.Count);
         // Debug.Log(completedTasks.Count);
+        // Debug.Log(onScreenTasks.Count);
         if (!SceneTransitionManager.instance.isGameOn()) return;
-        if (!linkedUI) return;
+        // Debug.Log("hi~~~~~");
+        if (!TaskManager.instance.linkedUI) return;
+        // Debug.Log("heyyy");
+        // Debug.Log(addTextDoneCountdown);
 
-        //Debug.Log(addTextDoneCountdown);
-        //Debug.Log(countdownTasks.Count);
+        // TODO: Make these coroutine instead
         if (!addTextDoneCountdown && countdownTasks.Count > 0)
         {
             for (int i = 0; i < activeTasks.Count; i++)
@@ -122,7 +125,7 @@ public class TaskManager : MonoBehaviour
             // If the task has been completed
             if (activeTasks[i].isComplete())
             {
-                // Debug.Log("Task " + activeTasks[i].description + " has been completed");
+                Debug.Log("Task " + activeTasks[i].description + " has been completed");
                 completedTaskIdx = i;
                 break;
             }
@@ -146,10 +149,10 @@ public class TaskManager : MonoBehaviour
 
             // Show objective complete
             // Debug.Log("Calling showobjectivecomplete");
-            StopCoroutine("ShowObjectiveComplete");
-            StopCoroutine("ShowNewObjective");
-            StartCoroutine(ShowObjectiveComplete(completedTask));
-            StartCoroutine(ShowNewObjective(newTask));
+            TaskManager.instance.StopCoroutine("ShowObjectiveComplete");
+            TaskManager.instance.StopCoroutine("ShowNewObjective");
+            TaskManager.instance.StartCoroutine(ShowObjectiveComplete(completedTask));
+            TaskManager.instance.StartCoroutine(ShowNewObjective(newTask));
 
             // Generate a tool for the raccoon here
             // Debug.Log("Calling spawnrandomtool");
@@ -259,6 +262,7 @@ public class TaskManager : MonoBehaviour
         foreach (var task in activeTasks)
         {
             // Debug.Log("Update progress for task");
+            Debug.Log(task.description);
             task.updateProgress(progress);
         }
     }
@@ -313,12 +317,13 @@ public class TaskManager : MonoBehaviour
         TaskManager.instance.pauseMenuTasks.Clear();
         TaskManager.instance.countdownTasks.Clear();
         TaskManager.instance.completedTasks.Clear();
-        TaskManager.instance.addTextDoneCountdown = false;
-        TaskManager.instance.addTextDonePausemenu = false;
+        // TaskManager.instance.addTextDoneCountdown = false;
+        // TaskManager.instance.addTextDonePausemenu = false;
 
         StopCoroutine("ShowObjectiveComplete");
         StopCoroutine("ShowNewObjective");
-        TaskManager.instance.linkedUI = false;
+        // TaskManager.instance.linkedUI = false;
+
         // Debug.Log("Dont need to add text is: " + addTextDoneCountdown);
 
     }

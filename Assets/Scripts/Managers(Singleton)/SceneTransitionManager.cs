@@ -95,7 +95,36 @@ public class SceneTransitionManager : MonoBehaviour
         SceneTransitionManager.instance.gameOn = false;
     }
 
-    public void StartGame()
+    public void StartGameOnMainMenu()
+    {
+        // Debug.Log("[SceneManager] StartGame");
+        SceneTransitionManager.instance.StartCoroutine(StartGameSteps());
+
+        SceneTransitionManager.instance.StartCoroutine(
+            DoAfter( 
+                ()=>SceneTransitionManager.instance.hasLinkedUI,
+                ()=>SceneTransitionManager.instance.GAME_UI.SetActive(true) ));
+
+        SceneTransitionManager.instance.StartCoroutine(
+            DoAfter( 
+                ()=>SceneTransitionManager.instance.hasLinkedCamera,
+                ()=>SceneTransitionManager.instance.GAME_CAMERA.SetActive(true) ));
+
+        SceneTransitionManager.instance.currentScene = GAME;
+
+        // ScoreManager.instance?.Reset();
+        // ObjectManager.instance?.Reset();
+        // TimerManager.instance?.Reset();
+        // TaskManager.instance?.Reset();
+
+        SceneTransitionManager.instance.gameOn = true;
+
+        AudioManager.instance.StopCurrent();
+        AudioManager.instance.Play("ThemeSong");
+    }
+
+
+    public void StartGameOnGameOver()
     {
         // Debug.Log("[SceneManager] StartGame");
         SceneTransitionManager.instance.StartCoroutine(StartGameSteps());
@@ -122,6 +151,7 @@ public class SceneTransitionManager : MonoBehaviour
         AudioManager.instance.StopCurrent();
         AudioManager.instance.Play("ThemeSong");
     }
+
 
     public void EndGame()
     {

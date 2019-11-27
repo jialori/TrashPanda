@@ -33,7 +33,7 @@ public class UIStorage : MonoBehaviour
 
         TaskManager.instance.countdownTasks.AddRange(taskDisplayCountdown);
 
-        TaskManager.instance.countdownTasks.AddRange(taskDisplayPauseMenu);
+        TaskManager.instance.pauseMenuTasks.AddRange(taskDisplayPauseMenu);
 
         TaskManager.instance.onScreenTasks.AddRange(taskDisplayOnScreen);
 
