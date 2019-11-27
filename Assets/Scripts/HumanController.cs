@@ -152,6 +152,8 @@ public class HumanController : MonoBehaviour
 
     void Start()
     {
+        target = GameManager.instance.Raccoon.transform;
+
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 1f;
         p = new NavMeshPath();
