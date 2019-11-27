@@ -11,6 +11,7 @@ public class RaccoonController : MonoBehaviour
 
     [SerializeField] private Transform cam;
     [SerializeField] private CameraRotator camController;
+    [SerializeField] private Transform stairTrans;
 
     [Tooltip("How many degrees the raccoon can turn per 1 second.")]
     public float turningRate = 360f;
@@ -236,7 +237,7 @@ public class RaccoonController : MonoBehaviour
         else characterController.transform.position -= new Vector3(0, 8, 0);
 
         // Set to x-z position tight in front of door
-        // gameObject.transform.position = new Vector3(stairTrans.TransformPoint(stairTrans.position).x, gameObject.transform.position.y, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(stairTrans.position.x, gameObject.transform.position.y, stairTrans.position.z);
 
         // characterController.transform.position.z = ;
         characterController.enabled = true;
