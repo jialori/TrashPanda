@@ -43,6 +43,7 @@ public class UIStorage : MonoBehaviour
         TaskManager.instance.newDescription = task_newDescription;
         TaskManager.instance.trashManiaDisplay = task_trashManiaDisplay;
         TaskManager.instance.NotifyUIReady();
+        Debug.Log("inventory called");
 
         SceneTransitionManager.instance.GAME_UI = canvas;
         SceneTransitionManager.instance.NotifyUIReady();

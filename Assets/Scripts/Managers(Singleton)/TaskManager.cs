@@ -24,13 +24,11 @@ public class TaskManager : MonoBehaviour
     [SerializeField] public GameObject newObjective;
     [SerializeField] public TextMeshProUGUI newDescription;
     [SerializeField] public TrashManiaDisplay trashManiaDisplay;
-    [SerializeField] public List<TextMeshProUGUI> pauseMenuTasks;
-    [SerializeField] public List<TextMeshProUGUI> countdownTasks;
-    [SerializeField] public List<TextMeshProUGUI> onScreenTasks;
-    public bool linkedUI = false;
-    private bool addTextDoneCountdown = false;
-    private bool addTextDonePausemenu = false;
-    private bool addTextDoneOnScreen = false;
+    [HideInInspector] public List<TextMeshProUGUI> pauseMenuTasks;
+    [HideInInspector] public List<TextMeshProUGUI> countdownTasks;
+    [HideInInspector] public List<TextMeshProUGUI> onScreenTasks;
+    private bool linkedUI = false;
+    private bool filledUI = false;
 
     public AudioSource SFX;
     public AudioClip ObjCompleteSFX;
@@ -57,81 +55,42 @@ public class TaskManager : MonoBehaviour
 
     void Start()
     {
-        // Add possible tasks here
-        AddInitialTasks();
+        // // Add possible tasks here
+        InitializeTasks();
 
-        while (activeTasks.Any(task => task == null))
+        while (TaskManager.instance.activeTasks.Any(task => task == null)){
             addRandomTask();
-
-        for (int i = 0; i < activeTasks.Count; i++)
-        {
-            // Debug.Log(activeTasks[i].description);
-            TaskManager.instance.pauseMenuTasks[i].text = activeTasks[i].description;
-            TaskManager.instance.countdownTasks[i].text = activeTasks[i].description;
-            TaskManager.instance.onScreenTasks[i].text = activeTasks[i].description;
+            Debug.Log("alooo");
         }
-        addTextDoneCountdown = true;
-        addTextDonePausemenu = true;
-        addTextDoneOnScreen = true;
+
+        TaskManager.instance.StartCoroutine("AddActiveTasksToUI");
 
         GetComponent<AudioSource>();
+
     }
 
     void Update()
     {
-        // Debug.Log(addTextDoneCountdown);
-        // Debug.Log(countdownTasks.Count);
-        // Debug.Log(pauseMenuTasks.Count);
-        // Debug.Log(completedTasks.Count);
-        // Debug.Log(onScreenTasks.Count);
         if (!SceneTransitionManager.instance.isGameOn()) return;
         // Debug.Log("hi~~~~~");
-        if (!TaskManager.instance.linkedUI) return;
+        if (!TaskManager.instance.filledUI) return; // used once since GAME scene is never destroyed
         // Debug.Log("heyyy");
         // Debug.Log(addTextDoneCountdown);
-
-        // TODO: Make these coroutine instead
-        if (!addTextDoneCountdown && countdownTasks.Count > 0)
-        {
-            for (int i = 0; i < activeTasks.Count; i++)
-            {
-                countdownTasks[i].text = activeTasks[i].description;
-            }
-            TaskManager.instance.addTextDoneCountdown = true;
-        }
-
-        if (!addTextDonePausemenu && pauseMenuTasks.Count > 0)
-        {
-            for (int i = 0; i < activeTasks.Count; i++)
-            {
-                pauseMenuTasks[i].text = activeTasks[i].description;
-            }
-            TaskManager.instance.addTextDonePausemenu = true;
-        }
-
-        if (!addTextDoneOnScreen && onScreenTasks.Count > 0)
-        {
-            for (int i = 0; i < activeTasks.Count; i++)
-            {
-                onScreenTasks[i].text = activeTasks[i].description;
-            }
-            TaskManager.instance.addTextDoneOnScreen = true;
-        }
 
         var completedTaskIdx = -1;
         // For each active task
         for (int i = 0; i < activeTasks.Count; i++)
         {
             // If the task has been completed
-            if (activeTasks[i].isComplete())
+            if (TaskManager.instance.activeTasks[i].isComplete())
             {
-                Debug.Log("Task " + activeTasks[i].description + " has been completed");
+                Debug.Log("Task " + TaskManager.instance.activeTasks[i].description + " has been completed");
                 completedTaskIdx = i;
                 break;
             }
 
-            pauseMenuTasks[i].text = activeTasks[i].description;
-            onScreenTasks[i].text = activeTasks[i].description;
+            pauseMenuTasks[i].text = TaskManager.instance.activeTasks[i].description;
+            onScreenTasks[i].text = TaskManager.instance.activeTasks[i].description;
         }
         // Completed a task
         if (completedTaskIdx != -1)
@@ -168,9 +127,9 @@ public class TaskManager : MonoBehaviour
     {
         // Find the slot to add new task to
         int idxToAdd = -1;
-        for (int i = 0; i < activeTasks.Count; i++)
+        for (int i = 0; i < TaskManager.instance.activeTasks.Count; i++)
         {
-            if (activeTasks[i] == null)
+            if (TaskManager.instance.activeTasks[i] == null)
             {
                 idxToAdd = i;
             }
@@ -187,7 +146,7 @@ public class TaskManager : MonoBehaviour
         // Check to make sure the new task isn't a repeat
         bool hasKnockOverNItemsTask = false;
         var specificItems = new List<string>();
-        foreach (var task in activeTasks)
+        foreach (var task in TaskManager.instance.activeTasks)
         {
             if (task as KnockOverNItemsTask != null)
             {
@@ -259,7 +218,7 @@ public class TaskManager : MonoBehaviour
 
     private void UpdateProgressForTasks(TaskProgress progress)
     {
-        foreach (var task in activeTasks)
+        foreach (var task in TaskManager.instance.activeTasks)
         {
             // Debug.Log("Update progress for task");
             Debug.Log(task.description);
@@ -304,26 +263,29 @@ public class TaskManager : MonoBehaviour
 
     public void Reset()
     {
+        StopCoroutine("ShowObjectiveComplete");
+        StopCoroutine("ShowNewObjective");
+
         foreach (var task in TaskManager.instance.taskPool)
         {
             // Debug.Log("Update progress for task");
             task.Reset();
         }
 
+        // Renew active tasks
         TaskManager.instance.activeTasks = new List<GameTask>() { null, null, null };
-        while (activeTasks.Any(task => task == null))
+        while (TaskManager.instance.activeTasks.Any(task => task == null))
             addRandomTask();
 
+        TaskManager.instance.completedTasks.Clear();
         TaskManager.instance.pauseMenuTasks.Clear();
         TaskManager.instance.countdownTasks.Clear();
-        TaskManager.instance.completedTasks.Clear();
-        // TaskManager.instance.addTextDoneCountdown = false;
-        // TaskManager.instance.addTextDonePausemenu = false;
+        TaskManager.instance.onScreenTasks.Clear();
 
-        StopCoroutine("ShowObjectiveComplete");
-        StopCoroutine("ShowNewObjective");
-        // TaskManager.instance.linkedUI = false;
+        TaskManager.instance.linkedUI = false;
+        TaskManager.instance.filledUI = false;
 
+        TaskManager.instance.StartCoroutine("AddActiveTasksToUI");
         // Debug.Log("Dont need to add text is: " + addTextDoneCountdown);
 
     }
@@ -333,7 +295,7 @@ public class TaskManager : MonoBehaviour
         return completedTasks;
     }
 
-    void AddInitialTasks()
+    public void InitializeTasks()
     {
         if (!GameManager.instance.m_simplifyTasks)
         {
@@ -368,7 +330,32 @@ public class TaskManager : MonoBehaviour
 
     public void NotifyUIReady()
     {
+        // AddActiveTasksToUI();
+
         TaskManager.instance.linkedUI = true;
+    }
+
+    private IEnumerator AddActiveTasksToUI()
+    {
+        Debug.Log(TaskManager.instance.linkedUI);
+        yield return new WaitUntil(() => TaskManager.instance.linkedUI);
+        yield return null;
+
+        Debug.Log(TaskManager.instance.countdownTasks.Count); //
+        Debug.Log(TaskManager.instance.pauseMenuTasks.Count); //
+        Debug.Log(TaskManager.instance.onScreenTasks.Count);
+        Debug.Log(TaskManager.instance.completedTasks.Count);
+        for (int i = 0; i < TaskManager.instance.activeTasks.Count; i++)
+        {
+            Debug.Log(TaskManager.instance.activeTasks[i].description);
+            Debug.Log(TaskManager.instance.pauseMenuTasks[i]);
+            Debug.Log(TaskManager.instance.pauseMenuTasks[i].text);
+            TaskManager.instance.pauseMenuTasks[i].text = TaskManager.instance.activeTasks[i].description;
+            TaskManager.instance.countdownTasks[i].text = TaskManager.instance.activeTasks[i].description;
+            TaskManager.instance.onScreenTasks[i].text = TaskManager.instance.activeTasks[i].description;
+        }
+
+        filledUI = true;
     }
 
 }

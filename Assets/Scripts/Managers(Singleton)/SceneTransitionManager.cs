@@ -41,7 +41,8 @@ public class SceneTransitionManager : MonoBehaviour
     void Start()
     {
 
-        SceneManager.LoadScene(GAME);
+        if (!SceneManager.GetSceneByName(GAME).isLoaded) { SceneManager.LoadScene(GAME); }
+        // SceneManager.LoadScene(GAME);
         SceneManager.LoadScene(MENU, LoadSceneMode.Additive);
         SceneTransitionManager.instance.StartCoroutine(
             DoAfter( 
@@ -75,6 +76,13 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void Menu()
     {
+        ResetManagers();
+
+        SceneTransitionManager.instance.StartCoroutine(UnloadAnyAdditiveLayer());
+
+        // Load the GAME scene if it is not loaded
+        if (!SceneManager.GetSceneByName(GAME).isLoaded) { SceneManager.LoadScene(GAME); }
+
         SceneManager.LoadScene(MENU, LoadSceneMode.Additive);
 
         SceneTransitionManager.instance.StartCoroutine(
@@ -97,7 +105,11 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void StartGameOnMainMenu()
     {
-        // Debug.Log("[SceneManager] StartGame");
+        // Load the GAME scene if it is not loaded
+        if (!SceneManager.GetSceneByName(GAME).isLoaded) { SceneManager.LoadScene(GAME); }
+        // Unload any additive scene on top
+        SceneTransitionManager.instance.StartCoroutine(UnloadAnyAdditiveLayer());
+
         SceneTransitionManager.instance.StartCoroutine(StartGameSteps());
 
         SceneTransitionManager.instance.StartCoroutine(
@@ -111,11 +123,6 @@ public class SceneTransitionManager : MonoBehaviour
                 ()=>SceneTransitionManager.instance.GAME_CAMERA.SetActive(true) ));
 
         SceneTransitionManager.instance.currentScene = GAME;
-
-        // ScoreManager.instance?.Reset();
-        // ObjectManager.instance?.Reset();
-        // TimerManager.instance?.Reset();
-        // TaskManager.instance?.Reset();
 
         SceneTransitionManager.instance.gameOn = true;
 
@@ -126,25 +133,13 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void StartGameOnGameOver()
     {
-        // Debug.Log("[SceneManager] StartGame");
+        ResetManagers();
+
+        SceneManager.LoadScene(GAME);
+
         SceneTransitionManager.instance.StartCoroutine(StartGameSteps());
 
-        SceneTransitionManager.instance.StartCoroutine(
-            DoAfter( 
-                ()=>SceneTransitionManager.instance.hasLinkedUI,
-                ()=>SceneTransitionManager.instance.GAME_UI.SetActive(true) ));
-
-        SceneTransitionManager.instance.StartCoroutine(
-            DoAfter( 
-                ()=>SceneTransitionManager.instance.hasLinkedCamera,
-                ()=>SceneTransitionManager.instance.GAME_CAMERA.SetActive(true) ));
-
         SceneTransitionManager.instance.currentScene = GAME;
-
-        ScoreManager.instance?.Reset();
-        ObjectManager.instance?.Reset();
-        TimerManager.instance?.Reset();
-        TaskManager.instance?.Reset();
 
         SceneTransitionManager.instance.gameOn = true;
 
@@ -155,18 +150,16 @@ public class SceneTransitionManager : MonoBehaviour
 
     public void EndGame()
     {
-        // Debug.Log("[SceneManager] EndGame");
-        GameManager.instance.Raccoon.Reset(); // refactor: maybe broadcast event to all gameobjects & they do their own thing
-        SceneManager.LoadScene(GAME_OVER, LoadSceneMode.Additive);
-        SceneTransitionManager.instance.StartCoroutine(
-            DoAfter( 
-                ()=>SceneTransitionManager.instance.hasLinkedUI,
-                ()=>SceneTransitionManager.instance.GAME_UI.SetActive(false) ));
+        SceneManager.LoadScene(GAME_OVER);
+        // SceneTransitionManager.instance.StartCoroutine(
+        //     DoAfter( 
+        //         ()=>SceneTransitionManager.instance.hasLinkedUI,
+        //         ()=>SceneTransitionManager.instance.GAME_UI.SetActive(false) ));
 
-        SceneTransitionManager.instance.StartCoroutine(
-            DoAfter( 
-                ()=>SceneTransitionManager.instance.hasLinkedCamera,
-                ()=>SceneTransitionManager.instance.GAME_CAMERA.SetActive(false) ));
+        // SceneTransitionManager.instance.StartCoroutine(
+        //     DoAfter( 
+        //         ()=>SceneTransitionManager.instance.hasLinkedCamera,
+        //         ()=>SceneTransitionManager.instance.GAME_CAMERA.SetActive(false) ));
 
         SceneTransitionManager.instance.currentScene = GAME_OVER;
 
@@ -212,16 +205,6 @@ public class SceneTransitionManager : MonoBehaviour
 
     IEnumerator StartGameSteps()
     {
-        // Load the GAME scene if it is not loaded
-        if (!SceneManager.GetSceneByName(GAME).isLoaded) { SceneManager.LoadScene(GAME); }
-
-        // Unload the current scene if it is not GAME
-        if (SceneTransitionManager.instance.currentScene != GAME)
-        {
-            AsyncOperation unloadInfo = SceneManager.UnloadSceneAsync(SceneTransitionManager.instance.currentScene);
-            yield return new WaitUntil(() => unloadInfo.isDone);     
-        }
-
         // Start the timer or count-down
         if (GameManager.instance.m_disableCountDown)
         {
@@ -244,5 +227,23 @@ public class SceneTransitionManager : MonoBehaviour
     }
 
 
+    IEnumerator UnloadAnyAdditiveLayer()
+    {
+        // Unload the current scene if it is not GAME
+        if (SceneTransitionManager.instance.currentScene != GAME)
+        {
+            AsyncOperation unloadInfo = SceneManager.UnloadSceneAsync(SceneTransitionManager.instance.currentScene);
+            // yield return new WaitUntil(() => unloadInfo.isDone);     
+            yield return unloadInfo;     
+        }
+    }
+
+    void ResetManagers()
+    {
+        ScoreManager.instance?.Reset();
+        ObjectManager.instance?.Reset();
+        TimerManager.instance?.Reset();
+        TaskManager.instance?.Reset();
+    }
 
 }

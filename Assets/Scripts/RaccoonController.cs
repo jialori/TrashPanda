@@ -46,7 +46,8 @@ public class RaccoonController : MonoBehaviour
     public float stunTimer = 3.0f;
     public bool isFrozen = false;
     private bool pause = true;
-    private Transform initTransform;
+    private Vector3 initPosition;
+    private Quaternion initRotation;
 
     public AudioSource[] raccoonSounds;
 
@@ -72,7 +73,6 @@ public class RaccoonController : MonoBehaviour
         sm.simulationSpeed = 2f;
         animator.enabled = false;
 
-        initTransform = this.gameObject.transform;
     }
 
     void Start()
@@ -80,6 +80,10 @@ public class RaccoonController : MonoBehaviour
         raccoonSounds = GetComponents<AudioSource>();
         sfx1 = raccoonSounds[0];
         sfx2 = raccoonSounds[1];
+
+        initPosition = transform.position;
+        initRotation = transform.rotation;
+        Debug.Log(initPosition);
     }
 
     void Update()
@@ -254,10 +258,13 @@ public class RaccoonController : MonoBehaviour
         StartCoroutine(Stun(stunFrom));
     }
 
-    public void Reset()
-    {
-        this.gameObject.transform.SetPositionAndRotation(initTransform.position, initTransform.rotation);
-    }
+    // public void Reset()
+    // {
+    //     Debug.Log(transform.position);
+    //     transform.position = initPosition;
+    //     transform.rotation = initRotation;
+    //     Debug.Log(transform.position);
+    // }
 
     private IEnumerator Stun(Vector3 stunFrom)
     {
