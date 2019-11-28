@@ -184,7 +184,7 @@ public class TaskManager : MonoBehaviour
             newTaskIdx = choices[randomIdx];
             newTask = taskPool[newTaskIdx];
         }
-
+        newTask.Reset();
         TaskManager.instance.activeTasks[idxToAdd] = newTask;
 
         return newTask;
@@ -281,6 +281,9 @@ public class TaskManager : MonoBehaviour
         TaskManager.instance.activeTasks = new List<GameTask>() { null, null, null };
         while (TaskManager.instance.activeTasks.Any(task => task == null))
             addRandomTask();
+
+        TaskManager.instance.taskPool.Clear();
+        InitializeTasks();
 
         TaskManager.instance.completedTasks.Clear();
         TaskManager.instance.pauseMenuTasks.Clear();

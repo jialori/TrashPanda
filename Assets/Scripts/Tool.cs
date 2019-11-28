@@ -9,7 +9,7 @@ public class Tool : MonoBehaviour
     private RaccoonController playerScript;
     private Rigidbody rb;
     private static float timerLength = 10f; // Total amount of time
-    private float timer;                    // Time before this bonus tool expires
+    private float timer; // Time before this bonus tool expires
     public string toolType;
     private TrashManiaDisplay trashManiaDisplay;
 
@@ -20,7 +20,6 @@ public class Tool : MonoBehaviour
 
     // public float effectOnAttack = 10;
 
-    
     private void Start()
     {
         Debug.Log("tool start");
@@ -44,7 +43,7 @@ public class Tool : MonoBehaviour
         }
     }
 
-    public void Equip(TrashManiaDisplay display) 
+    public void Equip(TrashManiaDisplay display)
     {
         // Called
         rb = GetComponent<Rigidbody>();
@@ -53,10 +52,10 @@ public class Tool : MonoBehaviour
         beingCarried = true;
         transform.parent = playerScript.transform;
         transform.localPosition = playerScript.transform.forward;
-        var offset = playerScript.transform.right * -0.5f; 
+        var offset = playerScript.transform.right * -0.5f;
         offset.y = 0;
         transform.localPosition += offset;
-    	// playerScript.AddStrengthModifier(effectOnAttack, 0);
+        // playerScript.AddStrengthModifier(effectOnAttack, 0);
 
         timer = timerLength;
         Debug.Log(ObjectManager.instance);
@@ -68,12 +67,12 @@ public class Tool : MonoBehaviour
 
     public void UnEquip()
     {
-	    rb.isKinematic = false;
-	    beingCarried = false;
-	    Vector3 currLoc = transform.position;
-	    transform.parent = null;
-	    transform.position = currLoc;
-	    // playerScript.RemoveStrengthModifier(effectOnAttack, 0);	
+        rb.isKinematic = false;
+        beingCarried = false;
+        Vector3 currLoc = transform.position;
+        transform.parent = null;
+        transform.position = currLoc;
+        // playerScript.RemoveStrengthModifier(effectOnAttack, 0);	
         ObjectManager.instance.UnequipTool(this);
         trashManiaDisplay.Disable();
         trashManiaDisplay.gameObject.SetActive(false);
@@ -81,7 +80,8 @@ public class Tool : MonoBehaviour
 
     public void AddTime()
     {
-        timer += timerLength;
+        if (timer + timerLength < 60f)
+            timer += timerLength;
     }
 
     public float GetTimer()

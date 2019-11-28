@@ -38,6 +38,7 @@ public class KnockOverNSpecificItemsTask : GameTask
     public override void Reset()
     {
         numDestroyed = 0;
+        description = initialDescription;
     }
 
     public string getItemType()
