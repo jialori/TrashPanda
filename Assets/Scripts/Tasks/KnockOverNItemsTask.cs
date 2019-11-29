@@ -30,5 +30,6 @@ public class KnockOverNItemsTask : GameTask
     public override void Reset()
     {
         numDestroyed = 0;
+        description = initialDescription;
     }
 }
