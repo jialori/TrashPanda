@@ -6798,7 +6798,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[0].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 30fc16ecb92d1844c955f5a889951a41, type: 3}
+      objectReference: {fileID: 8300000, guid: 380c9cc64dbb4c34994ea9f4ea80606b, type: 3}
     - target: {fileID: 8359068563638324809, guid: 1add5d6223643eb4db5afc7f5b06ef9d,
         type: 3}
       propertyPath: sounds.Array.data[1].name
@@ -6822,7 +6822,7 @@ PrefabInstance:
     - target: {fileID: 8359068563638324809, guid: 1add5d6223643eb4db5afc7f5b06ef9d,
         type: 3}
       propertyPath: sounds.Array.data[0].volume
-      value: 0.305
+      value: 0.323
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1add5d6223643eb4db5afc7f5b06ef9d, type: 3}
@@ -18832,7 +18832,7 @@ Skybox:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023258387}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: d9a12ffaaa5dd67418211def4dfaee9a, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
 --- !u!81 &2023258392
 AudioListener:
   m_ObjectHideFlags: 0
